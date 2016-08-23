@@ -44,6 +44,7 @@ const Panel = ({ style, header, children }) => {
 // set the property types for the Panel component
 //
 Panel.propTypes = {
+    style:    React.PropTypes.string,
     header:   React.PropTypes.string,
     children: React.PropTypes.oneOfType([
         React.PropTypes.element,
