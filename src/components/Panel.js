@@ -36,7 +36,6 @@ Panel.propTypes = {
     ]),
 };
 
-
 // export the component
 //
 export default Panel;
