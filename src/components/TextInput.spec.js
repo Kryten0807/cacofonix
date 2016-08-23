@@ -12,6 +12,16 @@ import TextInput from './TextInput';
 const expect = chai.expect;
 
 /* *****************************************************************************
+the state of the TextInput component
+    should be initialized with the correct value
+    should have the correct hasValidated state
+    should have the correct isValid state when the value is required and it's blank
+    should have the correct isValid state when the value is required and it's not blank
+    should have the correct validationMessage state when the value is required and it's blank
+    should have the correct validationMessage state when the value is required and it's not blank
+*/
+
+/* *****************************************************************************
 in terms of basic markup, the TextInput component
     should be a div.form-group
     should include an input[type="text"]
