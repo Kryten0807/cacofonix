@@ -20,7 +20,17 @@ import classnames from 'classnames';
             )
             : ''
 const Panel = ({ style, header, children }) => {
+    const classes = classnames(
+        'panel',
+        {
+            'panel-danger':  style === 'danger' || style === 'error',
+            'panel-warning': style === 'warning' || style === 'warn',
+            'panel-info':    style === 'info',
+            'panel-success': style === 'success' || style === 'ok',
+            'panel-primary': style === 'primary',
+            'panel-default': typeof style === 'undefined',
         }
+    );
 
         <div className="panel-body">{children}</div>
     return (
