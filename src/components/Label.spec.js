@@ -26,13 +26,13 @@ describe('the Label component', () => {
     const htmlFor = 'some-element';
 
     it('should have a <label> element with the correct classes', () => {
-        const component = shallow(<Label />);
+        const component = shallow(<Label htmlFor={htmlFor} />);
 
         expect(component.is('label.control-label')).to.equal(true);
     });
 
     it('should contain the correct text', () => {
-        const component = shallow(<Label label={label} />);
+        const component = shallow(<Label htmlFor={htmlFor} label={label} />);
 
         expect(component.find('label').text()).to.equal(label);
     });
@@ -46,7 +46,7 @@ describe('the Label component', () => {
     it('should include the "required" markup when required=true', () => {
         const required = true;
 
-        const component = shallow(<Label required={required} label={label} />);
+        const component = shallow(<Label htmlFor={htmlFor} required={required} label={label} />);
 
         expect(component.find('sup').length).to.equal(1);
         expect(component.find('i.glyphicon').length).to.equal(1);
@@ -55,14 +55,14 @@ describe('the Label component', () => {
     it('should not include the "required" markup when required=false', () => {
         const required = false;
 
-        const component = shallow(<Label required={required} label={label} />);
+        const component = shallow(<Label htmlFor={htmlFor} required={required} label={label} />);
 
         expect(component.find('sup').length).to.equal(0);
         expect(component.find('i.glyphicon').length).to.equal(0);
     });
 
     it('should not include the "required" markup when required is not set', () => {
-        const component = shallow(<Label label={label} />);
+        const component = shallow(<Label htmlFor={htmlFor} label={label} />);
 
         expect(component.find('sup').length).to.equal(0);
         expect(component.find('i.glyphicon').length).to.equal(0);
