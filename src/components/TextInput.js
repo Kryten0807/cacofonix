@@ -56,7 +56,9 @@ class TextInput extends React.Component {
 // set the property types for the TextInput component
 //
 TextInput.propTypes = {
-    value:    React.PropTypes.oneOfType([
+    label:       React.PropTypes.string,
+    placeholder: React.PropTypes.string,
+    value:       React.PropTypes.oneOfType([
         React.PropTypes.string,
         React.PropTypes.number,
     ]),
