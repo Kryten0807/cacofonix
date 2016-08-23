@@ -81,6 +81,7 @@ class TextInput extends React.Component {
                     type="text"
                     className="form-control"
                     placeholder={this.props.placeholder || ''}
+                    onChange={this.onChange}
                 />
             </div>
         );
