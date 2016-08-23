@@ -54,7 +54,9 @@ describe('the state of the TextInput component', () => {
         expect(component.state().hasValidated).to.equal(false);
     });
 
-    it('should have the correct isValid state when the value is required and it is blank', () => {
+    it('should have the correct isValid state when the value is required and ' +
+        'it is blank', () => {
+
         const required = true;
         const value = '';
 
@@ -63,7 +65,9 @@ describe('the state of the TextInput component', () => {
         expect(component.state().isValid).to.equal(false);
     });
 
-    it('should have the correct isValid state when the value is required and it is not blank', () => {
+    it('should have the correct isValid state when the value is required and ' +
+        'it is not blank', () => {
+
         const required = true;
         const value = 'pizza';
 
@@ -72,7 +76,9 @@ describe('the state of the TextInput component', () => {
         expect(component.state().isValid).to.equal(true);
     });
 
-    it('should have the correct isValid state when the value is not required and it is blank', () => {
+    it('should have the correct isValid state when the value is not required ' +
+        'and it is blank', () => {
+
         const required = false;
         const value = '';
 
@@ -81,7 +87,9 @@ describe('the state of the TextInput component', () => {
         expect(component.state().isValid).to.equal(true);
     });
 
-    it('should have the correct validationMessage state when the value is required and it is blank', () => {
+    it('should have the correct validationMessage state when the value is ' +
+        'required and it is blank', () => {
+
         const required = true;
         const value = '';
         const expectedMessage = `${description} is required`;
@@ -91,7 +99,9 @@ describe('the state of the TextInput component', () => {
         expect(component.state().validationMessage).to.equal(expectedMessage);
     });
 
-    it('should have the correct validationMessage state when the value is required and it is not blank', () => {
+    it('should have the correct validationMessage state when the value is ' +
+        'required and it is not blank', () => {
+
         const required = true;
         const value = 'this is valid';
 
@@ -100,11 +110,17 @@ describe('the state of the TextInput component', () => {
         expect(component.state().validationMessage).to.equal(null);
     });
 
-    it('should have the correct validationMessage state when the value is not required and it is blank', () => {
+    it('should have the correct validationMessage state when the value is ' +
+        'not required and it is blank', () => {
+
         const required = false;
         const value = '';
 
-        const component = shallow(<TextInput required={required} description={description} value={value}/>);
+        const component = shallow(<TextInput
+            required={required}
+            description={description}
+            value={value}
+        />);
 
         expect(component.state().validationMessage).to.equal(null);
     });
