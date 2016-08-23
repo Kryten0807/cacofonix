@@ -77,7 +77,7 @@ class TextInput extends React.Component {
         });
 
         return (
-            <div className="form-group">
+            <div className={classes}>
                 {this.props.label &&
                     <Label htmlFor={this.id} label={this.props.label} />
                 }
