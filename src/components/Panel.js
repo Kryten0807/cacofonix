@@ -23,12 +23,9 @@ const Panel = ({ style, header, children }) => {
         }
     );
 
-        <div className="panel-body">{children}</div>
     return (
         <div className={classes}>
 
-    </div>
-);
             {header
                 ? (
                 <div className="panel-heading">
@@ -37,6 +34,10 @@ const Panel = ({ style, header, children }) => {
                 )
                 : ''
             }
+
+            <div className="panel-body">{children}</div>
+
+        </div>
     );
 };
 
