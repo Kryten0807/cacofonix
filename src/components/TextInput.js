@@ -100,6 +100,7 @@ TextInput.propTypes = {
         React.PropTypes.string,
         React.PropTypes.number,
     ]),
+    onChange:     React.PropTypes.func,
     onValidation: React.PropTypes.func,
 };
 
