@@ -30,12 +30,6 @@ the Panel component
 */
 describe('the Panel component', () => {
 
-    it('should be a div.panel.panel-default', () => {
-        const component = shallow(<Panel />);
-
-        expect(component.is('div.panel.panel-default')).to.equal(true);
-    });
-
     it('should contain a div.panel-heading if header is set', () => {
         const header = 'this is a header';
 
@@ -76,6 +70,12 @@ describe('the Panel component', () => {
         expect(component.find('div.panel div.panel-body div.child-1').length).to.equal(1);
         expect(component.find('div.panel div.panel-body div.child-2').length).to.equal(1);
         expect(component.find('div.panel div.panel-body div.child-3').length).to.equal(1);
+    });
+
+    it('should be a div.panel.panel-default when style is not set', () => {
+        const component = shallow(<Panel />);
+
+        expect(component.is('div.panel.panel-default')).to.equal(true);
     });
 
 });
