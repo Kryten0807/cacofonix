@@ -6,6 +6,8 @@ const eslint = require('gulp-eslint');
 
 require('babel-register');
 
+const pathsToLint = ['./src/**/*.js', './test/**/*.js', './gulpfile.js'];
+
 // -----------------------------------------------------------------------------
 // clean the project
 //
