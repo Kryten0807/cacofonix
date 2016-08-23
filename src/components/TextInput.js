@@ -41,7 +41,12 @@ class TextInput extends React.Component {
                 {this.props.label &&
                     <Label htmlFor={this.id} label={this.props.label} />
                 }
-                <input id={this.id} type="text" className="form-control" placeholder={this.props.placeholder || ''} />
+                <input
+                    id={this.id}
+                    type="text"
+                    className="form-control"
+                    placeholder={this.props.placeholder || ''}
+                />
             </div>
         );
     }
