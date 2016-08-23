@@ -34,3 +34,13 @@ gulp.task('build', ['clean'], () =>
         .pipe(babel())
         .pipe(gulp.dest('./dist'))
 );
+
+// -----------------------------------------------------------------------------
+// lint the project
+//
+gulp.task('lint', () =>
+    gulp.src(['./src/**/*.js', './test/**/*.js', './gulpfile.js'])
+        .pipe(eslint())
+        .pipe(eslint.format())
+        .pipe(eslint.failAfterError())
+);
