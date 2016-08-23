@@ -31,6 +31,15 @@ class TextInput extends React.Component {
         };
     }
 
+    componentWillMount() {
+        if (this.props.onValidation) {
+            this.props.onValidation(
+                this.state.hasValidated,
+                this.state.isValid,
+                this.state.validationMessage
+            );
+        }
+    }
     /**
      * Render the component
      * @return {React.Element} The React Element describing this component
