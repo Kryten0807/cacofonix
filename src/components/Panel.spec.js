@@ -13,19 +13,22 @@ const expect = chai.expect;
 
 /* *****************************************************************************
 the Panel component
-    should be a div.panel.panel-default
     should contain a div.panel-heading if header is set
     should not contain a div.panel-heading if header is not set
     should contain a div.panel-body
     should include child elements inside the div.panel-body
+
+    should be a div.panel.panel-default when style is not set
+    should be a div.panel.panel-danger when style="danger"
+    should be a div.panel.panel-danger when style="error"
+    should be a div.panel.panel-warning when style="warning"
+    should be a div.panel.panel-warning when style="warn"
+    should be a div.panel.panel-info when style="info"
+    should be a div.panel.panel-success when style="success"
+    should be a div.panel.panel-success when style="ok"
+    should be a div.panel.panel-primary when style="primary"
 */
 describe('the Panel component', () => {
-
-    it('should be a div.panel.panel-default', () => {
-        const component = shallow(<Panel />);
-
-        expect(component.is('div.panel.panel-default')).to.equal(true);
-    });
 
     it('should contain a div.panel-heading if header is set', () => {
         const header = 'this is a header';
@@ -69,4 +72,73 @@ describe('the Panel component', () => {
         expect(component.find('div.panel div.panel-body div.child-3').length).to.equal(1);
     });
 
+    it('should be a div.panel.panel-default when style is not set', () => {
+        const component = shallow(<Panel />);
+
+        expect(component.is('div.panel.panel-default')).to.equal(true);
+    });
+
+    it('should be a div.panel.panel-danger when style="danger"', () => {
+        const style = 'danger';
+
+        const component = shallow(<Panel style={style} />);
+
+        expect(component.is('div.panel.panel-danger')).to.equal(true);
+    });
+
+    it('should be a div.panel.panel-danger when style="error"', () => {
+        const style = 'error';
+
+        const component = shallow(<Panel style={style} />);
+
+        expect(component.is('div.panel.panel-danger')).to.equal(true);
+    });
+
+    it('should be a div.panel.panel-warning when style="warning"', () => {
+        const style = 'warning';
+
+        const component = shallow(<Panel style={style} />);
+
+        expect(component.is('div.panel.panel-warning')).to.equal(true);
+    });
+
+    it('should be a div.panel.panel-warning when style="warn"', () => {
+        const style = 'warn';
+
+        const component = shallow(<Panel style={style} />);
+
+        expect(component.is('div.panel.panel-warning')).to.equal(true);
+    });
+
+    it('should be a div.panel.panel-info when style="info"', () => {
+        const style = 'info';
+
+        const component = shallow(<Panel style={style} />);
+
+        expect(component.is('div.panel.panel-info')).to.equal(true);
+    });
+
+    it('should be a div.panel.panel-success when style="success"', () => {
+        const style = 'success';
+
+        const component = shallow(<Panel style={style} />);
+
+        expect(component.is('div.panel.panel-success')).to.equal(true);
+    });
+
+    it('should be a div.panel.panel-success when style="ok"', () => {
+        const style = 'ok';
+
+        const component = shallow(<Panel style={style} />);
+
+        expect(component.is('div.panel.panel-success')).to.equal(true);
+    });
+
+    it('should be a div.panel.panel-primary when style="primary"', () => {
+        const style = 'primary';
+
+        const component = shallow(<Panel style={style} />);
+
+        expect(component.is('div.panel.panel-primary')).to.equal(true);
+    });
 });
