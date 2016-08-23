@@ -1,15 +1,15 @@
+// the eslint "no-unused-expressions" rule is triggered by the `expect`
+// assertions in the tests. So, in order to avoid problems with eslint, I'm
+// disabling that rule in this file
+//
+/* eslint-disable no-unused-expressions */
+
 import React from 'react';
 import { shallow, render } from 'enzyme';
 import chai from 'chai';
 import Panel from './Panel';
 
 const expect = chai.expect;
-
-// the eslint "no-unused-expressions" rule is triggered by the `expect`
-// assertions in the tests. So, in order to avoid problems with eslint, I'm
-// disabling that rule in this file
-//
-/* eslint-disable no-unused-expressions */
 
 /* *****************************************************************************
 the Panel component
@@ -32,16 +32,21 @@ describe('the Panel component', () => {
 
         const component = render(<Panel header={header} />);
 
-        expect(component.find('div.panel div.panel-heading').length).to.equal(1, 'div.panel-heading');
-        expect(component.find('div.panel div.panel-heading h3.panel-title').length).to.equal(1, 'h3.panel-title');
-        expect(component.find('div.panel div.panel-heading h3.panel-title').text()).to.equal(header, 'h3.panel-title text');
+        expect(component.find('div.panel div.panel-heading').length)
+            .to.equal(1, 'div.panel-heading');
+        expect(component.find('div.panel div.panel-heading h3.panel-title').length)
+            .to.equal(1, 'h3.panel-title');
+        expect(component.find('div.panel div.panel-heading h3.panel-title').text())
+            .to.equal(header, 'h3.panel-title text');
     });
 
     it('should not contain a div.panel-heading if header is not set', () => {
         const component = render(<Panel />);
 
-        expect(component.find('div.panel div.panel-heading').length).to.equal(0, 'div.panel-heading');
-        expect(component.find('div.panel div.panel-heading h3.panel-title').length).to.equal(0, 'h3.panel-title');
+        expect(component.find('div.panel div.panel-heading').length)
+            .to.equal(0, 'div.panel-heading');
+        expect(component.find('div.panel div.panel-heading h3.panel-title').length)
+            .to.equal(0, 'h3.panel-title');
     });
 
     it('should contain a div.panel-body', () => {

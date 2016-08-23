@@ -14,9 +14,9 @@ const Panel = ({ header, children }) => (
 
         {header
             ? (
-                <div className="panel-heading">
-                    <h3 className="panel-title">{header}</h3>
-                </div>
+            <div className="panel-heading">
+                <h3 className="panel-title">{header}</h3>
+            </div>
             )
             : ''
         }
@@ -25,6 +25,16 @@ const Panel = ({ header, children }) => (
 
     </div>
 );
+
+// set the property types for the Panel component
+//
+Panel.propTypes = {
+    header:   React.PropTypes.string,
+    children: React.PropTypes.oneOfType([
+        React.PropTypes.element,
+        React.PropTypes.arrayOf(React.PropTypes.element),
+    ]),
+};
 
 // export the component
 //

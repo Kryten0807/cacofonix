@@ -27,6 +27,16 @@ module.exports = exports = {
         "react/jsx-indent-props": [WARN, 4],
         "prefer-template": WARN,
 
+        // allow .js files to contain JSX code
+        //
+        "react/jsx-filename-extension": [ERROR, { "extensions": [".js", ".jsx"] }],
+
+        // dependencies
+        // This one is annoying - it keeps complaining about my devDependencies
+        // not being in the "dependencies" section when I lint specs.
+        //
+        "import/no-extraneous-dependencies": OFF,
+
         // warning comments
         //
         "no-warning-comments": [ WARN, { terms: [ '@todo', '@fixme' ]} ],
