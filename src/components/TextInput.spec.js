@@ -29,7 +29,11 @@ describe('after the user edits the value, the TextInput component', () => {
 
         const newValue = 'hoo!';
 
-        const component = mount(<TextInput required={required} description={description} value={value} />);
+        const component = mount(<TextInput
+            required={required}
+            description={description}
+            value={value}
+        />);
 
         expect(component.find('div.form-group').length).to.equal(1, 'form-group');
         expect(component.find('div.form-group.has-error').length).to.equal(0, 'has-error');
@@ -51,7 +55,11 @@ describe('after the user edits the value, the TextInput component', () => {
 
         const newValue = '';
 
-        const component = mount(<TextInput required={required} description={description} value={value} />);
+        const component = mount(<TextInput
+            required={required}
+            description={description}
+            value={value}
+        />);
 
         expect(component.find('div.form-group').length).to.equal(1, 'form-group');
         expect(component.find('div.form-group.has-error').length).to.equal(0, 'has-error');
@@ -73,7 +81,11 @@ describe('after the user edits the value, the TextInput component', () => {
 
         const newValue = '';
 
-        const component = mount(<TextInput required={required} description={description} value={value} />);
+        const component = mount(<TextInput
+            required={required}
+            description={description}
+            value={value}
+        />);
 
         expect(component.find('div.form-group').length).to.equal(1, 'before form-group');
         expect(component.find('div.form-group.has-error').length).to.equal(0, 'before has-error');
