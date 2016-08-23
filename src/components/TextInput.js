@@ -15,9 +15,13 @@ class TextInput extends React.Component {
         //
         this.id = uniqueId('TextInput-');
 
+        const value = `${props.value || ''}`;
+
         // initialize the state
         //
-        this.state = { value: `${props.value || ''}` };
+        this.state = {
+            value,
+        };
     }
 
     /**
