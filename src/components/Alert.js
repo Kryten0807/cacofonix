@@ -34,7 +34,9 @@ const Alert = ({ style, dismissible, children }) => {
                     className="close"
                     data-dismiss="alert"
                     aria-label="Close"
-                ><span aria-hidden="true">&times;</span></button>
+                >
+                    <span aria-hidden="true">&times;</span>
+                </button>
             }
             {children}
         </div>
