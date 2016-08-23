@@ -47,3 +47,19 @@ gulp.task('lint', () =>
         .pipe(eslint.format())
         .pipe(eslint.failAfterError())
 );
+
+// -----------------------------------------------------------------------------
+// lint the project, fixing any errors which can be fixed
+//
+gulp.task('lint:fix', () => {
+    const paths = pathsToLint;
+
+    const isFixed = (file) => file.eslint != null && file.eslint.fixed;
+
+    return gulp.src(paths, { base: './' })
+        .pipe(eslint({ fix: true }))
+        .pipe(gulpIf(isFixed, gulp.dest('./')))
+        .pipe(eslint.format())
+        .pipe(eslint.failAfterError());
+
+});
