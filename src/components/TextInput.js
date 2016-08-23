@@ -15,6 +15,8 @@ class TextInput extends React.Component {
         //
         this.id = uniqueId('TextInput-');
 
+        this.validationMessage = `${props.description} is required`;
+
         const value = `${props.value || ''}`;
 
         // initialize the state
