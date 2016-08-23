@@ -88,6 +88,9 @@ class TextInput extends React.Component {
                     placeholder={this.props.placeholder || ''}
                     onChange={this.onChange}
                 />
+                {(this.state.hasValidated && !this.state.isValid) &&
+                    <span className="help-block">{this.state.validationMessage}</span>
+                }
             </div>
         );
     }
