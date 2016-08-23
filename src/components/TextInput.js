@@ -4,18 +4,24 @@ import React from 'react';
 import uniqueId from 'lodash/uniqueId';
 import Label from './Label';
 
-const TextInput = ({ label, placeholder }) => {
+class TextInput extends React.Component {
+    constructor(props) {
+        super(props);
 
-    const id = uniqueId('TextInput-');
+        this.id = uniqueId('TextInput-');
+    }
 
-    return (
-        <div className="form-group">
-            {label &&
-                <Label htmlFor={id} label={label} />
-            }
-            <input id={id} type="text" className="form-control" placeholder={placeholder || ''} />
-        </div>
-    );
-};
+    render() {
+        return (
+            <div className="form-group">
+                {this.props.label &&
+                    <Label htmlFor={this.id} label={this.props.label} />
+                }
+                <input id={this.id} type="text" className="form-control" placeholder={this.props.placeholder || ''} />
+            </div>
+        );
+    }
+
+}
 
 export default TextInput;
