@@ -19,6 +19,8 @@ class TextInput extends React.Component {
 
         const value = `${props.value || ''}`;
 
+        const isValid = !props.required || !!value;
+
         // initialize the state
         //
         this.state = {
