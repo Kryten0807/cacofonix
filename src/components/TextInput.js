@@ -1,6 +1,7 @@
 // dependencies
 //
 import React from 'react';
+import update from 'react-addons-update';
 import uniqueId from 'lodash/uniqueId';
 import Label from './Label';
 
