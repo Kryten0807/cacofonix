@@ -66,11 +66,11 @@ class TextInput extends React.Component {
 // set the property types for the TextInput component
 //
 TextInput.propTypes = {
-    required:    React.PropTypes.bool,
-    label:       React.PropTypes.string,
-    description: React.PropTypes.string,
-    placeholder: React.PropTypes.string,
-    value:       React.PropTypes.oneOfType([
+    required:     React.PropTypes.bool,
+    label:        React.PropTypes.string,
+    description:  React.PropTypes.string,
+    placeholder:  React.PropTypes.string,
+    value:        React.PropTypes.oneOfType([
         React.PropTypes.string,
         React.PropTypes.number,
     ]),
