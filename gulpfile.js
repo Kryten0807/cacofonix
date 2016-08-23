@@ -41,7 +41,7 @@ gulp.task('build', ['clean'], () =>
 // lint the project
 //
 gulp.task('lint', () =>
-    gulp.src(['./src/**/*.js', './test/**/*.js', './gulpfile.js'])
+    gulp.src(pathsToLint)
         .pipe(eslint())
         .pipe(eslint.format())
         .pipe(eslint.failAfterError())
