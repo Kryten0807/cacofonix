@@ -78,4 +78,67 @@ describe('the Panel component', () => {
         expect(component.is('div.panel.panel-default')).to.equal(true);
     });
 
+    it('should be a div.panel.panel-danger when style="danger"', () => {
+        const style = 'danger';
+
+        const component = shallow(<Panel style={style} />);
+
+        expect(component.is('div.panel.panel-danger')).to.equal(true);
+    });
+
+    it('should be a div.panel.panel-danger when style="error"', () => {
+        const style = 'error';
+
+        const component = shallow(<Panel style={style} />);
+
+        expect(component.is('div.panel.panel-danger')).to.equal(true);
+    });
+
+    it('should be a div.panel.panel-warning when style="warning"', () => {
+        const style = 'warning';
+
+        const component = shallow(<Panel style={style} />);
+
+        expect(component.is('div.panel.panel-warning')).to.equal(true);
+    });
+
+    it('should be a div.panel.panel-warning when style="warn"', () => {
+        const style = 'warn';
+
+        const component = shallow(<Panel style={style} />);
+
+        expect(component.is('div.panel.panel-warning')).to.equal(true);
+    });
+
+    it('should be a div.panel.panel-info when style="info"', () => {
+        const style = 'info';
+
+        const component = shallow(<Panel style={style} />);
+
+        expect(component.is('div.panel.panel-info')).to.equal(true);
+    });
+
+    it('should be a div.panel.panel-success when style="success"', () => {
+        const style = 'success';
+
+        const component = shallow(<Panel style={style} />);
+
+        expect(component.is('div.panel.panel-success')).to.equal(true);
+    });
+
+    it('should be a div.panel.panel-success when style="ok"', () => {
+        const style = 'ok';
+
+        const component = shallow(<Panel style={style} />);
+
+        expect(component.is('div.panel.panel-success')).to.equal(true);
+    });
+
+    it('should be a div.panel.panel-primary when style="primary"', () => {
+        const style = 'primary';
+
+        const component = shallow(<Panel style={style} />);
+
+        expect(component.is('div.panel.panel-primary')).to.equal(true);
+    });
 });
