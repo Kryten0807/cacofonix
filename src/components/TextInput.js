@@ -4,13 +4,22 @@ import React from 'react';
 import uniqueId from 'lodash/uniqueId';
 import Label from './Label';
 
+/**
+ * The TextInput component
+ */
 class TextInput extends React.Component {
     constructor(props) {
         super(props);
 
+        // set a unique ID for this component's elements
+        //
         this.id = uniqueId('TextInput-');
     }
 
+    /**
+     * Render the component
+     * @return {React.Element} The React Element describing this component
+     */
     render() {
         return (
             <div className="form-group">
@@ -24,4 +33,6 @@ class TextInput extends React.Component {
 
 }
 
+// export the component
+//
 export default TextInput;
