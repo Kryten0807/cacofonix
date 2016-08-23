@@ -13,6 +13,50 @@ import TextInput from './TextInput';
 const expect = chai.expect;
 
 /* *****************************************************************************
+/* *****************************************************************************
+when it is initialized, the TextInput component
+    should not show the validation message when required=true and the value is valid
+    should not show the validation message when required=true and the value is blank
+    should not show the validation message when required=false and the value is blank
+*/
+describe('when it is initialized, the TextInput component', () => {
+
+    it('should not show the validation message when required=true and the value is valid', () => {
+        const required = true;
+        const value = 'woooo!';
+
+        const component = shallow(<TextInput required={required} value={value} />);
+
+        expect(component.is('div.form-group')).to.equal(true, 'form-group');
+        expect(component.is('div.form-group.has-error')).to.equal(false, 'has-error');
+        expect(component.find('span.help-block').length).to.equal(0, 'help-block');
+    });
+
+    it('should not show the validation message when required=true and the value is blank', () => {
+        const required = true;
+        const value = '';
+
+        const component = shallow(<TextInput required={required} value={value} />);
+
+        expect(component.is('div.form-group')).to.equal(true, 'form-group');
+        expect(component.is('div.form-group.has-error')).to.equal(false, 'has-error');
+        expect(component.find('span.help-block').length).to.equal(0, 'help-block');
+    });
+
+    it('should not show the validation message when required=false and the value is blank', () => {
+        const required = false;
+        const value = '';
+
+        const component = shallow(<TextInput required={required} value={value} />);
+
+        expect(component.is('div.form-group')).to.equal(true, 'form-group');
+        expect(component.is('div.form-group.has-error')).to.equal(false, 'has-error');
+        expect(component.find('span.help-block').length).to.equal(0, 'help-block');
+    });
+
+});
+
+/* *****************************************************************************
 on editing, the TextInput component
     should call onChange with the new value
     should have the new value in the component state
