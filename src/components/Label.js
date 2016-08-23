@@ -9,8 +9,8 @@ import React from 'react';
  * @param  {String}  label    The text to display in the label component
  * @return {React.Element}    The React Element describing this component
  */
-    <label className="control-label">
 const Label = ({ htmlFor, required, label }) => (
+    <label htmlFor={htmlFor} className="control-label">
 
         {label}
 
