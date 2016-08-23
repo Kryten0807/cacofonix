@@ -18,18 +18,10 @@ class TextInput extends React.Component {
 
         this.validationMessage = `${props.description} is required`;
 
-        const value = `${props.value || ''}`;
+        this.state = this.validate(props.value);
 
-        const isValid = !props.required || !!value;
+        this.state.hasValidated = false;
 
-        // initialize the state
-        //
-        this.state = {
-            value,
-            isValid,
-            validationMessage: isValid ? null : this.validationMessage,
-            hasValidated:      false,
-        };
     }
 
     componentWillMount() {
