@@ -23,9 +23,12 @@ const Panel = ({ style, header, children }) => {
         }
 
         <div className="panel-body">{children}</div>
+    return (
 
     </div>
 );
+    );
+};
 
 // set the property types for the Panel component
 //
