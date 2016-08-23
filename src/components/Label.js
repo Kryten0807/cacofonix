@@ -23,6 +23,14 @@ const Label = ({ htmlFor, required, label }) => (
     </label>
 );
 
+// set the property types for the Label component
+//
+Label.propTypes = {
+    htmlFor:  React.PropTypes.string.isRequired,
+    required: React.PropTypes.bool,
+    label:    React.PropTypes.string,
+};
+
 // export the component
 //
 export default Label;
