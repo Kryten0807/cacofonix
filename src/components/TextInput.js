@@ -74,6 +74,7 @@ TextInput.propTypes = {
         React.PropTypes.string,
         React.PropTypes.number,
     ]),
+    onValidation: React.PropTypes.func,
 };
 
 // export the component
