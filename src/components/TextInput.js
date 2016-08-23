@@ -25,9 +25,9 @@ class TextInput extends React.Component {
         //
         this.state = {
             value,
-            hasValidated: false,
             isValid,
             validationMessage: isValid ? null : this.validationMessage,
+            hasValidated:      false,
         };
     }
 
