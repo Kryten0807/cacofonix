@@ -17,13 +17,16 @@ the state of the TextInput component
     should have the correct hasValidated state
     should have the correct isValid state when the value is required and it's blank
     should have the correct isValid state when the value is required and it's not blank
+    should have the correct isValid state when the value is not required and it is blank
     should have the correct validationMessage state when the value is required and it's blank
     should have the correct validationMessage state when the value is required and it's not blank
+    should have the correct validationMessage state when the value is not required and it is blank
 */
 describe('the state of the TextInput component', () => {
 
     const label = 'a label';
     const placeholder = 'a placeholder';
+    const description = 'Some value';
 
     it('should be initialized with the correct value', () => {
         const values = [
@@ -43,16 +46,68 @@ describe('the state of the TextInput component', () => {
         });
     });
 
-    // it('should have the correct hasValidated state', () => {});
+    it('should have the correct hasValidated state', () => {
+        const value = 'anchovies';
 
-    // it('should have the correct isValid state when the value is required and it is blank', () => {});
+        const component = shallow(<TextInput value={value}/>);
 
-    // it('should have the correct isValid state when the value is required and it is not blank', () => {});
+        expect(component.state().hasValidated).to.equal(false);
+    });
 
-    // it('should have the correct validationMessage state when the value is required and it is blank', () => {});
+    it('should have the correct isValid state when the value is required and it is blank', () => {
+        const required = true;
+        const value = '';
 
-    // it('should have the correct validationMessage state when the value is required and it is not blank', () => {});
+        const component = shallow(<TextInput required={required} value={value}/>);
 
+        expect(component.state().isValid).to.equal(false);
+    });
+
+    it('should have the correct isValid state when the value is required and it is not blank', () => {
+        const required = true;
+        const value = 'pizza';
+
+        const component = shallow(<TextInput required={required} value={value}/>);
+
+        expect(component.state().isValid).to.equal(true);
+    });
+
+    it('should have the correct isValid state when the value is not required and it is blank', () => {
+        const required = false;
+        const value = '';
+
+        const component = shallow(<TextInput required={required} value={value}/>);
+
+        expect(component.state().isValid).to.equal(true);
+    });
+
+    it('should have the correct validationMessage state when the value is required and it is blank', () => {
+        const required = true;
+        const value = '';
+        const expectedMessage = `${description} is required`;
+
+        const component = shallow(<TextInput required={required} description={description} value={value}/>);
+
+        expect(component.state().validationMessage).to.equal(expectedMessage);
+    });
+
+    it('should have the correct validationMessage state when the value is required and it is not blank', () => {
+        const required = true;
+        const value = 'this is valid';
+
+        const component = shallow(<TextInput required={required} description={description} value={value}/>);
+
+        expect(component.state().validationMessage).to.equal(null);
+    });
+
+    it('should have the correct validationMessage state when the value is not required and it is blank', () => {
+        const required = false;
+        const value = '';
+
+        const component = shallow(<TextInput required={required} description={description} value={value}/>);
+
+        expect(component.state().validationMessage).to.equal(null);
+    });
 });
 
 /* *****************************************************************************
