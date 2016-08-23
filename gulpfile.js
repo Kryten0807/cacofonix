@@ -28,7 +28,7 @@ gulp.task('test', () =>
 // -----------------------------------------------------------------------------
 // build the project
 //
-gulp.task('build', () =>
+gulp.task('build', ['clean'], () =>
     gulp.src(['./src/**/*.js', '!./src/**/*.spec.js'])
         .pipe(babel())
         .pipe(gulp.dest('./dist'))
