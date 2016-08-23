@@ -34,7 +34,8 @@ describe('on initialization, the TextInput component', () => {
         expect(onChange.callCount).to.equal(0);
     });
 
-    it('should call onValidation with the correct arguments when required=true and value is valid', () => {
+    it('should call onValidation with the correct arguments when ' +
+        'required=true and value is valid', () => {
 
         const onValidation = sinon.spy();
 
@@ -47,7 +48,8 @@ describe('on initialization, the TextInput component', () => {
         expect(onValidation.calledWith(false, true, null)).to.equal(true);
     });
 
-    it('should call onValidation with the correct arguments when required=true and value is blank', () => {
+    it('should call onValidation with the correct arguments when ' +
+        'required=true and value is blank', () => {
 
         const onValidation = sinon.spy();
 
@@ -56,20 +58,32 @@ describe('on initialization, the TextInput component', () => {
 
         const expectedMessage = `${description} is required`;
 
-        mount(<TextInput required={required} description={description} value={value} onValidation={onValidation} />);
+        mount(<TextInput
+            required={required}
+            description={description}
+            value={value}
+            onValidation={onValidation}
+        />);
 
         expect(onValidation.callCount).to.equal(1);
-        expect(onValidation.calledWith(false, false, expectedMessage)).to.equal(true, 'calledWith');
+        expect(onValidation.calledWith(false, false, expectedMessage))
+            .to.equal(true, 'calledWith');
     });
 
-    it('should call onValidation with the correct arguments when required=false and value is blank', () => {
+    it('should call onValidation with the correct arguments when ' +
+        'required=false and value is blank', () => {
 
         const onValidation = sinon.spy();
 
         const required = false;
         const value = '';
 
-        mount(<TextInput required={required} description={description} value={value} onValidation={onValidation} />);
+        mount(<TextInput
+            required={required}
+            description={description}
+            value={value}
+            onValidation={onValidation}
+        />);
 
         expect(onValidation.callCount).to.equal(1);
         expect(onValidation.calledWith(false, true, null)).to.equal(true, 'calledWith');
