@@ -10,7 +10,6 @@ import classnames from 'classnames';
  *                                     inside the panel
  * @return {React.Element}             The React element describing this component
  */
-const Panel = ({ header, children }) => (
     <div className="panel panel-default">
 
         {header
@@ -20,6 +19,7 @@ const Panel = ({ header, children }) => (
             </div>
             )
             : ''
+const Panel = ({ style, header, children }) => {
         }
 
         <div className="panel-body">{children}</div>
