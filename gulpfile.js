@@ -63,3 +63,10 @@ gulp.task('lint:fix', () => {
         .pipe(eslint.failAfterError());
 
 });
+
+// -----------------------------------------------------------------------------
+// watch the files that need linting
+//
+gulp.task('watch', () => {
+    gulp.watch(pathsToLint, ['lint']);
+});
