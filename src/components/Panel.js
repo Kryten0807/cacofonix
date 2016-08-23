@@ -14,9 +14,9 @@ const Panel = ({ header, children }) => (
 
         {header
             ? (
-                <div className="panel-heading">
-                    <h3 className="panel-title">{header}</h3>
-                </div>
+            <div className="panel-heading">
+                <h3 className="panel-title">{header}</h3>
+            </div>
             )
             : ''
         }
