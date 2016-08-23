@@ -22,6 +22,7 @@ class TextInput extends React.Component {
 
         this.state.hasValidated = false;
 
+        this.onChange = this.onChange.bind(this);
     }
 
     componentWillMount() {
