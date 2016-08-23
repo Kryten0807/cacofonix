@@ -2,6 +2,7 @@ const gulp = require('gulp');
 const mocha = require('gulp-mocha');
 const babel = require('gulp-babel');
 const shell = require('gulp-shell');
+const eslint = require('gulp-eslint');
 
 require('babel-register');
 
