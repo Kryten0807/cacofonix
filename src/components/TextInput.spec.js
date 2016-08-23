@@ -15,9 +15,16 @@ const expect = chai.expect;
 /* *****************************************************************************
 on editing, the TextInput component
     should call onChange with the new value
+    should have the new value in the component state
+
     should call onValidation with the correct arguments when required=true and the new value is valid
+    should have updated validation state when required=true and the new value is valid
+
     should call onValidation with the correct arguments when required=true and the new value is blank
+    should have updated validation state when required=true and the new value is blank
+
     should call onValidation with the correct arguments when required=false and the new value is blank
+    should have updated validation state when required=false and the new value is blank
 */
 
 /* *****************************************************************************
