@@ -15,6 +15,7 @@ const expect = chai.expect;
 the Label component
     should have a <label> element with the correct classes
     should contain the correct text
+    should include the htmlFor property when set
     should include the "required" markup when required=true
     should not include the "required" markup when required=false
     should not include the "required" markup when required is not set
@@ -22,6 +23,7 @@ the Label component
 describe('the Label component', () => {
 
     const label = 'some label';
+    const htmlFor = 'some-element';
 
     it('should have a <label> element with the correct classes', () => {
         const component = shallow(<Label />);
@@ -33,6 +35,12 @@ describe('the Label component', () => {
         const component = shallow(<Label label={label} />);
 
         expect(component.find('label').text()).to.equal(label);
+    });
+
+    it('should include the htmlFor property when set', () => {
+        const component = shallow(<Label htmlFor={htmlFor} label={label} />);
+
+        expect(component.find('label').prop('htmlFor')).to.equal(htmlFor);
     });
 
     it('should include the "required" markup when required=true', () => {
