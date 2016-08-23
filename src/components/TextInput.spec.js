@@ -13,6 +13,84 @@ import TextInput from './TextInput';
 const expect = chai.expect;
 
 /* *****************************************************************************
+after the user edits the value, the TextInput component
+    should not show the validation message when required=true and the value is valid
+    should not show the validation message when required=false and the value is blank
+    should show the validation message when required=true and the value is blank
+*/
+describe('after the user edits the value, the TextInput component', () => {
+
+    const description = 'wibbly-wobbly';
+    const expectedMessage = `${description} is required`;
+
+    it('should not show the validation message when required=true and the value is valid', () => {
+        const required = true;
+        const value = 'woooo!';
+
+        const newValue = 'hoo!';
+
+        const component = mount(<TextInput required={required} description={description} value={value} />);
+
+        expect(component.find('div.form-group').length).to.equal(1, 'form-group');
+        expect(component.find('div.form-group.has-error').length).to.equal(0, 'has-error');
+        expect(component.find('span.help-block').length).to.equal(0, 'help-block');
+
+        component.find('input').simulate('change', {
+            target: { value: newValue }
+        });
+
+        expect(component.find('div.form-group').length).to.equal(1, 'form-group');
+        expect(component.find('div.form-group.has-error').length).to.equal(0, 'has-error');
+        expect(component.find('span.help-block').length).to.equal(0, 'help-block');
+
+    });
+
+    it('should not show the validation message when required=false and the value is blank', () => {
+        const required = false;
+        const value = 'woooo!';
+
+        const newValue = '';
+
+        const component = mount(<TextInput required={required} description={description} value={value} />);
+
+        expect(component.find('div.form-group').length).to.equal(1, 'form-group');
+        expect(component.find('div.form-group.has-error').length).to.equal(0, 'has-error');
+        expect(component.find('span.help-block').length).to.equal(0, 'help-block');
+
+        component.find('input').simulate('change', {
+            target: { value: newValue }
+        });
+
+        expect(component.find('div.form-group').length).to.equal(1, 'form-group');
+        expect(component.find('div.form-group.has-error').length).to.equal(0, 'has-error');
+        expect(component.find('span.help-block').length).to.equal(0, 'help-block');
+
+    });
+
+    it('should show the validation message when required=true and the value is blank', () => {
+        const required = true;
+        const value = 'woooo!';
+
+        const newValue = '';
+
+        const component = mount(<TextInput required={required} description={description} value={value} />);
+
+        expect(component.find('div.form-group').length).to.equal(1, 'before form-group');
+        expect(component.find('div.form-group.has-error').length).to.equal(0, 'before has-error');
+        expect(component.find('span.help-block').length).to.equal(0, 'before help-block');
+
+        component.find('input').simulate('change', {
+            target: { value: newValue }
+        });
+
+        expect(component.find('div.form-group.has-error').length).to.equal(1, 'after has-error');
+        expect(component.find('span.help-block').length).to.equal(1, 'after help-block');
+        expect(component.find('span.help-block').text()).to.equal(expectedMessage, 'after message');
+
+    });
+
+});
+
 /* *****************************************************************************
 when it is initialized, the TextInput component
     should not show the validation message when required=true and the value is valid
