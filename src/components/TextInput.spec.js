@@ -12,6 +12,14 @@ import TextInput from './TextInput';
 const expect = chai.expect;
 
 /* *****************************************************************************
+on initialization, the TextInput component
+    should not call onChange
+    should call onValidation with the correct arguments when required=true and value is valid
+    should call onValidation with the correct arguments when required=true and value is blank
+    should call onValidation with the correct arguments when required=false and value is blank
+*/
+
+/* *****************************************************************************
 the state of the TextInput component
     should be initialized with the correct value
     should have the correct hasValidated state
