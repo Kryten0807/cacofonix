@@ -34,6 +34,26 @@ class TextInput extends React.Component {
         }
     }
 
+    onChange(event) {
+
+        const { value, isValid, validationMessage } = this.validate(event.target.value);
+
+        this.setState((state) => update(state, {
+            value:             { $set: value },
+            hasValidated:      { $set: true },
+            isValid:           { $set: isValid },
+            validationMessage: { $set: validationMessage },
+        }));
+
+        if (this.props.onChange) {
+            this.props.onChange(value);
+        }
+
+        if (this.props.onValidation) {
+            this.props.onValidation(true, isValid, validationMessage);
+        }
+    }
+
     validate(val) {
         const value = `${val || ''}`;
         const isValid = !this.props.required || !!value;
