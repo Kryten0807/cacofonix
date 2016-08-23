@@ -2,10 +2,10 @@
 //
 import React from 'react';
 
-const Label = (props) => (
+const Label = ({ required, label }) => (
     <label className="control-label">
-        {props.label}
-        {props.required
+        {label}
+        {required
             && <sup style={{ color: 'red' }}>
                 <i className="glyphicon glyphicon-asterisk" />
             </sup>
