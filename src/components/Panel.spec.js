@@ -13,11 +13,20 @@ const expect = chai.expect;
 
 /* *****************************************************************************
 the Panel component
-    should be a div.panel.panel-default
     should contain a div.panel-heading if header is set
     should not contain a div.panel-heading if header is not set
     should contain a div.panel-body
     should include child elements inside the div.panel-body
+
+    should be a div.panel.panel-default when style is not set
+    should be a div.panel.panel-danger when style="danger"
+    should be a div.panel.panel-danger when style="error"
+    should be a div.panel.panel-warning when style="warning"
+    should be a div.panel.panel-warning when style="warn"
+    should be a div.panel.panel-info when style="info"
+    should be a div.panel.panel-success when style="success"
+    should be a div.panel.panel-success when style="ok"
+    should be a div.panel.panel-primary when style="primary"
 */
 describe('the Panel component', () => {
 
