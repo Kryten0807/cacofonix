@@ -20,6 +20,8 @@
     "babel-register": "^6.11.6",
     "chai": "^3.5.0",
     "enzyme": "^2.4.1",
+    "gulp": "^3.9.1",
+    "gulp-mocha": "^3.0.1",
     "react-addons-test-utils": "^15.3.1"
   }
 }
