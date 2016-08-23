@@ -1,0 +1,7 @@
+# ignore files in the node_modules dir(s)
+#
+node_modules
+
+# ignore the compiled files
+#
+dist
