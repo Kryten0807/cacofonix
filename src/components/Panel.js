@@ -26,6 +26,17 @@ const Panel = ({ header, children }) => (
     </div>
 );
 
+// set the property types for the Panel component
+//
+Panel.propTypes = {
+    header:   React.PropTypes.string,
+    children: React.PropTypes.oneOfType([
+        React.PropTypes.element,
+        React.PropTypes.arrayOf(React.PropTypes.element),
+    ]),
+};
+
+
 // export the component
 //
 export default Panel;
