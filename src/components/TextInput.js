@@ -40,6 +40,7 @@ class TextInput extends React.Component {
             );
         }
     }
+
     /**
      * Render the component
      * @return {React.Element} The React Element describing this component
