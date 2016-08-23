@@ -16,16 +16,203 @@ const expect = chai.expect;
 on editing, the TextInput component
     should call onChange with the new value
     should have the new value in the component state
-
-    should call onValidation with the correct arguments when required=true and the new value is valid
+    should call onValidation with the correct arguments when required=true and
+        the new value is valid
     should have updated validation state when required=true and the new value is valid
-
-    should call onValidation with the correct arguments when required=true and the new value is blank
+    should call onValidation with the correct arguments when required=true and
+        the new value is blank
     should have updated validation state when required=true and the new value is blank
-
-    should call onValidation with the correct arguments when required=false and the new value is blank
+    should call onValidation with the correct arguments when required=false and
+        the new value is blank
     should have updated validation state when required=false and the new value is blank
 */
+describe('on editing, the TextInput component', () => {
+
+    const description = 'wtf?';
+
+    const expectedMessage = `${description} is required`;
+
+    it('should call onChange with the new value', () => {
+
+        const onChange = sinon.spy();
+
+        const initialValue = 'anchovies';
+        const newValue = 'pineapple';
+
+        const component = mount(<TextInput value={initialValue} onChange={onChange} />);
+
+        expect(onChange.callCount).to.equal(0, 'initial call count');
+
+        component.find('input').simulate('change', {
+            target: { value: newValue }
+        });
+
+        expect(onChange.callCount).to.equal(1, ' after call count');
+        expect(onChange.calledWith(newValue)).to.equal(true, 'called with');
+    });
+
+    it('should have the new value in the component state', () => {
+        const initialValue = 'anchovies';
+        const newValue = 'pineapple';
+
+        const component = mount(<TextInput value={initialValue} />);
+
+        component.find('input').simulate('change', {
+            target: { value: newValue }
+        });
+
+        expect(component.state().value).to.equal(newValue);
+    });
+
+    it('should call onValidation with the correct arguments when ' +
+        'required=true and the new value is valid', () => {
+
+        const onValidation = sinon.spy();
+
+        const required = true;
+        const initialValue = 'anchovies';
+        const newValue = 'pineapple';
+
+        const component = mount(<TextInput
+            required={required}
+            value={initialValue}
+            onValidation={onValidation}
+        />);
+
+        expect(onValidation.callCount).to.equal(1);
+
+        component.find('input').simulate('change', {
+            target: { value: newValue }
+        });
+
+        expect(onValidation.callCount).to.equal(2, 'callcount after');
+
+        expect(onValidation.secondCall.args[0]).to.equal(true, 'hasValidated');
+        expect(onValidation.secondCall.args[1]).to.equal(true, 'isValid');
+        expect(onValidation.secondCall.args[2]).to.equal(null, 'validationMessage');
+    });
+
+    it('should have updated validation state when required=true and the new ' +
+        'value is valid', () => {
+
+        const required = true;
+        const initialValue = 'anchovies';
+        const newValue = 'pineapple';
+
+        const component = mount(<TextInput required={required} value={initialValue} />);
+
+        component.find('input').simulate('change', {
+            target: { value: newValue }
+        });
+
+        expect(component.state().hasValidated).to.equal(true, 'hasValidated');
+        expect(component.state().isValid).to.equal(true, 'isValid');
+        expect(component.state().validationMessage).to.equal(null, 'validationMessage');
+    });
+
+    it('should call onValidation with the correct arguments when ' +
+        'required=true and the new value is blank', () => {
+
+        const onValidation = sinon.spy();
+
+        const required = true;
+        const initialValue = 'anchovies';
+        const newValue = '';
+
+        const component = mount(<TextInput
+            description={description}
+            required={required}
+            value={initialValue}
+            onValidation={onValidation}
+        />);
+
+        expect(onValidation.callCount).to.equal(1);
+
+        component.find('input').simulate('change', {
+            target: { value: newValue }
+        });
+
+        expect(onValidation.callCount).to.equal(2, 'callcount after');
+
+        expect(onValidation.secondCall.args[0]).to.equal(true, 'hasValidated');
+        expect(onValidation.secondCall.args[1]).to.equal(false, 'isValid');
+        expect(onValidation.secondCall.args[2]).to.equal(expectedMessage, 'validationMessage');
+    });
+
+    it('should have updated validation state when required=true and the new ' +
+        'value is blank', () => {
+
+        const required = true;
+        const initialValue = 'anchovies';
+        const newValue = '';
+
+        const component = mount(<TextInput
+            description={description}
+            required={required}
+            value={initialValue}
+        />);
+
+        component.find('input').simulate('change', {
+            target: { value: newValue }
+        });
+
+        expect(component.state().hasValidated).to.equal(true, 'hasValidated');
+        expect(component.state().isValid).to.equal(false, 'isValid');
+        expect(component.state().validationMessage).to.equal(expectedMessage, 'validationMessage');
+    });
+
+    it('should call onValidation with the correct arguments when ' +
+        'required=false and the new value is blank', () => {
+
+        const onValidation = sinon.spy();
+
+        const required = false;
+        const initialValue = 'anchovies';
+        const newValue = '';
+
+        const component = mount(<TextInput
+            description={description}
+            required={required}
+            value={initialValue}
+            onValidation={onValidation}
+        />);
+
+        expect(onValidation.callCount).to.equal(1);
+
+        component.find('input').simulate('change', {
+            target: { value: newValue }
+        });
+
+        expect(onValidation.callCount).to.equal(2, 'callcount after');
+
+        expect(onValidation.secondCall.args[0]).to.equal(true, 'hasValidated');
+        expect(onValidation.secondCall.args[1]).to.equal(true, 'isValid');
+        expect(onValidation.secondCall.args[2]).to.equal(null, 'validationMessage');
+    });
+
+    it('should have updated validation state when required=false and the new ' +
+        'value is blank', () => {
+        const required = false;
+        const initialValue = 'anchovies';
+        const newValue = '';
+
+        const component = mount(<TextInput
+            description={description}
+            required={required}
+            value={initialValue}
+        />);
+
+        component.find('input').simulate('change', {
+            target: { value: newValue }
+        });
+
+        expect(component.state().hasValidated).to.equal(true, 'hasValidated');
+        expect(component.state().isValid).to.equal(true, 'isValid');
+        expect(component.state().validationMessage).to.equal(null, 'validationMessage');
+    });
+
+
+});
 
 /* *****************************************************************************
 on initialization, the TextInput component
