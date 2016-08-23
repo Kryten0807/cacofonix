@@ -19,6 +19,7 @@
     "babel-preset-stage-0": "^6.5.0",
     "babel-register": "^6.11.6",
     "chai": "^3.5.0",
-    "enzyme": "^2.4.1"
+    "enzyme": "^2.4.1",
+    "react-addons-test-utils": "^15.3.1"
   }
 }
