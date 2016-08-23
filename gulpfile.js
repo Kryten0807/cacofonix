@@ -1,5 +1,6 @@
 const gulp = require('gulp');
 const mocha = require('gulp-mocha');
+const babel = require('gulp-babel');
 
 require('babel-register');
 
@@ -13,4 +14,13 @@ gulp.task('test', () =>
             // reporter: 'progress',
             // an alternate reporter is 'dot',
         }))
+);
+
+// -----------------------------------------------------------------------------
+// build the project
+//
+gulp.task('build', () =>
+    gulp.src(['./src/**/*.js', '!./src/**/*.spec.js'])
+        .pipe(babel())
+        .pipe(gulp.dest('./dist'))
 );
