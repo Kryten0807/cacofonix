@@ -10,15 +10,6 @@ import classnames from 'classnames';
  *                                     inside the panel
  * @return {React.Element}             The React element describing this component
  */
-    <div className="panel panel-default">
-
-        {header
-            ? (
-            <div className="panel-heading">
-                <h3 className="panel-title">{header}</h3>
-            </div>
-            )
-            : ''
 const Panel = ({ style, header, children }) => {
     const classes = classnames(
         'panel',
@@ -34,9 +25,18 @@ const Panel = ({ style, header, children }) => {
 
         <div className="panel-body">{children}</div>
     return (
+        <div className={classes}>
 
     </div>
 );
+            {header
+                ? (
+                <div className="panel-heading">
+                    <h3 className="panel-title">{header}</h3>
+                </div>
+                )
+                : ''
+            }
     );
 };
 
