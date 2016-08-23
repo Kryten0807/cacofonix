@@ -20,6 +20,40 @@ the state of the TextInput component
     should have the correct validationMessage state when the value is required and it's blank
     should have the correct validationMessage state when the value is required and it's not blank
 */
+describe('the state of the TextInput component', () => {
+
+    const label = 'a label';
+    const placeholder = 'a placeholder';
+
+    it('should be initialized with the correct value', () => {
+        const values = [
+            { value: '', expected: '' },
+            { value: null, expected: '' },
+            { value: undefined, expected: '' },
+            { value: 'aaa', expected: 'aaa' },
+            { value: 42, expected: '42' },
+        ];
+
+        let component;
+
+        values.forEach((val) => {
+            component = shallow(<TextInput value={val.value}/>);
+
+            expect(component.state().value).to.equal(val.expected);
+        });
+    });
+
+    // it('should have the correct hasValidated state', () => {});
+
+    // it('should have the correct isValid state when the value is required and it is blank', () => {});
+
+    // it('should have the correct isValid state when the value is required and it is not blank', () => {});
+
+    // it('should have the correct validationMessage state when the value is required and it is blank', () => {});
+
+    // it('should have the correct validationMessage state when the value is required and it is not blank', () => {});
+
+});
 
 /* *****************************************************************************
 in terms of basic markup, the TextInput component
