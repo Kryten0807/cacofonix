@@ -5,8 +5,9 @@
 /* eslint-disable no-unused-expressions */
 
 import React from 'react';
-import { shallow, render } from 'enzyme';
+import { shallow, render, mount } from 'enzyme';
 import chai from 'chai';
+import sinon from 'sinon';
 import TextInput from './TextInput';
 
 const expect = chai.expect;
@@ -18,6 +19,63 @@ on initialization, the TextInput component
     should call onValidation with the correct arguments when required=true and value is blank
     should call onValidation with the correct arguments when required=false and value is blank
 */
+describe('on initialization, the TextInput component', () => {
+
+    const description = 'description';
+
+    it('should not call onChange', () => {
+
+        const onChange = sinon.spy();
+
+        const value = 'anchovies';
+
+        mount(<TextInput value={value} onChange={onChange} />);
+
+        expect(onChange.callCount).to.equal(0);
+    });
+
+    it('should call onValidation with the correct arguments when required=true and value is valid', () => {
+
+        const onValidation = sinon.spy();
+
+        const required = true;
+        const value = 'anchovies';
+
+        mount(<TextInput required={required} value={value} onValidation={onValidation} />);
+
+        expect(onValidation.callCount).to.equal(1);
+        expect(onValidation.calledWith(false, true, null)).to.equal(true);
+    });
+
+    it('should call onValidation with the correct arguments when required=true and value is blank', () => {
+
+        const onValidation = sinon.spy();
+
+        const required = true;
+        const value = '';
+
+        const expectedMessage = `${description} is required`;
+
+        mount(<TextInput required={required} description={description} value={value} onValidation={onValidation} />);
+
+        expect(onValidation.callCount).to.equal(1);
+        expect(onValidation.calledWith(false, false, expectedMessage)).to.equal(true, 'calledWith');
+    });
+
+    it('should call onValidation with the correct arguments when required=false and value is blank', () => {
+
+        const onValidation = sinon.spy();
+
+        const required = false;
+        const value = '';
+
+        mount(<TextInput required={required} description={description} value={value} onValidation={onValidation} />);
+
+        expect(onValidation.callCount).to.equal(1);
+        expect(onValidation.calledWith(false, true, null)).to.equal(true, 'calledWith');
+    });
+
+});
 
 /* *****************************************************************************
 the state of the TextInput component
