@@ -37,6 +37,15 @@ class TextInput extends React.Component {
 
 }
 
+// set the property types for the TextInput component
+//
+TextInput.propTypes = {
+    value:    React.PropTypes.oneOfType([
+        React.PropTypes.string,
+        React.PropTypes.number,
+    ]),
+};
+
 // export the component
 //
 export default TextInput;
