@@ -173,6 +173,69 @@ after blur, the TextInput component
     should have the correct validation state after subsequent edits when required=true and the new value is blank
     should have the correct validation state after subsequent edits when required=false and the new value is blank
 */
+describe('after blur, the TextInput component', () => {
+
+    const description = 'holy #&$@!';
+
+    const expectedMessage = `${description} is required`;
+
+    it('should call onValidation with the correct values when required=true and the new value is valid', () => {
+
+        const onValidation = sinon.spy();
+
+        const required = true;
+        const initialValue = 'anchovies';
+        const newValue = 'pineapple';
+
+        const component = mount(<TextInput
+            required={required}
+            value={initialValue}
+            onValidation={onValidation}
+        />);
+
+        expect(onValidation.callCount).to.equal(1);
+
+        // edit the component
+        //
+        component.find('input').simulate('change', {
+            target: { value: newValue }
+        });
+
+        expect(onValidation.callCount).to.equal(1, 'callcount after');
+
+        // blur the component
+        //
+        component.find('input').simulate('blur', {
+            target: { value: newValue }
+        });
+
+        expect(onValidation.callCount).to.equal(2, 'callcount after blur');
+        expect(onValidation.calledWith(true, true, null)).to.equal(true, 'called with');
+    });
+
+    // it('should call onValidation with the correct values when required=true and the new value is blank', () => {});
+
+    // it('should call onValidation with the correct values when required=false and the new value is blank', () => {});
+
+    // it('should have the correct validation state when required=true and the new value is valid', () => {});
+
+    // it('should have the correct validation state when required=true and the new value is blank', () => {});
+
+    // it('should have the correct validation state when required=false and the new value is blank', () => {});
+
+    // it('should call onValidation with the correct values for subsequent edits when required=true and the new value is valid', () => {});
+
+    // it('should call onValidation with the correct values for subsequent edits when required=true and the new value is blank', () => {});
+
+    // it('should call onValidation with the correct values for subsequent edits when required=false and the new value is blank', () => {});
+
+    // it('should have the correct validation state after subsequent edits when required=true and the new value is valid', () => {});
+
+    // it('should have the correct validation state after subsequent edits when required=true and the new value is blank', () => {});
+
+    // it('should have the correct validation state after subsequent edits when required=false and the new value is blank', () => {});
+
+});
 
 /* *****************************************************************************
 on editing, the TextInput component
