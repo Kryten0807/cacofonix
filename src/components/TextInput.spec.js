@@ -155,7 +155,6 @@ after the user edits the value, the TextInput component
 describe('after the user edits the value, the TextInput component', () => {
 
     const description = 'wibbly-wobbly';
-    const expectedMessage = `${description} is required`;
 
     it('should not show the validation message when required=true and the value is valid', () => {
         const required = true;
@@ -288,12 +287,18 @@ after blur, the TextInput component
     should have the correct validation state when required=true and the new value is valid
     should have the correct validation state when required=true and the new value is blank
     should have the correct validation state when required=false and the new value is blank
-    should call onValidation with the correct values for subsequent edits when required=true and the new value is valid
-    should call onValidation with the correct values for subsequent edits when required=true and the new value is blank
-    should call onValidation with the correct values for subsequent edits when required=false and the new value is blank
-    should have the correct validation state after subsequent edits when required=true and the new value is valid
-    should have the correct validation state after subsequent edits when required=true and the new value is blank
-    should have the correct validation state after subsequent edits when required=false and the new value is blank
+    should call onValidation with the correct values for subsequent edits when
+        required=true and the new value is valid
+    should call onValidation with the correct values for subsequent edits when
+        required=true and the new value is blank
+    should call onValidation with the correct values for subsequent edits when
+        required=false and the new value is blank
+    should have the correct validation state after subsequent edits when
+        required=true and the new value is valid
+    should have the correct validation state after subsequent edits when
+        required=true and the new value is blank
+    should have the correct validation state after subsequent edits when
+        required=false and the new value is blank
 */
 describe('after blur, the TextInput component', () => {
 
@@ -301,7 +306,8 @@ describe('after blur, the TextInput component', () => {
 
     const expectedMessage = `${description} is required`;
 
-    it('should call onValidation with the correct values when required=true and the new value is valid', () => {
+    it('should call onValidation with the correct values when required=true ' +
+        'and the new value is valid', () => {
 
         const onValidation = sinon.spy();
 
@@ -336,7 +342,8 @@ describe('after blur, the TextInput component', () => {
         expect(onValidation.calledWith(true, true, null)).to.equal(true, 'called with');
     });
 
-    it('should call onValidation with the correct values when required=true and the new value is blank', () => {
+    it('should call onValidation with the correct values when required=true ' +
+        'and the new value is blank', () => {
 
         const onValidation = sinon.spy();
 
@@ -376,7 +383,8 @@ describe('after blur, the TextInput component', () => {
         expect(secondCall.args[2]).to.equal(expectedMessage, 'secondCall.args[2]');
     });
 
-    it('should call onValidation with the correct values when required=false and the new value is blank', () => {
+    it('should call onValidation with the correct values when required=false ' +
+        'and the new value is blank', () => {
 
         const onValidation = sinon.spy();
 
@@ -416,7 +424,8 @@ describe('after blur, the TextInput component', () => {
         expect(secondCall.args[2]).to.equal(null, 'secondCall.args[2]');
     });
 
-    it('should have the correct validation state when required=true and the new value is valid', () => {
+    it('should have the correct validation state when required=true and the ' +
+        'new value is valid', () => {
 
         const onValidation = sinon.spy();
 
@@ -450,7 +459,8 @@ describe('after blur, the TextInput component', () => {
 
     });
 
-    it('should have the correct validation state when required=true and the new value is blank', () => {
+    it('should have the correct validation state when required=true and ' +
+        'the new value is blank', () => {
 
         const onValidation = sinon.spy();
 
@@ -484,7 +494,8 @@ describe('after blur, the TextInput component', () => {
 
     });
 
-    it('should have the correct validation state when required=false and the new value is blank', () => {
+    it('should have the correct validation state when required=false and ' +
+        'the new value is blank', () => {
 
         const onValidation = sinon.spy();
 
@@ -518,7 +529,8 @@ describe('after blur, the TextInput component', () => {
 
     });
 
-    it('should call onValidation with the correct values for subsequent edits when required=true and the new value is valid', () => {
+    it('should call onValidation with the correct values for subsequent ' +
+        'edits when required=true and the new value is valid', () => {
 
         const onValidation = sinon.spy();
 
@@ -567,7 +579,8 @@ describe('after blur, the TextInput component', () => {
         expect(thirdCall.args[2]).to.equal(null, 'thirdCall.args[2]');
     });
 
-    it('should call onValidation with the correct values for subsequent edits when required=true and the new value is blank', () => {
+    it('should call onValidation with the correct values for subsequent ' +
+        'edits when required=true and the new value is blank', () => {
 
         const onValidation = sinon.spy();
 
@@ -616,7 +629,8 @@ describe('after blur, the TextInput component', () => {
         expect(thirdCall.args[2]).to.equal(expectedMessage, 'thirdCall.args[2]');
     });
 
-    it('should call onValidation with the correct values for subsequent edits when required=false and the new value is blank', () => {
+    it('should call onValidation with the correct values for subsequent ' +
+        'edits when required=false and the new value is blank', () => {
 
         const onValidation = sinon.spy();
 
@@ -665,7 +679,8 @@ describe('after blur, the TextInput component', () => {
         expect(thirdCall.args[2]).to.equal(null, 'thirdCall.args[2]');
     });
 
-    it('should have the correct validation state after subsequent edits when required=true and the new value is valid', () => {
+    it('should have the correct validation state after subsequent edits ' +
+        'when required=true and the new value is valid', () => {
 
         const onValidation = sinon.spy();
 
@@ -704,7 +719,8 @@ describe('after blur, the TextInput component', () => {
         expect(component.state().validationMessage).to.equal(null);
     });
 
-    it('should have the correct validation state after subsequent edits when required=true and the new value is blank', () => {
+    it('should have the correct validation state after subsequent edits ' +
+        'when required=true and the new value is blank', () => {
 
         const onValidation = sinon.spy();
 
@@ -743,7 +759,8 @@ describe('after blur, the TextInput component', () => {
         expect(component.state().validationMessage).to.equal(expectedMessage);
     });
 
-    it('should have the correct validation state after subsequent edits when required=false and the new value is blank', () => {
+    it('should have the correct validation state after subsequent edits ' +
+        'when required=false and the new value is blank', () => {
 
         const onValidation = sinon.spy();
 
