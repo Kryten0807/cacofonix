@@ -12,8 +12,9 @@ import TextInput from './TextInput';
 
 const expect = chai.expect;
 
+// @TODO write these tests
 /* *****************************************************************************
-after the user edits the value, the TextInput component
+after the user edits & blurs the input element, the TextInput component
     should not show the validation message when required=true and the value is valid
     should not show the validation message when required=false and the value is blank
     should show the validation message when required=true and the value is blank
