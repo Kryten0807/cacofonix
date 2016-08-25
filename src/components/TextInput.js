@@ -54,20 +54,16 @@ class TextInput extends React.Component {
         }
     }
 
-    /**
-     * Handle the blurring of the input element
-     * @param  {Object} event The event object
-     */
-    onBlur(event) {
+    onEvent(eventValue, hasValidated) {
         // validate the value & get the important values
         //
-        const { value, isValid, validationMessage } = this.validate(event.target.value);
+        const { value, isValid, validationMessage } = this.validate(eventValue);
 
         // update the state
         //
         this.setState((state) => update(state, {
             value:             { $set: value },
-            hasValidated:      { $set: true },
+            hasValidated:      { $set: hasValidated },
             isValid:           { $set: isValid },
             validationMessage: { $set: validationMessage },
         }));
@@ -84,6 +80,14 @@ class TextInput extends React.Component {
         if (this.props.onValidation) {
             this.props.onValidation(true, isValid, validationMessage);
         }
+    }
+
+    /**
+     * Handle the blurring of the input element
+     * @param  {Object} event The event object
+     */
+    onBlur(event) {
+        this.onEvent(event.target.value, true);
     }
 
     /**
