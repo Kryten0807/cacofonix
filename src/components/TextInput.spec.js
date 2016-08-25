@@ -195,7 +195,7 @@ on editing, the TextInput component
         the new value is blank
 */
 
-// @TODO revise these three tests
+
 /*
     should have updated validation state when required=true and the new value is blank
     should have updated validation state when required=true and the new value is valid
