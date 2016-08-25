@@ -179,9 +179,6 @@ after blur, the TextInput component
 on editing, the TextInput component
     should call onChange with the new value
     should have the new value in the component state
-*/
-
-/*
     should not call onValidation when required=true and the new value is valid
     should not call onValidation when required=true and the new value is blank
     should not call onValidation when required=false and the new value is blank
@@ -225,8 +222,6 @@ describe('on editing, the TextInput component', () => {
 
         expect(component.state().value).to.equal(newValue);
     });
-
-
 
     it('should not call onValidation when required=true and the new value is valid', () => {
 
@@ -299,9 +294,6 @@ describe('on editing, the TextInput component', () => {
         expect(onValidation.callCount).to.equal(1, 'callcount after');
     });
 
-
-
-
     it('should have updated validation state when required=true and the new ' +
         'value is valid', () => {
 
@@ -362,8 +354,6 @@ describe('on editing, the TextInput component', () => {
         expect(component.state().isValid).to.equal(true, 'isValid');
         expect(component.state().validationMessage).to.equal(null, 'validationMessage');
     });
-
-
 });
 
 /* *****************************************************************************
