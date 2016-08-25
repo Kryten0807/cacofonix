@@ -179,13 +179,9 @@ after blur, the TextInput component
 on editing, the TextInput component
     should call onChange with the new value
     should have the new value in the component state
-
-    should not call onValidation when required=true and the new value is valid
-    should not call onValidation when required=true and the new value is blank
-    should not call onValidation when required=false and the new value is blank
 */
 
-// @TODO remove these three tests
+// @TODO revise these three tests
 /*
     should call onValidation with the correct arguments when required=true and
         the new value is valid
