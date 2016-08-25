@@ -163,6 +163,7 @@ class TextInput extends React.Component {
                     type="text"
                     className="form-control"
                     placeholder={this.props.placeholder || ''}
+                    onBlur={this.onBlur}
                     onChange={this.onChange}
                 />
                 {(this.state.hasValidated && !this.state.isValid) &&
