@@ -146,6 +146,17 @@ describe('when it is initialized, the TextInput component', () => {
 
 });
 
+// @TODO write these tests
+/* *****************************************************************************
+after blur, the TextInput component
+    should call onValidation with the correct values when required=true and the new value is valid
+    should call onValidation with the correct values when required=true and the new value is blank
+    should call onValidation with the correct values when required=false and the new value is blank
+    should call onValidation with the correct values for subsequent edits when required=true and the new value is valid
+    should call onValidation with the correct values for subsequent edits when required=true and the new value is blank
+    should call onValidation with the correct values for subsequent edits when required=false and the new value is blank
+*/
+
 /* *****************************************************************************
 on editing, the TextInput component
     should call onChange with the new value
@@ -154,19 +165,25 @@ on editing, the TextInput component
     should not call onValidation when required=true and the new value is valid
     should not call onValidation when required=true and the new value is blank
     should not call onValidation when required=false and the new value is blank
+*/
 
+// @TODO remove these three tests
+/*
     should call onValidation with the correct arguments when required=true and
         the new value is valid
-    should have updated validation state when required=true and the new value is valid
     should call onValidation with the correct arguments when required=true and
         the new value is blank
-    should have updated validation state when required=true and the new value is blank
     should call onValidation with the correct arguments when required=false and
         the new value is blank
+*/
+
+// @TODO revise these three tests
+/*
+    should have updated validation state when required=true and the new value is blank
+    should have updated validation state when required=true and the new value is valid
     should have updated validation state when required=false and the new value is blank
 */
 describe('on editing, the TextInput component', () => {
-
     const description = 'wtf?';
 
     const expectedMessage = `${description} is required`;
