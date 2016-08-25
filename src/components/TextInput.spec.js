@@ -18,6 +18,14 @@ after the user edits the value, the TextInput component
     should not show the validation message when required=false and the value is blank
     should show the validation message when required=true and the value is blank
 */
+
+// @TODO revise these tests
+/* *****************************************************************************
+after the user edits the value, the TextInput component
+    should not show the validation message when required=true and the value is valid
+    should not show the validation message when required=false and the value is blank
+    should not show the validation message when required=true and the value is blank
+*/
 describe('after the user edits the value, the TextInput component', () => {
 
     const description = 'wibbly-wobbly';
