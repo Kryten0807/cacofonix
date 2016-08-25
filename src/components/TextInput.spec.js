@@ -12,7 +12,6 @@ import TextInput from './TextInput';
 
 const expect = chai.expect;
 
-// @TODO write these tests
 /* *****************************************************************************
 after the user edits & blurs the input element, the TextInput component
     should not show the validation message when required=true and the value is valid
@@ -21,11 +20,129 @@ after the user edits & blurs the input element, the TextInput component
 */
 describe('after the user edits & blurs the input element, the TextInput component', () => {
 
-    // it('should not show the validation message when required=true and the value is valid', () => {});
+    const description = 'something useless';
 
-    // it('should not show the validation message when required=false and the value is blank', () => {});
+    const expectedMessage = `${description} is required`;
 
-    // it('should show the validation message when required=true and the value is blank', () => {});
+    it('should not show the validation message when required=true and the value is valid', () => {
+
+        const onValidation = sinon.spy();
+
+        const required = true;
+        const initialValue = 'anchovies';
+        const newValue = 'pineapple';
+
+        const component = mount(<TextInput
+            description={description}
+            required={required}
+            value={initialValue}
+            onValidation={onValidation}
+        />);
+
+        expect(component.find('div.form-group').length).to.equal(1, 'form-group');
+        expect(component.find('div.form-group.has-error').length).to.equal(0, 'has-error');
+        expect(component.find('span.help-block').length).to.equal(0, 'help-block');
+
+        // edit the component
+        //
+        component.find('input').simulate('change', {
+            target: { value: newValue }
+        });
+
+        expect(component.find('div.form-group').length).to.equal(1, 'form-group');
+        expect(component.find('div.form-group.has-error').length).to.equal(0, 'has-error');
+        expect(component.find('span.help-block').length).to.equal(0, 'help-block');
+
+        // blur the component
+        //
+        component.find('input').simulate('blur', {
+            target: { value: newValue }
+        });
+
+        expect(component.find('div.form-group').length).to.equal(1, 'form-group');
+        expect(component.find('div.form-group.has-error').length).to.equal(0, 'has-error');
+        expect(component.find('span.help-block').length).to.equal(0, 'help-block');
+    });
+
+    it('should not show the validation message when required=false and the value is blank', () => {
+
+        const onValidation = sinon.spy();
+
+        const required = false;
+        const initialValue = 'anchovies';
+        const newValue = '';
+
+        const component = mount(<TextInput
+            description={description}
+            required={required}
+            value={initialValue}
+            onValidation={onValidation}
+        />);
+
+        expect(component.find('div.form-group').length).to.equal(1, 'form-group');
+        expect(component.find('div.form-group.has-error').length).to.equal(0, 'has-error');
+        expect(component.find('span.help-block').length).to.equal(0, 'help-block');
+
+        // edit the component
+        //
+        component.find('input').simulate('change', {
+            target: { value: newValue }
+        });
+
+        expect(component.find('div.form-group').length).to.equal(1, 'form-group');
+        expect(component.find('div.form-group.has-error').length).to.equal(0, 'has-error');
+        expect(component.find('span.help-block').length).to.equal(0, 'help-block');
+
+        // blur the component
+        //
+        component.find('input').simulate('blur', {
+            target: { value: newValue }
+        });
+
+        expect(component.find('div.form-group').length).to.equal(1, 'form-group');
+        expect(component.find('div.form-group.has-error').length).to.equal(0, 'has-error');
+        expect(component.find('span.help-block').length).to.equal(0, 'help-block');
+    });
+
+    it('should show the validation message when required=true and the value is blank', () => {
+
+        const onValidation = sinon.spy();
+
+        const required = true;
+        const initialValue = 'anchovies';
+        const newValue = '';
+
+        const component = mount(<TextInput
+            description={description}
+            required={required}
+            value={initialValue}
+            onValidation={onValidation}
+        />);
+
+        expect(component.find('div.form-group').length).to.equal(1, 'form-group');
+        expect(component.find('div.form-group.has-error').length).to.equal(0, 'has-error');
+        expect(component.find('span.help-block').length).to.equal(0, 'help-block');
+
+        // edit the component
+        //
+        component.find('input').simulate('change', {
+            target: { value: newValue }
+        });
+
+        expect(component.find('div.form-group').length).to.equal(1, 'form-group');
+        expect(component.find('div.form-group.has-error').length).to.equal(0, 'has-error');
+        expect(component.find('span.help-block').length).to.equal(0, 'help-block');
+
+        // blur the component
+        //
+        component.find('input').simulate('blur', {
+            target: { value: newValue }
+        });
+
+        expect(component.find('div.form-group.has-error').length).to.equal(1, 'has-error');
+        expect(component.find('span.help-block').length).to.equal(1, 'help-block');
+        expect(component.find('span.help-block').text()).to.equal(expectedMessage, 'help-block');
+    });
 
 });
 
