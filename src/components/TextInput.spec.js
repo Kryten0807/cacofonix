@@ -181,18 +181,10 @@ on editing, the TextInput component
     should have the new value in the component state
 */
 
-// @TODO revise these three tests
 /*
-    should call onValidation with the correct arguments when required=true and
-        the new value is valid
-    should call onValidation with the correct arguments when required=true and
-        the new value is blank
-    should call onValidation with the correct arguments when required=false and
-        the new value is blank
-*/
-
-
-/*
+    should not call onValidation when required=true and the new value is valid
+    should not call onValidation when required=true and the new value is blank
+    should not call onValidation when required=false and the new value is blank
     should have updated validation state when required=true and the new value is blank
     should have updated validation state when required=true and the new value is valid
     should have updated validation state when required=false and the new value is blank
