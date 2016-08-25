@@ -29,8 +29,9 @@ class TextInput extends React.Component {
         //
         this.state.hasValidated = false;
 
-        // bind `this` to the onChange handler
+        // bind `this` to the event handlers
         //
+        this.onBlur = this.onBlur.bind(this);
         this.onChange = this.onChange.bind(this);
     }
 
