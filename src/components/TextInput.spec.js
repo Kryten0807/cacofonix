@@ -234,8 +234,9 @@ describe('on editing, the TextInput component', () => {
         expect(component.state().value).to.equal(newValue);
     });
 
-    it('should call onValidation with the correct arguments when ' +
-        'required=true and the new value is valid', () => {
+
+
+    it('should not call onValidation when required=true and the new value is valid', () => {
 
         const onValidation = sinon.spy();
 
@@ -255,15 +256,10 @@ describe('on editing, the TextInput component', () => {
             target: { value: newValue }
         });
 
-        expect(onValidation.callCount).to.equal(2, 'callcount after');
-
-        expect(onValidation.secondCall.args[0]).to.equal(true, 'hasValidated');
-        expect(onValidation.secondCall.args[1]).to.equal(true, 'isValid');
-        expect(onValidation.secondCall.args[2]).to.equal(null, 'validationMessage');
+        expect(onValidation.callCount).to.equal(1, 'callcount after');
     });
 
-    it('should call onValidation with the correct arguments when ' +
-        'required=true and the new value is blank', () => {
+    it('should not call onValidation when required=true and the new value is blank', () => {
 
         const onValidation = sinon.spy();
 
@@ -284,15 +280,10 @@ describe('on editing, the TextInput component', () => {
             target: { value: newValue }
         });
 
-        expect(onValidation.callCount).to.equal(2, 'callcount after');
-
-        expect(onValidation.secondCall.args[0]).to.equal(true, 'hasValidated');
-        expect(onValidation.secondCall.args[1]).to.equal(false, 'isValid');
-        expect(onValidation.secondCall.args[2]).to.equal(expectedMessage, 'validationMessage');
+        expect(onValidation.callCount).to.equal(1, 'callcount after');
     });
 
-    it('should call onValidation with the correct arguments when ' +
-        'required=false and the new value is blank', () => {
+    it('should not call onValidation when required=false and the new value is blank', () => {
 
         const onValidation = sinon.spy();
 
@@ -313,12 +304,10 @@ describe('on editing, the TextInput component', () => {
             target: { value: newValue }
         });
 
-        expect(onValidation.callCount).to.equal(2, 'callcount after');
-
-        expect(onValidation.secondCall.args[0]).to.equal(true, 'hasValidated');
-        expect(onValidation.secondCall.args[1]).to.equal(true, 'isValid');
-        expect(onValidation.secondCall.args[2]).to.equal(null, 'validationMessage');
+        expect(onValidation.callCount).to.equal(1, 'callcount after');
     });
+
+
 
 
     it('should have updated validation state when required=true and the new ' +
