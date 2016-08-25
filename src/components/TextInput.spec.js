@@ -19,6 +19,15 @@ after the user edits & blurs the input element, the TextInput component
     should not show the validation message when required=false and the value is blank
     should show the validation message when required=true and the value is blank
 */
+describe('after the user edits & blurs the input element, the TextInput component', () => {
+
+    // it('should not show the validation message when required=true and the value is valid', () => {});
+
+    // it('should not show the validation message when required=false and the value is blank', () => {});
+
+    // it('should show the validation message when required=true and the value is blank', () => {});
+
+});
 
 /* *****************************************************************************
 after the user edits the value, the TextInput component
