@@ -54,6 +54,10 @@ class TextInput extends React.Component {
         }
     }
 
+    /**
+     * Handle the blurring of the input element
+     * @param  {Object} event The event object
+     */
     onBlur(event) {
         // validate the value & get the important values
         //
