@@ -329,7 +329,7 @@ describe('on editing, the TextInput component', () => {
             target: { value: newValue }
         });
 
-        expect(component.state().hasValidated).to.equal(true, 'hasValidated');
+        expect(component.state().hasValidated).to.equal(false, 'hasValidated');
         expect(component.state().isValid).to.equal(true, 'isValid');
         expect(component.state().validationMessage).to.equal(null, 'validationMessage');
     });
@@ -351,7 +351,7 @@ describe('on editing, the TextInput component', () => {
             target: { value: newValue }
         });
 
-        expect(component.state().hasValidated).to.equal(true, 'hasValidated');
+        expect(component.state().hasValidated).to.equal(false, 'hasValidated');
         expect(component.state().isValid).to.equal(false, 'isValid');
         expect(component.state().validationMessage).to.equal(expectedMessage, 'validationMessage');
     });
@@ -372,7 +372,7 @@ describe('on editing, the TextInput component', () => {
             target: { value: newValue }
         });
 
-        expect(component.state().hasValidated).to.equal(true, 'hasValidated');
+        expect(component.state().hasValidated).to.equal(false, 'hasValidated');
         expect(component.state().isValid).to.equal(true, 'isValid');
         expect(component.state().validationMessage).to.equal(null, 'validationMessage');
     });
