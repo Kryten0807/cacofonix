@@ -154,21 +154,17 @@ describe('when it is initialized, the TextInput component', () => {
 
 });
 
-// @TODO write these tests
 /* *****************************************************************************
 after blur, the TextInput component
     should call onValidation with the correct values when required=true and the new value is valid
     should call onValidation with the correct values when required=true and the new value is blank
     should call onValidation with the correct values when required=false and the new value is blank
-
     should have the correct validation state when required=true and the new value is valid
     should have the correct validation state when required=true and the new value is blank
     should have the correct validation state when required=false and the new value is blank
-
     should call onValidation with the correct values for subsequent edits when required=true and the new value is valid
     should call onValidation with the correct values for subsequent edits when required=true and the new value is blank
     should call onValidation with the correct values for subsequent edits when required=false and the new value is blank
-
     should have the correct validation state after subsequent edits when required=true and the new value is valid
     should have the correct validation state after subsequent edits when required=true and the new value is blank
     should have the correct validation state after subsequent edits when required=false and the new value is blank
@@ -188,6 +184,7 @@ describe('after blur, the TextInput component', () => {
         const newValue = 'pineapple';
 
         const component = mount(<TextInput
+            description={description}
             required={required}
             value={initialValue}
             onValidation={onValidation}
@@ -201,7 +198,7 @@ describe('after blur, the TextInput component', () => {
             target: { value: newValue }
         });
 
-        expect(onValidation.callCount).to.equal(1, 'callcount after');
+        expect(onValidation.callCount).to.equal(1, 'callcount after change');
 
         // blur the component
         //
@@ -213,27 +210,451 @@ describe('after blur, the TextInput component', () => {
         expect(onValidation.calledWith(true, true, null)).to.equal(true, 'called with');
     });
 
-    // it('should call onValidation with the correct values when required=true and the new value is blank', () => {});
+    it('should call onValidation with the correct values when required=true and the new value is blank', () => {
 
-    // it('should call onValidation with the correct values when required=false and the new value is blank', () => {});
+        const onValidation = sinon.spy();
 
-    // it('should have the correct validation state when required=true and the new value is valid', () => {});
+        const required = true;
+        const initialValue = 'mustard';
+        const newValue = '';
 
-    // it('should have the correct validation state when required=true and the new value is blank', () => {});
+        const component = mount(<TextInput
+            description={description}
+            required={required}
+            value={initialValue}
+            onValidation={onValidation}
+        />);
 
-    // it('should have the correct validation state when required=false and the new value is blank', () => {});
+        expect(onValidation.callCount).to.equal(1);
 
-    // it('should call onValidation with the correct values for subsequent edits when required=true and the new value is valid', () => {});
+        // edit the component
+        //
+        component.find('input').simulate('change', {
+            target: { value: newValue }
+        });
 
-    // it('should call onValidation with the correct values for subsequent edits when required=true and the new value is blank', () => {});
+        expect(onValidation.callCount).to.equal(1, 'callcount after change');
 
-    // it('should call onValidation with the correct values for subsequent edits when required=false and the new value is blank', () => {});
+        // blur the component
+        //
+        component.find('input').simulate('blur', {
+            target: { value: newValue }
+        });
 
-    // it('should have the correct validation state after subsequent edits when required=true and the new value is valid', () => {});
+        expect(onValidation.callCount).to.equal(2, 'callcount after blur');
 
-    // it('should have the correct validation state after subsequent edits when required=true and the new value is blank', () => {});
+        const secondCall = onValidation.getCall(1);
 
-    // it('should have the correct validation state after subsequent edits when required=false and the new value is blank', () => {});
+        expect(secondCall.args[0]).to.equal(true, 'secondCall.args[0]');
+        expect(secondCall.args[1]).to.equal(false, 'secondCall.args[1]');
+        expect(secondCall.args[2]).to.equal(expectedMessage, 'secondCall.args[2]');
+    });
+
+    it('should call onValidation with the correct values when required=false and the new value is blank', () => {
+
+        const onValidation = sinon.spy();
+
+        const required = false;
+        const initialValue = 'mustard';
+        const newValue = '';
+
+        const component = mount(<TextInput
+            description={description}
+            required={required}
+            value={initialValue}
+            onValidation={onValidation}
+        />);
+
+        expect(onValidation.callCount).to.equal(1);
+
+        // edit the component
+        //
+        component.find('input').simulate('change', {
+            target: { value: newValue }
+        });
+
+        expect(onValidation.callCount).to.equal(1, 'callcount after change');
+
+        // blur the component
+        //
+        component.find('input').simulate('blur', {
+            target: { value: newValue }
+        });
+
+        expect(onValidation.callCount).to.equal(2, 'callcount after blur');
+
+        const secondCall = onValidation.getCall(1);
+
+        expect(secondCall.args[0]).to.equal(true, 'secondCall.args[0]');
+        expect(secondCall.args[1]).to.equal(true, 'secondCall.args[1]');
+        expect(secondCall.args[2]).to.equal(null, 'secondCall.args[2]');
+    });
+
+    it('should have the correct validation state when required=true and the new value is valid', () => {
+
+        const onValidation = sinon.spy();
+
+        const required = true;
+        const initialValue = 'mustard';
+        const newValue = 'ketchup';
+
+        const component = mount(<TextInput
+            description={description}
+            required={required}
+            value={initialValue}
+            onValidation={onValidation}
+        />);
+
+        // edit the component
+        //
+        component.find('input').simulate('change', {
+            target: { value: newValue }
+        });
+
+        // blur the component
+        //
+        component.find('input').simulate('blur', {
+            target: { value: newValue }
+        });
+
+        expect(component.state().hasValidated).to.equal(true);
+        expect(component.state().isValid).to.equal(true);
+        expect(component.state().validationMessage).to.equal(null);
+
+
+    });
+
+    it('should have the correct validation state when required=true and the new value is blank', () => {
+
+        const onValidation = sinon.spy();
+
+        const required = true;
+        const initialValue = 'mustard';
+        const newValue = '';
+
+        const component = mount(<TextInput
+            description={description}
+            required={required}
+            value={initialValue}
+            onValidation={onValidation}
+        />);
+
+        // edit the component
+        //
+        component.find('input').simulate('change', {
+            target: { value: newValue }
+        });
+
+        // blur the component
+        //
+        component.find('input').simulate('blur', {
+            target: { value: newValue }
+        });
+
+        expect(component.state().hasValidated).to.equal(true);
+        expect(component.state().isValid).to.equal(false);
+        expect(component.state().validationMessage).to.equal(expectedMessage);
+
+
+    });
+
+    it('should have the correct validation state when required=false and the new value is blank', () => {
+
+        const onValidation = sinon.spy();
+
+        const required = false;
+        const initialValue = 'mustard';
+        const newValue = '';
+
+        const component = mount(<TextInput
+            description={description}
+            required={required}
+            value={initialValue}
+            onValidation={onValidation}
+        />);
+
+        // edit the component
+        //
+        component.find('input').simulate('change', {
+            target: { value: newValue }
+        });
+
+        // blur the component
+        //
+        component.find('input').simulate('blur', {
+            target: { value: newValue }
+        });
+
+        expect(component.state().hasValidated).to.equal(true);
+        expect(component.state().isValid).to.equal(true);
+        expect(component.state().validationMessage).to.equal(null);
+
+
+    });
+
+    it('should call onValidation with the correct values for subsequent edits when required=true and the new value is valid', () => {
+
+        const onValidation = sinon.spy();
+
+        const required = true;
+        const initialValue = 'mustard';
+        const intermediateValue = 'ketchup';
+        const newValue = 'relish';
+
+        const component = mount(<TextInput
+            description={description}
+            required={required}
+            value={initialValue}
+            onValidation={onValidation}
+        />);
+
+        expect(onValidation.callCount).to.equal(1);
+
+        // edit the component
+        //
+        component.find('input').simulate('change', {
+            target: { value: intermediateValue }
+        });
+
+        expect(onValidation.callCount).to.equal(1, 'callcount after change');
+
+        // blur the component
+        //
+        component.find('input').simulate('blur', {
+            target: { value: newValue }
+        });
+
+        expect(onValidation.callCount).to.equal(2, 'callcount after blur');
+
+        // edit the component
+        //
+        component.find('input').simulate('change', {
+            target: { value: newValue }
+        });
+
+        expect(onValidation.callCount).to.equal(3, 'callcount after second edit');
+
+        const thirdCall = onValidation.getCall(2);
+
+        expect(thirdCall.args[0]).to.equal(true, 'thirdCall.args[0]');
+        expect(thirdCall.args[1]).to.equal(true, 'thirdCall.args[1]');
+        expect(thirdCall.args[2]).to.equal(null, 'thirdCall.args[2]');
+    });
+
+    it('should call onValidation with the correct values for subsequent edits when required=true and the new value is blank', () => {
+
+        const onValidation = sinon.spy();
+
+        const required = true;
+        const initialValue = 'mustard';
+        const intermediateValue = 'ketchup';
+        const newValue = '';
+
+        const component = mount(<TextInput
+            description={description}
+            required={required}
+            value={initialValue}
+            onValidation={onValidation}
+        />);
+
+        expect(onValidation.callCount).to.equal(1);
+
+        // edit the component
+        //
+        component.find('input').simulate('change', {
+            target: { value: intermediateValue }
+        });
+
+        expect(onValidation.callCount).to.equal(1, 'callcount after change');
+
+        // blur the component
+        //
+        component.find('input').simulate('blur', {
+            target: { value: newValue }
+        });
+
+        expect(onValidation.callCount).to.equal(2, 'callcount after blur');
+
+        // edit the component
+        //
+        component.find('input').simulate('change', {
+            target: { value: newValue }
+        });
+
+        expect(onValidation.callCount).to.equal(3, 'callcount after second edit');
+
+        const thirdCall = onValidation.getCall(2);
+
+        expect(thirdCall.args[0]).to.equal(true, 'thirdCall.args[0]');
+        expect(thirdCall.args[1]).to.equal(false, 'thirdCall.args[1]');
+        expect(thirdCall.args[2]).to.equal(expectedMessage, 'thirdCall.args[2]');
+    });
+
+    it('should call onValidation with the correct values for subsequent edits when required=false and the new value is blank', () => {
+
+        const onValidation = sinon.spy();
+
+        const required = false;
+        const initialValue = 'mustard';
+        const intermediateValue = 'ketchup';
+        const newValue = '';
+
+        const component = mount(<TextInput
+            description={description}
+            required={required}
+            value={initialValue}
+            onValidation={onValidation}
+        />);
+
+        expect(onValidation.callCount).to.equal(1);
+
+        // edit the component
+        //
+        component.find('input').simulate('change', {
+            target: { value: intermediateValue }
+        });
+
+        expect(onValidation.callCount).to.equal(1, 'callcount after change');
+
+        // blur the component
+        //
+        component.find('input').simulate('blur', {
+            target: { value: newValue }
+        });
+
+        expect(onValidation.callCount).to.equal(2, 'callcount after blur');
+
+        // edit the component
+        //
+        component.find('input').simulate('change', {
+            target: { value: newValue }
+        });
+
+        expect(onValidation.callCount).to.equal(3, 'callcount after second edit');
+
+        const thirdCall = onValidation.getCall(2);
+
+        expect(thirdCall.args[0]).to.equal(true, 'thirdCall.args[0]');
+        expect(thirdCall.args[1]).to.equal(true, 'thirdCall.args[1]');
+        expect(thirdCall.args[2]).to.equal(null, 'thirdCall.args[2]');
+    });
+
+    it('should have the correct validation state after subsequent edits when required=true and the new value is valid', () => {
+
+        const onValidation = sinon.spy();
+
+        const required = true;
+        const initialValue = 'mustard';
+        const intermediateValue = 'ketchup';
+        const newValue = 'relish';
+
+        const component = mount(<TextInput
+            description={description}
+            required={required}
+            value={initialValue}
+            onValidation={onValidation}
+        />);
+
+        // edit the component
+        //
+        component.find('input').simulate('change', {
+            target: { value: intermediateValue }
+        });
+
+        // blur the component
+        //
+        component.find('input').simulate('blur', {
+            target: { value: newValue }
+        });
+
+        // edit the component
+        //
+        component.find('input').simulate('change', {
+            target: { value: newValue }
+        });
+
+        expect(component.state().hasValidated).to.equal(true);
+        expect(component.state().isValid).to.equal(true);
+        expect(component.state().validationMessage).to.equal(null);
+    });
+
+    it('should have the correct validation state after subsequent edits when required=true and the new value is blank', () => {
+
+        const onValidation = sinon.spy();
+
+        const required = true;
+        const initialValue = 'mustard';
+        const intermediateValue = 'ketchup';
+        const newValue = '';
+
+        const component = mount(<TextInput
+            description={description}
+            required={required}
+            value={initialValue}
+            onValidation={onValidation}
+        />);
+
+        // edit the component
+        //
+        component.find('input').simulate('change', {
+            target: { value: intermediateValue }
+        });
+
+        // blur the component
+        //
+        component.find('input').simulate('blur', {
+            target: { value: newValue }
+        });
+
+        // edit the component
+        //
+        component.find('input').simulate('change', {
+            target: { value: newValue }
+        });
+
+        expect(component.state().hasValidated).to.equal(true);
+        expect(component.state().isValid).to.equal(false);
+        expect(component.state().validationMessage).to.equal(expectedMessage);
+    });
+
+    it('should have the correct validation state after subsequent edits when required=false and the new value is blank', () => {
+
+        const onValidation = sinon.spy();
+
+        const required = false;
+        const initialValue = 'mustard';
+        const intermediateValue = 'ketchup';
+        const newValue = '';
+
+        const component = mount(<TextInput
+            description={description}
+            required={required}
+            value={initialValue}
+            onValidation={onValidation}
+        />);
+
+        // edit the component
+        //
+        component.find('input').simulate('change', {
+            target: { value: intermediateValue }
+        });
+
+        // blur the component
+        //
+        component.find('input').simulate('blur', {
+            target: { value: newValue }
+        });
+
+        // edit the component
+        //
+        component.find('input').simulate('change', {
+            target: { value: newValue }
+        });
+
+        expect(component.state().hasValidated).to.equal(true);
+        expect(component.state().isValid).to.equal(true);
+        expect(component.state().validationMessage).to.equal(null);
+    });
 
 });
 
