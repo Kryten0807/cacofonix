@@ -152,9 +152,18 @@ after blur, the TextInput component
     should call onValidation with the correct values when required=true and the new value is valid
     should call onValidation with the correct values when required=true and the new value is blank
     should call onValidation with the correct values when required=false and the new value is blank
+
+    should have the correct validation state when required=true and the new value is valid
+    should have the correct validation state when required=true and the new value is blank
+    should have the correct validation state when required=false and the new value is blank
+
     should call onValidation with the correct values for subsequent edits when required=true and the new value is valid
     should call onValidation with the correct values for subsequent edits when required=true and the new value is blank
     should call onValidation with the correct values for subsequent edits when required=false and the new value is blank
+
+    should have the correct validation state after subsequent edits when required=true and the new value is valid
+    should have the correct validation state after subsequent edits when required=true and the new value is blank
+    should have the correct validation state after subsequent edits when required=false and the new value is blank
 */
 
 /* *****************************************************************************
