@@ -29,8 +29,9 @@ class TextInput extends React.Component {
         //
         this.state.hasValidated = false;
 
-        // bind `this` to the onChange handler
+        // bind `this` to the event handlers
         //
+        this.onBlur = this.onBlur.bind(this);
         this.onChange = this.onChange.bind(this);
     }
 
@@ -54,19 +55,25 @@ class TextInput extends React.Component {
     }
 
     /**
-     * Handle a change to the input element
-     * @param  {Object} event The event object
+     * Handle a generic event
+     *
+     * The code for the `onBlur` and `onChange` handler is almost identical, so
+     * this "generic" event handler will to the work for both of them.
+     *
+     * @param  {String}  eventValue   The new value for the component
+     * @param  {Boolean} hasValidated A flag to indicate the new state of the
+     *                                `hasValidated` flag
      */
-    onChange(event) {
+    onEvent(eventValue, hasValidated) {
         // validate the value & get the important values
         //
-        const { value, isValid, validationMessage } = this.validate(event.target.value);
+        const { value, isValid, validationMessage } = this.validate(eventValue);
 
         // update the state
         //
         this.setState((state) => update(state, {
             value:             { $set: value },
-            hasValidated:      { $set: true },
+            hasValidated:      { $set: hasValidated },
             isValid:           { $set: isValid },
             validationMessage: { $set: validationMessage },
         }));
@@ -77,12 +84,28 @@ class TextInput extends React.Component {
             this.props.onChange(value);
         }
 
-        // do we have an onValidation handler? if so, call it with the
-        // validation state
+        // has the component validated? do we have an onValidation handler? if
+        // so, call it with the validation state
         //
-        if (this.props.onValidation) {
-            this.props.onValidation(true, isValid, validationMessage);
+        if (hasValidated && this.props.onValidation) {
+            this.props.onValidation(hasValidated, isValid, validationMessage);
         }
+    }
+
+    /**
+     * Handle the blurring of the input element
+     * @param  {Object} event The event object
+     */
+    onBlur(event) {
+        this.onEvent(event.target.value, true);
+    }
+
+    /**
+     * Handle a change to the input element
+     * @param  {Object} event The event object
+     */
+    onChange(event) {
+        this.onEvent(event.target.value, this.state.hasValidated);
     }
 
     /**
@@ -134,6 +157,7 @@ class TextInput extends React.Component {
                     type="text"
                     className="form-control"
                     placeholder={this.props.placeholder || ''}
+                    onBlur={this.onBlur}
                     onChange={this.onChange}
                 />
                 {(this.state.hasValidated && !this.state.isValid) &&
