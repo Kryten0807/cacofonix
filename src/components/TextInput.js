@@ -54,6 +54,16 @@ class TextInput extends React.Component {
         }
     }
 
+    /**
+     * Handle a generic event
+     *
+     * The code for the `onBlur` and `onChange` handler is almost identical, so
+     * this "generic" event handler will to the work for both of them.
+     *
+     * @param  {String}  eventValue   The new value for the component
+     * @param  {Boolean} hasValidated A flag to indicate the new state of the
+     *                                `hasValidated` flag
+     */
     onEvent(eventValue, hasValidated) {
         // validate the value & get the important values
         //
@@ -74,8 +84,8 @@ class TextInput extends React.Component {
             this.props.onChange(value);
         }
 
-        // do we have an onValidation handler? if so, call it with the
-        // validation state
+        // has the component validated? do we have an onValidation handler? if
+        // so, call it with the validation state
         //
         if (hasValidated && this.props.onValidation) {
             this.props.onValidation(hasValidated, isValid, validationMessage);
