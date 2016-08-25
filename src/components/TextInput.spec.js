@@ -20,7 +20,6 @@ after the user edits & blurs the input element, the TextInput component
     should show the validation message when required=true and the value is blank
 */
 
-// @TODO revise these tests
 /* *****************************************************************************
 after the user edits the value, the TextInput component
     should not show the validation message when required=true and the value is valid
@@ -84,7 +83,7 @@ describe('after the user edits the value, the TextInput component', () => {
 
     });
 
-    it('should show the validation message when required=true and the value is blank', () => {
+    it('should not show the validation message when required=true and the value is blank', () => {
         const required = true;
         const value = 'woooo!';
 
@@ -104,9 +103,9 @@ describe('after the user edits the value, the TextInput component', () => {
             target: { value: newValue }
         });
 
-        expect(component.find('div.form-group.has-error').length).to.equal(1, 'after has-error');
-        expect(component.find('span.help-block').length).to.equal(1, 'after help-block');
-        expect(component.find('span.help-block').text()).to.equal(expectedMessage, 'after message');
+        expect(component.find('div.form-group').length).to.equal(1, 'form-group');
+        expect(component.find('div.form-group.has-error').length).to.equal(0, 'has-error');
+        expect(component.find('span.help-block').length).to.equal(0, 'help-block');
 
     });
 
