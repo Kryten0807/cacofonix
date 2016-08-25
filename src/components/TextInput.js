@@ -95,31 +95,7 @@ class TextInput extends React.Component {
      * @param  {Object} event The event object
      */
     onChange(event) {
-        // validate the value & get the important values
-        //
-        const { value, isValid, validationMessage } = this.validate(event.target.value);
-
-        // update the state
-        //
-        this.setState((state) => update(state, {
-            value:             { $set: value },
-            hasValidated:      { $set: state.hasValidated },
-            isValid:           { $set: isValid },
-            validationMessage: { $set: validationMessage },
-        }));
-
-        // do we have an onChange handler? if so, call it with the new value
-        //
-        if (this.props.onChange) {
-            this.props.onChange(value);
-        }
-
-        // do we have an onValidation handler? have we validated before? if so,
-        // call it with the validation state
-        //
-        if (this.state.hasValidated && this.props.onValidation) {
-            this.props.onValidation(true, isValid, validationMessage);
-        }
+        this.onEvent(event.target.value, this.state.hasValidated);
     }
 
     /**
