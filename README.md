@@ -32,3 +32,10 @@ All of the form elements can be configured to validate their input. As part of t
     1. `validationMessage` - a string describing the validation error or `null` if the value is valid.
 
 The `hasValidated` flag is used to indicate whether the validation error message is (or should be) displayed. The idea is that when the component is initialized with an invalid value, it will not display the validation error message. Later on, after the user has changed the value, the `hasValidated` flag will be set to `true`, and any validation errors will be displayed. This value is passed along via the `onValidation` handler to allow the parent component to manage it's own `hasValidated` state.
+
+The behaviour of the component looks like this:
+
++ when the component is initialized, no validation error message is displayed (`hasValidated` = false, `isValid` = true or false, depending)
++ when the user first starts editing, no validation error message is displayed, even if the user enters an invalid value (`hasValidated` = false, `isValid` = true or false, depending)
++ when the user tabs or clicks out of the control for the first time, the validation error message is displayed if the value is invalid (`hasValidated` = true, `isValid` = true or false, depending)
++ after that first tab/click out, any editing of the value will display the error message if the value is invalid (`hasValidated` = true, `isValid` = true or false, depending)
