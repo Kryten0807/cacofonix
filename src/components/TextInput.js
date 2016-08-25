@@ -95,7 +95,7 @@ class TextInput extends React.Component {
         //
         this.setState((state) => update(state, {
             value:             { $set: value },
-            hasValidated:      { $set: false },
+            hasValidated:      { $set: state.hasValidated },
             isValid:           { $set: isValid },
             validationMessage: { $set: validationMessage },
         }));
