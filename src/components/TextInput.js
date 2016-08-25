@@ -78,7 +78,7 @@ class TextInput extends React.Component {
         // validation state
         //
         if (hasValidated && this.props.onValidation) {
-            this.props.onValidation(true, isValid, validationMessage);
+            this.props.onValidation(hasValidated, isValid, validationMessage);
         }
     }
 
