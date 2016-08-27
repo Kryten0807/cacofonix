@@ -40,18 +40,19 @@ the onValidation handler for the component
     should be called when the component is first initialized with `required`=false, `value`=null
     should be called when the component is first initialized with `required`=true, `value`=valid
     should be called when the component is first initialized with `required`=false, `value`=valid
-
     should be called when the component is first initialized with `required`=true, `value`=not valid
-    should be called when the component is first initialized with `required`=false, `value`=not valid
-
+    should be called when the component is first initialized with
+        `required`=false, `value`=not valid
     should be called when `required`=true and the component value is changed to the `null` option`
     should be called when `required`=true and the component value is changed to a valid option`
     should be called when `required`=false and the component value is changed to the `null` option`
     should be called when `required`=false and the component value is changed to a valid option`
     should be called when `required`=true, `value`=null and the user tabs away from the component
-    should be called when `required`=true, `value`=valid option and the user tabs away from the component
+    should be called when `required`=true, `value`=valid option and the user
+        tabs away from the component
     should be called when `required`=false, `value`=null and the user tabs away from the component
-    should be called when `required`=false, `value`=valid option and the user tabs away from the component
+    should be called when `required`=false, `value`=valid option and the user
+        tabs away from the component
 */
 describe('the onValidation handler for the component', () => {
 
