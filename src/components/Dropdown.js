@@ -4,15 +4,25 @@ import React from 'react';
 import uniqueId from 'lodash/uniqueId';
 import Label from './Label';
 
-const Dropdown = (props) => (
-    <div className="form-group">
-        {props.label ? <Label label={props.label} required={props.required} /> : ''}
-        <select className="form-control">
-            {props.includeNull ? <option key={uniqueId('Dropdown-')} value="">{props.nullName || 'Please select one'}</option> : ''}
-            {props.options.map((opt) => <option key={uniqueId('Dropdown-')} value={opt.value}>{opt.name}</option>)}
-        </select>
-    </div>
-);
+class Dropdown extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.id = uniqueId('Dropdown-');
+    }
+
+    render() {
+        return (
+            <div className="form-group">
+                {this.props.label ? <Label htmlFor={this.id} label={this.props.label} required={this.props.required} /> : ''}
+                <select id={this.id} className="form-control">
+                    {this.props.includeNull ? <option key={uniqueId('Dropdown-')} value="">{this.props.nullName || 'Please select one'}</option> : ''}
+                    {this.props.options.map((opt) => <option key={uniqueId('Dropdown-')} value={opt.value}>{opt.name}</option>)}
+                </select>
+            </div>
+        );
+    }
+}
 
 // set the property types for the Dropdown component
 //
