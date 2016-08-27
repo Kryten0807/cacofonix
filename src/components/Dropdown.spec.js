@@ -39,6 +39,8 @@ on initialization, the Dropdown component
     should have a select.form-control
     should have the correct number of option elements (n+1) if includeNull=true
     should have the correct number of option elements (n) if includeNull=false
+    should have a null option with the correct text when includeNull=true and nullName is set
+    should have the correct option text for each option
 */
 describe('on initialization, the Dropdown component', () => {
 
@@ -93,5 +95,10 @@ describe('on initialization, the Dropdown component', () => {
 
         expect(component.find('select.form-control option').length).to.equal(options.length);
     });
+
+    // it('should have a null option with the correct text when includeNull=true and nullName is set', () => {});
+
+    // it('should have the correct option text for each option', () => {});
+
 
 });
