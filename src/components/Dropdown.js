@@ -14,7 +14,14 @@ class Dropdown extends React.Component {
 
         this.validationMessage = `${props.description || 'This value'} is required`;
 
-        const isValid = !props.required || !!props.value;
+        let value = `${props.value || ''}`;
+
+        const inValues = this.permittedValues.find((val) => val === value);
+
+        if (!inValues) {
+            value = null;
+        }
+
 
         this.state = {
             hasValidated:      false,
