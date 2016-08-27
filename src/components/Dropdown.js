@@ -16,6 +16,7 @@ const Dropdown = (props) => (
 Dropdown.propTypes = {
     label:       React.PropTypes.string,
     required:    React.PropTypes.bool,
+    options:    React.PropTypes.array,
 };
 
 
