@@ -21,7 +21,7 @@ Dropdown.propTypes = {
     includeNull: React.PropTypes.bool,
     nullName:    React.PropTypes.string,
     required:    React.PropTypes.bool,
-    options:    React.PropTypes.array,
+    options:     React.PropTypes.array,
 };
 
 
