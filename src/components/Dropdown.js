@@ -9,6 +9,8 @@ class Dropdown extends React.Component {
         super(props);
 
         this.id = uniqueId('Dropdown-');
+
+        this.validationMessage = `${props.description || 'This value'} is required`;
     }
 
     render() {
