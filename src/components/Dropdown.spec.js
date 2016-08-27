@@ -48,7 +48,7 @@ describe('on initialization, the Dropdown component', () => {
     ];
 
     it('should be a div.form-group', () => {
-        const component = shallow(<Dropdown />);
+        const component = shallow(<Dropdown options={options} />);
 
         expect(component.is('div.form-group')).to.equal(true);
     });
@@ -56,7 +56,7 @@ describe('on initialization, the Dropdown component', () => {
     it('should have a label, if label is set', () => {
         const label = 'wtf?';
 
-        const component = render(<Dropdown label={label} />);
+        const component = render(<Dropdown options={options} label={label} />);
 
         expect(component.find('label').length).to.equal(1);
         expect(component.find('label').text()).to.equal(label);
@@ -64,14 +64,14 @@ describe('on initialization, the Dropdown component', () => {
 
     it('should not have a label, if label is not set', () => {
 
-        const component = render(<Dropdown />);
+        const component = render(<Dropdown options={options} />);
 
         expect(component.find('label').length).to.equal(0);
     });
 
     it('should have a select.form-control', () => {
 
-        const component = render(<Dropdown />);
+        const component = render(<Dropdown options={options} />);
 
         expect(component.find('select.form-control').length).to.equal(1);
     });
