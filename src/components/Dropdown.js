@@ -10,4 +10,13 @@ const Dropdown = (props) => (
     </div>
 );
 
+
+// set the property types for the Dropdown component
+//
+Dropdown.propTypes = {
+    label:       React.PropTypes.string,
+    required:    React.PropTypes.bool,
+};
+
+
 export default Dropdown;
