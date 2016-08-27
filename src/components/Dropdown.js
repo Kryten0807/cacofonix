@@ -18,6 +18,8 @@ const Dropdown = (props) => (
 //
 Dropdown.propTypes = {
     label:       React.PropTypes.string,
+    includeNull: React.PropTypes.bool,
+    nullName:    React.PropTypes.string,
     required:    React.PropTypes.bool,
     options:    React.PropTypes.array,
 };
