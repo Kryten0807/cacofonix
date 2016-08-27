@@ -8,6 +8,8 @@ class Dropdown extends React.Component {
     constructor(props) {
         super(props);
 
+        this.permittedValues = props.options.map((opt) => opt.value);
+
         this.id = uniqueId('Dropdown-');
 
         this.validationMessage = `${props.description || 'This value'} is required`;
