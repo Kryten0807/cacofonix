@@ -28,3 +28,13 @@ Dropdown Behaviour
     + the onValidation callback is called
     + the onChange callback is called
 */
+
+/*
+on initialization, the Dropdown component
+    should be a div.form-group
+    should have a label, if label is set
+    should not have a label, if label is not set
+    should have a select.form-control
+    should have the correct number of option elements (n+1) if includeNull=true
+    should have the correct number of option elements (n) if includeNull=false
+*/
