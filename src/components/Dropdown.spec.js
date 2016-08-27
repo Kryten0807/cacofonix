@@ -5,9 +5,11 @@
 /* eslint-disable no-unused-expressions */
 
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, render } from 'enzyme';
 import chai from 'chai';
 import Dropdown from './Dropdown';
+
+const expect = chai.expect;
 
 /*
 Dropdown Behaviour
