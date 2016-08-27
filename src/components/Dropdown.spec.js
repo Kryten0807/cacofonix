@@ -108,9 +108,53 @@ describe('the onValidation handler for the component', () => {
         expect(call.args[2]).to.equal(null, 'arg 2');
     });
 
-    // it('should be called when the component is first initialized with `required`=true, `value`=something', () => {});
+    it('should be called when the component is first initialized with `required`=true, `value`=valid', () => {
+        const onValidation = sinon.spy();
 
-    // it('should be called when the component is first initialized with `required`=false, `value`=something', () => {});
+        const required = true;
+        const value = '1';
+
+        const component = mount(
+            <Dropdown
+                description={description}
+                required={required}
+                value={value}
+                options={options}
+                onValidation={onValidation}
+            />
+        );
+
+        expect(onValidation.callCount).to.equal(1);
+
+        const call = onValidation.getCall(0);
+        expect(call.args[0]).to.equal(false, 'arg 0');
+        expect(call.args[1]).to.equal(true, 'arg 1');
+        expect(call.args[2]).to.equal(null, 'arg 2');
+    });
+
+    it('should be called when the component is first initialized with `required`=false, `value`=valid', () => {
+        const onValidation = sinon.spy();
+
+        const required = false;
+        const value = '2';
+
+        const component = mount(
+            <Dropdown
+                description={description}
+                required={required}
+                value={value}
+                options={options}
+                onValidation={onValidation}
+            />
+        );
+
+        expect(onValidation.callCount).to.equal(1);
+
+        const call = onValidation.getCall(0);
+        expect(call.args[0]).to.equal(false, 'arg 0');
+        expect(call.args[1]).to.equal(true, 'arg 1');
+        expect(call.args[2]).to.equal(null, 'arg 2');
+    });
 
     // it('should be called when `required`=true and the component value is changed to the `null` option`', () => {});
 
