@@ -35,6 +35,29 @@ Dropdown Behaviour
 */
 
 /*
+the onChangehandler for the component
+    should not be called when the component is first initialized
+
+    should not be called when something is selected, but the value has not changed
+
+    should be called when `required`=true and the component value is changed to the `null` option
+    should be called when `required`=true and the component value is changed to a valid option
+    should be called when `required`=true and the component value is changed to an invalid option
+
+    should be called when `required`=false and the component value is changed to the `null` option
+    should be called when `required`=false and the component value is changed to a valid option
+    should be called when `required`=false and the component value is changed to an invalid option
+
+    should be called when `required`=true, `value`=null and the user tabs away from the component
+    should be called when `required`=true, `value`=valid option and the user tabs away from the component
+    should be called when `required`=true, `value`=invalid option and the user tabs away from the component
+
+    should be called when `required`=false, `value`=null and the user tabs away from the component
+    should be called when `required`=false, `value`=valid option and the user tabs away from the component
+    should be called when `required`=false, `value`=invalid option and the user tabs away from the component
+*/
+
+/*
 the onValidation handler for the component
     should be called when the component is first initialized with `required`=true, `value`=null
     should be called when the component is first initialized with `required`=false, `value`=null
