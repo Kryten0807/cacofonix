@@ -42,6 +42,11 @@ on initialization, the Dropdown component
 */
 describe('on initialization, the Dropdown component', () => {
 
+    const options = [
+        { value: '1', name: 'one' },
+        { value: '2', name: 'two' },
+    ];
+
     it('should be a div.form-group', () => {
         const component = shallow(<Dropdown />);
 
