@@ -13,6 +13,12 @@ class Dropdown extends React.Component {
         this.validationMessage = `${props.description || 'This value'} is required`;
     }
 
+    componentWillMount() {
+        if (this.props.onValidation) {
+            this.props.onValidation(false, false, this.validationMessage);
+        }
+    }
+
     render() {
         return (
             <div className="form-group">
