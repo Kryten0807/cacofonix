@@ -21,6 +21,12 @@ class Dropdown extends React.Component {
         this.onChange = this.onChange.bind(this);
     }
 
+    componentWillMount() {
+        if (this.props.onValidation) {
+            this.props.onValidation(this.state.hasValidated, this.state.isValid, this.state.validationMessage);
+        }
+    }
+
 
     validate(option) {
         let value = `${option || ''}`;
@@ -39,12 +45,6 @@ class Dropdown extends React.Component {
             isValid,
             validationMessage: isValid ? null : this.validationMessage,
         };
-    }
-
-    componentWillMount() {
-        if (this.props.onValidation) {
-            this.props.onValidation(this.state.hasValidated, this.state.isValid, this.state.validationMessage);
-        }
     }
 
     render() {
