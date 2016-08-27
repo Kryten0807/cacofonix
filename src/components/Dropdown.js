@@ -27,6 +27,7 @@ class Dropdown extends React.Component {
         }
     }
 
+    onChange() {}
 
     validate(option) {
         let value = `${option || ''}`;
