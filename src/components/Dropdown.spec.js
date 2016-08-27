@@ -48,7 +48,14 @@ describe('on initialization, the Dropdown component', () => {
         expect(component.is('div.form-group')).to.equal(true);
     });
 
-    // it('should have a label, if label is set', () => {});
+    it('should have a label, if label is set', () => {
+        const label = 'wtf?';
+
+        const component = render(<Dropdown label={label} />);
+
+        expect(component.find('label').length).to.equal(1);
+        expect(component.find('label').text()).to.equal(label);
+    });
 
     // it('should not have a label, if label is not set', () => {});
 
