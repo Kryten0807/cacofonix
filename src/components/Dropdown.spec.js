@@ -77,7 +77,11 @@ describe('the onValidation handler for the component', () => {
         );
 
         expect(onValidation.callCount).to.equal(1);
-        expect(onValidation.calledWith(false, false, expectedMessage)).to.equal(true);
+
+        const call = onValidation.getCall(0);
+        expect(call.args[0]).to.equal(false, 'arg 0');
+        expect(call.args[1]).to.equal(false, 'arg 1');
+        expect(call.args[2]).to.equal(expectedMessage, 'arg 2');
     });
 
     // it('should be called when the component is first initialized with `required`=false, `value`=null', () => {});
