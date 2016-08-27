@@ -27,7 +27,15 @@ class Dropdown extends React.Component {
         }
     }
 
-    onChange() {}
+    onChange(event) {
+        const newState = this.validate(event.target.value);
+
+        this.setState((state) => newState);
+
+        if (this.props.onValidation) {
+            this.props.onValidation(newState.hasValidated, newState.isValid, newState.validationMessage);
+        }
+    }
 
     validate(option) {
         let value = `${option || ''}`;
