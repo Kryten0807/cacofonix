@@ -54,6 +54,7 @@ Dropdown.propTypes = {
     nullName:    React.PropTypes.string,
     required:    React.PropTypes.bool,
     options:     React.PropTypes.array,
+    onValidation: React.PropTypes.func,
 };
 
 
