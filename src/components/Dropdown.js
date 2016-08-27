@@ -22,6 +22,7 @@ class Dropdown extends React.Component {
             value = null;
         }
 
+        const isValid = !props.required || !!value;
 
         this.state = {
             hasValidated:      false,
