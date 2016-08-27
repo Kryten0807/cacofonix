@@ -85,6 +85,13 @@ describe('on initialization, the Dropdown component', () => {
         expect(component.find('select.form-control option').length).to.equal(options.length + 1);
     });
 
-    // it('should have the correct number of option elements (n) if includeNull=false', () => {});
+    it('should have the correct number of option elements (n) if includeNull=false', () => {
+
+        const includeNull = false;
+
+        const component = render(<Dropdown options={options} includeNull={includeNull} />);
+
+        expect(component.find('select.form-control option').length).to.equal(options.length);
+    });
 
 });
