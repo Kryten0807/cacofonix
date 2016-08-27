@@ -104,6 +104,7 @@ Dropdown.propTypes = {
     includeNull:  React.PropTypes.bool,
     nullName:     React.PropTypes.string,
     required:     React.PropTypes.bool,
+    value:        React.PropTypes.string,
     options:      React.PropTypes.array,
     onValidation: React.PropTypes.func,
 };
