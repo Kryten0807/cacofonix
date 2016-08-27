@@ -1,6 +1,7 @@
 // dependencies
 //
 import React from 'react';
+import uniqueId from 'lodash/uniqueId';
 import Label from './Label';
 
 const Dropdown = (props) => (
