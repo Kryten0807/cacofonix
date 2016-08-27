@@ -51,7 +51,6 @@ the onValidation handler for the component
 */
 describe('the onValidation handler for the component', () => {
 
-    // it('should be called when the component is first initialized with `required`=true, `value`=null', () => {});
     const description = 'this silly thing';
 
     const options = [
@@ -61,6 +60,25 @@ describe('the onValidation handler for the component', () => {
 
     const expectedMessage = `${description} is required`;
 
+    it('should be called when the component is first initialized with `required`=true, `value`=null', () => {
+        const onValidation = sinon.spy();
+
+        const required = true;
+        const value = null;
+
+        const component = mount(
+            <Dropdown
+                description={description}
+                required={required}
+                value={value}
+                options={options}
+                onValidation={onValidation}
+            />
+        );
+
+        expect(onValidation.callCount).to.equal(1);
+        expect(onValidation.calledWith(false, false, expectedMessage)).to.equal(true);
+    });
 
     // it('should be called when the component is first initialized with `required`=false, `value`=null', () => {});
 
