@@ -64,13 +64,14 @@ describe('the onValidation handler for the component', () => {
 
     const expectedMessage = `${description} is required`;
 
-    it('should be called when the component is first initialized with `required`=true, `value`=null', () => {
+    it('should be called when the component is first initialized with ' +
+        '`required`=true, `value`=null', () => {
         const onValidation = sinon.spy();
 
         const required = true;
         const value = null;
 
-        const component = mount(
+        mount(
             <Dropdown
                 description={description}
                 required={required}
@@ -88,13 +89,14 @@ describe('the onValidation handler for the component', () => {
         expect(call.args[2]).to.equal(expectedMessage, 'arg 2');
     });
 
-    it('should be called when the component is first initialized with `required`=false, `value`=null', () => {
+    it('should be called when the component is first initialized with ' +
+        '`required`=false, `value`=null', () => {
         const onValidation = sinon.spy();
 
         const required = false;
         const value = null;
 
-        const component = mount(
+        mount(
             <Dropdown
                 description={description}
                 required={required}
@@ -112,13 +114,14 @@ describe('the onValidation handler for the component', () => {
         expect(call.args[2]).to.equal(null, 'arg 2');
     });
 
-    it('should be called when the component is first initialized with `required`=true, `value`=valid', () => {
+    it('should be called when the component is first initialized with ' +
+        '`required`=true, `value`=valid', () => {
         const onValidation = sinon.spy();
 
         const required = true;
         const value = '1';
 
-        const component = mount(
+        mount(
             <Dropdown
                 description={description}
                 required={required}
@@ -136,13 +139,14 @@ describe('the onValidation handler for the component', () => {
         expect(call.args[2]).to.equal(null, 'arg 2');
     });
 
-    it('should be called when the component is first initialized with `required`=false, `value`=valid', () => {
+    it('should be called when the component is first initialized with ' +
+        '`required`=false, `value`=valid', () => {
         const onValidation = sinon.spy();
 
         const required = false;
         const value = '2';
 
-        const component = mount(
+        mount(
             <Dropdown
                 description={description}
                 required={required}
@@ -160,13 +164,14 @@ describe('the onValidation handler for the component', () => {
         expect(call.args[2]).to.equal(null, 'arg 2');
     });
 
-    it('should be called when the component is first initialized with `required`=true, `value`=not valid', () => {
+    it('should be called when the component is first initialized with ' +
+        '`required`=true, `value`=not valid', () => {
         const onValidation = sinon.spy();
 
         const required = true;
         const value = 'not an option value';
 
-        const component = mount(
+        mount(
             <Dropdown
                 description={description}
                 required={required}
@@ -184,13 +189,14 @@ describe('the onValidation handler for the component', () => {
         expect(call.args[2]).to.equal(expectedMessage, 'arg 2');
     });
 
-    it('should be called when the component is first initialized with `required`=false, `value`=not valid', () => {
+    it('should be called when the component is first initialized with ' +
+        '`required`=false, `value`=not valid', () => {
         const onValidation = sinon.spy();
 
         const required = false;
         const value = 'STILL not an option value';
 
-        const component = mount(
+        mount(
             <Dropdown
                 description={description}
                 required={required}
@@ -208,7 +214,8 @@ describe('the onValidation handler for the component', () => {
         expect(call.args[2]).to.equal(null, 'arg 2');
     });
 
-    it('should be called when `required`=true and the component value is changed to the `null` option`', () => {
+    it('should be called when `required`=true and the component value is ' +
+        'changed to the `null` option`', () => {
         const onValidation = sinon.spy();
 
         const required = true;
@@ -241,7 +248,8 @@ describe('the onValidation handler for the component', () => {
         expect(call.args[2]).to.equal(expectedMessage, 'arg 2');
     });
 
-    it('should be called when `required`=true and the component value is changed to a valid option`', () => {
+    it('should be called when `required`=true and the component value is ' +
+        'changed to a valid option`', () => {
         const onValidation = sinon.spy();
 
         const required = true;
@@ -274,7 +282,8 @@ describe('the onValidation handler for the component', () => {
         expect(call.args[2]).to.equal(null, 'arg 2');
     });
 
-    it('should be called when `required`=false and the component value is changed to the `null` option`', () => {
+    it('should be called when `required`=false and the component value is ' +
+        'changed to the `null` option`', () => {
         const onValidation = sinon.spy();
 
         const required = false;
@@ -307,7 +316,8 @@ describe('the onValidation handler for the component', () => {
         expect(call.args[2]).to.equal(null, 'arg 2');
     });
 
-    it('should be called when `required`=false and the component value is changed to a valid option`', () => {
+    it('should be called when `required`=false and the component value is ' +
+        'changed to a valid option`', () => {
         const onValidation = sinon.spy();
 
         const required = false;
@@ -340,7 +350,8 @@ describe('the onValidation handler for the component', () => {
         expect(call.args[2]).to.equal(null, 'arg 2');
     });
 
-    it('should be called when `required`=true, `value`=null and the user tabs away from the component', () => {
+    it('should be called when `required`=true, `value`=null and the user tabs ' +
+        'away from the component', () => {
         const onValidation = sinon.spy();
 
         const required = true;
@@ -361,7 +372,7 @@ describe('the onValidation handler for the component', () => {
         // select a new value
         //
         component.find('select').simulate('blur', {
-            target: { value: value }
+            target: { value }
         });
 
         expect(onValidation.callCount).to.equal(2);
@@ -372,7 +383,8 @@ describe('the onValidation handler for the component', () => {
         expect(call.args[2]).to.equal(expectedMessage, 'arg 2');
     });
 
-    it('should be called when `required`=true, `value`=valid option and the user tabs away from the component', () => {
+    it('should be called when `required`=true, `value`=valid option and the ' +
+        'user tabs away from the component', () => {
         const onValidation = sinon.spy();
 
         const required = true;
@@ -393,7 +405,7 @@ describe('the onValidation handler for the component', () => {
         // select a new value
         //
         component.find('select').simulate('blur', {
-            target: { value: value }
+            target: { value }
         });
 
         expect(onValidation.callCount).to.equal(2);
@@ -404,7 +416,8 @@ describe('the onValidation handler for the component', () => {
         expect(call.args[2]).to.equal(null, 'arg 2');
     });
 
-    it('should be called when `required`=false, `value`=null and the user tabs away from the component', () => {
+    it('should be called when `required`=false, `value`=null and the user ' +
+        'tabs away from the component', () => {
         const onValidation = sinon.spy();
 
         const required = false;
@@ -425,7 +438,7 @@ describe('the onValidation handler for the component', () => {
         // select a new value
         //
         component.find('select').simulate('blur', {
-            target: { value: value }
+            target: { value }
         });
 
         expect(onValidation.callCount).to.equal(2);
@@ -436,7 +449,8 @@ describe('the onValidation handler for the component', () => {
         expect(call.args[2]).to.equal(null, 'arg 2');
     });
 
-    it('should be called when `required`=false, `value`=valid option and the user tabs away from the component', () => {
+    it('should be called when `required`=false, `value`=valid option and the ' +
+        'user tabs away from the component', () => {
         const onValidation = sinon.spy();
 
         const required = false;
@@ -457,7 +471,7 @@ describe('the onValidation handler for the component', () => {
         // select a new value
         //
         component.find('select').simulate('blur', {
-            target: { value: value }
+            target: { value }
         });
 
         expect(onValidation.callCount).to.equal(2);
