@@ -42,7 +42,11 @@ on initialization, the Dropdown component
 */
 describe('on initialization, the Dropdown component', () => {
 
-    // it('should be a div.form-group', () => {});
+    it('should be a div.form-group', () => {
+        const component = shallow(<Dropdown />);
+
+        expect(component.is('div.form-group')).to.equal(true);
+    });
 
     // it('should have a label, if label is set', () => {});
 
