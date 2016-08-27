@@ -14,10 +14,24 @@ class Dropdown extends React.Component {
     render() {
         return (
             <div className="form-group">
-                {this.props.label ? <Label htmlFor={this.id} label={this.props.label} required={this.props.required} /> : ''}
+                {this.props.label
+                    ? <Label
+                        htmlFor={this.id}
+                        label={this.props.label}
+                        required={this.props.required}
+                    />
+                    : ''
+                }
                 <select id={this.id} className="form-control">
-                    {this.props.includeNull ? <option key={uniqueId('Dropdown-')} value="">{this.props.nullName || 'Please select one'}</option> : ''}
-                    {this.props.options.map((opt) => <option key={uniqueId('Dropdown-')} value={opt.value}>{opt.name}</option>)}
+                    {this.props.includeNull
+                        ? <option key={uniqueId('Dropdown-')} value="">
+                            {this.props.nullName || 'Please select one'}
+                        </option>
+                        : ''
+                    }
+                    {this.props.options.map((opt) =>
+                        <option key={uniqueId('Dropdown-')} value={opt.value}>{opt.name}</option>)
+                    }
                 </select>
             </div>
         );
