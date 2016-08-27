@@ -8,7 +8,7 @@ const Dropdown = (props) => (
     <div className="form-group">
         {props.label ? <Label label={props.label} required={props.required} /> : ''}
         <select className="form-control">
-            {props.includeNull ? <option key={uniqueId('Dropdown-')} value="" /> : ''}
+            {props.includeNull ? <option key={uniqueId('Dropdown-')} value="">{props.nullName}</option> : ''}
             {props.options.map((opt) => <option key={uniqueId('Dropdown-')} />)}
         </select>
     </div>
