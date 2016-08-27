@@ -57,7 +57,12 @@ describe('on initialization, the Dropdown component', () => {
         expect(component.find('label').text()).to.equal(label);
     });
 
-    // it('should not have a label, if label is not set', () => {});
+    it('should not have a label, if label is not set', () => {
+
+        const component = render(<Dropdown />);
+
+        expect(component.find('label').length).to.equal(0);
+    });
 
     // it('should have a select.form-control', () => {});
 
