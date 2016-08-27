@@ -75,7 +75,12 @@ class Dropdown extends React.Component {
                     />
                     : ''
                 }
-                <select id={this.id} className="form-control" onChange={this.onChange} onBlur={this.onChange}>
+                <select
+                    id={this.id}
+                    className="form-control"
+                    onChange={this.onChange}
+                    onBlur={this.onChange}
+                >
                     {this.props.includeNull
                         ? <option key={uniqueId('Dropdown-')} value="">
                             {this.props.nullName || 'Please select one'}
