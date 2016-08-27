@@ -340,13 +340,133 @@ describe('the onValidation handler for the component', () => {
         expect(call.args[2]).to.equal(null, 'arg 2');
     });
 
-    // it('should be called when `required`=true, `value`=null and the user tabs away from the component', () => {});
+    it('should be called when `required`=true, `value`=null and the user tabs away from the component', () => {
+        const onValidation = sinon.spy();
 
-    // it('should be called when `required`=true, `value`=valid option and the user tabs away from the component', () => {});
+        const required = true;
+        const value = '';
 
-    // it('should be called when `required`=false, `value`=null and the user tabs away from the component', () => {});
+        const component = mount(
+            <Dropdown
+                description={description}
+                required={required}
+                value={value}
+                options={options}
+                onValidation={onValidation}
+            />
+        );
 
-    // it('should be called when `required`=false, `value`=valid option and the user tabs away from the component', () => {});
+        expect(onValidation.callCount).to.equal(1);
+
+        // select a new value
+        //
+        component.find('select').simulate('blur', {
+            target: { value: value }
+        });
+
+        expect(onValidation.callCount).to.equal(2);
+
+        const call = onValidation.getCall(1);
+        expect(call.args[0]).to.equal(true, 'arg 0');
+        expect(call.args[1]).to.equal(false, 'arg 1');
+        expect(call.args[2]).to.equal(expectedMessage, 'arg 2');
+    });
+
+    it('should be called when `required`=true, `value`=valid option and the user tabs away from the component', () => {
+        const onValidation = sinon.spy();
+
+        const required = true;
+        const value = '1';
+
+        const component = mount(
+            <Dropdown
+                description={description}
+                required={required}
+                value={value}
+                options={options}
+                onValidation={onValidation}
+            />
+        );
+
+        expect(onValidation.callCount).to.equal(1);
+
+        // select a new value
+        //
+        component.find('select').simulate('blur', {
+            target: { value: value }
+        });
+
+        expect(onValidation.callCount).to.equal(2);
+
+        const call = onValidation.getCall(1);
+        expect(call.args[0]).to.equal(true, 'arg 0');
+        expect(call.args[1]).to.equal(true, 'arg 1');
+        expect(call.args[2]).to.equal(null, 'arg 2');
+    });
+
+    it('should be called when `required`=false, `value`=null and the user tabs away from the component', () => {
+        const onValidation = sinon.spy();
+
+        const required = false;
+        const value = '';
+
+        const component = mount(
+            <Dropdown
+                description={description}
+                required={required}
+                value={value}
+                options={options}
+                onValidation={onValidation}
+            />
+        );
+
+        expect(onValidation.callCount).to.equal(1);
+
+        // select a new value
+        //
+        component.find('select').simulate('blur', {
+            target: { value: value }
+        });
+
+        expect(onValidation.callCount).to.equal(2);
+
+        const call = onValidation.getCall(1);
+        expect(call.args[0]).to.equal(true, 'arg 0');
+        expect(call.args[1]).to.equal(true, 'arg 1');
+        expect(call.args[2]).to.equal(null, 'arg 2');
+    });
+
+    it('should be called when `required`=false, `value`=valid option and the user tabs away from the component', () => {
+        const onValidation = sinon.spy();
+
+        const required = false;
+        const value = '1';
+
+        const component = mount(
+            <Dropdown
+                description={description}
+                required={required}
+                value={value}
+                options={options}
+                onValidation={onValidation}
+            />
+        );
+
+        expect(onValidation.callCount).to.equal(1);
+
+        // select a new value
+        //
+        component.find('select').simulate('blur', {
+            target: { value: value }
+        });
+
+        expect(onValidation.callCount).to.equal(2);
+
+        const call = onValidation.getCall(1);
+        expect(call.args[0]).to.equal(true, 'arg 0');
+        expect(call.args[1]).to.equal(true, 'arg 1');
+        expect(call.args[2]).to.equal(null, 'arg 2');
+    });
 
 });
 
