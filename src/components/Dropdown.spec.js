@@ -5,8 +5,9 @@
 /* eslint-disable no-unused-expressions */
 
 import React from 'react';
-import { shallow, render } from 'enzyme';
+import { shallow, render, mount } from 'enzyme';
 import chai from 'chai';
+import sinon from 'sinon';
 import Dropdown from './Dropdown';
 
 const expect = chai.expect;
