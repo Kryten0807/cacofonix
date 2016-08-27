@@ -16,16 +16,20 @@ class Dropdown extends React.Component {
 
         let value = `${props.value || ''}`;
 
+    validate(option) {
+        let value = `${option || ''}`;
+
         const inValues = this.permittedValues.find((val) => val === value);
 
         if (!inValues) {
             value = null;
         }
 
-        const isValid = !props.required || !!value;
+        const isValid = !this.props.required || !!value;
 
-        this.state = {
-            hasValidated:      false,
+        return {
+            value,
+            hasValidated:      true,
             isValid,
             validationMessage: isValid ? null : this.validationMessage,
         };
