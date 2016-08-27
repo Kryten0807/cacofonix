@@ -15,8 +15,10 @@ const expect = chai.expect;
 Dropdown Behaviour
 
 + when the component is initialized
-    + no validation error message is displayed (`hasValidated` = false, `isValid` = true or false, depending)
-    + the onValidation handler is called with `hasValidated` = false, `isValid` = true or false, `validationMessage` = whatever
+    + no validation error message is displayed (`hasValidated` = false,
+        `isValid` = true or false, depending)
+    + the onValidation handler is called with `hasValidated` = false,
+        `isValid` = true or false, `validationMessage` = whatever
 
 + when the user selects an item from the Dropdown
     + `hasValidated` is set to true
@@ -96,19 +98,23 @@ describe('on initialization, the Dropdown component', () => {
         expect(component.find('select.form-control option').length).to.equal(options.length);
     });
 
-    it('should have a null option with the correct text when includeNull=true and nullName is set', () => {
+    it('should have a null option with the correct text when includeNull=true ' +
+        'and nullName is set', () => {
 
         const includeNull = true;
 
         const nullName = 'Select something, dammit!';
 
-        const component = render(<Dropdown options={options} includeNull={includeNull} nullName={nullName} />);
+        const component = render(
+            <Dropdown options={options} includeNull={includeNull} nullName={nullName} />
+        );
 
         expect(component.find('select.form-control option').length).to.equal(options.length + 1);
         expect(component.find('select.form-control option[value=""]').text()).to.equal(nullName);
     });
 
-    it('should have a null option with the default text when includeNull=true and nullName is not set', () => {
+    it('should have a null option with the default text when includeNull=true ' +
+        'and nullName is not set', () => {
 
         const includeNull = true;
 
@@ -117,7 +123,8 @@ describe('on initialization, the Dropdown component', () => {
         const component = render(<Dropdown options={options} includeNull={includeNull} />);
 
         expect(component.find('select.form-control option').length).to.equal(options.length + 1);
-        expect(component.find('select.form-control option[value=""]').text()).to.equal(expectedName);
+        expect(component.find('select.form-control option[value=""]').text())
+            .to.equal(expectedName);
     });
 
     it('should have the correct option text for each option', () => {
