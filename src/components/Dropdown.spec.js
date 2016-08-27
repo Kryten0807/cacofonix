@@ -38,3 +38,18 @@ on initialization, the Dropdown component
     should have the correct number of option elements (n+1) if includeNull=true
     should have the correct number of option elements (n) if includeNull=false
 */
+describe('on initialization, the Dropdown component', () => {
+
+    // it('should be a div.form-group', () => {});
+
+    // it('should have a label, if label is set', () => {});
+
+    // it('should not have a label, if label is not set', () => {});
+
+    // it('should have a select.form-control', () => {});
+
+    // it('should have the correct number of option elements (n+1) if includeNull=true', () => {});
+
+    // it('should have the correct number of option elements (n) if includeNull=false', () => {});
+
+});
