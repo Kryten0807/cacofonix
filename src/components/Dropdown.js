@@ -59,7 +59,7 @@ class Dropdown extends React.Component {
                     />
                     : ''
                 }
-                <select id={this.id} className="form-control">
+                <select id={this.id} className="form-control" onChange={this.onChange}>
                     {this.props.includeNull
                         ? <option key={uniqueId('Dropdown-')} value="">
                             {this.props.nullName || 'Please select one'}
