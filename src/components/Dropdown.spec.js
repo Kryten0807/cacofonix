@@ -105,10 +105,34 @@ describe('on initialization, the Dropdown component', () => {
         const component = render(<Dropdown options={options} includeNull={includeNull} nullName={nullName} />);
 
         expect(component.find('select.form-control option').length).to.equal(options.length + 1);
-        expect(component.find('select.form-control option').text()).to.equal(nullName);
+        expect(component.find('select.form-control option[value=""]').text()).to.equal(nullName);
     });
 
-    // it('should have the correct option text for each option', () => {});
+    it('should have a null option with the default text when includeNull=true and nullName is not set', () => {
+
+        const includeNull = true;
+
+        const expectedName = 'Please select one';
+
+        const component = render(<Dropdown options={options} includeNull={includeNull} />);
+
+        expect(component.find('select.form-control option').length).to.equal(options.length + 1);
+        expect(component.find('select.form-control option[value=""]').text()).to.equal(expectedName);
+    });
+
+    it('should have the correct option text for each option', () => {
+
+        const includeNull = true;
+
+        const expectedName = 'Please select one';
+
+        const component = render(<Dropdown options={options} includeNull={includeNull} />);
+
+        expect(component.find('option').length).to.equal(options.length + 1);
+        expect(component.find('select option[value=""]').text()).to.equal(expectedName, '0');
+        expect(component.find('select option[value="1"]').text()).to.equal(options[0].name, '1');
+        expect(component.find('select option[value="2"]').text()).to.equal(options[1].name, '2');
+    });
 
 
 });
