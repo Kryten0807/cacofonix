@@ -160,6 +160,32 @@ describe('the onValidation handler for the component', () => {
         expect(call.args[2]).to.equal(null, 'arg 2');
     });
 
+    it('should be called when the component is first initialized with `required`=true, `value`=not valid', () => {
+        const onValidation = sinon.spy();
+
+        const required = true;
+        const value = 'not an option value';
+
+        const component = mount(
+            <Dropdown
+                description={description}
+                required={required}
+                value={value}
+                options={options}
+                onValidation={onValidation}
+            />
+        );
+
+        expect(onValidation.callCount).to.equal(1);
+
+        const call = onValidation.getCall(0);
+        expect(call.args[0]).to.equal(false, 'arg 0');
+        expect(call.args[1]).to.equal(false, 'arg 1');
+        expect(call.args[2]).to.equal(expectedMessage, 'arg 2');
+    });
+
+    // it('should be called when the component is first initialized with `required`=false, `value`=not valid', () => {});
+
     // it('should be called when `required`=true and the component value is changed to the `null` option`', () => {});
 
     // it('should be called when `required`=true and the component value is changed to a valid option`', () => {});
