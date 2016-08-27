@@ -52,6 +52,15 @@ the onValidation handler for the component
 describe('the onValidation handler for the component', () => {
 
     // it('should be called when the component is first initialized with `required`=true, `value`=null', () => {});
+    const description = 'this silly thing';
+
+    const options = [
+        { value: '1', name: 'one' },
+        { value: '2', name: 'two' },
+    ];
+
+    const expectedMessage = `${description} is required`;
+
 
     // it('should be called when the component is first initialized with `required`=false, `value`=null', () => {});
 
