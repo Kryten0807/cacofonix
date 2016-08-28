@@ -37,54 +37,396 @@ Dropdown Behaviour
 /*
 the onChangehandler for the component
     should not be called when the component is first initialized
-
     should not be called when something is selected, but the value has not changed
-
     should be called when `required`=true and the component value is changed to the `null` option
     should be called when `required`=true and the component value is changed to a valid option
     should be called when `required`=true and the component value is changed to an invalid option
-
     should be called when `required`=false and the component value is changed to the `null` option
     should be called when `required`=false and the component value is changed to a valid option
     should be called when `required`=false and the component value is changed to an invalid option
-
-    should be called when `required`=true, `value`=null and the user tabs away from the component
-    should be called when `required`=true, `value`=valid option and the user tabs away from the component
-    should be called when `required`=true, `value`=invalid option and the user tabs away from the component
-
-    should be called when `required`=false, `value`=null and the user tabs away from the component
-    should be called when `required`=false, `value`=valid option and the user tabs away from the component
-    should be called when `required`=false, `value`=invalid option and the user tabs away from the component
+    should not be called when `required`=true, `value`=null and the user tabs away from the component
+    should not be called when `required`=true, `value`=valid option and the user tabs away from the component
+    should not be called when `required`=true, `value`=invalid option and the user tabs away from the component
+    should not be called when `required`=false, `value`=null and the user tabs away from the component
+    should not be called when `required`=false, `value`=valid option and the user tabs away from the component
+    should not be called when `required`=false, `value`=invalid option and the user tabs away from the component
 */
 describe('the onChangehandler for the component', () => {
 
-    // it('should not be called when the component is first initialized', () => {});
+    const description = 'this silly thing';
 
-    // it('should not be called when something is selected, but the value has not changed', () => {});
+    const options = [
+        { value: '1', name: 'one' },
+        { value: '2', name: 'two' },
+    ];
 
-    // it('should be called when `required`=true and the component value is changed to the `null` option', () => {});
+    it('should not be called when the component is first initialized', () => {
+        const onChange = sinon.spy();
 
-    // it('should be called when `required`=true and the component value is changed to a valid option', () => {});
+        const required = true;
+        const value = null;
 
-    // it('should be called when `required`=true and the component value is changed to an invalid option', () => {});
+        mount(
+            <Dropdown
+                description={description}
+                required={required}
+                value={value}
+                options={options}
+                onChange={onChange}
+            />
+        );
 
-    // it('should be called when `required`=false and the component value is changed to the `null` option', () => {});
+        expect(onChange.callCount).to.equal(0);
+    });
 
-    // it('should be called when `required`=false and the component value is changed to a valid option', () => {});
+    it('should not be called when something is selected, but the value has not changed', () => {
+        const onChange = sinon.spy();
 
-    // it('should be called when `required`=false and the component value is changed to an invalid option', () => {});
+        const required = true;
+        const value = '1';
 
-    // it('should be called when `required`=true, `value`=null and the user tabs away from the component', () => {});
+        const component = mount(
+            <Dropdown
+                description={description}
+                required={required}
+                value={value}
+                options={options}
+                onChange={onChange}
+            />
+        );
 
-    // it('should be called when `required`=true, `value`=valid option and the user tabs away from the component', () => {});
+        // select a new value
+        //
+        component.find('select').simulate('change', {
+            target: { value }
+        });
 
-    // it('should be called when `required`=true, `value`=invalid option and the user tabs away from the component', () => {});
+        expect(onChange.callCount).to.equal(0);
+    });
 
-    // it('should be called when `required`=false, `value`=null and the user tabs away from the component', () => {});
+    it('should be called when `required`=true and the component value is changed to the `null` option', () => {
+        const onChange = sinon.spy();
 
-    // it('should be called when `required`=false, `value`=valid option and the user tabs away from the component', () => {});
+        const required = true;
+        const value = '1';
+        const newValue = '';
 
-    // it('should be called when `required`=false, `value`=invalid option and the user tabs away from the component', () => {});
+        const component = mount(
+            <Dropdown
+                description={description}
+                required={required}
+                value={value}
+                options={options}
+                onChange={onChange}
+            />
+        );
+
+        // select a new value
+        //
+        component.find('select').simulate('change', {
+            target: { value: newValue }
+        });
+
+        expect(onChange.callCount).to.equal(1);
+
+        const call = onChange.getCall(0);
+        expect(call.args[0]).to.equal(newValue, 'arg 0');
+    });
+
+    it('should be called when `required`=true and the component value is changed to a valid option', () => {
+        const onChange = sinon.spy();
+
+        const required = true;
+        const value = '1';
+        const newValue = '2';
+
+        const component = mount(
+            <Dropdown
+                description={description}
+                required={required}
+                value={value}
+                options={options}
+                onChange={onChange}
+            />
+        );
+
+        // select a new value
+        //
+        component.find('select').simulate('change', {
+            target: { value: newValue }
+        });
+
+        expect(onChange.callCount).to.equal(1);
+
+        const call = onChange.getCall(0);
+        expect(call.args[0]).to.equal(newValue, 'arg 0');
+    });
+
+    it('should be called when `required`=true and the component value is changed to an invalid option', () => {
+        const onChange = sinon.spy();
+
+        const required = true;
+        const value = '1';
+        const newValue = 'this should never happen';
+
+        const component = mount(
+            <Dropdown
+                description={description}
+                required={required}
+                value={value}
+                options={options}
+                onChange={onChange}
+            />
+        );
+
+        // select a new value
+        //
+        component.find('select').simulate('change', {
+            target: { value: newValue }
+        });
+
+        expect(onChange.callCount).to.equal(1);
+
+        const call = onChange.getCall(0);
+        expect(call.args[0]).to.equal('', 'arg 0');
+    });
+
+    it('should be called when `required`=false and the component value is changed to the `null` option', () => {
+        const onChange = sinon.spy();
+
+        const required = false;
+        const value = '1';
+        const newValue = '';
+
+        const component = mount(
+            <Dropdown
+                description={description}
+                required={required}
+                value={value}
+                options={options}
+                onChange={onChange}
+            />
+        );
+
+        // select a new value
+        //
+        component.find('select').simulate('change', {
+            target: { value: newValue }
+        });
+
+        expect(onChange.callCount).to.equal(1);
+
+        const call = onChange.getCall(0);
+        expect(call.args[0]).to.equal(newValue, 'arg 0');
+    });
+
+    it('should be called when `required`=false and the component value is changed to a valid option', () => {
+        const onChange = sinon.spy();
+
+        const required = false;
+        const value = '1';
+        const newValue = '2';
+
+        const component = mount(
+            <Dropdown
+                description={description}
+                required={required}
+                value={value}
+                options={options}
+                onChange={onChange}
+            />
+        );
+
+        // select a new value
+        //
+        component.find('select').simulate('change', {
+            target: { value: newValue }
+        });
+
+        expect(onChange.callCount).to.equal(1);
+
+        const call = onChange.getCall(0);
+        expect(call.args[0]).to.equal(newValue, 'arg 0');
+    });
+
+    it('should be called when `required`=false and the component value is changed to an invalid option', () => {
+        const onChange = sinon.spy();
+
+        const required = false;
+        const value = '1';
+        const newValue = 'this should not happen';
+
+        const component = mount(
+            <Dropdown
+                description={description}
+                required={required}
+                value={value}
+                options={options}
+                onChange={onChange}
+            />
+        );
+
+        // select a new value
+        //
+        component.find('select').simulate('change', {
+            target: { value: newValue }
+        });
+
+        expect(onChange.callCount).to.equal(1);
+
+        const call = onChange.getCall(0);
+        expect(call.args[0]).to.equal('', 'arg 0');
+    });
+
+    it('should be not called when `required`=true, `value`=null and the user tabs away from the component', () => {
+        const onChange = sinon.spy();
+
+        const required = true;
+        const value = '';
+
+        const component = mount(
+            <Dropdown
+                description={description}
+                required={required}
+                value={value}
+                options={options}
+                onChange={onChange}
+            />
+        );
+
+        // select a new value
+        //
+        component.find('select').simulate('blur', {
+            target: { value }
+        });
+
+        expect(onChange.callCount).to.equal(0);
+    });
+
+    it('should not be called when `required`=true, `value`=valid option and the user tabs away from the component', () => {
+        const onChange = sinon.spy();
+
+        const required = true;
+        const value = '1';
+
+        const component = mount(
+            <Dropdown
+                description={description}
+                required={required}
+                value={value}
+                options={options}
+                onChange={onChange}
+            />
+        );
+
+        // select a new value
+        //
+        component.find('select').simulate('blur', {
+            target: { value }
+        });
+
+        expect(onChange.callCount).to.equal(0);
+    });
+
+    it('should not be called when `required`=true, `value`=invalid option and the user tabs away from the component', () => {
+        const onChange = sinon.spy();
+
+        const required = true;
+        const value = 'something is wrong';
+
+        const component = mount(
+            <Dropdown
+                description={description}
+                required={required}
+                value={value}
+                options={options}
+                onChange={onChange}
+            />
+        );
+
+        // select a new value
+        //
+        component.find('select').simulate('blur', {
+            target: { value }
+        });
+
+        expect(onChange.callCount).to.equal(0);
+    });
+
+    it('should not be called when `required`=false, `value`=null and the user tabs away from the component', () => {
+        const onChange = sinon.spy();
+
+        const required = false;
+        const value = '';
+
+        const component = mount(
+            <Dropdown
+                description={description}
+                required={required}
+                value={value}
+                options={options}
+                onChange={onChange}
+            />
+        );
+
+        // select a new value
+        //
+        component.find('select').simulate('blur', {
+            target: { value }
+        });
+
+        expect(onChange.callCount).to.equal(0);
+    });
+
+    it('should not be called when `required`=false, `value`=valid option and the user tabs away from the component', () => {
+        const onChange = sinon.spy();
+
+        const required = false;
+        const value = '2';
+
+        const component = mount(
+            <Dropdown
+                description={description}
+                required={required}
+                value={value}
+                options={options}
+                onChange={onChange}
+            />
+        );
+
+        // select a new value
+        //
+        component.find('select').simulate('blur', {
+            target: { value }
+        });
+
+        expect(onChange.callCount).to.equal(0);
+    });
+
+    it('should not be called when `required`=false, `value`=invalid option and the user tabs away from the component', () => {
+        const onChange = sinon.spy();
+
+        const required = false;
+        const value = 'this is not right';
+
+        const component = mount(
+            <Dropdown
+                description={description}
+                required={required}
+                value={value}
+                options={options}
+                onChange={onChange}
+            />
+        );
+
+        // select a new value
+        //
+        component.find('select').simulate('blur', {
+            target: { value }
+        });
+
+        expect(onChange.callCount).to.equal(0);
+    });
 
 });
 
