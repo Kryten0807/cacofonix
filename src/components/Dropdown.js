@@ -112,7 +112,7 @@ Dropdown.propTypes = {
     nullName:     React.PropTypes.string,
     required:     React.PropTypes.bool,
     value:        React.PropTypes.string,
-    options:      React.PropTypes.array,
+    options:      React.PropTypes.array.isRequired,
     onValidation: React.PropTypes.func,
     onChange:     React.PropTypes.func,
 };
