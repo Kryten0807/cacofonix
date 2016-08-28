@@ -61,7 +61,7 @@ class Dropdown extends React.Component {
      * Handle changes to the `select` element
      * @param  {Object} event The event object
      */
-    onChange(event) {
+    onEvent(event) {
         // get the current value of the component
         //
         const currentValue = this.state.value;
