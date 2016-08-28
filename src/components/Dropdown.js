@@ -58,7 +58,7 @@ class Dropdown extends React.Component {
     }
 
     /**
-     * Handle changes to the `select` element
+     * Handle events from the `select` element
      * @param  {Object} event The event object
      */
     onEvent(event) {
