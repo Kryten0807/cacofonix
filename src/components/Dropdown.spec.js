@@ -35,6 +35,17 @@ Dropdown Behaviour
 */
 
 /*
+the validation error message for the component
+    should not be displayed when initialized with `required`=true, `value`=valid
+    should not be displayed when initialized with `required`=true, `value`=null option
+    should not be displayed when initialized with `required`=false, `value`=valid
+    should not be displayed when initialized with `required`=false, `value`=null option
+    should not be displayed when `required`=true and `value` changes to valid
+    should be displayed when `required`=true and `value` changes to null option
+    should not be displayed when `required`=false and `value` changes to null option
+*/
+
+/*
 the onChangehandler for the component
     should not be called when the component is first initialized
     should not be called when something is selected, but the value has not changed
