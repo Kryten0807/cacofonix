@@ -44,12 +44,18 @@ the onChangehandler for the component
     should be called when `required`=false and the component value is changed to the `null` option
     should be called when `required`=false and the component value is changed to a valid option
     should be called when `required`=false and the component value is changed to an invalid option
-    should not be called when `required`=true, `value`=null and the user tabs away from the component
-    should not be called when `required`=true, `value`=valid option and the user tabs away from the component
-    should not be called when `required`=true, `value`=invalid option and the user tabs away from the component
-    should not be called when `required`=false, `value`=null and the user tabs away from the component
-    should not be called when `required`=false, `value`=valid option and the user tabs away from the component
-    should not be called when `required`=false, `value`=invalid option and the user tabs away from the component
+    should not be called when `required`=true, `value`=null and the user tabs
+        away from the component
+    should not be called when `required`=true, `value`=valid option and the
+        user tabs away from the component
+    should not be called when `required`=true, `value`=invalid option and the
+        user tabs away from the component
+    should not be called when `required`=false, `value`=null and the user tabs
+        away from the component
+    should not be called when `required`=false, `value`=valid option and the
+        user tabs away from the component
+    should not be called when `required`=false, `value`=invalid option and the
+        user tabs away from the component
 */
 describe('the onChangehandler for the component', () => {
 
@@ -79,7 +85,8 @@ describe('the onChangehandler for the component', () => {
         expect(onChange.callCount).to.equal(0);
     });
 
-    it('should not be called when something is selected, but the value has not changed', () => {
+    it('should not be called when something is selected, but the value has ' +
+        'not changed', () => {
         const onChange = sinon.spy();
 
         const required = true;
@@ -104,7 +111,8 @@ describe('the onChangehandler for the component', () => {
         expect(onChange.callCount).to.equal(0);
     });
 
-    it('should be called when `required`=true and the component value is changed to the `null` option', () => {
+    it('should be called when `required`=true and the component value is ' +
+        'changed to the `null` option', () => {
         const onChange = sinon.spy();
 
         const required = true;
@@ -133,7 +141,8 @@ describe('the onChangehandler for the component', () => {
         expect(call.args[0]).to.equal(newValue, 'arg 0');
     });
 
-    it('should be called when `required`=true and the component value is changed to a valid option', () => {
+    it('should be called when `required`=true and the component value is ' +
+        'changed to a valid option', () => {
         const onChange = sinon.spy();
 
         const required = true;
@@ -162,7 +171,8 @@ describe('the onChangehandler for the component', () => {
         expect(call.args[0]).to.equal(newValue, 'arg 0');
     });
 
-    it('should be called when `required`=true and the component value is changed to an invalid option', () => {
+    it('should be called when `required`=true and the component value is ' +
+        'changed to an invalid option', () => {
         const onChange = sinon.spy();
 
         const required = true;
@@ -191,7 +201,8 @@ describe('the onChangehandler for the component', () => {
         expect(call.args[0]).to.equal('', 'arg 0');
     });
 
-    it('should be called when `required`=false and the component value is changed to the `null` option', () => {
+    it('should be called when `required`=false and the component value is ' +
+        'changed to the `null` option', () => {
         const onChange = sinon.spy();
 
         const required = false;
@@ -220,7 +231,8 @@ describe('the onChangehandler for the component', () => {
         expect(call.args[0]).to.equal(newValue, 'arg 0');
     });
 
-    it('should be called when `required`=false and the component value is changed to a valid option', () => {
+    it('should be called when `required`=false and the component value is ' +
+        'changed to a valid option', () => {
         const onChange = sinon.spy();
 
         const required = false;
@@ -249,7 +261,8 @@ describe('the onChangehandler for the component', () => {
         expect(call.args[0]).to.equal(newValue, 'arg 0');
     });
 
-    it('should be called when `required`=false and the component value is changed to an invalid option', () => {
+    it('should be called when `required`=false and the component value is ' +
+        'changed to an invalid option', () => {
         const onChange = sinon.spy();
 
         const required = false;
@@ -278,7 +291,8 @@ describe('the onChangehandler for the component', () => {
         expect(call.args[0]).to.equal('', 'arg 0');
     });
 
-    it('should be not called when `required`=true, `value`=null and the user tabs away from the component', () => {
+    it('should be not called when `required`=true, `value`=null and the user ' +
+        'tabs away from the component', () => {
         const onChange = sinon.spy();
 
         const required = true;
@@ -303,7 +317,8 @@ describe('the onChangehandler for the component', () => {
         expect(onChange.callCount).to.equal(0);
     });
 
-    it('should not be called when `required`=true, `value`=valid option and the user tabs away from the component', () => {
+    it('should not be called when `required`=true, `value`=valid option and ' +
+        'the user tabs away from the component', () => {
         const onChange = sinon.spy();
 
         const required = true;
@@ -328,7 +343,8 @@ describe('the onChangehandler for the component', () => {
         expect(onChange.callCount).to.equal(0);
     });
 
-    it('should not be called when `required`=true, `value`=invalid option and the user tabs away from the component', () => {
+    it('should not be called when `required`=true, `value`=invalid option and ' +
+        'the user tabs away from the component', () => {
         const onChange = sinon.spy();
 
         const required = true;
@@ -353,7 +369,8 @@ describe('the onChangehandler for the component', () => {
         expect(onChange.callCount).to.equal(0);
     });
 
-    it('should not be called when `required`=false, `value`=null and the user tabs away from the component', () => {
+    it('should not be called when `required`=false, `value`=null and the user ' +
+        'tabs away from the component', () => {
         const onChange = sinon.spy();
 
         const required = false;
@@ -378,7 +395,8 @@ describe('the onChangehandler for the component', () => {
         expect(onChange.callCount).to.equal(0);
     });
 
-    it('should not be called when `required`=false, `value`=valid option and the user tabs away from the component', () => {
+    it('should not be called when `required`=false, `value`=valid option and ' +
+        'the user tabs away from the component', () => {
         const onChange = sinon.spy();
 
         const required = false;
@@ -403,7 +421,8 @@ describe('the onChangehandler for the component', () => {
         expect(onChange.callCount).to.equal(0);
     });
 
-    it('should not be called when `required`=false, `value`=invalid option and the user tabs away from the component', () => {
+    it('should not be called when `required`=false, `value`=invalid option ' +
+        'and the user tabs away from the component', () => {
         const onChange = sinon.spy();
 
         const required = false;
