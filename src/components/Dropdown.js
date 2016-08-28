@@ -114,6 +114,7 @@ Dropdown.propTypes = {
     value:        React.PropTypes.string,
     options:      React.PropTypes.array,
     onValidation: React.PropTypes.func,
+    onChange:     React.PropTypes.func,
 };
 
 
