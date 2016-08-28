@@ -58,7 +58,7 @@ class Dropdown extends React.Component {
         const inValues = this.permittedValues.find((val) => val === value);
 
         if (!inValues) {
-            value = null;
+            value = '';
         }
 
         const isValid = !this.props.required || !!value;
