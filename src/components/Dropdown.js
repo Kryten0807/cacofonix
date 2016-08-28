@@ -32,9 +32,16 @@ class Dropdown extends React.Component {
     }
 
     onChange(event) {
+
+        const currentValue = this.state.value;
+
         const newState = this.validate(event.target.value);
 
         this.setState(() => newState);
+
+        if (this.props.onChange && newState.value !== currentValue) {
+            this.props.onChange(newState.value);
+        }
 
         if (this.props.onValidation) {
             this.props.onValidation(
