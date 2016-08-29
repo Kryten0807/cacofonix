@@ -10,6 +10,7 @@ This is a set of Bootstrap-themed React components.
 1. **Panel** - a Bootstrap panel element
 1. **TextInput** - a text input element
     1. add a custom error message to the `TextInput` component
+    1. add `componentWillReceiveProps` testing for `TextInput`
 1. **Dropdown** - a dropdown element
 
 ## In Progress
@@ -29,7 +30,6 @@ This is a set of Bootstrap-themed React components.
 
 ### Sundry Improvements
 
-1. add `componentWillReceiveProps` testing for `TextInput`
 1. add `componentWillReceiveProps` testing for `Dropdown`
 
 ## Validation
