@@ -34,7 +34,12 @@ describe('in terms of basic markup, the NumericInput component', () => {
         expect(component.find('input[type="text"]').length).to.equal(1);
     });
 
-    // it('should include an input.form-control', () => {});
+    it('should include an input.form-control', () => {
+        const component = render(<NumericInput />);
+
+        expect(component.find('input').length).to.equal(1);
+        expect(component.find('input.form-control').length).to.equal(1);
+    });
 
     // it('should include a label with the appropriate text if a label is specified', () => {});
 
