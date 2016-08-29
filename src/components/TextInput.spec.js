@@ -39,12 +39,14 @@ describe('when the parent component sends new value prop, the TextInput componen
     const description = 'nonsense';
     const expectedMessage = `${description} is required`;
 
-    const TestParent = React.createClass({
-        getInitialState() {
-            return {
-                testValue: this.props.testValue || '',
-            }
-        },
+    class TestParent extends React.Component {
+        constructor(props) {
+            super(props);
+
+            this.state = {
+                testValue: props.testValue || '',
+            };
+        }
 
         render() {
             return (<TextInput
@@ -56,7 +58,7 @@ describe('when the parent component sends new value prop, the TextInput componen
                 onChange={this.props.onChange}
             />);
         }
-    });
+    }
 
 
     it('should call the onValidation handler when value=valid', () => {
