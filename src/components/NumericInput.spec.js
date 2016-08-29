@@ -21,7 +21,11 @@ in terms of basic markup, the NumericInput component
 */
 describe('in terms of basic markup, the NumericInput component', () => {
 
-    // it('should be a div.form-group', () => {});
+    it('should be a div.form-group', () => {
+        const component = shallow(<NumericInput />);
+
+        expect(component.is('div.form-group')).to.equal(true);
+    });
 
     // it('should include an input[type="text"]', () => {});
 
