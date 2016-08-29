@@ -5,7 +5,7 @@
 /* eslint-disable no-unused-expressions */
 
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, render } from 'enzyme';
 import chai from 'chai';
 import NumericInput from './NumericInput';
 
@@ -27,7 +27,11 @@ describe('in terms of basic markup, the NumericInput component', () => {
         expect(component.is('div.form-group')).to.equal(true);
     });
 
-    // it('should include an input[type="text"]', () => {});
+    it('should include an input[type="text"]', () => {
+        const component = render(<NumericInput />);
+
+        expect(component.find('input[type="text"]').length).to.equal(1);
+    });
 
     // it('should include an input.form-control', () => {});
 
