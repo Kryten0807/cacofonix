@@ -55,7 +55,23 @@ describe('the onChange handler for the NumericInput component', () => {
         expect(onChange.calledWith(finalValue)).to.equal(true);
     });
 
-    // it('should not be called on edit when the value has not changed', () => {});
+    it('should not be called on edit when the value has not changed', () => {
+        const onChange = sinon.spy();
+
+        const required = true;
+        const initialValue = 123.456;
+        const finalValue = initialValue;
+
+        const component = mount(<NumericInput required={required} value={initialValue} onChange={onChange} />);
+
+        expect(onChange.callCount).to.equal(0);
+
+        component.find('input').simulate('change', {
+            target: { value: finalValue }
+        });
+
+        expect(onChange.callCount).to.equal(0);
+    });
 
     // it('should be called on blur when the value has changed', () => {});
 
