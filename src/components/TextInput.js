@@ -178,6 +178,7 @@ TextInput.propTypes = {
     description:  React.PropTypes.string,
     placeholder:  React.PropTypes.string,
     value:        React.PropTypes.oneOfType([
+    validationMessage: React.PropTypes.string,
         React.PropTypes.string,
         React.PropTypes.number,
     ]),
