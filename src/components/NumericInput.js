@@ -15,7 +15,14 @@ class NumericInput extends React.Component {
     render() {
         return (
             <div className="form-group">
-                {this.props.label ? <Label htmlFor={this.id} required={!!this.props.required} label={this.props.label} /> : ''}
+                {this.props.label
+                    ? <Label
+                        htmlFor={this.id}
+                        required={!!this.props.required}
+                        label={this.props.label}
+                    />
+                    : ''
+                }
                 <input
                     type="text"
                     id={this.id}
