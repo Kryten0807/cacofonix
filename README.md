@@ -9,7 +9,7 @@ This is a set of Bootstrap-themed React components.
 1. **Label** - a label for a form element. This is generally intended for use as part of another form component.
 1. **Panel** - a Bootstrap panel element
 1. **TextInput** - a text input element
-    a. add a custom error message to the `TextInput` component
+    1. add a custom error message to the `TextInput` component
 1. **Dropdown** - a dropdown element
 
 ## To Do
