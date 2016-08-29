@@ -17,7 +17,8 @@ after the user edits & blurs the input element, the TextInput component
     should not show the validation message when required=true and the value is valid
     should not show the validation message when required=false and the value is blank
     should show the validation message when required=true and the value is blank
-    should show the custom validation message when validationMessage is set, required=true and the value is blank
+    should show the custom validation message when validationMessage is set,
+        required=true and the value is blank
 */
 describe('after the user edits & blurs the input element, the TextInput component', () => {
 
@@ -145,7 +146,8 @@ describe('after the user edits & blurs the input element, the TextInput componen
         expect(component.find('span.help-block').text()).to.equal(expectedMessage, 'help-block');
     });
 
-    it('should show the custom validation message when validationMessage is set, required=true and the value is blank', () => {
+    it('should show the custom validation message when validationMessage is ' +
+        'set, required=true and the value is blank', () => {
 
         const onValidation = sinon.spy();
 
