@@ -45,6 +45,62 @@ when the parent component sends new value prop, a non-required Dropdown componen
     should not call the onValidation handler when value has not changed
     should not call the onChange handler when value has not changed
 */
+describe('when the parent component sends new value prop, a non-required Dropdown component', () => {
+
+    const required = false;
+    const description = 'nonsense';
+    const expectedMessage = `${description} is required`;
+
+    const options = [
+        { value: '1', name: 'one' },
+        { value: '2', name: 'two' },
+    ];
+
+    class TestParentBeta extends React.Component {
+        constructor(props) {
+            super(props);
+
+            this.state = {
+                testValue: props.testValue || '',
+            };
+        }
+
+        render() {
+            return (<Dropdown
+                ref="testComponent"
+                required={required}
+                description={description}
+                value={this.state.testValue}
+                options={options}
+                onValidation={this.props.onValidation}
+                onChange={this.props.onChange}
+            />);
+        }
+    }
+
+    TestParentBeta.propTypes = {
+        testValue:    React.PropTypes.string,
+        onChange:     React.PropTypes.func,
+        onValidation: React.PropTypes.func,
+    };
+
+    // it('should call the onValidation handler when value=valid', () => {});
+
+    // it('should call the onValidation handler when value=blank', () => {});
+
+    // it('should call the onChange handler when value=valid', () => {});
+
+    // it('should call the onChange handler when value=blank', () => {});
+
+    // it('should not show the validation message when value=valid', () => {});
+
+    // it('should not show the validation message when value=blank', () => {});
+
+    // it('should not call the onValidation handler when value has not changed', () => {});
+
+    // it('should not call the onChange handler when value has not changed', () => {});
+
+});
 
 /* *****************************************************************************
 when the parent component sends new value prop, a required Dropdown component
