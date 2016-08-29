@@ -43,7 +43,8 @@ the validation error message for the component
     should not be displayed when `required`=true and `value` changes to valid
     should be displayed when `required`=true and `value` changes to null option
     should not be displayed when `required`=false and `value` changes to null option
-    should be displayed with a custom message when `validationMessage` is set, `required`=true and `value` changes to null option
+    should be displayed with a custom message when `validationMessage` is set,
+        `required`=true and `value` changes to null option
 */
 describe('the validation error message for the component', () => {
 
@@ -74,7 +75,8 @@ describe('the validation error message for the component', () => {
         expect(component.find('span.help-block').length).to.equal(0);
     });
 
-    it('should not be displayed when initialized with `required`=true, `value`=null option', () => {
+    it('should not be displayed when initialized with `required`=true, ' +
+        '`value`=null option', () => {
         const required = true;
         const value = '';
 
@@ -110,7 +112,8 @@ describe('the validation error message for the component', () => {
         expect(component.find('span.help-block').length).to.equal(0);
     });
 
-    it('should not be displayed when initialized with `required`=false, `value`=null option', () => {
+    it('should not be displayed when initialized with `required`=false, ' +
+        '`value`=null option', () => {
         const required = false;
         const value = '';
 
@@ -184,8 +187,10 @@ describe('the validation error message for the component', () => {
         });
 
         expect(component.find('div.form-group.has-error').length).to.equal(1, 'has-error');
-        expect(component.find('div.form-group.has-error span.help-block').length).to.equal(1, 'span');
-        expect(component.find('div.form-group.has-error span.help-block').text()).to.equal(expectedMessage, 'message');
+        expect(component.find('div.form-group.has-error span.help-block').length)
+            .to.equal(1, 'span');
+        expect(component.find('div.form-group.has-error span.help-block').text())
+            .to.equal(expectedMessage, 'message');
     });
 
     it('should not be displayed when `required`=false and `value` changes to null option', () => {
@@ -218,7 +223,8 @@ describe('the validation error message for the component', () => {
         expect(component.find('span.help-block').length).to.equal(0);
     });
 
-    it('should be displayed with a custom message when `validationMessage` is set, `required`=true and `value` changes to null option', () => {
+    it('should be displayed with a custom message when `validationMessage` is ' +
+        'set, `required`=true and `value` changes to null option', () => {
         const validationMessage = 'This is my custom message';
         const required = true;
         const value = '1';
@@ -246,8 +252,10 @@ describe('the validation error message for the component', () => {
         });
 
         expect(component.find('div.form-group.has-error').length).to.equal(1, 'has-error');
-        expect(component.find('div.form-group.has-error span.help-block').length).to.equal(1, 'span');
-        expect(component.find('div.form-group.has-error span.help-block').text()).to.equal(validationMessage, 'message');
+        expect(component.find('div.form-group.has-error span.help-block').length)
+            .to.equal(1, 'span');
+        expect(component.find('div.form-group.has-error span.help-block').text())
+            .to.equal(validationMessage, 'message');
     });
 
 });
