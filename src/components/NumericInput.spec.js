@@ -18,6 +18,9 @@ in terms of basic markup, the NumericInput component
     should include an input.form-control
     should include a label with the appropriate text if a label is specified
     should include a placeholder if a placeholder is specified
+    should include a label with the the required flag if a label is specified & required is set
+    should not include a label with the the required flag if a label is specified & required is not set
+    should not include a label with the the required flag if a label is not specified & required is set
 */
 describe('in terms of basic markup, the NumericInput component', () => {
 
