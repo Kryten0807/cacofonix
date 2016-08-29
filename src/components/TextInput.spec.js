@@ -29,6 +29,33 @@ when the parent component sends new props, the TextInput component
     should not show the validation message when required=false, value=valid
     should not show the validation message when required=false, value=blank
 */
+describe('when the parent component sends new props, the TextInput component', () => {
+
+    // it('should call the onValidation handler when required=true, value=valid', () => {});
+
+    // it('should call the onValidation handler when required=true, value=blank', () => {});
+
+    // it('should call the onValidation handler when required=false, value=valid', () => {});
+
+    // it('should call the onValidation handler when required=false, value=blank', () => {});
+
+    // it('should call the onChange handler when required=true, value=valid', () => {});
+
+    // it('should call the onChange handler when required=true, value=blank', () => {});
+
+    // it('should call the onChange handler when required=false, value=valid', () => {});
+
+    // it('should call the onChange handler when required=false, value=blank', () => {});
+
+    // it('should not show the validation message when required=true, value=valid', () => {});
+
+    // it('should show the validation message when required=true, value=blank', () => {});
+
+    // it('should not show the validation message when required=false, value=valid', () => {});
+
+    // it('should not show the validation message when required=false, value=blank', () => {});
+});
+
 
 
 
