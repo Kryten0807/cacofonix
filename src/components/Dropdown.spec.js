@@ -44,6 +44,23 @@ the validation error message for the component
     should be displayed when `required`=true and `value` changes to null option
     should not be displayed when `required`=false and `value` changes to null option
 */
+describe('the validation error message for the component', () => {
+
+    // it('should not be displayed when initialized with `required`=true, `value`=valid', () => {});
+
+    // it('should not be displayed when initialized with `required`=true, `value`=null option', () => {});
+
+    // it('should not be displayed when initialized with `required`=false, `value`=valid', () => {});
+
+    // it('should not be displayed when initialized with `required`=false, `value`=null option', () => {});
+
+    // it('should not be displayed when `required`=true and `value` changes to valid', () => {});
+
+    // it('should be displayed when `required`=true and `value` changes to null option', () => {});
+
+    // it('should not be displayed when `required`=false and `value` changes to null option', () => {});
+
+});
 
 /*
 the onChangehandler for the component
