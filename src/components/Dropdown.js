@@ -69,7 +69,11 @@ class Dropdown extends React.Component {
         this.setState(newState);
 
         if (this.props.onValidation && currentValue !== newState.value) {
-            this.props.onValidation(newState.hasValidated, newState.isValid, newState.validationMessage);
+            this.props.onValidation(
+                newState.hasValidated,
+                newState.isValid,
+                newState.validationMessage
+            );
         }
 
         if (this.props.onChange && currentValue !== newState.value) {
