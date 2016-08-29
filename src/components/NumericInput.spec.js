@@ -22,9 +22,38 @@ the onChange handler for the NumericInput component
 */
 describe('the onChange handler for the NumericInput component', () => {
 
-    // it('should not be called on initialization', () => {});
+    const description = 'a numeric input';
+    const expectedMessage = `${description} is required`;
 
-    // it('should be called on edit when the value has changed', () => {});
+    it('should not be called on initialization', () => {
+        const onChange = sinon.spy();
+
+        const required = true;
+        const initialValue = 123.456;
+
+        const component = mount(<NumericInput required={required} value={initialValue} onChange={onChange} />);
+
+        expect(onChange.callCount).to.equal(0);
+    });
+
+    it('should be called on edit when the value has changed', () => {
+        const onChange = sinon.spy();
+
+        const required = true;
+        const initialValue = 123.456;
+        const finalValue = 99.9999;
+
+        const component = mount(<NumericInput required={required} value={initialValue} onChange={onChange} />);
+
+        expect(onChange.callCount).to.equal(0);
+
+        component.find('input').simulate('change', {
+            target: { value: finalValue }
+        });
+
+        expect(onChange.callCount).to.equal(1);
+        expec(onChange.calledWith(finalValue)).to.equal(true);
+    });
 
     // it('should not be called on edit when the value has not changed', () => {});
 
