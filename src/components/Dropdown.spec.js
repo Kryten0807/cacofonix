@@ -84,22 +84,158 @@ describe('when the parent component sends new value prop, a non-required Dropdow
         onValidation: React.PropTypes.func,
     };
 
-    // it('should call the onValidation handler when value=valid', () => {});
+    it('should call the onValidation handler when value=valid', () => {
 
-    // it('should call the onValidation handler when value=blank', () => {});
+        const onValidation = sinon.spy();
 
-    // it('should call the onChange handler when value=valid', () => {});
+        const testValue = '1';
 
-    // it('should call the onChange handler when value=blank', () => {});
+        const parent = mount(<TestParentBeta onValidation={onValidation} />);
 
-    // it('should not show the validation message when value=valid', () => {});
+        expect(onValidation.callCount).to.equal(1);
 
-    // it('should not show the validation message when value=blank', () => {});
+        // change the state of the parent
+        //
+        parent.setState({ testValue });
 
-    // it('should not call the onValidation handler when value has not changed', () => {});
+        expect(onValidation.callCount).to.equal(2);
 
-    // it('should not call the onChange handler when value has not changed', () => {});
+        expect(onValidation.args[1][0]).to.equal(false, 'args[1][0]');
+        expect(onValidation.args[1][1]).to.equal(true, 'args[1][1]');
+        expect(onValidation.args[1][2]).to.equal(null, 'args[1][2]');
+    });
 
+    it('should call the onValidation handler when value=blank', () => {
+
+        const onValidation = sinon.spy();
+
+        const initialValue = '1';
+
+        const testValue = '';
+
+        const parent = mount(<TestParentBeta testValue={initialValue} onValidation={onValidation} />);
+
+        expect(onValidation.callCount).to.equal(1);
+
+        // change the state of the parent
+        //
+        parent.setState({ testValue });
+
+        expect(onValidation.callCount).to.equal(2);
+
+        expect(onValidation.args[1][0]).to.equal(false, 'args[1][0]');
+        expect(onValidation.args[1][1]).to.equal(true, 'args[1][1]');
+        expect(onValidation.args[1][2]).to.equal(null, 'args[1][2]');
+    });
+
+    it('should call the onChange handler when value=valid', () => {
+
+        const onChange = sinon.spy();
+
+        const testValue = '1';
+
+        const parent = mount(<TestParentBeta onChange={onChange} />);
+
+        expect(onChange.callCount).to.equal(0);
+
+        // change the state of the parent
+        //
+        parent.setState({ testValue });
+
+        expect(onChange.callCount).to.equal(1);
+
+        expect(onChange.args[0][0]).to.equal(testValue, 'args[0][0]');
+    });
+
+    it('should call the onChange handler when value=blank', () => {
+
+        const onChange = sinon.spy();
+
+        const initialValue = '2';
+        const testValue = '';
+
+        const parent = mount(<TestParentBeta testValue={initialValue} onChange={onChange} />);
+
+        expect(onChange.callCount).to.equal(0);
+
+        // change the state of the parent
+        //
+        parent.setState({ testValue });
+
+        expect(onChange.callCount).to.equal(1);
+
+        expect(onChange.args[0][0]).to.equal(testValue, 'args[0][0]');
+    });
+
+    it('should not show the validation message when value=valid', () => {
+
+        const testValue = '2';
+
+        const parent = mount(<TestParentBeta />);
+
+        // change the state of the parent
+        //
+        parent.setState({ testValue });
+
+        expect(parent.find('span.help-block').length).to.equal(0);
+    });
+
+    it('should not show the validation message when value=blank', () => {
+
+        const initialValue = '1';
+
+        const testValue = '';
+
+        const parent = mount(<TestParentBeta testValue={initialValue} />);
+
+        // send a change event to ensure hasValidated is set
+        //
+        parent.find('select').simulate('change', {
+            target: { value: initialValue }
+        });
+
+        expect(parent.find('span.help-block').length).to.equal(0, 'before props');
+
+        // change the state of the parent
+        //
+        parent.setState({ testValue });
+
+        expect(parent.find('span.help-block').length).to.equal(0, 'after len');
+    });
+
+    it('should not call the onValidation handler when value has not changed', () => {
+
+        const onValidation = sinon.spy();
+
+        const testValue = '1';
+
+        const parent = mount(<TestParentBeta testValue={testValue} onValidation={onValidation} />);
+
+        expect(onValidation.callCount).to.equal(1);
+
+        // change the state of the parent
+        //
+        parent.setState({ testValue });
+
+        expect(onValidation.callCount).to.equal(1);
+    });
+
+    it('should not call the onChange handler when value has not changed', () => {
+
+        const onChange = sinon.spy();
+
+        const testValue = '2';
+
+        const parent = mount(<TestParentBeta testValue={testValue} onChange={onChange} />);
+
+        expect(onChange.callCount).to.equal(0);
+
+        // change the state of the parent
+        //
+        parent.setState({ testValue });
+
+        expect(onChange.callCount).to.equal(0);
+    });
 });
 
 /* *****************************************************************************
