@@ -5,8 +5,9 @@
 /* eslint-disable no-unused-expressions */
 
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import chai from 'chai';
+import sinon from 'sinon';
 import NumericInput from './NumericInput';
 
 const expect = chai.expect;
