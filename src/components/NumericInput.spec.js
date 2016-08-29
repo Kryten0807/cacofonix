@@ -5,7 +5,7 @@
 /* eslint-disable no-unused-expressions */
 
 import React from 'react';
-import { shallow, render } from 'enzyme';
+import { shallow } from 'enzyme';
 import chai from 'chai';
 import NumericInput from './NumericInput';
 
