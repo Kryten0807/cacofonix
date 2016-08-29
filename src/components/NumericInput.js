@@ -10,6 +10,8 @@ class NumericInput extends React.Component {
         super(props);
 
         this.id = uniqueId('NumericInput-');
+
+        this.validationMessage = `${props.description} is required`;
     componentWillMount() {
         if (this.props.onValidation) {
             this.props.onValidation(this.state.hasValidated, this.state.isValid, this.state.validationMessage);
