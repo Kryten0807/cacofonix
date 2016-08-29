@@ -47,6 +47,21 @@ class NumericInput extends React.Component {
         }
     }
 
+    validate(newValue) {
+        let value = parseInt(`${newValue}`, 10);
+
+        const notANumber = Number.isNaN(value);
+
+        value = notANumber ? '' : value;
+
+        const isValid = !this.props.required || (!notANumber || !!value);
+
+        return {
+            value,
+            isValid,
+            validationMessage: isValid ? null : this.validationMessage,
+            hasValidated:      false,
+        };
     }
 
     render() {
