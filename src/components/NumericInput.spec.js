@@ -41,7 +41,14 @@ describe('in terms of basic markup, the NumericInput component', () => {
         expect(component.find('input.form-control').length).to.equal(1);
     });
 
-    // it('should include a label with the appropriate text if a label is specified', () => {});
+    it('should include a label with the appropriate text if a label is specified', () => {
+        const label = 'some label';
+
+        const component = shallow(<NumericInput label={label} />);
+
+        expect(component.find('Label').length).to.equal(1);
+        expect(component.find('Label').props().label).to.equal(label);
+    });
 
     // it('should include a placeholder if a placeholder is specified', () => {});
 
