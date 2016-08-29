@@ -62,4 +62,33 @@ describe('in terms of basic markup, the NumericInput component', () => {
         expect(component.find('input').props().placeholder).to.equal(placeholder);
     });
 
+    it('should include a label with the the required flag if a label is specified & required is set', () => {
+        const label = 'some label';
+        const required = true;
+
+        const component = shallow(<NumericInput required={required} label={label} />);
+
+        expect(component.find('Label').length).to.equal(1);
+        expect(component.find('Label').props().required).to.equal(required);
+    });
+
+    it('should not include a label with the the required flag if a label is specified & required is not set', () => {
+        const label = 'some label';
+        const required = false;
+
+        const component = shallow(<NumericInput required={required} label={label} />);
+
+        expect(component.find('Label').length).to.equal(1);
+        expect(component.find('Label').props().required).to.equal(required);
+    });
+
+    it('should not include a label with the the required flag if a label is not specified & required is set', () => {
+        const required = false;
+
+        const component = shallow(<NumericInput required={required} />);
+
+        expect(component.find('Label').length).to.equal(0);
+    });
+
+
 });
