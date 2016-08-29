@@ -23,6 +23,27 @@ the onValidation handler for the NumericInput component
     should be called on blur event
     should be called after change following a previous blur event
 */
+describe('the onValidation handler for the NumericInput component', () => {
+
+    // it('should be called on initialization with required=true, value=valid', () => {});
+
+    // it('should be called on initialization with required=true, value=invalid', () => {});
+
+    // it('should be called on initialization with required=true, value=blank', () => {});
+
+    // it('should be called on initialization with required=false, value=valid', () => {});
+
+    // it('should be called on initialization with required=false, value=invalid', () => {});
+
+    // it('should be called on initialization with required=false, value=blank', () => {});
+
+    // it('should not be called after change without prior blur event', () => {});
+
+    // it('should be called on blur event', () => {});
+
+    // it('should be called after change following a previous blur event', () => {});
+
+});
 
 /* *****************************************************************************
 in terms of basic markup, the NumericInput component
