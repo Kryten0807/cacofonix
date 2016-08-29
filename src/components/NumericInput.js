@@ -6,8 +6,8 @@ import Label from './Label';
 
 const NumericInput = (props) => (
     <div className="form-group">
-        <input type="text" className="form-control" />
         {props.label ? <Label label={props.label} /> : ''}
+        <input type="text" className="form-control" placeholder={props.placeholder || ''}/>
     </div>
 );
 
