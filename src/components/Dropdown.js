@@ -22,7 +22,7 @@ class Dropdown extends React.Component {
 
         // build the default validation message
         //
-        this.validationMessage = `${props.description || 'This value'} is required`;
+        this.validationMessage = props.validationMessage || `${props.description || 'This value'} is required`;
 
         // validate the initial value & set the initial state
         //
