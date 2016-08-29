@@ -13,6 +13,15 @@ import NumericInput from './NumericInput';
 const expect = chai.expect;
 
 /* *****************************************************************************
+the onChange handler for the NumericInput component
+    should not be called on initialization
+    should be called on edit when the value has changed
+    should not be called on edit when the value has not changed
+    should be called on blur when the value has changed
+    should not be called on blur when the value has not changed
+*/
+
+/* *****************************************************************************
 the onValidation handler for the NumericInput component
     should be called on initialization with required=true, value=valid
     should be called on initialization with required=true, value=invalid
