@@ -23,11 +23,11 @@ when the parent component sends new value prop, a non-required TextInput compone
     should not call the onValidation handler when value has not changed
     should not call the onChange handler when value has not changed
 */
-describe('when the parent component sends new value prop, a non-required TextInput component', () => {
+describe('when the parent component sends new value prop, a non-required ' +
+    'TextInput component', () => {
 
     const required = false;
     const description = 'gibberish';
-    const expectedMessage = `${description} is required`;
 
     class TestParent extends React.Component {
         constructor(props) {
@@ -229,7 +229,7 @@ describe('when the parent component sends new value prop, the TextInput componen
     const description = 'nonsense';
     const expectedMessage = `${description} is required`;
 
-    class TestParent extends React.Component {
+    class TestParent2 extends React.Component {
         constructor(props) {
             super(props);
 
@@ -250,7 +250,7 @@ describe('when the parent component sends new value prop, the TextInput componen
         }
     }
 
-    TestParent.propTypes = {
+    TestParent2.propTypes = {
         testValue:    React.PropTypes.string,
         onChange:     React.PropTypes.func,
         onValidation: React.PropTypes.func,
@@ -262,7 +262,7 @@ describe('when the parent component sends new value prop, the TextInput componen
 
         const testValue = 'hello';
 
-        const parent = mount(<TestParent onValidation={onValidation} />);
+        const parent = mount(<TestParent2 onValidation={onValidation} />);
 
         expect(onValidation.callCount).to.equal(1);
 
@@ -285,7 +285,7 @@ describe('when the parent component sends new value prop, the TextInput componen
 
         const testValue = '';
 
-        const parent = mount(<TestParent testValue={initialValue} onValidation={onValidation} />);
+        const parent = mount(<TestParent2 testValue={initialValue} onValidation={onValidation} />);
 
         expect(onValidation.callCount).to.equal(1);
 
@@ -306,7 +306,7 @@ describe('when the parent component sends new value prop, the TextInput componen
 
         const testValue = 'hello';
 
-        const parent = mount(<TestParent onChange={onChange} />);
+        const parent = mount(<TestParent2 onChange={onChange} />);
 
         expect(onChange.callCount).to.equal(0);
 
@@ -326,7 +326,7 @@ describe('when the parent component sends new value prop, the TextInput componen
         const initialValue = '1234';
         const testValue = '';
 
-        const parent = mount(<TestParent testValue={initialValue} onChange={onChange} />);
+        const parent = mount(<TestParent2 testValue={initialValue} onChange={onChange} />);
 
         expect(onChange.callCount).to.equal(0);
 
@@ -343,7 +343,7 @@ describe('when the parent component sends new value prop, the TextInput componen
 
         const testValue = 'hello';
 
-        const parent = mount(<TestParent />);
+        const parent = mount(<TestParent2 />);
 
         // change the state of the parent
         //
@@ -358,7 +358,7 @@ describe('when the parent component sends new value prop, the TextInput componen
 
         const testValue = '';
 
-        const parent = mount(<TestParent testValue={initialValue} />);
+        const parent = mount(<TestParent2 testValue={initialValue} />);
 
         // send a change event to ensure hasValidated is set
         //
@@ -382,7 +382,7 @@ describe('when the parent component sends new value prop, the TextInput componen
 
         const testValue = 'hello';
 
-        const parent = mount(<TestParent testValue={testValue} onValidation={onValidation} />);
+        const parent = mount(<TestParent2 testValue={testValue} onValidation={onValidation} />);
 
         expect(onValidation.callCount).to.equal(1);
 
@@ -399,7 +399,7 @@ describe('when the parent component sends new value prop, the TextInput componen
 
         const testValue = 'hello';
 
-        const parent = mount(<TestParent testValue={testValue} onChange={onChange} />);
+        const parent = mount(<TestParent2 testValue={testValue} onChange={onChange} />);
 
         expect(onChange.callCount).to.equal(0);
 
