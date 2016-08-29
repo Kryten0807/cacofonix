@@ -45,6 +45,10 @@ class NumericInput extends React.Component {
         if (this.props.onValidation && newState.hasValidated) {
             this.props.onValidation(newState.hasValidated, newState.isValid, newState.validationMessage);
         }
+
+        if (this.props.onChange) {
+            this.props.onChange(newState.value);
+        }
     }
 
     validate(newValue) {
