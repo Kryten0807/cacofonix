@@ -45,11 +45,11 @@ when the parent component sends new value prop, a non-required Dropdown componen
     should not call the onValidation handler when value has not changed
     should not call the onChange handler when value has not changed
 */
-describe('when the parent component sends new value prop, a non-required Dropdown component', () => {
+describe('when the parent component sends new value prop, a non-required ' +
+    'Dropdown component', () => {
 
     const required = false;
     const description = 'nonsense';
-    const expectedMessage = `${description} is required`;
 
     const options = [
         { value: '1', name: 'one' },
@@ -113,7 +113,12 @@ describe('when the parent component sends new value prop, a non-required Dropdow
 
         const testValue = '';
 
-        const parent = mount(<TestParentBeta testValue={initialValue} onValidation={onValidation} />);
+        const parent = mount(
+            <TestParentBeta
+                testValue={initialValue}
+                onValidation={onValidation}
+            />
+        );
 
         expect(onValidation.callCount).to.equal(1);
 
@@ -317,7 +322,12 @@ describe('when the parent component sends new value prop, a required Dropdown co
 
         const testValue = '';
 
-        const parent = mount(<TestParentAlpha testValue={initialValue} onValidation={onValidation} />);
+        const parent = mount(
+            <TestParentAlpha
+                testValue={initialValue}
+                onValidation={onValidation}
+            />
+        );
 
         expect(onValidation.callCount).to.equal(1);
 

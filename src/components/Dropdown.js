@@ -60,18 +60,41 @@ class Dropdown extends React.Component {
         }
     }
 
+    /**
+     * Handle changes to the component properties
+     * @param  {Object} newProps The new properties for the object
+     */
     componentWillReceiveProps(newProps) {
+        // save the current value for later use
+        //
         const currentValue = this.state.value;
 
+        // build the new state by validating the new value property
+        //
         const newState = this.validate(newProps.value);
+
+        // ensure the `hasValidated` state is preserved
+        //
         newState.hasValidated = this.state.hasValidated;
 
+        // set the new state
+        //
         this.setState(newState);
 
+        // do we have an onValidation handler? has the value changed? if so,
+        // call the handler with the new validation state
+        //
         if (this.props.onValidation && currentValue !== newState.value) {
-            this.props.onValidation(newState.hasValidated, newState.isValid, newState.validationMessage);
+            this.props.onValidation(
+                newState.hasValidated,
+                newState.isValid,
+                newState.validationMessage
+            );
         }
 
+        // do we have an onChange handler? has the value changed? if so, call
+        // the handler with the new value
+        //
         if (this.props.onChange && currentValue !== newState.value) {
             this.props.onChange(newState.value);
         }
