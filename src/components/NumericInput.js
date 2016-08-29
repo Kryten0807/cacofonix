@@ -27,4 +27,12 @@ class NumericInput extends React.Component {
     }
 }
 
+// set the property types for the NumericInput component
+//
+NumericInput.propTypes = {
+    label:       React.PropTypes.string,
+    placeholder: React.PropTypes.string,
+};
+
+
 export default NumericInput;
