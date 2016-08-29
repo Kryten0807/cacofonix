@@ -30,6 +30,7 @@ describe('in terms of basic markup, the NumericInput component', () => {
     it('should include an input[type="text"]', () => {
         const component = render(<NumericInput />);
 
+        expect(component.find('input').length).to.equal(1);
         expect(component.find('input[type="text"]').length).to.equal(1);
     });
 
