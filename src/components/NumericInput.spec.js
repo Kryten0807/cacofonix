@@ -50,6 +50,13 @@ describe('in terms of basic markup, the NumericInput component', () => {
         expect(component.find('Label').props().label).to.equal(label);
     });
 
-    // it('should include a placeholder if a placeholder is specified', () => {});
+    it('should include a placeholder if a placeholder is specified', () => {
+        const placeholder = 'a number goes here';
+
+        const component = shallow(<NumericInput placeholder={placeholder} />);
+
+        expect(component.find('input').length).to.equal(1);
+        expect(component.find('input').props().placeholder).to.equal(placeholder);
+    });
 
 });
