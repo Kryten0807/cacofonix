@@ -52,7 +52,7 @@ describe('the onChange handler for the NumericInput component', () => {
         });
 
         expect(onChange.callCount).to.equal(1);
-        expec(onChange.calledWith(finalValue)).to.equal(true);
+        expect(onChange.calledWith(finalValue)).to.equal(true);
     });
 
     // it('should not be called on edit when the value has not changed', () => {});
