@@ -48,7 +48,7 @@ class NumericInput extends React.Component {
     }
 
     validate(newValue) {
-        let value = parseInt(`${newValue}`, 10);
+        let value = parseFloat(`${newValue}`);
 
         const notANumber = Number.isNaN(value);
 
