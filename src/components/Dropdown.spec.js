@@ -53,7 +53,7 @@ when the parent component sends new value prop, a required Dropdown component
     should call the onChange handler when value=valid
     should call the onChange handler when value=blank
     should not show the validation message when value=valid
-    should not show the validation message when value=blank
+    should show the validation message when value=blank
     should not call the onValidation handler when value has not changed
     should not call the onChange handler when value has not changed
 */
