@@ -54,14 +54,33 @@ class TextInput extends React.Component {
         }
     }
 
+    /**
+     * Handle new props passed from parent
+     * @param  {Object} newProps The new properties
+     */
     componentWillReceiveProps(newProps) {
+        // build the new state for the component
+        //
         const newState = this.validate(newProps.value);
+
+        // ensure that the hasValidated state is preserved
+        //
         newState.hasValidated = this.state.hasValidated;
 
+        // do we have an onValidation handler? has the value changed? if so,
+        // call the handler with the new validation state
+        //
         if (this.props.onValidation && this.state.value !== newState.value) {
-            this.props.onValidation(newState.hasValidated, newState.isValid, newState.validationMessage);
+            this.props.onValidation(
+                newState.hasValidated,
+                newState.isValid,
+                newState.validationMessage
+            );
         }
 
+        // do we have an onChange handler? has the value changed? if so, call
+        // the handler with the new value
+        //
         if (this.props.onChange && this.state.value !== newState.value) {
             this.props.onChange(newState.value);
         }
