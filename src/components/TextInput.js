@@ -72,12 +72,7 @@ class TextInput extends React.Component {
 
         // update the state
         //
-        this.setState((state) => update(state, {
-            value:             { $set: value },
-            hasValidated:      { $set: hasValidated },
-            isValid:           { $set: isValid },
-            validationMessage: { $set: validationMessage },
-        }));
+        this.setState({ value, isValid, validationMessage, hasValidated });
 
         // do we have an onChange handler? if so, call it with the new value
         //
