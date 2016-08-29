@@ -5,11 +5,26 @@ import uniqueId from 'lodash/uniqueId';
 
 import Label from './Label';
 
-const NumericInput = (props) => (
-    <div className="form-group">
-        {props.label ? <Label label={props.label} /> : ''}
-        <input type="text" className="form-control" placeholder={props.placeholder || ''}/>
-    </div>
-);
+class NumericInput extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.id = uniqueId('NumericInput-');
+    }
+
+    render() {
+        return (
+            <div className="form-group">
+                {this.props.label ? <Label htmlFor={this.id} label={this.props.label} /> : ''}
+                <input
+                    type="text"
+                    id={this.id}
+                    className="form-control"
+                    placeholder={this.props.placeholder || ''}
+                />
+            </div>
+        );
+    }
+}
 
 export default NumericInput;
