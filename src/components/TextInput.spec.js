@@ -31,28 +31,42 @@ when the parent component sends new value prop, a required TextInput component
     should not show the validation message when value=valid
     should show the validation message when value=blank
 */
+describe('when the parent component sends new value prop, the TextInput component', () => {
 
-    // it('should call the onValidation handler when required=true, value=blank', () => {});
+    const description = 'nonsense';
 
-    // it('should call the onValidation handler when required=false, value=valid', () => {});
+    const expectedMessage = `${description} is required`;
 
-    // it('should call the onValidation handler when required=false, value=blank', () => {});
+    const TestParent = React.createClass({
+        getInitialState() {
+            return {
+                testValue: '',
+            }
+        },
 
-    // it('should call the onChange handler when required=true, value=valid', () => {});
+        render() {
+            return (<TextInput
+                description={description}
+                required={required}
+                value={initialValue}
+            />);
+        }
+    });
 
-    // it('should call the onChange handler when required=true, value=blank', () => {});
 
-    // it('should call the onChange handler when required=false, value=valid', () => {});
+    // it('should call the onValidation handler when value=valid', () => {});
 
-    // it('should call the onChange handler when required=false, value=blank', () => {});
+    // it('should call the onValidation handler when value=blank', () => {});
 
-    // it('should not show the validation message when required=true, value=valid', () => {});
+    // it('should call the onChange handler when value=valid', () => {});
 
-    // it('should show the validation message when required=true, value=blank', () => {});
+    // it('should call the onChange handler when value=blank', () => {});
 
-    // it('should not show the validation message when required=false, value=valid', () => {});
+    // it('should not show the validation message when value=valid', () => {});
 
-    // it('should not show the validation message when required=false, value=blank', () => {});
+    // it('should show the validation message when value=blank', () => {});
+
+
 });
 
 
