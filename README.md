@@ -12,6 +12,8 @@ This is a set of Bootstrap-themed React components.
     1. add a custom error message to the `TextInput` component
 1. **Dropdown** - a dropdown element
 
+## In Progress
+
 ## To Do
 
 ### Components
