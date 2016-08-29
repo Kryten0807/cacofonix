@@ -166,6 +166,11 @@ class Dropdown extends React.Component {
                         <option key={uniqueId('Dropdown-')} value={opt.value}>{opt.name}</option>)
                     }
                 </select>
+
+                {this.state.hasValidated && !this.state.isValid
+                    ? <span className="help-block">{this.state.validationMessage}</span>
+                    : ''
+                }
             </div>
         );
     }
