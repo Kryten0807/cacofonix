@@ -188,6 +188,7 @@ Dropdown.propTypes = {
     options:      React.PropTypes.array.isRequired,
     onValidation: React.PropTypes.func,
     onChange:     React.PropTypes.func,
+    validationMessage: React.PropTypes.string,
 };
 
 // export the component
