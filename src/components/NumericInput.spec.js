@@ -20,6 +20,18 @@ the onChange handler for the NumericInput component
     should be called on blur when the value has changed
     should not be called on blur when the value has not changed
 */
+describe('the onChange handler for the NumericInput component', () => {
+
+    // it('should not be called on initialization', () => {});
+
+    // it('should be called on edit when the value has changed', () => {});
+
+    // it('should not be called on edit when the value has not changed', () => {});
+
+    // it('should be called on blur when the value has changed', () => {});
+
+    // it('should not be called on blur when the value has not changed', () => {});
+});
 
 /* *****************************************************************************
 the onValidation handler for the NumericInput component
