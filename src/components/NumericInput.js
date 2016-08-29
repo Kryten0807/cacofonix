@@ -38,6 +38,7 @@ class NumericInput extends React.Component {
 //
 NumericInput.propTypes = {
     label:       React.PropTypes.string,
+    required:    React.PropTypes.bool,
     placeholder: React.PropTypes.string,
 };
 
