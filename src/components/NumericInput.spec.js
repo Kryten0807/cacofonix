@@ -205,7 +205,7 @@ describe('the onValidation handler for the NumericInput component', () => {
         const required = true;
         const value = '';
 
-        const component = mount(
+        mount(
             <NumericInput
                 required={required}
                 description={description}
@@ -226,7 +226,7 @@ describe('the onValidation handler for the NumericInput component', () => {
         const required = false;
         const value = '101.9';
 
-        const component = mount(
+        mount(
             <NumericInput
                 required={required}
                 description={description}
@@ -247,7 +247,7 @@ describe('the onValidation handler for the NumericInput component', () => {
         const required = false;
         const value = 'woohoo!';
 
-        const component = mount(
+        mount(
             <NumericInput
                 required={required}
                 description={description}
@@ -268,7 +268,7 @@ describe('the onValidation handler for the NumericInput component', () => {
         const required = false;
         const value = '';
 
-        const component = mount(
+        mount(
             <NumericInput
                 required={required}
                 description={description}
