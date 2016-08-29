@@ -80,6 +80,8 @@ class NumericInput extends React.Component {
                     id={this.id}
                     className="form-control"
                     placeholder={this.props.placeholder || ''}
+                    onBlur={this.onBlur}
+                    onChange={this.onChange}
                 />
             </div>
         );
