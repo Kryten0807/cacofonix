@@ -60,6 +60,11 @@ describe('when the parent component sends new value prop, the TextInput componen
         }
     }
 
+    TestParent.propTypes = {
+        testValue:    React.PropTypes.string,
+        onChange:     React.PropTypes.func,
+        onValidation: React.PropTypes.func,
+    };
 
     it('should call the onValidation handler when value=valid', () => {
 
