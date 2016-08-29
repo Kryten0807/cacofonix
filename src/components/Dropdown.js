@@ -20,9 +20,11 @@ class Dropdown extends React.Component {
         //
         this.id = uniqueId('Dropdown-');
 
-        // build the default validation message
+        // initialize the validation message from the custom message provided
+        // (if any) or generate the default message
         //
-        this.validationMessage = props.validationMessage || `${props.description || 'This value'} is required`;
+        this.validationMessage = props.validationMessage
+            || `${props.description || 'This value'} is required`;
 
         // validate the initial value & set the initial state
         //
