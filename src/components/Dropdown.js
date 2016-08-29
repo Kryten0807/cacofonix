@@ -179,16 +179,16 @@ class Dropdown extends React.Component {
 // set the property types for the Dropdown component
 //
 Dropdown.propTypes = {
-    label:        React.PropTypes.string,
-    description:  React.PropTypes.string,
-    includeNull:  React.PropTypes.bool,
-    nullName:     React.PropTypes.string,
-    required:     React.PropTypes.bool,
-    value:        React.PropTypes.string,
-    options:      React.PropTypes.array.isRequired,
-    onValidation: React.PropTypes.func,
-    onChange:     React.PropTypes.func,
+    label:             React.PropTypes.string,
+    description:       React.PropTypes.string,
+    includeNull:       React.PropTypes.bool,
+    nullName:          React.PropTypes.string,
+    required:          React.PropTypes.bool,
     validationMessage: React.PropTypes.string,
+    value:             React.PropTypes.string,
+    options:           React.PropTypes.array.isRequired,
+    onValidation:      React.PropTypes.func,
+    onChange:          React.PropTypes.func,
 };
 
 // export the component
