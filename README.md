@@ -12,6 +12,7 @@ This is a set of Bootstrap-themed React components.
     1. add a custom error message to the `TextInput` component
     1. add `componentWillReceiveProps` testing for `TextInput`
 1. **Dropdown** - a dropdown element
+    1. add `componentWillReceiveProps` testing for `Dropdown`
 
 ## In Progress
 
@@ -30,7 +31,6 @@ This is a set of Bootstrap-themed React components.
 
 ### Sundry Improvements
 
-1. add `componentWillReceiveProps` testing for `Dropdown`
 
 ## Validation
 
