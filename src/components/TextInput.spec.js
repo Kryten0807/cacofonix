@@ -20,6 +20,8 @@ when the parent component sends new value prop, a non-required TextInput compone
     should call the onChange handler when required=false, value=blank
     should not show the validation message when required=false, value=valid
     should not show the validation message when required=false, value=blank
+    should not call the onValidation handler when value has not changed
+    should not call the onChange handler when value has not changed
 */
 
 /* *****************************************************************************
