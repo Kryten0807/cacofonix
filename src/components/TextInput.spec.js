@@ -13,25 +13,24 @@ import TextInput from './TextInput';
 const expect = chai.expect;
 
 /* *****************************************************************************
-when the parent component sends new props, the TextInput component
-    should call the onValidation handler when required=true, value=valid
-    should call the onValidation handler when required=true, value=blank
+when the parent component sends new value prop, a non-required TextInput component
     should call the onValidation handler when required=false, value=valid
     should call the onValidation handler when required=false, value=blank
-
-    should call the onChange handler when required=true, value=valid
-    should call the onChange handler when required=true, value=blank
     should call the onChange handler when required=false, value=valid
     should call the onChange handler when required=false, value=blank
-
-    should not show the validation message when required=true, value=valid
-    should show the validation message when required=true, value=blank
     should not show the validation message when required=false, value=valid
     should not show the validation message when required=false, value=blank
 */
-describe('when the parent component sends new props, the TextInput component', () => {
 
-    // it('should call the onValidation handler when required=true, value=valid', () => {});
+/* *****************************************************************************
+when the parent component sends new value prop, a required TextInput component
+    should call the onValidation handler when value=valid
+    should call the onValidation handler when value=blank
+    should call the onChange handler when value=valid
+    should call the onChange handler when value=blank
+    should not show the validation message when value=valid
+    should show the validation message when value=blank
+*/
 
     // it('should call the onValidation handler when required=true, value=blank', () => {});
 
