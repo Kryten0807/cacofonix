@@ -12,6 +12,19 @@ import NumericInput from './NumericInput';
 const expect = chai.expect;
 
 /* *****************************************************************************
+the onValidation handler for the NumericInput component
+    should be called on initialization with required=true, value=valid
+    should be called on initialization with required=true, value=invalid
+    should be called on initialization with required=true, value=blank
+    should be called on initialization with required=false, value=valid
+    should be called on initialization with required=false, value=invalid
+    should be called on initialization with required=false, value=blank
+    should not be called after change without prior blur event
+    should be called on blur event
+    should be called after change following a previous blur event
+*/
+
+/* *****************************************************************************
 in terms of basic markup, the NumericInput component
     should be a div.form-group
     should include an input[type="text"]
