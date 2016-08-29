@@ -27,6 +27,8 @@ This is a set of Bootstrap-themed React components.
 
 ### Sundry Improvements
 
+1. add `componentWillReceiveProps` testing for `TextInput`
+1. add `componentWillReceiveProps` testing for `Dropdown`
 
 ## Validation
 
