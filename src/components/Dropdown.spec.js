@@ -34,6 +34,32 @@ Dropdown Behaviour
     + the onChange callback is called
 */
 
+/* *****************************************************************************
+when the parent component sends new value prop, a non-required Dropdown component
+    should call the onValidation handler when value=valid
+    should call the onValidation handler when value=blank
+    should call the onChange handler when value=valid
+    should call the onChange handler when value=blank
+    should not show the validation message when value=valid
+    should not show the validation message when value=blank
+    should not call the onValidation handler when value has not changed
+    should not call the onChange handler when value has not changed
+*/
+
+/* *****************************************************************************
+when the parent component sends new value prop, a required Dropdown component
+    should call the onValidation handler when value=valid
+    should call the onValidation handler when value=blank
+    should call the onChange handler when value=valid
+    should call the onChange handler when value=blank
+    should not show the validation message when value=valid
+    should not show the validation message when value=blank
+    should not call the onValidation handler when value has not changed
+    should not call the onChange handler when value has not changed
+*/
+
+
+
 /*
 the validation error message for the component
     should not be displayed when initialized with `required`=true, `value`=valid
