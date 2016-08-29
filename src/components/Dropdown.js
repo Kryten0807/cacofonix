@@ -2,6 +2,7 @@
 //
 import React from 'react';
 import uniqueId from 'lodash/uniqueId';
+import classnames from 'classnames';
 import Label from './Label';
 
 /**
@@ -19,9 +20,11 @@ class Dropdown extends React.Component {
         //
         this.id = uniqueId('Dropdown-');
 
-        // build the default validation message
+        // initialize the validation message from the custom message provided
+        // (if any) or generate the default message
         //
-        this.validationMessage = `${props.description || 'This value'} is required`;
+        this.validationMessage = props.validationMessage
+            || `${props.description || 'This value'} is required`;
 
         // validate the initial value & set the initial state
         //
@@ -134,8 +137,13 @@ class Dropdown extends React.Component {
      * @return {React.Element} The React Element describing this component
      */
     render() {
+
+        const divClasses = classnames('form-group', {
+            'has-error': this.state.hasValidated && !this.state.isValid,
+        });
+
         return (
-            <div className="form-group">
+            <div className={divClasses}>
                 {this.props.label
                     ? <Label
                         htmlFor={this.id}
@@ -160,6 +168,11 @@ class Dropdown extends React.Component {
                         <option key={uniqueId('Dropdown-')} value={opt.value}>{opt.name}</option>)
                     }
                 </select>
+
+                {this.state.hasValidated && !this.state.isValid
+                    ? <span className="help-block">{this.state.validationMessage}</span>
+                    : ''
+                }
             </div>
         );
     }
@@ -168,15 +181,16 @@ class Dropdown extends React.Component {
 // set the property types for the Dropdown component
 //
 Dropdown.propTypes = {
-    label:        React.PropTypes.string,
-    description:  React.PropTypes.string,
-    includeNull:  React.PropTypes.bool,
-    nullName:     React.PropTypes.string,
-    required:     React.PropTypes.bool,
-    value:        React.PropTypes.string,
-    options:      React.PropTypes.array.isRequired,
-    onValidation: React.PropTypes.func,
-    onChange:     React.PropTypes.func,
+    label:             React.PropTypes.string,
+    description:       React.PropTypes.string,
+    includeNull:       React.PropTypes.bool,
+    nullName:          React.PropTypes.string,
+    required:          React.PropTypes.bool,
+    validationMessage: React.PropTypes.string,
+    value:             React.PropTypes.string,
+    options:           React.PropTypes.array.isRequired,
+    onValidation:      React.PropTypes.func,
+    onChange:          React.PropTypes.func,
 };
 
 // export the component
