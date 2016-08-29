@@ -31,7 +31,13 @@ describe('the onChange handler for the NumericInput component', () => {
         const required = true;
         const initialValue = 123.456;
 
-        const component = mount(<NumericInput required={required} value={initialValue} onChange={onChange} />);
+        const component = mount(
+            <NumericInput
+                required={required}
+                value={initialValue}
+                onChange={onChange}
+            />
+        );
 
         expect(onChange.callCount).to.equal(0);
     });
@@ -43,7 +49,13 @@ describe('the onChange handler for the NumericInput component', () => {
         const initialValue = 123.456;
         const finalValue = 99.9999;
 
-        const component = mount(<NumericInput required={required} value={initialValue} onChange={onChange} />);
+        const component = mount(
+            <NumericInput
+                required={required}
+                value={initialValue}
+                onChange={onChange}
+            />
+        );
 
         expect(onChange.callCount).to.equal(0);
 
@@ -62,7 +74,13 @@ describe('the onChange handler for the NumericInput component', () => {
         const initialValue = 123.456;
         const finalValue = initialValue;
 
-        const component = mount(<NumericInput required={required} value={initialValue} onChange={onChange} />);
+        const component = mount(
+            <NumericInput
+                required={required}
+                value={initialValue}
+                onChange={onChange}
+            />
+        );
 
         expect(onChange.callCount).to.equal(0);
 
@@ -80,7 +98,13 @@ describe('the onChange handler for the NumericInput component', () => {
         const initialValue = 123.456;
         const finalValue = 4213.21;
 
-        const component = mount(<NumericInput required={required} value={initialValue} onChange={onChange} />);
+        const component = mount(
+            <NumericInput
+                required={required}
+                value={initialValue}
+                onChange={onChange}
+            />
+        );
 
         expect(onChange.callCount).to.equal(0);
 
@@ -99,7 +123,13 @@ describe('the onChange handler for the NumericInput component', () => {
         const initialValue = 123.456;
         const finalValue = initialValue;
 
-        const component = mount(<NumericInput required={required} value={initialValue} onChange={onChange} />);
+        const component = mount(
+            <NumericInput
+                required={required}
+                value={initialValue}
+                onChange={onChange}
+            />
+        );
 
         expect(onChange.callCount).to.equal(0);
 
@@ -134,7 +164,13 @@ describe('the onValidation handler for the NumericInput component', () => {
         const required = true;
         const value = 123.456;
 
-        const component = mount(<NumericInput required={required} value={value} onValidation={onValidation} />);
+        const component = mount(
+            <NumericInput
+                required={required}
+                value={value}
+                onValidation={onValidation}
+            />
+        );
 
         expect(onValidation.callCount).to.equal(1);
         expect(onValidation.args[0][0]).to.equal(false, 'args[0][0]');
@@ -148,7 +184,14 @@ describe('the onValidation handler for the NumericInput component', () => {
         const required = true;
         const value = 'this is not a number';
 
-        const component = mount(<NumericInput required={required} description={description} value={value} onValidation={onValidation} />);
+        const component = mount(
+            <NumericInput
+                required={required}
+                description={description}
+                value={value}
+                onValidation={onValidation}
+            />
+        );
 
         expect(onValidation.callCount).to.equal(1);
         expect(onValidation.args[0][0]).to.equal(false, 'args[0][0]');
@@ -162,7 +205,14 @@ describe('the onValidation handler for the NumericInput component', () => {
         const required = true;
         const value = '';
 
-        const component = mount(<NumericInput required={required} description={description} value={value} onValidation={onValidation} />);
+        const component = mount(
+            <NumericInput
+                required={required}
+                description={description}
+                value={value}
+                onValidation={onValidation}
+            />
+        );
 
         expect(onValidation.callCount).to.equal(1);
         expect(onValidation.args[0][0]).to.equal(false, 'args[0][0]');
@@ -176,7 +226,14 @@ describe('the onValidation handler for the NumericInput component', () => {
         const required = false;
         const value = '101.9';
 
-        const component = mount(<NumericInput required={required} description={description} value={value} onValidation={onValidation} />);
+        const component = mount(
+            <NumericInput
+                required={required}
+                description={description}
+                value={value}
+                onValidation={onValidation}
+            />
+        );
 
         expect(onValidation.callCount).to.equal(1);
         expect(onValidation.args[0][0]).to.equal(false, 'args[0][0]');
@@ -190,7 +247,14 @@ describe('the onValidation handler for the NumericInput component', () => {
         const required = false;
         const value = 'woohoo!';
 
-        const component = mount(<NumericInput required={required} description={description} value={value} onValidation={onValidation} />);
+        const component = mount(
+            <NumericInput
+                required={required}
+                description={description}
+                value={value}
+                onValidation={onValidation}
+            />
+        );
 
         expect(onValidation.callCount).to.equal(1);
         expect(onValidation.args[0][0]).to.equal(false, 'args[0][0]');
@@ -204,7 +268,14 @@ describe('the onValidation handler for the NumericInput component', () => {
         const required = false;
         const value = '';
 
-        const component = mount(<NumericInput required={required} description={description} value={value} onValidation={onValidation} />);
+        const component = mount(
+            <NumericInput
+                required={required}
+                description={description}
+                value={value}
+                onValidation={onValidation}
+            />
+        );
 
         expect(onValidation.callCount).to.equal(1);
         expect(onValidation.args[0][0]).to.equal(false, 'args[0][0]');
@@ -219,7 +290,14 @@ describe('the onValidation handler for the NumericInput component', () => {
         const value = '';
         const newValue = '33.3';
 
-        const component = mount(<NumericInput required={required} description={description} value={value} onValidation={onValidation} />);
+        const component = mount(
+            <NumericInput
+                required={required}
+                description={description}
+                value={value}
+                onValidation={onValidation}
+            />
+        );
 
         expect(onValidation.callCount).to.equal(1);
 
@@ -237,7 +315,14 @@ describe('the onValidation handler for the NumericInput component', () => {
         const value = '';
         const newValue = '33.3';
 
-        const component = mount(<NumericInput required={required} description={description} value={value} onValidation={onValidation} />);
+        const component = mount(
+            <NumericInput
+                required={required}
+                description={description}
+                value={value}
+                onValidation={onValidation}
+            />
+        );
 
         expect(onValidation.callCount).to.equal(1);
 
@@ -259,7 +344,14 @@ describe('the onValidation handler for the NumericInput component', () => {
         const newValue = '33.3';
         const finalValue = '';
 
-        const component = mount(<NumericInput required={required} description={description} value={value} onValidation={onValidation} />);
+        const component = mount(
+            <NumericInput
+                required={required}
+                description={description}
+                value={value}
+                onValidation={onValidation}
+            />
+        );
 
         expect(onValidation.callCount).to.equal(1);
 
