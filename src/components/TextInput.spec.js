@@ -17,6 +17,7 @@ after the user edits & blurs the input element, the TextInput component
     should not show the validation message when required=true and the value is valid
     should not show the validation message when required=false and the value is blank
     should show the validation message when required=true and the value is blank
+    should show the custom validation message when validationMessage is set, required=true and the value is blank
 */
 describe('after the user edits & blurs the input element, the TextInput component', () => {
 
@@ -142,6 +143,48 @@ describe('after the user edits & blurs the input element, the TextInput componen
         expect(component.find('div.form-group.has-error').length).to.equal(1, 'has-error');
         expect(component.find('span.help-block').length).to.equal(1, 'help-block');
         expect(component.find('span.help-block').text()).to.equal(expectedMessage, 'help-block');
+    });
+
+    it('should show the custom validation message when validationMessage is set, required=true and the value is blank', () => {
+
+        const onValidation = sinon.spy();
+
+        const customMessage = 'Something is not right...';
+        const required = true;
+        const initialValue = 'anchovies';
+        const newValue = '';
+
+        const component = mount(<TextInput
+            description={description}
+            validationMessage={customMessage}
+            required={required}
+            value={initialValue}
+            onValidation={onValidation}
+        />);
+
+        expect(component.find('div.form-group').length).to.equal(1, 'form-group');
+        expect(component.find('div.form-group.has-error').length).to.equal(0, 'has-error');
+        expect(component.find('span.help-block').length).to.equal(0, 'help-block');
+
+        // edit the component
+        //
+        component.find('input').simulate('change', {
+            target: { value: newValue }
+        });
+
+        expect(component.find('div.form-group').length).to.equal(1, 'form-group');
+        expect(component.find('div.form-group.has-error').length).to.equal(0, 'has-error');
+        expect(component.find('span.help-block').length).to.equal(0, 'help-block');
+
+        // blur the component
+        //
+        component.find('input').simulate('blur', {
+            target: { value: newValue }
+        });
+
+        expect(component.find('div.form-group.has-error').length).to.equal(1, 'has-error');
+        expect(component.find('span.help-block').length).to.equal(1, 'help-block');
+        expect(component.find('span.help-block').text()).to.equal(customMessage, 'help-block');
     });
 
 });
