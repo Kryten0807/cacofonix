@@ -174,13 +174,33 @@ class NumericInput extends React.Component {
         }
     }
 
+    /**
+     * Handle the focus event for the input element
+     * @param  {Object} event The event object
+     */
     onFocus(event) {
+        // validate the new value
+        //
         const newState = this.validate(event.target.value, false);
+
+        // preserve the `hasValidated` state
+        //
         newState.hasValidated = this.state.hasValidated;
 
+        // set the new state
+        //
         this.setState(newState);
     }
 
+    /**
+     * Validate a value, optionally formatting it
+     * @param  {String|Number} newValue The new value
+     * @param  {Boolean} format         If true, then format the value according
+     *                                  to the component props; otherwise, just
+     *                                  clean it
+     * @return {Object}                 The new state for the component,
+     *                                  including value & validation state
+     */
     validate(newValue, format) {
         let value = parseFloat(clean(newValue));
 
