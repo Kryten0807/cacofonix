@@ -16,11 +16,12 @@ This is a set of Bootstrap-themed React components.
 
 ## In Progress
 
+1. **NumericInput** - a text input which requires input to be numeric, with configurable decimal places and an optional dollar sign/currency formatting when blurred
+
 ## To Do
 
 ### Components
 
-1. **NumericInput** - a text input which requires input to be numeric, with configurable decimal places and an optional dollar sign/currency formatting when blurred
 1. **DateInput** - a text input which accepts a date value
 1. **CheckboxGroup** - a group of checkboxes, optionally requiring at least one to be checked
 1. **EmailInput** - a text input which requires input to be a valid email address (or blank if not required)

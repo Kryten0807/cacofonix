@@ -1545,7 +1545,6 @@ describe('the onValidation handler for the component', () => {
 
 });
 
-
 /*
 on initialization, the Dropdown component
     should be a div.form-group
