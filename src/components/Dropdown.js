@@ -182,6 +182,15 @@ class Dropdown extends React.Component {
             'has-error': this.state.hasValidated && !this.state.isValid,
         });
 
+        const labelClasses = this.props.labelColumns
+            ? classnames([
+                this.props.labelColumns.xs ? `col-xs-${this.props.labelColumns.xs}` : null,
+                this.props.labelColumns.sm ? `col-sm-${this.props.labelColumns.sm}` : null,
+                this.props.labelColumns.md ? `col-md-${this.props.labelColumns.md}` : null,
+                this.props.labelColumns.lg ? `col-lg-${this.props.labelColumns.lg}` : null,
+            ])
+            : null;
+
         return (
             <div className={divClasses}>
                 {this.props.label
