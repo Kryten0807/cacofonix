@@ -14,7 +14,6 @@ const expect = chai.expect;
 
 // Tests to write:
 // show validation message after prop change post-blur
-// new props
 
 /* *****************************************************************************
 when the parent component sends new value prop, a required NumericInput component
