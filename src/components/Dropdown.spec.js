@@ -242,6 +242,21 @@ describe('when the parent component sends new value prop, a non-required ' +
 
         expect(onChange.callCount).to.equal(0);
     });
+
+    it('should change the select element value when the value has changed', () => {
+
+        const initialValue = '2';
+        const testValue = '1';
+
+        const parent = mount(<TestParentBeta testValue={initialValue} />);
+
+        // change the state of the parent
+        //
+        parent.setState({ testValue });
+
+        expect(parent.find('select').props().value).to.equal(testValue);
+    });
+
 });
 
 /* *****************************************************************************
