@@ -72,7 +72,15 @@ class NumericInput extends React.Component {
 
         const notANumber = Number.isNaN(value);
 
-        value = notANumber ? '' : value;
+        if (notANumber) {
+            value = '';
+        } else if (this.props.isCurrency) {
+            value = `$ ${value.toFixed(2)}`;
+        } else if (this.props.decimals) {
+            value = value.toFixed(this.props.decimals);
+        } else {
+            value = `${value}`;
+        }
 
         const isValid = !this.props.required || (!notANumber || !!value);
 
