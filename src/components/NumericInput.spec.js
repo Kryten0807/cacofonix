@@ -32,6 +32,17 @@ on focus, the input element value
     should contain a fixed decimal value formatted as a plain number
     should contain a blank if the value is a blank
 */
+describe('on focus, the input element value', () => {
+
+    // it('should contain a currency value ("$ #.##") formatted as a plain number', () => {});
+
+    // it('should contain a fixed decimal value formatted as a plain number', () => {});
+
+    // it('should contain a blank if the value is a blank', () => {});
+
+});
+
+
 /* *****************************************************************************
 when the value is initialized, the NumericInput component
     should format a numeric value as a plain number, if isCurrency=false and decimals=null
