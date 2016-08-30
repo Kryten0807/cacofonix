@@ -22,15 +22,13 @@ the onChange handler for the NumericInput component
 */
 describe('the onChange handler for the NumericInput component', () => {
 
-    const description = 'a numeric input';
-
     it('should not be called on initialization', () => {
         const onChange = sinon.spy();
 
         const required = true;
         const initialValue = 123.456;
 
-        const component = mount(
+        mount(
             <NumericInput
                 required={required}
                 value={initialValue}
