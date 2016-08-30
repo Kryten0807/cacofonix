@@ -19,6 +19,7 @@ the Label component
     should include the "required" markup when required=true
     should not include the "required" markup when required=false
     should not include the "required" markup when required is not set
+    should pass any classes included through to the label element
 */
 describe('the Label component', () => {
 
@@ -66,6 +67,15 @@ describe('the Label component', () => {
 
         expect(component.find('sup').length).to.equal(0);
         expect(component.find('i.glyphicon').length).to.equal(0);
+    });
+
+    it('should pass any classes included through to the label element', () => {
+        const className = "col-xs-12 col-md-10";
+
+        const component = shallow(<Label htmlFor={htmlFor} label={label} className={className}/>);
+
+        expect(component.find('label').length).to.equal(1);
+        expect(component.find('label').props().className).to.contain(className);
     });
 
 });
