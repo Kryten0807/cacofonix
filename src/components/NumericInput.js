@@ -121,6 +121,7 @@ class NumericInput extends React.Component {
                     value={this.state.value}
                     onBlur={this.onBlur}
                     onChange={this.onChange}
+                    onFocus={this.onFocus}
                 />
             </div>
         );
