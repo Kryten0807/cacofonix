@@ -7,7 +7,7 @@ import Label from './Label';
 
 const clean = (value) => `${value}`.replace(/[^0-9.]/g, '');
 
-const decimals = (value, decimals) => `${value.toFixed(decimals)}`;
+const decimals = (value, count) => `${value.toFixed(count)}`;
 
 const currency = (value) => `$ ${decimals(value, 2)}`;
 
