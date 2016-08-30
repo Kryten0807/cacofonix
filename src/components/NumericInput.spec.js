@@ -14,7 +14,30 @@ const expect = chai.expect;
 
 // Tests to write:
 // new props
-// add custom validation message spec to onValidation tests
+
+/* *****************************************************************************
+when the parent component sends new value prop, a required NumericInput component
+    should call the onValidation handler when required=false, value=valid
+    should call the onValidation handler when required=false, value=blank
+    should call the onChange handler when required=false, value=valid
+    should call the onChange handler when required=false, value=blank
+    should not show the validation message when required=false, value=valid
+    should not show the validation message when required=false, value=blank
+    should not call the onValidation handler when value has not changed
+    should not call the onChange handler when value has not changed
+*/
+
+/* *****************************************************************************
+when the parent component sends new value prop, a non-required NumericInput component
+    should call the onValidation handler when required=false, value=valid
+    should call the onValidation handler when required=false, value=blank
+    should call the onChange handler when required=false, value=valid
+    should call the onChange handler when required=false, value=blank
+    should not show the validation message when required=false, value=valid
+    should not show the validation message when required=false, value=blank
+    should not call the onValidation handler when value has not changed
+    should not call the onChange handler when value has not changed
+*/
 
 /* *****************************************************************************
 the validation message for the NumericInput component
