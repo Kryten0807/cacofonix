@@ -15,26 +15,21 @@ const expect = chai.expect;
 // Tests to write:
 // new props
 // add custom validation message spec to onValidation tests
-// validation message
 
 /* *****************************************************************************
 the validation message for the NumericInput component
     should not be shown on initialization with required=true, value=valid
     should not be shown on initialization with required=true, value=blank
     should not be shown on initialization with required=false, value=blank
-
     should not be shown after editing with required=true, value=valid
     should not be shown after editing with required=true, value=blank
     should not be shown after editing with required=false, value=blank
-
     should not be shown after blur with required=true, value=valid
     should be shown after blur with required=true, value=blank
     should not be shown after blur with required=false, value=blank
-
     should not be shown after editing (following prior blur) with required=true, value=valid
     should be shown after editing (following prior blur) with required=true, value=blank
     should not be shown after editing (following prior blur) with required=false, value=blank
-
     should show a custom validation message after blur with required=true,
         value=blank, validationMessage=something
 
