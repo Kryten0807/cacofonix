@@ -36,12 +36,81 @@ when the value is initialized, the NumericInput component
 */
 describe('when the value is initialized, the NumericInput component', () => {
 
+    it('should format a numeric value as a plain number, if isCurrency=false and decimals=null', () => {
+        const isCurrency = false;
+        const decimals = null;
+        const value = 123.45678;
 
-    // it('should format a numeric value as a number with n decimal places, if isCurrency=false and decimals=n', () => {});
+        const expectedValue = `${value}`;
 
-    // it('should format a numeric values as a $#.## if isCurrency=true', () => {});
+        const component = shallow(
+            <NumericInput
+                isCurrency={isCurrency}
+                decimals={decimals}
+                value={value}
+            />
+        );
 
-    // it('should leave a blank value as-is', () => {});
+        expect(component.find('input').props().value).to.equal(expectedValue);
+
+    });
+
+    it('should format a numeric value as a number with n decimal places, if isCurrency=false and decimals=n', () => {
+        const isCurrency = false;
+        const decimals = 3;
+        const value = 123.45678;
+
+        const expectedValue = '123.457';
+
+        const component = shallow(
+            <NumericInput
+                isCurrency={isCurrency}
+                decimals={decimals}
+                value={value}
+            />
+        );
+
+        expect(component.find('input').props().value).to.equal(expectedValue);
+
+    });
+
+    it('should format a numeric values as a $#.## if isCurrency=true', () => {
+        const isCurrency = true;
+        const decimals = 3;
+        const value = 123.45678;
+
+        const expectedValue = '$ 123.46';
+
+        const component = shallow(
+            <NumericInput
+                isCurrency={isCurrency}
+                decimals={decimals}
+                value={value}
+            />
+        );
+
+        expect(component.find('input').props().value).to.equal(expectedValue);
+
+    });
+
+    it('should leave a blank value as-is', () => {
+        const isCurrency = true;
+        const decimals = 3;
+        const value = '';
+
+        const expectedValue = '';
+
+        const component = shallow(
+            <NumericInput
+                isCurrency={isCurrency}
+                decimals={decimals}
+                value={value}
+            />
+        );
+
+        expect(component.find('input').props().value).to.equal(expectedValue);
+
+    });
 
 });
 
@@ -77,7 +146,7 @@ describe('the onChange handler for the NumericInput component', () => {
 
         const required = true;
         const initialValue = 123.456;
-        const finalValue = 99.9999;
+        const finalValue = '99.9999';
 
         const component = mount(
             <NumericInput
@@ -126,7 +195,7 @@ describe('the onChange handler for the NumericInput component', () => {
 
         const required = true;
         const initialValue = 123.456;
-        const finalValue = 4213.21;
+        const finalValue = '4213.21';
 
         const component = mount(
             <NumericInput
