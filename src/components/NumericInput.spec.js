@@ -33,6 +33,9 @@ the validation message for the NumericInput component
     should not be shown after editing (following prior blur) with required=true, value=valid
     should be shown after editing (following prior blur) with required=true, value=blank
     should not be shown after editing (following prior blur) with required=false, value=blank
+
+    should show a custom validation message after blur with required=true, value=blank, validationMessage=something
+
 */
 describe('the validation message for the NumericInput component', () => {
 
@@ -59,6 +62,8 @@ describe('the validation message for the NumericInput component', () => {
     // it('should be shown after editing (following prior blur) with required=true, value=blank', () => {});
 
     // it('should not be shown after editing (following prior blur) with required=false, value=blank', () => {});
+
+    // it('should show a custom validation message after blur with required=true, value=blank, validationMessage=something', () => {});
 
 });
 
