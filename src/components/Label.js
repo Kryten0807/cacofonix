@@ -38,6 +38,7 @@ Label.propTypes = {
     htmlFor:  React.PropTypes.string.isRequired,
     required: React.PropTypes.bool,
     label:    React.PropTypes.string,
+    className: React.PropTypes.string,
 };
 
 // export the component
