@@ -12,12 +12,12 @@ const expect = chai.expect;
 
 /* *****************************************************************************
 the columns function
-    should return null when called with a null
-    should return null when called with an empty string
-    should return null when called with an empty array
-    should return null when called with a non-empty array
-    should return null when called with an empty object
-    should return null when called with an object containing invalid keys
+    should return empty string when called with a null
+    should return empty string when called with an empty string
+    should return empty string when called with an empty array
+    should return empty string when called with a non-empty array
+    should return empty string when called with an empty object
+    should return empty string when called with an object containing invalid keys
     should return the correct string for key = xs
     should return the correct string for key = sm
     should return the correct string for key = md
