@@ -596,6 +596,7 @@ after the user edits the value, the TextInput component
     should not show the validation message when required=true and the value is valid
     should not show the validation message when required=false and the value is blank
     should not show the validation message when required=true and the value is blank
+    should update the value of the input element
 */
 describe('after the user edits the value, the TextInput component', () => {
 
