@@ -202,23 +202,42 @@ class NumericInput extends React.Component {
      *                                  including value & validation state
      */
     validate(newValue, format) {
+        // clean the value & convert it to a floating point number
+        //
         let value = parseFloat(clean(newValue));
 
+        // determine if the value is not a number (NaN)
+        //
         const notANumber = Number.isNaN(value);
 
+        // examine the value & format it appropriately
+        //
         if (notANumber) {
+            // it's not a number - change to an empty string
+            //
             value = '';
         } else if (format && this.props.isCurrency) {
+            // the format option is set and the isCurrency flag is set - format
+            // it as currency
+            //
             value = currency(value);
         } else if (format && (this.props.decimals || this.props.decimals === 0)) {
+            // the format option is set and the decimals property is set -
+            // format it as a fixed decimal number
+            //
             value = decimals(value, this.props.decimals);
         } else {
+            // otherwise just convert it to a string as-is
+            //
             value = `${value}`;
         }
 
-
+        // check to see if the value is valid
+        //
         const isValid = !this.props.required || !!value;
 
+        // return the new component state
+        //
         return {
             value,
             isValid,
