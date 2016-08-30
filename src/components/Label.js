@@ -11,7 +11,12 @@ import classnames from 'classnames';
  * @return {React.Element}    The React Element describing this component
  */
 const Label = ({ htmlFor, required, label, className }) => {
+    // generate the classes for the label element
+    //
     const classes = classnames('control-label', className || null);
+
+    // render & return the component
+    //
     return (
         <label htmlFor={htmlFor} className={classes}>
 
