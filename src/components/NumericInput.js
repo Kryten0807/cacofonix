@@ -102,6 +102,8 @@ NumericInput.propTypes = {
     label:       React.PropTypes.string,
     required:    React.PropTypes.bool,
     placeholder: React.PropTypes.string,
+    onChange:     React.PropTypes.func,
+    onValidation: React.PropTypes.func,
 };
 
 
