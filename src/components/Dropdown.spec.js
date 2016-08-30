@@ -1657,20 +1657,24 @@ describe('on initialization, the Dropdown component', () => {
 
     it('should have the correct label widths when labelColumns is set', () => {
         const label = 'this sucks';
-        const columns = { xs: 10, md: 8};
+        const columns = { xs: 10, md: 8 };
         const expectedClass = 'col-xs-10 col-md-8';
 
-        const component = shallow(<Dropdown options={options} label={label} labelColumns={columns}/>);
+        const component = shallow(
+            <Dropdown options={options} label={label} labelColumns={columns} />
+        );
 
         expect(component.find('Label').props().className).to.contain(expectedClass);
     });
 
     it('should have the correct select widths when dropdownColumns is set', () => {
         const label = 'this sucks';
-        const columns = { xs: 10, md: 8};
+        const columns = { xs: 10, md: 8 };
         const expectedClass = '.col-xs-10.col-md-8';
 
-        const component = shallow(<Dropdown options={options} label={label} dropdownColumns={columns}/>);
+        const component = shallow(
+            <Dropdown options={options} label={label} dropdownColumns={columns} />
+        );
 
         expect(component.find(`div${expectedClass} select`).length).to.equal(1, expectedClass);
     });
