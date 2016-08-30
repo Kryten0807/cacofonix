@@ -1573,6 +1573,8 @@ in terms of basic markup, the NumericInput component
         specified & required is set
     should have the readonly property on the input when readonly=true
     should not have the readonly property on the input when readonly=false
+    should have the correct label widths when labelColumns is set
+    should have the correct select widths when inputColumns is set
 */
 describe('in terms of basic markup, the NumericInput component', () => {
 
