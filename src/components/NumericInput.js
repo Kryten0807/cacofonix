@@ -113,6 +113,10 @@ class NumericInput extends React.Component {
     }
 
     render() {
+        const divClasses = classnames('form-group', {
+            'has-error': this.state.hasValidated && !this.state.isValid,
+        });
+
         return (
             <div className="form-group">
                 {this.props.label
