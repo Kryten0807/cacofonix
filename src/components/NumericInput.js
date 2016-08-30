@@ -258,6 +258,8 @@ class NumericInput extends React.Component {
             'has-error': this.state.hasValidated && !this.state.isValid,
         });
 
+        // instantiate the input element
+        //
         const input = (
             <input
                 type="text"
@@ -272,6 +274,8 @@ class NumericInput extends React.Component {
             />
         );
 
+        // instantiate the help block if there's a validation error
+        //
         const helpBlock = this.state.hasValidated && !this.state.isValid
             ? <span className="help-block">{this.validationMessage}</span>
             : '';
