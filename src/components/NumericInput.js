@@ -5,6 +5,7 @@ import uniqueId from 'lodash/uniqueId';
 import classnames from 'classnames';
 
 import Label from './Label';
+import columns from '../helpers/columns';
 
 /**
  * Clean a value of any non-numeric characters
