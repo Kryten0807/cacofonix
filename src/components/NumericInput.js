@@ -6,6 +6,11 @@ import classnames from 'classnames';
 
 import Label from './Label';
 
+/**
+ * Clean a value of any non-numeric characters
+ * @param  {String|Number} value The value to clean
+ * @return {String}              The cleaned value
+ */
 const clean = (value) => `${value}`.replace(/[^0-9.-]/g, '');
 
 const decimals = (value, count) => `${value.toFixed(count)}`;
