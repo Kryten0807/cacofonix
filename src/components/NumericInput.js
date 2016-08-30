@@ -80,7 +80,7 @@ class NumericInput extends React.Component {
         const newState = this.validate(event.target.value);
         newState.hasValidated = this.state.hasValidated;
 
-        newState.value = newState.value.replace(/[^0-9.]/g, '');
+        newState.value = clean(newState.value);
 
         this.setState(newState);
     }
