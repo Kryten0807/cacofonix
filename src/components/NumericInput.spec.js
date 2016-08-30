@@ -19,13 +19,15 @@ const expect = chai.expect;
 /* *****************************************************************************
 on blur, the NumericInput component
     should format a numeric value as a plain number, if isCurrency=false and decimals=null
-    should format a numeric value as a number with n decimal places, if isCurrency=false and decimals=n
+    should format a numeric value as a number with n decimal places, if
+        isCurrency=false and decimals=n
     should format a numeric values as a $#.## if isCurrency=true
     should leave a blank value as-is
 */
 describe('on blur, the NumericInput component', () => {
 
-    it('should format a numeric value as a plain number, if isCurrency=false and decimals=null', () => {
+    it('should format a numeric value as a plain number, if isCurrency=false ' +
+        'and decimals=null', () => {
         const isCurrency = false;
         const decimals = null;
         const value = 123.45678;
@@ -56,7 +58,8 @@ describe('on blur, the NumericInput component', () => {
 
     });
 
-    it('should format a numeric value as a number with n decimal places, if isCurrency=false and decimals=n', () => {
+    it('should format a numeric value as a number with n decimal places, if ' +
+        'isCurrency=false and decimals=n', () => {
         const isCurrency = false;
         const decimals = 1;
         const value = 123.45678;
@@ -84,7 +87,7 @@ describe('on blur, the NumericInput component', () => {
         expect(component.find('input').props().value).to.equal(`${value}`, 'check 2');
 
         component.find('input').simulate('blur', {
-            target: { value: value }
+            target: { value }
         });
 
         expect(component.find('input').props().value).to.equal(expectedValue, 'check 3');
@@ -119,7 +122,7 @@ describe('on blur, the NumericInput component', () => {
         expect(component.find('input').props().value).to.equal(`${value}`, 'check 2');
 
         component.find('input').simulate('blur', {
-            target: { value: value }
+            target: { value }
         });
 
         expect(component.find('input').props().value).to.equal(expectedValue, 'check 3');
@@ -154,7 +157,7 @@ describe('on blur, the NumericInput component', () => {
         expect(component.find('input').props().value).to.equal(`${value}`, 'check 2');
 
         component.find('input').simulate('blur', {
-            target: { value: value }
+            target: { value }
         });
 
         expect(component.find('input').props().value).to.equal(expectedValue, 'check 3');
@@ -252,13 +255,15 @@ describe('on focus, the input element value', () => {
 /* *****************************************************************************
 when the value is initialized, the NumericInput component
     should format a numeric value as a plain number, if isCurrency=false and decimals=null
-    should format a numeric value as a number with n decimal places, if isCurrency=false and decimals=n
+    should format a numeric value as a number with n decimal places, if
+        isCurrency=false and decimals=n
     should format a numeric values as a $#.## if isCurrency=true
     should leave a blank value as-is
 */
 describe('when the value is initialized, the NumericInput component', () => {
 
-    it('should format a numeric value as a plain number, if isCurrency=false and decimals=null', () => {
+    it('should format a numeric value as a plain number, if isCurrency=false ' +
+        'and decimals=null', () => {
         const isCurrency = false;
         const decimals = null;
         const value = 123.45678;
@@ -277,7 +282,8 @@ describe('when the value is initialized, the NumericInput component', () => {
 
     });
 
-    it('should format a numeric value as a number with n decimal places, if isCurrency=false and decimals=n', () => {
+    it('should format a numeric value as a number with n decimal places, if ' +
+        'isCurrency=false and decimals=n', () => {
         const isCurrency = false;
         const decimals = 3;
         const value = 123.45678;
