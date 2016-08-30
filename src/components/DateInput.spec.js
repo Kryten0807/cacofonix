@@ -29,3 +29,30 @@ the basic markup of the DateInput component
     should have the correct label widths when labelColumns is set
     should have the correct select widths when inputColumns is set
 */
+describe('the basic markup of the DateInput component', () => {
+
+    // it('should be a div.form-group', () => {});
+    
+    // it('should include an input[type="text"]', () => {});
+    
+    // it('should include an input.form-control', () => {});
+    
+    // it('should include a label with the appropriate text if a label is specified', () => {});
+    
+    // it('should include a placeholder if a placeholder is specified', () => {});
+    
+    // it('should include a label with the the required flag if a label is specified & required is set', () => {});
+    
+    // it('should not include a label with the the required flag if a label is specified & required is not set', () => {});
+    
+    // it('should not include a label with the the required flag if a label is not specified & required is set', () => {});
+    
+    // it('should have the readonly property on the input when readonly=true', () => {});
+    
+    // it('should not have the readonly property on the input when readonly=false', () => {});
+    
+    // it('should have the correct label widths when labelColumns is set', () => {});
+    
+    // it('should have the correct select widths when inputColumns is set', () => {});
+    
+});
