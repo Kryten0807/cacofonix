@@ -194,6 +194,15 @@ class Dropdown extends React.Component {
             ])
             : null;
 
+        const selectClasses = this.props.dropdownColumns
+            ? classnames([
+                this.props.dropdownColumns.xs ? `col-xs-${this.props.dropdownColumns.xs}` : null,
+                this.props.dropdownColumns.sm ? `col-sm-${this.props.dropdownColumns.sm}` : null,
+                this.props.dropdownColumns.md ? `col-md-${this.props.dropdownColumns.md}` : null,
+                this.props.dropdownColumns.lg ? `col-lg-${this.props.dropdownColumns.lg}` : null,
+            ])
+            : null;
+
         const select = (
             <select
                 id={this.id}
