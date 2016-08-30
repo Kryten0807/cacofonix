@@ -11,17 +11,19 @@ import classnames from 'classnames';
  * @return {React.Element}    The React Element describing this component
  */
 const Label = ({ htmlFor, required, label, className }) => {
+    const classes = classnames('control-label', className || null);
+    return (
+        <label htmlFor={htmlFor} className={classes}>
 
-        {label}
+            {label}
 
-        {required
-            && <sup style={{ color: 'red' }}>
-                <i className="glyphicon glyphicon-asterisk" />
-            </sup>
-        }
+            {required
+                && <sup style={{ color: 'red' }}>
+                    <i className="glyphicon glyphicon-asterisk" />
+                </sup>
+            }
 
-    </label>
-);
+        </label>
     );
 };
 
