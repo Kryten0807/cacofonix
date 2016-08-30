@@ -246,11 +246,19 @@ class NumericInput extends React.Component {
         };
     }
 
+    /**
+     * Render the component
+     * @return {React.Element} The React Element representing this component
+     */
     render() {
+        // generate the classes for the outermost div element
+        //
         const divClasses = classnames('form-group', {
             'has-error': this.state.hasValidated && !this.state.isValid,
         });
 
+        // render the component & return it
+        //
         return (
             <div className={divClasses}>
                 {this.props.label
@@ -298,5 +306,6 @@ NumericInput.propTypes = {
     onValidation:      React.PropTypes.func,
 };
 
-
+// export the component
+//
 export default NumericInput;
