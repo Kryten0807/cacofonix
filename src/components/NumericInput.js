@@ -271,6 +271,11 @@ class NumericInput extends React.Component {
                 onFocus={this.onFocus}
             />
         );
+
+        const helpBlock = this.state.hasValidated && !this.state.isValid
+            ? <span className="help-block">{this.validationMessage}</span>
+            : '';
+
         // render the component & return it
         //
         return (
@@ -284,10 +289,8 @@ class NumericInput extends React.Component {
                     />
                     : ''
                 }
-                {this.state.hasValidated && !this.state.isValid
-                    ? <span className="help-block">{this.validationMessage}</span>
-                    : ''
-                }
+                {input}
+                {helpBlock}
             </div>
         );
     }
