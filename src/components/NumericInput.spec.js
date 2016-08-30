@@ -17,6 +17,25 @@ const expect = chai.expect;
 // validation message
 
 /* *****************************************************************************
+the validation message for the NumericInput component
+    should not be shown on initialization with required=true, value=valid
+    should not be shown on initialization with required=true, value=blank
+    should not be shown on initialization with required=false, value=blank
+
+    should not be shown after editing with required=true, value=valid
+    should not be shown after editing with required=true, value=blank
+    should not be shown after editing with required=false, value=blank
+
+    should not be shown after blur with required=true, value=valid
+    should be shown after blur with required=true, value=blank
+    should not be shown after blur with required=false, value=blank
+
+    should not be shown after editing (following prior blur) with required=true, value=valid
+    should be shown after editing (following prior blur) with required=true, value=blank
+    should not be shown after editing (following prior blur) with required=false, value=blank
+*/
+
+/* *****************************************************************************
 on blur, the NumericInput component
     should format a numeric value as a plain number, if isCurrency=false and decimals=null
     should format a numeric value as a number with n decimal places, if
