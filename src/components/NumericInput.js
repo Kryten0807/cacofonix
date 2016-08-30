@@ -118,7 +118,7 @@ class NumericInput extends React.Component {
         });
 
         return (
-            <div className="form-group">
+            <div className={divClasses}>
                 {this.props.label
                     ? <Label
                         htmlFor={this.id}
