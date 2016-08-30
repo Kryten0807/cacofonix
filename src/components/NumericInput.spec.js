@@ -34,11 +34,80 @@ on focus, the input element value
 */
 describe('on focus, the input element value', () => {
 
-    // it('should contain a currency value ("$ #.##") formatted as a plain number', () => {});
+    it('should contain a currency value ("$ #.##") formatted as a plain number', () => {
+        const isCurrency = true;
+        const decimals = null;
+        const value = 123.45678;
 
-    // it('should contain a fixed decimal value formatted as a plain number', () => {});
+        const expectedValue = '$ 123.46';
 
-    // it('should contain a blank if the value is a blank', () => {});
+        const component = shallow(
+            <NumericInput
+                isCurrency={isCurrency}
+                decimals={decimals}
+                value={value}
+            />
+        );
+
+        expect(component.find('input').props().value).to.equal(expectedValue);
+
+        component.find('input').simulate('focus', {
+            target: { value: expectedValue }
+        });
+
+        expect(component.find('input').props().value).to.equal('123.46');
+
+    });
+
+    it('should contain a fixed decimal value formatted as a plain number', () => {
+        const isCurrency = false;
+        const decimals = 4;
+        const value = 123.45678;
+
+        const expectedValue = '123.4568';
+
+        const component = shallow(
+            <NumericInput
+                isCurrency={isCurrency}
+                decimals={decimals}
+                value={value}
+            />
+        );
+
+        expect(component.find('input').props().value).to.equal(expectedValue);
+
+        component.find('input').simulate('focus', {
+            target: { value: expectedValue }
+        });
+
+        expect(component.find('input').props().value).to.equal(expectedValue);
+
+    });
+
+    it('should contain a blank if the value is a blank', () => {
+        const isCurrency = false;
+        const decimals = 4;
+        const value = '';
+
+        const expectedValue = '';
+
+        const component = shallow(
+            <NumericInput
+                isCurrency={isCurrency}
+                decimals={decimals}
+                value={value}
+            />
+        );
+
+        expect(component.find('input').props().value).to.equal(value);
+
+        component.find('input').simulate('focus', {
+            target: { value }
+        });
+
+        expect(component.find('input').props().value).to.equal(expectedValue);
+
+    });
 
 });
 
