@@ -258,6 +258,19 @@ class NumericInput extends React.Component {
             'has-error': this.state.hasValidated && !this.state.isValid,
         });
 
+        const input = (
+            <input
+                type="text"
+                id={this.id}
+                className="form-control"
+                placeholder={this.props.placeholder || ''}
+                value={this.state.value}
+                readOnly={this.props.readOnly}
+                onBlur={this.onBlur}
+                onChange={this.onChange}
+                onFocus={this.onFocus}
+            />
+        );
         // render the component & return it
         //
         return (
@@ -271,17 +284,6 @@ class NumericInput extends React.Component {
                     />
                     : ''
                 }
-                <input
-                    type="text"
-                    id={this.id}
-                    className="form-control"
-                    placeholder={this.props.placeholder || ''}
-                    value={this.state.value}
-                    readOnly={this.props.readOnly}
-                    onBlur={this.onBlur}
-                    onChange={this.onChange}
-                    onFocus={this.onFocus}
-                />
                 {this.state.hasValidated && !this.state.isValid
                     ? <span className="help-block">{this.validationMessage}</span>
                     : ''
