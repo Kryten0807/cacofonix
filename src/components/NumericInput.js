@@ -178,8 +178,6 @@ class NumericInput extends React.Component {
         const newState = this.validate(event.target.value, false);
         newState.hasValidated = this.state.hasValidated;
 
-        newState.value = clean(newState.value);
-
         this.setState(newState);
     }
 
