@@ -22,6 +22,7 @@ when the parent component sends new value prop, a non-required TextInput compone
     should not show the validation message when required=false, value=blank
     should not call the onValidation handler when value has not changed
     should not call the onChange handler when value has not changed
+    should update the input element value prop
 */
 describe('when the parent component sends new value prop, a non-required ' +
     'TextInput component', () => {
@@ -210,6 +211,24 @@ describe('when the parent component sends new value prop, a non-required ' +
 
         expect(onChange.callCount).to.equal(0);
     });
+
+    it('should update the input element value prop', () => {
+
+        const initialValue = 'something';
+
+        const testValue = 'something else';
+
+        const parent = mount(<TestParent testValue={initialValue} />);
+
+        expect(parent.find('input').props().value).to.equal(initialValue);
+
+        // change the state of the parent
+        //
+        parent.setState({ testValue });
+
+        expect(parent.find('input').props().value).to.equal(testValue);
+    });
+
 });
 
 /* *****************************************************************************
@@ -595,6 +614,7 @@ after the user edits the value, the TextInput component
     should not show the validation message when required=true and the value is valid
     should not show the validation message when required=false and the value is blank
     should not show the validation message when required=true and the value is blank
+    should update the value of the input element
 */
 describe('after the user edits the value, the TextInput component', () => {
 
@@ -675,6 +695,28 @@ describe('after the user edits the value, the TextInput component', () => {
         expect(component.find('div.form-group').length).to.equal(1, 'form-group');
         expect(component.find('div.form-group.has-error').length).to.equal(0, 'has-error');
         expect(component.find('span.help-block').length).to.equal(0, 'help-block');
+
+    });
+
+    it('should update the value of the input element', () => {
+        const required = true;
+        const value = 'woooo!';
+
+        const newValue = 'something else';
+
+        const component = mount(<TextInput
+            required={required}
+            description={description}
+            value={value}
+        />);
+
+        expect(component.find('input').props().value).to.equal(value, 'before');
+
+        component.find('input').simulate('change', {
+            target: { value: newValue }
+        });
+
+        expect(component.find('input').props().value).to.equal(newValue, 'after');
 
     });
 
