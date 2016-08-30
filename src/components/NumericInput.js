@@ -71,13 +71,29 @@ class NumericInput extends React.Component {
         }
     }
 
+    /**
+     * Handle new props passed from the parent component
+     * @param  {Object} newProps The new props
+     */
     componentWillReceiveProps(newProps) {
+        // validate the new value
+        //
         const newState = this.validate(newProps.value);
+
+        // ensure that we preserve the `hasValidated` state of the component
+        //
         newState.hasValidated = this.state.hasValidated;
 
+        // do we have a new value? if not, then don't bother changing anything
+        //
         if (newState.value !== this.state.value) {
+            // update the component state
+            //
             this.setState(newState);
 
+            // do we have an onValidation handler? if so, call it with the new
+            // validation state
+            //
             if (this.props.onValidation) {
                 this.props.onValidation(
                     newState.hasValidated,
@@ -86,11 +102,12 @@ class NumericInput extends React.Component {
                 );
             }
 
+            // do we have an onChange handler? if so, call it with the new value
+            //
             if (this.props.onChange) {
                 this.props.onChange(newState.value);
             }
         }
-
     }
 
     onBlur(event) {
