@@ -78,7 +78,7 @@ class NumericInput extends React.Component {
     componentWillReceiveProps(newProps) {
         // validate the new value
         //
-        const newState = this.validate(newProps.value);
+        const newState = this.validate(newProps.value, false);
 
         // ensure that we preserve the `hasValidated` state of the component
         //
@@ -175,7 +175,7 @@ class NumericInput extends React.Component {
     }
 
     onFocus(event) {
-        const newState = this.validate(event.target.value);
+        const newState = this.validate(event.target.value, false);
         newState.hasValidated = this.state.hasValidated;
 
         newState.value = clean(newState.value);
@@ -183,7 +183,7 @@ class NumericInput extends React.Component {
         this.setState(newState);
     }
 
-    validate(newValue, format = false) {
+    validate(newValue, format) {
         let value = parseFloat(clean(newValue));
 
         const notANumber = Number.isNaN(value);
