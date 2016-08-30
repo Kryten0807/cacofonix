@@ -15,8 +15,6 @@ const expect = chai.expect;
 // Tests to write:
 // new props
 // validation message
-// format on blur
-// remove formatting on focus
 
 /* *****************************************************************************
 on blur, the NumericInput component
