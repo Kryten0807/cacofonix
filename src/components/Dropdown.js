@@ -66,10 +66,6 @@ class Dropdown extends React.Component {
      * @param  {Object} newProps The new properties for the object
      */
     componentWillReceiveProps(newProps) {
-        // save the current value for later use
-        //
-        const currentValue = this.state.value;
-
         // build the new state by validating the new value property
         //
         const newState = this.validate(newProps.value);
@@ -78,26 +74,31 @@ class Dropdown extends React.Component {
         //
         newState.hasValidated = this.state.hasValidated;
 
-        // set the new state
+        // has the value changed? if not, then don't bother updating or calling
+        // event handlers
         //
-        this.setState(newState);
+        if (newState.value !== this.state.value) {
+            // set the new state
+            //
+            this.setState(newState);
 
-        // do we have an onValidation handler? has the value changed? if so,
-        // call the handler with the new validation state
-        //
-        if (this.props.onValidation && currentValue !== newState.value) {
-            this.props.onValidation(
-                newState.hasValidated,
-                newState.isValid,
-                newState.validationMessage
-            );
-        }
+            // do we have an onValidation handler? has the value changed? if so,
+            // call the handler with the new validation state
+            //
+            if (this.props.onValidation) {
+                this.props.onValidation(
+                    newState.hasValidated,
+                    newState.isValid,
+                    newState.validationMessage
+                );
+            }
 
-        // do we have an onChange handler? has the value changed? if so, call
-        // the handler with the new value
-        //
-        if (this.props.onChange && currentValue !== newState.value) {
-            this.props.onChange(newState.value);
+            // do we have an onChange handler? has the value changed? if so, call
+            // the handler with the new value
+            //
+            if (this.props.onChange) {
+                this.props.onChange(newState.value);
+            }
         }
     }
 
@@ -193,6 +194,7 @@ class Dropdown extends React.Component {
         const select = (
             <select
                 id={this.id}
+                value={this.state.value}
                 className="form-control"
                 onChange={this.onEvent}
                 onBlur={this.onEvent}
