@@ -27,6 +27,7 @@ when the parent component sends new value prop, a required NumericInput componen
     should not show the validation message when required=true, value=blank
     should not call the onValidation handler when value has not changed
     should not call the onChange handler when value has not changed
+    should show the validation message after blur then prop change when required=true, value=blank
 */
 describe('when the parent component sends new value prop, a required ' +
     'NumericInput component', () => {
@@ -233,6 +234,7 @@ when the parent component sends new value prop, a non-required NumericInput comp
     should not show the validation message when required=false, value=blank
     should not call the onValidation handler when value has not changed
     should not call the onChange handler when value has not changed
+    should not show the validation message after blur then prop change when required=true, value=blank
 */
 describe('when the parent component sends new value prop, a non-required ' +
     'NumericInput component', () => {
