@@ -20,7 +20,7 @@ class NumericInput extends React.Component {
 
         this.validationMessage = `${props.description} is required`;
 
-        this.state = this.validate(props.value);
+        this.state = this.validate(props.value, true);
 
         this.onBlur = this.onBlur.bind(this);
         this.onChange = this.onChange.bind(this);
@@ -38,7 +38,8 @@ class NumericInput extends React.Component {
     }
 
     onBlur(event) {
-        const newState = this.validate(event.target.value);
+
+        const newState = this.validate(event.target.value, true);
         newState.hasValidated = true;
 
         this.setState(newState);
