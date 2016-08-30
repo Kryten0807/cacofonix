@@ -295,6 +295,7 @@ NumericInput.propTypes = {
     label:             React.PropTypes.string,
     description:       React.PropTypes.string,
     required:          React.PropTypes.bool,
+    readonly:          React.PropTypes.bool,
     validationMessage: React.PropTypes.string,
     placeholder:       React.PropTypes.string,
     isCurrency:        React.PropTypes.bool,
