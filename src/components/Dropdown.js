@@ -4,6 +4,7 @@ import React from 'react';
 import uniqueId from 'lodash/uniqueId';
 import classnames from 'classnames';
 import Label from './Label';
+import columns from '../helpers/columns';
 
 /**
  * The Dropdown class
@@ -185,23 +186,9 @@ class Dropdown extends React.Component {
 
         // generate the classes for the label component
         //
-        const labelClasses = this.props.labelColumns
-            ? classnames([
-                this.props.labelColumns.xs ? `col-xs-${this.props.labelColumns.xs}` : null,
-                this.props.labelColumns.sm ? `col-sm-${this.props.labelColumns.sm}` : null,
-                this.props.labelColumns.md ? `col-md-${this.props.labelColumns.md}` : null,
-                this.props.labelColumns.lg ? `col-lg-${this.props.labelColumns.lg}` : null,
-            ])
-            : null;
+        const labelClasses = columns(this.props.labelColumns);
 
-        const selectClasses = this.props.dropdownColumns
-            ? classnames([
-                this.props.dropdownColumns.xs ? `col-xs-${this.props.dropdownColumns.xs}` : null,
-                this.props.dropdownColumns.sm ? `col-sm-${this.props.dropdownColumns.sm}` : null,
-                this.props.dropdownColumns.md ? `col-md-${this.props.dropdownColumns.md}` : null,
-                this.props.dropdownColumns.lg ? `col-lg-${this.props.dropdownColumns.lg}` : null,
-            ])
-            : null;
+        const selectClasses = columns(this.props.dropdownColumns);
 
         const select = (
             <select
