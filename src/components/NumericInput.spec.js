@@ -35,7 +35,8 @@ the validation message for the NumericInput component
     should be shown after editing (following prior blur) with required=true, value=blank
     should not be shown after editing (following prior blur) with required=false, value=blank
 
-    should show a custom validation message after blur with required=true, value=blank, validationMessage=something
+    should show a custom validation message after blur with required=true,
+        value=blank, validationMessage=something
 
 */
 describe('the validation message for the NumericInput component', () => {
@@ -231,7 +232,8 @@ describe('the validation message for the NumericInput component', () => {
         expect(component.find('span.help-block').length).to.equal(0);
     });
 
-    it('should not be shown after editing (following prior blur) with required=true, value=valid', () => {
+    it('should not be shown after editing (following prior blur) with ' +
+        'required=true, value=valid', () => {
         const required = true;
         const initialValue = 42;
         const secondValue = '';
@@ -265,7 +267,8 @@ describe('the validation message for the NumericInput component', () => {
         expect(component.find('span.help-block').length).to.equal(0);
     });
 
-    it('should be shown after editing (following prior blur) with required=true, value=blank', () => {
+    it('should be shown after editing (following prior blur) with ' +
+        'required=true, value=blank', () => {
         const required = true;
         const initialValue = 42;
         const secondValue = 55;
@@ -300,7 +303,8 @@ describe('the validation message for the NumericInput component', () => {
         expect(component.find('span.help-block').text()).to.equal(expectedMessage);
     });
 
-    it('should not be shown after editing (following prior blur) with required=false, value=blank', () => {
+    it('should not be shown after editing (following prior blur) with ' +
+        'required=false, value=blank', () => {
         const required = false;
         const initialValue = 42;
         const secondValue = 1;
@@ -334,7 +338,8 @@ describe('the validation message for the NumericInput component', () => {
         expect(component.find('span.help-block').length).to.equal(0);
     });
 
-    it('should show a custom validation message after blur with required=true, value=blank, validationMessage=something', () => {
+    it('should show a custom validation message after blur with ' +
+        'required=true, value=blank, validationMessage=something', () => {
         const required = true;
         const validationMessage = 'No way, man!';
         const initialValue = 42;
@@ -362,9 +367,6 @@ describe('the validation message for the NumericInput component', () => {
     });
 
 });
-
-
-
 
 /* *****************************************************************************
 on blur, the NumericInput component
