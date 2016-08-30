@@ -1555,6 +1555,8 @@ on initialization, the Dropdown component
     should have the correct number of option elements (n) if includeNull=false
     should have a null option with the correct text when includeNull=true and nullName is set
     should have the correct option text for each option
+    should have the correct label widths when labelColumns is set
+    should have the correct select widths when dropdownColumns is set
 */
 describe('on initialization, the Dropdown component', () => {
 
