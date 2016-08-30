@@ -38,6 +38,25 @@ when the parent component sends new value prop, a non-required NumericInput comp
     should not call the onValidation handler when value has not changed
     should not call the onChange handler when value has not changed
 */
+describe('when the parent component sends new value prop, a non-required NumericInput component', () => {
+
+    // it('should call the onValidation handler when required=false, value=valid', () => {});
+
+    // it('should call the onValidation handler when required=false, value=blank', () => {});
+
+    // it('should call the onChange handler when required=false, value=valid', () => {});
+
+    // it('should call the onChange handler when required=false, value=blank', () => {});
+
+    // it('should not show the validation message when required=false, value=valid', () => {});
+
+    // it('should not show the validation message when required=false, value=blank', () => {});
+
+    // it('should not call the onValidation handler when value has not changed', () => {});
+
+    // it('should not call the onChange handler when value has not changed', () => {});
+
+});
 
 /* *****************************************************************************
 the validation message for the NumericInput component
