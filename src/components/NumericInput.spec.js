@@ -1663,5 +1663,15 @@ describe('in terms of basic markup, the NumericInput component', () => {
         expect(component.find('input').props().readOnly).to.equal(false);
     });
 
+    it('should have the correct label widths when labelColumns is set', () => {
+        const label = 'my label';
+        const columns = { xs: 10, md: 8 };
+        const expectedClass = 'col-xs-10 col-md-8';
+
+        const component = shallow(<NumericInput label={label} labelColumns={columns} />);
+
+        expect(component.find('Label').props().className).to.equal(expectedClass);
+    });
+
 
 });
