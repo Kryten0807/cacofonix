@@ -110,9 +110,17 @@ class NumericInput extends React.Component {
         }
     }
 
+    /**
+     * Handle the blur event for the input element
+     * @param  {Object} event The event object
+     */
     onBlur(event) {
-
+        // validate the new value WITH FORMATTING
+        //
         const newState = this.validate(event.target.value, true);
+
+        // set `hasValidated` to true
+        //
         newState.hasValidated = true;
 
         this.setState(newState);
