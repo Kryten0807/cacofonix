@@ -23,6 +23,7 @@ on blur, the NumericInput component
     should format a numeric value as a plain number, if isCurrency=false and decimals=null
     should format a numeric value as a number with n decimal places, if isCurrency=false and decimals=n
     should format a numeric values as a $#.## if isCurrency=true
+    should leave a blank value as-is
 */
 describe('on blur, the NumericInput component', () => {
 
@@ -31,6 +32,8 @@ describe('on blur, the NumericInput component', () => {
     // it('should format a numeric value as a number with n decimal places, if isCurrency=false and decimals=n', () => {});
 
     // it('should format a numeric values as a $#.## if isCurrency=true', () => {});
+
+    // it('should leave a blank value as-is', () => {});
 
 });
 
