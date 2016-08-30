@@ -27,13 +27,141 @@ on blur, the NumericInput component
 */
 describe('on blur, the NumericInput component', () => {
 
-    // it('should format a numeric value as a plain number, if isCurrency=false and decimals=null', () => {});
+    it('should format a numeric value as a plain number, if isCurrency=false and decimals=null', () => {
+        const isCurrency = false;
+        const decimals = null;
+        const value = 123.45678;
 
-    // it('should format a numeric value as a number with n decimal places, if isCurrency=false and decimals=n', () => {});
+        const expectedValue = `${value}`;
 
-    // it('should format a numeric values as a $#.## if isCurrency=true', () => {});
+        const component = shallow(
+            <NumericInput
+                isCurrency={isCurrency}
+                decimals={decimals}
+                value={value}
+            />
+        );
 
-    // it('should leave a blank value as-is', () => {});
+        expect(component.find('input').props().value).to.equal(expectedValue);
+
+        component.find('input').simulate('focus', {
+            target: { value: expectedValue }
+        });
+
+        expect(component.find('input').props().value).to.equal(expectedValue);
+
+        component.find('input').simulate('blur', {
+            target: { value: expectedValue }
+        });
+
+        expect(component.find('input').props().value).to.equal(expectedValue);
+
+    });
+
+    it('should format a numeric value as a number with n decimal places, if isCurrency=false and decimals=n', () => {
+        const isCurrency = false;
+        const decimals = 1;
+        const value = 123.45678;
+
+        const expectedValue = '123.5';
+
+        const component = shallow(
+            <NumericInput
+                isCurrency={isCurrency}
+                decimals={decimals}
+                value={value}
+            />
+        );
+
+        expect(component.find('input').props().value).to.equal(expectedValue, 'check 1');
+
+        component.find('input').simulate('focus', {
+            target: { value }
+        });
+
+        component.find('input').simulate('change', {
+            target: { value }
+        });
+
+        expect(component.find('input').props().value).to.equal(`${value}`, 'check 2');
+
+        component.find('input').simulate('blur', {
+            target: { value: value }
+        });
+
+        expect(component.find('input').props().value).to.equal(expectedValue, 'check 3');
+
+    });
+
+    it('should format a numeric values as a $#.## if isCurrency=true', () => {
+        const isCurrency = true;
+        const decimals = null;
+        const value = 123.45678;
+
+        const expectedValue = '$ 123.46';
+
+        const component = shallow(
+            <NumericInput
+                isCurrency={isCurrency}
+                decimals={decimals}
+                value={value}
+            />
+        );
+
+        expect(component.find('input').props().value).to.equal(expectedValue, 'check 1');
+
+        component.find('input').simulate('focus', {
+            target: { value }
+        });
+
+        component.find('input').simulate('change', {
+            target: { value }
+        });
+
+        expect(component.find('input').props().value).to.equal(`${value}`, 'check 2');
+
+        component.find('input').simulate('blur', {
+            target: { value: value }
+        });
+
+        expect(component.find('input').props().value).to.equal(expectedValue, 'check 3');
+
+    });
+
+    it('should leave a blank value as-is', () => {
+        const isCurrency = true;
+        const decimals = null;
+        const value = '';
+
+        const expectedValue = value;
+
+        const component = shallow(
+            <NumericInput
+                isCurrency={isCurrency}
+                decimals={decimals}
+                value={value}
+            />
+        );
+
+        expect(component.find('input').props().value).to.equal(expectedValue, 'check 1');
+
+        component.find('input').simulate('focus', {
+            target: { value }
+        });
+
+        component.find('input').simulate('change', {
+            target: { value }
+        });
+
+        expect(component.find('input').props().value).to.equal(`${value}`, 'check 2');
+
+        component.find('input').simulate('blur', {
+            target: { value: value }
+        });
+
+        expect(component.find('input').props().value).to.equal(expectedValue, 'check 3');
+
+    });
 
 });
 
