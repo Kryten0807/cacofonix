@@ -10,8 +10,7 @@ import classnames from 'classnames';
  * @param  {String}  label    The text to display in the label component
  * @return {React.Element}    The React Element describing this component
  */
-const Label = ({ htmlFor, required, label }) => (
-    <label htmlFor={htmlFor} className="control-label">
+const Label = ({ htmlFor, required, label, className }) => {
 
         {label}
 
@@ -23,6 +22,8 @@ const Label = ({ htmlFor, required, label }) => (
 
     </label>
 );
+    );
+};
 
 // set the property types for the Label component
 //
