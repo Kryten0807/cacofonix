@@ -66,10 +66,6 @@ class Dropdown extends React.Component {
      * @param  {Object} newProps The new properties for the object
      */
     componentWillReceiveProps(newProps) {
-        // save the current value for later use
-        //
-        const currentValue = this.state.value;
-
         // build the new state by validating the new value property
         //
         const newState = this.validate(newProps.value);
