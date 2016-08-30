@@ -275,6 +275,7 @@ class NumericInput extends React.Component {
                     className="form-control"
                     placeholder={this.props.placeholder || ''}
                     value={this.state.value}
+                    readonly={this.props.readonly}
                     onBlur={this.onBlur}
                     onChange={this.onChange}
                     onFocus={this.onFocus}
