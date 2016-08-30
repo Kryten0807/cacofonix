@@ -219,7 +219,8 @@ describe('when the parent component sends new value prop, a required ' +
         expect(onChange.callCount).to.equal(0);
     });
 
-    it('should show the validation message after blur then prop change when required=true, value=blank', () => {
+    it('should show the validation message after blur then prop change when ' +
+        'required=true, value=blank', () => {
 
         const initialValue = 88;
         const secondValue = 99;
@@ -257,7 +258,8 @@ when the parent component sends new value prop, a non-required NumericInput comp
     should not show the validation message when required=false, value=blank
     should not call the onValidation handler when value has not changed
     should not call the onChange handler when value has not changed
-    should not show the validation message after blur then prop change when required=true, value=blank
+    should not show the validation message after blur then prop change when
+        required=true, value=blank
 */
 describe('when the parent component sends new value prop, a non-required ' +
     'NumericInput component', () => {
@@ -451,7 +453,8 @@ describe('when the parent component sends new value prop, a non-required ' +
         expect(onChange.callCount).to.equal(0);
     });
 
-    it('should not show the validation message after blur then prop change when required=false, value=blank', () => {
+    it('should not show the validation message after blur then prop change ' +
+        'when required=false, value=blank', () => {
 
         const initialValue = 88;
         const secondValue = 99;
