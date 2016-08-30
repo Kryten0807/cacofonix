@@ -7,6 +7,8 @@ import Label from './Label';
 
 const clean = (value) => `${value}`.replace(/[^0-9.]/g, '');
 
+const decimals = (value, decimals) => `${value.toFixed(decimals)}`;
+
 class NumericInput extends React.Component {
     constructor(props) {
         super(props);
