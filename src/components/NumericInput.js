@@ -137,6 +137,10 @@ class NumericInput extends React.Component {
                     onChange={this.onChange}
                     onFocus={this.onFocus}
                 />
+                {this.state.hasValidated && !this.state.isValid
+                    ? <span className="help-block">{this.validationMessage}</span>
+                    : ''
+                }
             </div>
         );
     }
