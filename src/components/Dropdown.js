@@ -198,6 +198,7 @@ class Dropdown extends React.Component {
                         htmlFor={this.id}
                         label={this.props.label}
                         required={this.props.required}
+                        className={labelClasses}
                     />
                     : ''
                 }
