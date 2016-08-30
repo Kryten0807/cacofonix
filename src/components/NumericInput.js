@@ -117,8 +117,14 @@ class NumericInput extends React.Component {
         const newState = this.validate(event.target.value);
         newState.hasValidated = this.state.hasValidated;
 
+    onUpdatedState(newState) {
+        // set the new component state
+        //
         this.setState(newState);
 
+        // do we have an onValidation handler? has the component previously
+        // validated? if so, call the onValidation handler with the new validation state
+        //
         if (this.props.onValidation && newState.hasValidated) {
             this.props.onValidation(
                 newState.hasValidated,
@@ -127,6 +133,9 @@ class NumericInput extends React.Component {
             );
         }
 
+        // do we have an onChange handler? do we have a new value? if so, call
+        // the onChange handler with the new value
+        //
         if (this.props.onChange && newState.value !== this.state.value) {
             this.props.onChange(newState.value);
         }
