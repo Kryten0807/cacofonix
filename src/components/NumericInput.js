@@ -28,7 +28,9 @@ const decimals = (value, count) => `${value.toFixed(count)}`;
  */
 const currency = (value) => `$ ${decimals(value, 2)}`;
 
-
+/**
+ * The NumericInput component
+ */
 class NumericInput extends React.Component {
     constructor(props) {
         super(props);
@@ -53,7 +55,13 @@ class NumericInput extends React.Component {
         this.onFocus = this.onFocus.bind(this);
     }
 
+    /**
+     * Handle the initial mounting of the component
+     */
     componentWillMount() {
+        // do we have an onValidation handler? if so, call it with the current
+        // validation state
+        //
         if (this.props.onValidation) {
             this.props.onValidation(
                 this.state.hasValidated,
