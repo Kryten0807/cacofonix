@@ -43,6 +43,9 @@ class NumericInput extends React.Component {
             this.props.onValidation(false, true, null);
         }
 
+        if (this.props.onChange && `${newProps.value}` !== `${this.state.value}`) {
+            this.props.onChange(newProps.value);
+        }
     }
 
     onBlur(event) {
