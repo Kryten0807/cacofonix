@@ -194,6 +194,25 @@ class Dropdown extends React.Component {
             ])
             : null;
 
+        const select = (
+            <select
+                id={this.id}
+                className="form-control"
+                onChange={this.onEvent}
+                onBlur={this.onEvent}
+            >
+                {this.props.includeNull
+                    ? <option key={uniqueId('Dropdown-')} value="">
+                        {this.props.nullName || 'Please select one'}
+                    </option>
+                    : ''
+                }
+                {this.props.options.map((opt) =>
+                    <option key={uniqueId('Dropdown-')} value={opt.value}>{opt.name}</option>)
+                }
+            </select>
+        );
+
         return (
             <div className={divClasses}>
                 {this.props.label
@@ -205,22 +224,7 @@ class Dropdown extends React.Component {
                     />
                     : ''
                 }
-                <select
-                    id={this.id}
-                    className="form-control"
-                    onChange={this.onEvent}
-                    onBlur={this.onEvent}
-                >
-                    {this.props.includeNull
-                        ? <option key={uniqueId('Dropdown-')} value="">
-                            {this.props.nullName || 'Please select one'}
-                        </option>
-                        : ''
-                    }
-                    {this.props.options.map((opt) =>
-                        <option key={uniqueId('Dropdown-')} value={opt.value}>{opt.name}</option>)
-                    }
-                </select>
+                {select}
 
                 {this.state.hasValidated && !this.state.isValid
                     ? <span className="help-block">{this.state.validationMessage}</span>
