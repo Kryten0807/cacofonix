@@ -13,6 +13,7 @@ import NumericInput from './NumericInput';
 const expect = chai.expect;
 
 // Tests to write:
+// show validation message after prop change post-blur
 // new props
 
 /* *****************************************************************************
