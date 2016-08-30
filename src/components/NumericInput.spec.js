@@ -14,6 +14,7 @@ const expect = chai.expect;
 
 // Tests to write:
 // new props
+// add custom validation message spec to onValidation tests
 // validation message
 
 /* *****************************************************************************
