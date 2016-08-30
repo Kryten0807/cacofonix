@@ -40,31 +40,326 @@ the validation message for the NumericInput component
 */
 describe('the validation message for the NumericInput component', () => {
 
-    // it('should not be shown on initialization with required=true, value=valid', () => {});
+    const description = 'my number';
 
-    // it('should not be shown on initialization with required=true, value=blank', () => {});
+    const expectedMessage = `${description} is required`;
 
-    // it('should not be shown on initialization with required=false, value=blank', () => {});
+    it('should not be shown on initialization with required=true, value=valid', () => {
+        const required = true;
+        const value = 8621.3;
 
-    // it('should not be shown after editing with required=true, value=valid', () => {});
+        const component = shallow(
+            <NumericInput
+                required={required}
+                description={description}
+                value={value}
+            />
+        );
 
-    // it('should not be shown after editing with required=true, value=blank', () => {});
+        expect(component.find('div.form-group.has-error').length).to.equal(0);
+        expect(component.find('span.help-block').length).to.equal(0);
+    });
 
-    // it('should not be shown after editing with required=false, value=blank', () => {});
+    it('should not be shown on initialization with required=true, value=blank', () => {
+        const required = true;
+        const value = '';
 
-    // it('should not be shown after blur with required=true, value=valid', () => {});
+        const component = shallow(
+            <NumericInput
+                required={required}
+                description={description}
+                value={value}
+            />
+        );
 
-    // it('should be shown after blur with required=true, value=blank', () => {});
+        expect(component.find('div.form-group.has-error').length).to.equal(0);
+        expect(component.find('span.help-block').length).to.equal(0);
+    });
 
-    // it('should not be shown after blur with required=false, value=blank', () => {});
+    it('should not be shown on initialization with required=false, value=blank', () => {
+        const required = false;
+        const value = '';
 
-    // it('should not be shown after editing (following prior blur) with required=true, value=valid', () => {});
+        const component = shallow(
+            <NumericInput
+                required={required}
+                description={description}
+                value={value}
+            />
+        );
 
-    // it('should be shown after editing (following prior blur) with required=true, value=blank', () => {});
+        expect(component.find('div.form-group.has-error').length).to.equal(0);
+        expect(component.find('span.help-block').length).to.equal(0);
+    });
 
-    // it('should not be shown after editing (following prior blur) with required=false, value=blank', () => {});
+    it('should not be shown after editing with required=true, value=valid', () => {
+        const required = true;
+        const initialValue = 99;
+        const finalValue = 42;
 
-    // it('should show a custom validation message after blur with required=true, value=blank, validationMessage=something', () => {});
+        const component = mount(
+            <NumericInput
+                required={required}
+                description={description}
+                value={initialValue}
+            />
+        );
+
+        component.find('input').simulate('change', {
+            target: { value: finalValue }
+        });
+
+        expect(component.find('div.form-group.has-error').length).to.equal(0);
+        expect(component.find('span.help-block').length).to.equal(0);
+    });
+
+    it('should not be shown after editing with required=true, value=blank', () => {
+        const required = true;
+        const initialValue = 42;
+        const finalValue = '';
+
+        const component = mount(
+            <NumericInput
+                required={required}
+                description={description}
+                value={initialValue}
+            />
+        );
+
+        component.find('input').simulate('change', {
+            target: { value: finalValue }
+        });
+
+        expect(component.find('div.form-group.has-error').length).to.equal(0);
+        expect(component.find('span.help-block').length).to.equal(0);
+    });
+
+    it('should not be shown after editing with required=false, value=blank', () => {
+        const required = false;
+        const initialValue = 42;
+        const finalValue = '';
+
+        const component = mount(
+            <NumericInput
+                required={required}
+                description={description}
+                value={initialValue}
+            />
+        );
+
+        component.find('input').simulate('change', {
+            target: { value: finalValue }
+        });
+
+        expect(component.find('div.form-group.has-error').length).to.equal(0);
+        expect(component.find('span.help-block').length).to.equal(0);
+    });
+
+    it('should not be shown after blur with required=true, value=valid', () => {
+        const required = false;
+        const initialValue = 42;
+        const finalValue = 6;
+
+        const component = mount(
+            <NumericInput
+                required={required}
+                description={description}
+                value={initialValue}
+            />
+        );
+
+        component.find('input').simulate('change', {
+            target: { value: finalValue }
+        });
+
+        component.find('input').simulate('blur', {
+            target: { value: finalValue }
+        });
+
+        expect(component.find('div.form-group.has-error').length).to.equal(0);
+        expect(component.find('span.help-block').length).to.equal(0);
+    });
+
+    it('should be shown after blur with required=true, value=blank', () => {
+        const required = true;
+        const initialValue = 42;
+        const finalValue = '';
+
+        const component = mount(
+            <NumericInput
+                required={required}
+                description={description}
+                value={initialValue}
+            />
+        );
+
+        component.find('input').simulate('change', {
+            target: { value: finalValue }
+        });
+
+        component.find('input').simulate('blur', {
+            target: { value: finalValue }
+        });
+
+        expect(component.find('div.form-group.has-error').length).to.equal(1);
+        expect(component.find('span.help-block').length).to.equal(1);
+        expect(component.find('span.help-block').text()).to.equal(expectedMessage);
+    });
+
+    it('should not be shown after blur with required=false, value=blank', () => {
+        const required = false;
+        const initialValue = 42;
+        const finalValue = '';
+
+        const component = mount(
+            <NumericInput
+                required={required}
+                description={description}
+                value={initialValue}
+            />
+        );
+
+        component.find('input').simulate('change', {
+            target: { value: finalValue }
+        });
+
+        component.find('input').simulate('blur', {
+            target: { value: finalValue }
+        });
+
+        expect(component.find('div.form-group.has-error').length).to.equal(0);
+        expect(component.find('span.help-block').length).to.equal(0);
+    });
+
+    it('should not be shown after editing (following prior blur) with required=true, value=valid', () => {
+        const required = true;
+        const initialValue = 42;
+        const secondValue = '';
+        const finalValue = 99;
+
+        const component = mount(
+            <NumericInput
+                required={required}
+                description={description}
+                value={initialValue}
+            />
+        );
+
+        // make the first change & blur
+        //
+        component.find('input').simulate('change', {
+            target: { value: secondValue }
+        });
+
+        component.find('input').simulate('blur', {
+            target: { value: secondValue }
+        });
+
+        // make the second change
+        //
+        component.find('input').simulate('change', {
+            target: { value: finalValue }
+        });
+
+        expect(component.find('div.form-group.has-error').length).to.equal(0);
+        expect(component.find('span.help-block').length).to.equal(0);
+    });
+
+    it('should be shown after editing (following prior blur) with required=true, value=blank', () => {
+        const required = true;
+        const initialValue = 42;
+        const secondValue = 55;
+        const finalValue = '';
+
+        const component = mount(
+            <NumericInput
+                required={required}
+                description={description}
+                value={initialValue}
+            />
+        );
+
+        // make the first change & blur
+        //
+        component.find('input').simulate('change', {
+            target: { value: secondValue }
+        });
+
+        component.find('input').simulate('blur', {
+            target: { value: secondValue }
+        });
+
+        // make the second change
+        //
+        component.find('input').simulate('change', {
+            target: { value: finalValue }
+        });
+
+        expect(component.find('div.form-group.has-error').length).to.equal(1);
+        expect(component.find('span.help-block').length).to.equal(1);
+        expect(component.find('span.help-block').text()).to.equal(expectedMessage);
+    });
+
+    it('should not be shown after editing (following prior blur) with required=false, value=blank', () => {
+        const required = false;
+        const initialValue = 42;
+        const secondValue = 1;
+        const finalValue = '';
+
+        const component = mount(
+            <NumericInput
+                required={required}
+                description={description}
+                value={initialValue}
+            />
+        );
+
+        // make the first change & blur
+        //
+        component.find('input').simulate('change', {
+            target: { value: secondValue }
+        });
+
+        component.find('input').simulate('blur', {
+            target: { value: secondValue }
+        });
+
+        // make the second change
+        //
+        component.find('input').simulate('change', {
+            target: { value: finalValue }
+        });
+
+        expect(component.find('div.form-group.has-error').length).to.equal(0);
+        expect(component.find('span.help-block').length).to.equal(0);
+    });
+
+    it('should show a custom validation message after blur with required=true, value=blank, validationMessage=something', () => {
+        const required = true;
+        const validationMessage = 'No way, man!';
+        const initialValue = 42;
+        const finalValue = '';
+
+        const component = mount(
+            <NumericInput
+                required={required}
+                validationMessage={validationMessage}
+                value={initialValue}
+            />
+        );
+
+        component.find('input').simulate('change', {
+            target: { value: finalValue }
+        });
+
+        component.find('input').simulate('blur', {
+            target: { value: finalValue }
+        });
+
+        expect(component.find('div.form-group.has-error').length).to.equal(1);
+        expect(component.find('span.help-block').length).to.equal(1);
+        expect(component.find('span.help-block').text()).to.equal(validationMessage);
+    });
 
 });
 
