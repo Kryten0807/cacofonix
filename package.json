@@ -4,6 +4,7 @@
   "description": "A collection of Bootstrap-themed React form components with support for validation",
   "main": "dist/index.js",
   "scripts": {
+    "prepublish": "gulp build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Dave Thomas <dave@monstergfx.com>",
