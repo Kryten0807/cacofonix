@@ -84,17 +84,17 @@ class NumericInput extends React.Component {
         this.setState(newState);
     }
 
-        let value = parseFloat(`${newValue}`.replace(/[^0-9.]/g, ''));
     validate(newValue, format = false) {
+        let value = parseFloat(clean(newValue));
 
         const notANumber = Number.isNaN(value);
 
         if (notANumber) {
             value = '';
-        } else if (this.props.isCurrency) {
-            value = `$ ${value.toFixed(2)}`;
-        } else if (this.props.decimals) {
-            value = value.toFixed(this.props.decimals);
+        } else if (format && this.props.isCurrency) {
+            value = currency(value);
+        } else if (format && (this.props.decimals || this.props.decimals === 0)) {
+            value = decimals(value, this.props.decimals);
         } else {
             value = `${value}`;
         }
