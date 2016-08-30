@@ -2,6 +2,7 @@
 //
 import React from 'react';
 import uniqueId from 'lodash/uniqueId';
+import classnames from 'classnames';
 
 import Label from './Label';
 
