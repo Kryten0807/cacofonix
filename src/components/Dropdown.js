@@ -233,7 +233,10 @@ class Dropdown extends React.Component {
                     />
                     : ''
                 }
-                {select}
+                {selectClasses
+                    ? <div className={selectClasses}>{select}</div>
+                    : select
+                }
 
                 {this.state.hasValidated && !this.state.isValid
                     ? <span className="help-block">{this.state.validationMessage}</span>
