@@ -38,6 +38,9 @@ class NumericInput extends React.Component {
         }
     }
 
+    componentWillReceiveProps(newProps) {
+    }
+
     onBlur(event) {
 
         const newState = this.validate(event.target.value, true);
