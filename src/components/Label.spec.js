@@ -70,9 +70,9 @@ describe('the Label component', () => {
     });
 
     it('should pass any classes included through to the label element', () => {
-        const className = "col-xs-12 col-md-10";
+        const className = 'col-xs-12 col-md-10';
 
-        const component = shallow(<Label htmlFor={htmlFor} label={label} className={className}/>);
+        const component = shallow(<Label htmlFor={htmlFor} label={label} className={className} />);
 
         expect(component.find('label').length).to.equal(1);
         expect(component.find('label').props().className).to.contain(className);

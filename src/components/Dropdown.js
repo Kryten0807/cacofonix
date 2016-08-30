@@ -4,6 +4,7 @@ import React from 'react';
 import uniqueId from 'lodash/uniqueId';
 import classnames from 'classnames';
 import Label from './Label';
+import columns from '../helpers/columns';
 
 /**
  * The Dropdown class
@@ -177,10 +178,36 @@ class Dropdown extends React.Component {
      * @return {React.Element} The React Element describing this component
      */
     render() {
-
+        // generate the classes for the outer div
+        //
         const divClasses = classnames('form-group', {
             'has-error': this.state.hasValidated && !this.state.isValid,
         });
+
+        // generate the classes for the label component
+        //
+        const labelClasses = columns(this.props.labelColumns);
+
+        const selectClasses = columns(this.props.dropdownColumns);
+
+        const select = (
+            <select
+                id={this.id}
+                className="form-control"
+                onChange={this.onEvent}
+                onBlur={this.onEvent}
+            >
+                {this.props.includeNull
+                    ? <option key={uniqueId('Dropdown-')} value="">
+                        {this.props.nullName || 'Please select one'}
+                    </option>
+                    : ''
+                }
+                {this.props.options.map((opt) =>
+                    <option key={uniqueId('Dropdown-')} value={opt.value}>{opt.name}</option>)
+                }
+            </select>
+        );
 
         return (
             <div className={divClasses}>
@@ -189,25 +216,14 @@ class Dropdown extends React.Component {
                         htmlFor={this.id}
                         label={this.props.label}
                         required={this.props.required}
+                        className={labelClasses}
                     />
                     : ''
                 }
-                <select
-                    id={this.id}
-                    className="form-control"
-                    onChange={this.onEvent}
-                    onBlur={this.onEvent}
-                >
-                    {this.props.includeNull
-                        ? <option key={uniqueId('Dropdown-')} value="">
-                            {this.props.nullName || 'Please select one'}
-                        </option>
-                        : ''
-                    }
-                    {this.props.options.map((opt) =>
-                        <option key={uniqueId('Dropdown-')} value={opt.value}>{opt.name}</option>)
-                    }
-                </select>
+                {selectClasses
+                    ? <div className={selectClasses}>{select}</div>
+                    : select
+                }
 
                 {this.state.hasValidated && !this.state.isValid
                     ? <span className="help-block">{this.state.validationMessage}</span>
@@ -229,6 +245,8 @@ Dropdown.propTypes = {
     validationMessage: React.PropTypes.string,
     value:             React.PropTypes.string,
     options:           React.PropTypes.array.isRequired,
+    labelColumns:      React.PropTypes.object,
+    dropdownColumns:   React.PropTypes.object,
     onValidation:      React.PropTypes.func,
     onChange:          React.PropTypes.func,
 };
