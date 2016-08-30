@@ -211,6 +211,24 @@ describe('when the parent component sends new value prop, a non-required ' +
 
         expect(onChange.callCount).to.equal(0);
     });
+
+    it('should update the input element value prop', () => {
+
+        const initialValue = 'something';
+
+        const testValue = 'something else';
+
+        const parent = mount(<TestParent testValue={initialValue} />);
+
+        expect(parent.find('input').props().value).to.equal(initialValue);
+
+        // change the state of the parent
+        //
+        parent.setState({ testValue });
+
+        expect(parent.find('input').props().value).to.equal(testValue);
+    });
+
 });
 
 /* *****************************************************************************
