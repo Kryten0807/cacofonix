@@ -23,7 +23,6 @@ the onChange handler for the NumericInput component
 describe('the onChange handler for the NumericInput component', () => {
 
     const description = 'a numeric input';
-    const expectedMessage = `${description} is required`;
 
     it('should not be called on initialization', () => {
         const onChange = sinon.spy();
@@ -164,7 +163,7 @@ describe('the onValidation handler for the NumericInput component', () => {
         const required = true;
         const value = 123.456;
 
-        const component = mount(
+        mount(
             <NumericInput
                 required={required}
                 value={value}
@@ -184,7 +183,7 @@ describe('the onValidation handler for the NumericInput component', () => {
         const required = true;
         const value = 'this is not a number';
 
-        const component = mount(
+        mount(
             <NumericInput
                 required={required}
                 description={description}
