@@ -245,6 +245,8 @@ Dropdown.propTypes = {
     validationMessage: React.PropTypes.string,
     value:             React.PropTypes.string,
     options:           React.PropTypes.array.isRequired,
+    labelColumns:      React.PropTypes.object,
+    dropdownColumns:   React.PropTypes.object,
     onValidation:      React.PropTypes.func,
     onChange:          React.PropTypes.func,
 };
