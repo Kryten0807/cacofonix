@@ -247,6 +247,21 @@ describe('when the parent component sends new value prop, a required ' +
         expect(parent.find('span.help-block').text()).to.equal(expectedMessage, 'after change msg');
     });
 
+    it('should update the input element value', () => {
+
+        const initialValue = 88;
+        const testValue = 44;
+
+        const parent = mount(<TestParentBeta testValue={initialValue} />);
+
+        expect(parent.find('input').props().value).to.equal(`${initialValue}`);
+
+        // change the state of the parent
+        //
+        parent.setState({ testValue });
+
+        expect(parent.find('input').props().value).to.equal(`${testValue}`);
+    });
 });
 
 /* *****************************************************************************
