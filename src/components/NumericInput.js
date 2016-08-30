@@ -99,9 +99,9 @@ class NumericInput extends React.Component {
 // set the property types for the NumericInput component
 //
 NumericInput.propTypes = {
-    label:       React.PropTypes.string,
-    required:    React.PropTypes.bool,
-    placeholder: React.PropTypes.string,
+    label:        React.PropTypes.string,
+    required:     React.PropTypes.bool,
+    placeholder:  React.PropTypes.string,
     onChange:     React.PropTypes.func,
     onValidation: React.PropTypes.func,
 };
