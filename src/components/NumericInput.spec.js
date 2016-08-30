@@ -55,7 +55,7 @@ describe('when the parent component sends new value prop, a required ' +
     }
 
     TestParentBeta.propTypes = {
-        testValue:    React.PropTypes.string,
+        testValue:    React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]),
         onChange:     React.PropTypes.func,
         onValidation: React.PropTypes.func,
     };
@@ -289,7 +289,7 @@ describe('when the parent component sends new value prop, a non-required ' +
     }
 
     TestParentAlpha.propTypes = {
-        testValue:    React.PropTypes.string,
+        testValue:    React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]),
         onChange:     React.PropTypes.func,
         onValidation: React.PropTypes.func,
     };
