@@ -194,6 +194,7 @@ class Dropdown extends React.Component {
         const select = (
             <select
                 id={this.id}
+                value={this.state.value}
                 className="form-control"
                 onChange={this.onEvent}
                 onBlur={this.onEvent}
