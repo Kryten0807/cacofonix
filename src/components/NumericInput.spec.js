@@ -222,6 +222,32 @@ describe('when the parent component sends new value prop, a required ' +
         expect(onChange.callCount).to.equal(0);
     });
 
+    it('should show the validation message after blur then prop change when required=true, value=blank', () => {
+
+        const initialValue = 88;
+        const secondValue = 99;
+        const testValue = '';
+
+        const parent = mount(<TestParentBeta testValue={initialValue} />);
+
+        // blur the component, to ensure that hasValidated is set
+        //
+        parent.find('input').simulate('blur', {
+            target: { value: secondValue }
+        });
+
+        expect(parent.find('div.form-group.has-error').length).to.equal(0, 'before change div');
+        expect(parent.find('span.help-block').length).to.equal(0, 'before change span');
+
+        // change the state of the parent
+        //
+        parent.setState({ testValue });
+
+        expect(parent.find('div.form-group.has-error').length).to.equal(1, 'after change div');
+        expect(parent.find('span.help-block').length).to.equal(1, 'after change span');
+        expect(parent.find('span.help-block').text()).to.equal(expectedMessage, 'after change msg');
+    });
+
 });
 
 /* *****************************************************************************
@@ -426,6 +452,31 @@ describe('when the parent component sends new value prop, a non-required ' +
         parent.setState({ finalValue });
 
         expect(onChange.callCount).to.equal(0);
+    });
+
+    it('should not show the validation message after blur then prop change when required=false, value=blank', () => {
+
+        const initialValue = 88;
+        const secondValue = 99;
+        const testValue = '';
+
+        const parent = mount(<TestParentAlpha testValue={initialValue} />);
+
+        // blur the component, to ensure that hasValidated is set
+        //
+        parent.find('input').simulate('blur', {
+            target: { value: secondValue }
+        });
+
+        expect(parent.find('div.form-group.has-error').length).to.equal(0, 'before change div');
+        expect(parent.find('span.help-block').length).to.equal(0, 'before change span');
+
+        // change the state of the parent
+        //
+        parent.setState({ testValue });
+
+        expect(parent.find('div.form-group.has-error').length).to.equal(0, 'after change div');
+        expect(parent.find('span.help-block').length).to.equal(0, 'after change span');
     });
 
 });
