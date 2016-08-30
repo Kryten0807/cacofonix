@@ -5,6 +5,8 @@ import uniqueId from 'lodash/uniqueId';
 
 import Label from './Label';
 
+const clean = (value) => `${value}`.replace(/[^0-9.]/g, '');
+
 class NumericInput extends React.Component {
     constructor(props) {
         super(props);
