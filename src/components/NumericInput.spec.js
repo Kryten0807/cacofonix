@@ -25,6 +25,7 @@ when the parent component sends new value prop, a required NumericInput componen
     should not call the onValidation handler when value has not changed
     should not call the onChange handler when value has not changed
     should show the validation message after blur then prop change when required=true, value=blank
+    should update the input element value
 */
 describe('when the parent component sends new value prop, a required ' +
     'NumericInput component', () => {
@@ -246,6 +247,21 @@ describe('when the parent component sends new value prop, a required ' +
         expect(parent.find('span.help-block').text()).to.equal(expectedMessage, 'after change msg');
     });
 
+    it('should update the input element value', () => {
+
+        const initialValue = 88;
+        const testValue = 44;
+
+        const parent = mount(<TestParentBeta testValue={initialValue} />);
+
+        expect(parent.find('input').props().value).to.equal(`${initialValue}`);
+
+        // change the state of the parent
+        //
+        parent.setState({ testValue });
+
+        expect(parent.find('input').props().value).to.equal(`${testValue}`);
+    });
 });
 
 /* *****************************************************************************
