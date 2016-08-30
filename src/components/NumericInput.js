@@ -289,8 +289,7 @@ class NumericInput extends React.Component {
                     />
                     : ''
                 }
-                {input}
-                {helpBlock}
+                <div className={columns(this.props.inputColumns)}>{input}{helpBlock}</div>
             </div>
         );
     }
