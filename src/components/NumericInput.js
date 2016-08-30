@@ -275,7 +275,7 @@ class NumericInput extends React.Component {
                     className="form-control"
                     placeholder={this.props.placeholder || ''}
                     value={this.state.value}
-                    readonly={this.props.readonly}
+                    readOnly={this.props.readOnly}
                     onBlur={this.onBlur}
                     onChange={this.onChange}
                     onFocus={this.onFocus}
@@ -295,7 +295,7 @@ NumericInput.propTypes = {
     label:             React.PropTypes.string,
     description:       React.PropTypes.string,
     required:          React.PropTypes.bool,
-    readonly:          React.PropTypes.bool,
+    readOnly:          React.PropTypes.bool,
     validationMessage: React.PropTypes.string,
     placeholder:       React.PropTypes.string,
     isCurrency:        React.PropTypes.bool,
