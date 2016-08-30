@@ -19,6 +19,7 @@ the Label component
     should include the "required" markup when required=true
     should not include the "required" markup when required=false
     should not include the "required" markup when required is not set
+    should pass any classes included through to the label element
 */
 describe('the Label component', () => {
 
