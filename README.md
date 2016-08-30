@@ -13,10 +13,9 @@ This is a set of Bootstrap-themed React components.
     1. add `componentWillReceiveProps` testing for `TextInput`
 1. **Dropdown** - a dropdown element
     1. add `componentWillReceiveProps` testing for `Dropdown`
+1. **NumericInput** - a text input which requires input to be numeric, with configurable decimal places and an optional dollar sign/currency formatting when blurred
 
 ## In Progress
-
-1. **NumericInput** - a text input which requires input to be numeric, with configurable decimal places and an optional dollar sign/currency formatting when blurred
 
 ## To Do
 
