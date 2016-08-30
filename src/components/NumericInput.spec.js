@@ -17,32 +17,196 @@ const expect = chai.expect;
 
 /* *****************************************************************************
 when the parent component sends new value prop, a required NumericInput component
-    should call the onValidation handler when required=false, value=valid
-    should call the onValidation handler when required=false, value=blank
-    should call the onChange handler when required=false, value=valid
-    should call the onChange handler when required=false, value=blank
-    should not show the validation message when required=false, value=valid
-    should not show the validation message when required=false, value=blank
+    should call the onValidation handler when required=true, value=valid
+    should call the onValidation handler when required=true, value=blank
+    should call the onChange handler when required=true, value=valid
+    should call the onChange handler when required=true, value=blank
+    should not show the validation message when required=true, value=valid
+    should not show the validation message when required=true, value=blank
     should not call the onValidation handler when value has not changed
     should not call the onChange handler when value has not changed
 */
 describe('when the parent component sends new value prop, a required NumericInput component', () => {
-    
-    // it('should call the onValidation handler when required=false, value=valid', () => {});
 
-    // it('should call the onValidation handler when required=false, value=blank', () => {});
+    const required = true;
+    const description = 'this thing';
+    const expectedMessage = `${description} is required`;
 
-    // it('should call the onChange handler when required=false, value=valid', () => {});
+    class TestParentBeta extends React.Component {
+        constructor(props) {
+            super(props);
 
-    // it('should call the onChange handler when required=false, value=blank', () => {});
+            this.state = {
+                testValue: props.testValue || '',
+            };
+        }
 
-    // it('should not show the validation message when required=false, value=valid', () => {});
+        render() {
+            return (<NumericInput
+                ref="testComponent"
+                required={required}
+                description={description}
+                value={this.state.testValue}
+                onValidation={this.props.onValidation}
+                onChange={this.props.onChange}
+            />);
+        }
+    }
 
-    // it('should not show the validation message when required=false, value=blank', () => {});
+    TestParentBeta.propTypes = {
+        testValue:    React.PropTypes.string,
+        onChange:     React.PropTypes.func,
+        onValidation: React.PropTypes.func,
+    };
 
-    // it('should not call the onValidation handler when value has not changed', () => {});
+    it('should call the onValidation handler when required=true, value=valid', () => {
 
-    // it('should not call the onChange handler when value has not changed', () => {});
+        const onValidation = sinon.spy();
+
+        const testValue = 42;
+
+        const parent = mount(<TestParentBeta onValidation={onValidation} />);
+
+        expect(onValidation.callCount).to.equal(1);
+
+        // change the state of the parent
+        //
+        parent.setState({ testValue });
+
+        expect(onValidation.callCount).to.equal(2);
+
+        expect(onValidation.args[1][0]).to.equal(false, 'args[1][0]');
+        expect(onValidation.args[1][1]).to.equal(true, 'args[1][1]');
+        expect(onValidation.args[1][2]).to.equal(null, 'args[1][2]');
+    });
+
+    it('should call the onValidation handler when required=true, value=blank', () => {
+
+        const onValidation = sinon.spy();
+
+        const initialValue = 88;
+        const testValue = '';
+
+        const parent = mount(<TestParentBeta testValue={initialValue} onValidation={onValidation} />);
+
+        expect(onValidation.callCount).to.equal(1);
+
+        // change the state of the parent
+        //
+        parent.setState({ testValue });
+
+        expect(onValidation.callCount).to.equal(2);
+
+        expect(onValidation.args[1][0]).to.equal(false, 'args[1][0]');
+        expect(onValidation.args[1][1]).to.equal(false, 'args[1][1]');
+        expect(onValidation.args[1][2]).to.equal(expectedMessage, 'args[1][2]');
+    });
+
+    it('should call the onChange handler when required=true, value=valid', () => {
+
+        const onChange = sinon.spy();
+
+        const initialValue = 88;
+        const testValue = 44;
+
+        const parent = mount(<TestParentBeta testValue={initialValue} onChange={onChange} />);
+
+        expect(onChange.callCount).to.equal(0);
+
+        // change the state of the parent
+        //
+        parent.setState({ testValue });
+
+        expect(onChange.callCount).to.equal(1);
+
+        expect(onChange.args[0][0]).to.equal(testValue, 'args[0][0]');
+    });
+
+    it('should call the onChange handler when required=true, value=blank', () => {
+
+        const onChange = sinon.spy();
+
+        const initialValue = 88;
+        const testValue = '';
+
+        const parent = mount(<TestParentBeta testValue={initialValue} onChange={onChange} />);
+
+        expect(onChange.callCount).to.equal(0);
+
+        // change the state of the parent
+        //
+        parent.setState({ testValue });
+
+        expect(onChange.callCount).to.equal(1);
+
+        expect(onChange.args[0][0]).to.equal(testValue, 'args[0][0]');
+    });
+
+    it('should not show the validation message when required=true, value=valid', () => {
+
+        const initialValue = 88;
+        const testValue = 22;
+
+        const parent = mount(<TestParentBeta testValue={initialValue} />);
+
+        // change the state of the parent
+        //
+        parent.setState({ testValue });
+
+        expect(parent.find('div.form-group.has-error').length).to.equal(0);
+        expect(parent.find('span.help-block').length).to.equal(0);
+    });
+
+    it('should not show the validation message when required=true, value=blank', () => {
+
+        const initialValue = 88;
+        const testValue = '';
+
+        const parent = mount(<TestParentBeta testValue={initialValue} />);
+
+        // change the state of the parent
+        //
+        parent.setState({ testValue });
+
+        expect(parent.find('div.form-group.has-error').length).to.equal(0);
+        expect(parent.find('span.help-block').length).to.equal(0);
+    });
+
+    it('should not call the onValidation handler when value has not changed', () => {
+
+        const onValidation = sinon.spy();
+
+        const initialValue = 88;
+        const testValue = initialValue;
+
+        const parent = mount(<TestParentBeta testValue={initialValue} onValidation={onValidation} />);
+
+        expect(onValidation.callCount).to.equal(1);
+
+        // change the state of the parent
+        //
+        parent.setState({ testValue });
+
+        expect(onValidation.callCount).to.equal(1);
+    });
+
+    it('should not call the onChange handler when value has not changed', () => {
+
+        const onChange = sinon.spy();
+
+        const initialValue = 88;
+        const testValue = initialValue;
+
+        const parent = mount(<TestParentBeta testValue={initialValue} onChange={onChange} />);
+
+        expect(onChange.callCount).to.equal(0);
+
+        // change the state of the parent
+        //
+        parent.setState({ testValue });
+
+        expect(onChange.callCount).to.equal(0);
+    });
 
 });
 
