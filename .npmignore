@@ -1,0 +1,6 @@
+# DO NOT IGNORE `./dist`
+#
+# if this is not included, then `npm install` will use the .gitignore file which
+# DOES ignore `./dist` and, as a result, does not install the built files
+#
+!dist
