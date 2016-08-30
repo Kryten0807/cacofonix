@@ -177,11 +177,14 @@ class Dropdown extends React.Component {
      * @return {React.Element} The React Element describing this component
      */
     render() {
-
+        // generate the classes for the outer div
+        //
         const divClasses = classnames('form-group', {
             'has-error': this.state.hasValidated && !this.state.isValid,
         });
 
+        // generate the classes for the label component
+        //
         const labelClasses = this.props.labelColumns
             ? classnames([
                 this.props.labelColumns.xs ? `col-xs-${this.props.labelColumns.xs}` : null,
