@@ -69,4 +69,6 @@ describe('the Label component', () => {
         expect(component.find('i.glyphicon').length).to.equal(0);
     });
 
+    it('should pass any classes included through to the label element', () => {});
+
 });
