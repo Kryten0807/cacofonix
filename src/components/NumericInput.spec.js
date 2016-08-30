@@ -1644,4 +1644,12 @@ describe('in terms of basic markup, the NumericInput component', () => {
 
         expect(component.find('Label').length).to.equal(0);
     });
+
+    it('should have the readonly property on the input when readonly=true', () => {
+        const readonly = true;
+
+        const component = shallow(<NumericInput readonly={readonly} />);
+
+        expect(component.find('input').props().readonly).to.equal(true);
+});
 });
