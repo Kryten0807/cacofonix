@@ -1046,6 +1046,34 @@ describe('the onValidation handler for the NumericInput component', () => {
         expect(onValidation.args[2][2]).to.equal(expectedMessage, 'args[2][2]');
     });
 
+    it('should be called with a custom message on blur event with validationMessage=something', () => {
+        const onValidation = sinon.spy();
+
+        const required = true;
+        const validationMessage = 'Somthing is not right...';
+        const value = 51.2;
+        const newValue = '';
+
+        const component = mount(
+            <NumericInput
+                required={required}
+                validationMessage={validationMessage}
+                value={value}
+                onValidation={onValidation}
+            />
+        );
+
+        expect(onValidation.callCount).to.equal(1);
+
+        component.find('input').simulate('blur', {
+            target: { value: newValue }
+        });
+
+        expect(onValidation.callCount).to.equal(2);
+        expect(onValidation.args[1][0]).to.equal(true, 'args[1][0]');
+        expect(onValidation.args[1][1]).to.equal(false, 'args[1][1]');
+        expect(onValidation.args[1][2]).to.equal(validationMessage, 'args[1][2]');
+    });
 });
 
 /* *****************************************************************************
