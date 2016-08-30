@@ -15,6 +15,8 @@ const expect = chai.expect;
 // Tests to write:
 // show validation message after prop change post-blur
 
+// @TODO write tests to ensure new props do not interrupt user editing
+
 /* *****************************************************************************
 when the parent component sends new value prop, a required NumericInput component
     should call the onValidation handler when required=true, value=valid
