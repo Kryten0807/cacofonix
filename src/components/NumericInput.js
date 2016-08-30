@@ -78,7 +78,7 @@ class NumericInput extends React.Component {
     }
 
     validate(newValue) {
-        let value = parseFloat(`${newValue}`);
+        let value = parseFloat(`${newValue}`.replace(/[^0-9.]/g, ''));
 
         const notANumber = Number.isNaN(value);
 
