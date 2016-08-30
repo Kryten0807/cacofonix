@@ -1651,5 +1651,15 @@ describe('in terms of basic markup, the NumericInput component', () => {
         const component = shallow(<NumericInput readOnly={readOnly} />);
 
         expect(component.find('input').props().readOnly).to.equal(true);
-});
+    });
+
+    it('should not have the readOnly property on the input when readOnly=false', () => {
+        const readOnly = false;
+
+        const component = shallow(<NumericInput readOnly={readOnly} />);
+
+        expect(component.find('input').props().readOnly).to.equal(false);
+    });
+
+
 });
