@@ -21,7 +21,11 @@ class NumericInput extends React.Component {
 
     componentWillMount() {
         if (this.props.onValidation) {
-            this.props.onValidation(this.state.hasValidated, this.state.isValid, this.state.validationMessage);
+            this.props.onValidation(
+                this.state.hasValidated,
+                this.state.isValid,
+                this.state.validationMessage
+            );
         }
     }
 
@@ -32,7 +36,11 @@ class NumericInput extends React.Component {
         this.setState(newState);
 
         if (this.props.onValidation) {
-            this.props.onValidation(newState.hasValidated, newState.isValid, newState.validationMessage);
+            this.props.onValidation(
+                newState.hasValidated,
+                newState.isValid,
+                newState.validationMessage
+            );
         }
 
         if (this.props.onChange && newState.value !== this.state.value) {
@@ -47,7 +55,11 @@ class NumericInput extends React.Component {
         this.setState(newState);
 
         if (this.props.onValidation && newState.hasValidated) {
-            this.props.onValidation(newState.hasValidated, newState.isValid, newState.validationMessage);
+            this.props.onValidation(
+                newState.hasValidated,
+                newState.isValid,
+                newState.validationMessage
+            );
         }
 
         if (this.props.onChange && newState.value !== this.state.value) {
