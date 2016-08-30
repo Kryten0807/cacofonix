@@ -34,6 +34,36 @@ the validation message for the NumericInput component
     should be shown after editing (following prior blur) with required=true, value=blank
     should not be shown after editing (following prior blur) with required=false, value=blank
 */
+describe('the validation message for the NumericInput component', () => {
+
+    // it('should not be shown on initialization with required=true, value=valid', () => {});
+
+    // it('should not be shown on initialization with required=true, value=blank', () => {});
+
+    // it('should not be shown on initialization with required=false, value=blank', () => {});
+
+    // it('should not be shown after editing with required=true, value=valid', () => {});
+
+    // it('should not be shown after editing with required=true, value=blank', () => {});
+
+    // it('should not be shown after editing with required=false, value=blank', () => {});
+
+    // it('should not be shown after blur with required=true, value=valid', () => {});
+
+    // it('should be shown after blur with required=true, value=blank', () => {});
+
+    // it('should not be shown after blur with required=false, value=blank', () => {});
+
+    // it('should not be shown after editing (following prior blur) with required=true, value=valid', () => {});
+
+    // it('should be shown after editing (following prior blur) with required=true, value=blank', () => {});
+
+    // it('should not be shown after editing (following prior blur) with required=false, value=blank', () => {});
+
+});
+
+
+
 
 /* *****************************************************************************
 on blur, the NumericInput component
