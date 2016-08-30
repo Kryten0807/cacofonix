@@ -32,6 +32,7 @@ This is a set of Bootstrap-themed React components.
 
 ### Sundry Improvements
 
+1. tests for Alert `dismissible` property (it doesn't work in the browser)
 
 ## Validation
 
