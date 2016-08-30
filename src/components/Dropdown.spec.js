@@ -695,8 +695,49 @@ describe('the validation error message for the component', () => {
 
 });
 
-/*
-the onChangehandler for the component
+
+/* *****************************************************************************
+the value of the select element
+    should be updated when the value is changed
+*/
+describe('the value of the select element', () => {
+
+    const description = 'this silly thing';
+
+    const options = [
+        { value: '1', name: 'one' },
+        { value: '2', name: 'two' },
+    ];
+
+    it('should be updated when the value is changed', () => {
+
+        const required = true;
+        const value = null;
+
+        const newValue = '2';
+
+        const component = mount(
+            <Dropdown
+                description={description}
+                required={required}
+                value={value}
+                options={options}
+            />
+        );
+
+        // select a new value
+        //
+        component.find('select').simulate('change', {
+            target: { value: newValue }
+        });
+
+        expect(component.find('select').props().value).to.equal(newValue);
+
+    });
+});
+
+/* *****************************************************************************
+the onChange handler for the component
     should not be called when the component is first initialized
     should not be called when something is selected, but the value has not changed
     should be called when `required`=true and the component value is changed to the `null` option
@@ -718,7 +759,7 @@ the onChangehandler for the component
     should not be called when `required`=false, `value`=invalid option and the
         user tabs away from the component
 */
-describe('the onChangehandler for the component', () => {
+describe('the onChange handler for the component', () => {
 
     const description = 'this silly thing';
 
