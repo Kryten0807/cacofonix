@@ -25,26 +25,7 @@ the columns function
     should return the correct string for a collection of keys
 */
 describe('the columns function', () => {
-    
-    // it('should return null when called with a null', () => {});
 
-    // it('should return null when called with an empty string', () => {});
-
-    // it('should return null when called with an empty array', () => {});
-
-    // it('should return null when called with a non-empty array', () => {});
-
-    // it('should return null when called with an empty object', () => {});
-
-    // it('should return null when called with an object containing invalid keys', () => {});
-
-    // it('should return the correct string for key = xs', () => {});
-
-    // it('should return the correct string for key = sm', () => {});
-
-    // it('should return the correct string for key = md', () => {});
-
-    // it('should return the correct string for key = lg', () => {});
 
     // it('should return the correct string for a collection of keys', () => {});
 
