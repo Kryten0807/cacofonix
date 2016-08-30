@@ -123,16 +123,33 @@ class NumericInput extends React.Component {
         //
         newState.hasValidated = true;
 
+        // handle the updated state
+        //
         this.onUpdatedState(newState);
     }
 
+    /**
+     * Handle the change event for the input element
+     * @param  {Object} event The event object
+     */
     onChange(event) {
-        const newState = this.validate(event.target.value);
+        // validate the new value without formatting it
+        //
+        const newState = this.validate(event.target.value, false);
+
+        // preserve the `hasValidated` state
+        //
         newState.hasValidated = this.state.hasValidated;
 
+        // handle the updated state
+        //
         this.onUpdatedState(newState);
     }
 
+    /**
+     * Handle the "update state" event
+     * @param  {Object} newState The new state for the component
+     */
     onUpdatedState(newState) {
         // set the new component state
         //
