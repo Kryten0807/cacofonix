@@ -9,6 +9,9 @@ const clean = (value) => `${value}`.replace(/[^0-9.]/g, '');
 
 const decimals = (value, decimals) => `${value.toFixed(decimals)}`;
 
+const currency = (value) => `$ ${decimals(value, 2)}`;
+
+
 class NumericInput extends React.Component {
     constructor(props) {
         super(props);
