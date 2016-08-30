@@ -13,8 +13,19 @@ import Label from './Label';
  */
 const clean = (value) => `${value}`.replace(/[^0-9.-]/g, '');
 
+/**
+ * Convert a value to a fixed-decimal number
+ * @param  {Number} value The number to convert
+ * @param  {Number} count The number of decimal places
+ * @return {String}       The formatted number
+ */
 const decimals = (value, count) => `${value.toFixed(count)}`;
 
+/**
+ * Convert a value to a currency string (2 decimal places, prefixed by "$")
+ * @param  {Number} value The value to convert
+ * @return {String}       The formatted value
+ */
 const currency = (value) => `$ ${decimals(value, 2)}`;
 
 
