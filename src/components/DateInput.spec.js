@@ -24,8 +24,8 @@ the basic markup of the DateInput component
         specified & required is not set
     should not include a label with the the required flag if a label is not
         specified & required is set
-    should have the readonly property on the input when readonly=true
-    should not have the readonly property on the input when readonly=false
+    should have the readOnly property on the input when readOnly=true
+    should not have the readOnly property on the input when readOnly=false
     should have the correct label widths when labelColumns is set
     should have the correct select widths when inputColumns is set
 */
