@@ -306,6 +306,8 @@ NumericInput.propTypes = {
     placeholder:       React.PropTypes.string,
     isCurrency:        React.PropTypes.bool,
     decimals:          React.PropTypes.number,
+    labelColumns:      React.PropTypes.object,
+    inputColumns:      React.PropTypes.object,
     value:             React.PropTypes.oneOfType([
         React.PropTypes.string,
         React.PropTypes.number,
