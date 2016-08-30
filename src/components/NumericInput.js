@@ -67,6 +67,15 @@ class NumericInput extends React.Component {
         }
     }
 
+    onFocus(event) {
+        const newState = this.validate(event.target.value);
+        newState.hasValidated = this.state.hasValidated;
+
+        newState.value = newState.value.replace(/[^0-9.]/g, '');
+
+        this.setState(newState);
+    }
+
     validate(newValue) {
         let value = parseFloat(`${newValue}`);
 
