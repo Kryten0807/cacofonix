@@ -5,6 +5,7 @@ import uniqueId from 'lodash/uniqueId';
 import classnames from 'classnames';
 
 import Label from './Label';
+import columns from '../helpers/columns';
 
 /**
  * Clean a value of any non-numeric characters
@@ -257,6 +258,28 @@ class NumericInput extends React.Component {
             'has-error': this.state.hasValidated && !this.state.isValid,
         });
 
+        // instantiate the input element
+        //
+        const input = (
+            <input
+                type="text"
+                id={this.id}
+                className="form-control"
+                placeholder={this.props.placeholder || ''}
+                value={this.state.value}
+                readOnly={this.props.readOnly}
+                onBlur={this.onBlur}
+                onChange={this.onChange}
+                onFocus={this.onFocus}
+            />
+        );
+
+        // instantiate the help block if there's a validation error
+        //
+        const helpBlock = this.state.hasValidated && !this.state.isValid
+            ? <span className="help-block">{this.validationMessage}</span>
+            : '';
+
         // render the component & return it
         //
         return (
@@ -266,24 +289,11 @@ class NumericInput extends React.Component {
                         htmlFor={this.id}
                         required={!!this.props.required}
                         label={this.props.label}
+                        className={columns(this.props.labelColumns)}
                     />
                     : ''
                 }
-                <input
-                    type="text"
-                    id={this.id}
-                    className="form-control"
-                    placeholder={this.props.placeholder || ''}
-                    value={this.state.value}
-                    readOnly={this.props.readOnly}
-                    onBlur={this.onBlur}
-                    onChange={this.onChange}
-                    onFocus={this.onFocus}
-                />
-                {this.state.hasValidated && !this.state.isValid
-                    ? <span className="help-block">{this.validationMessage}</span>
-                    : ''
-                }
+                <div className={columns(this.props.inputColumns)}>{input}{helpBlock}</div>
             </div>
         );
     }
@@ -300,6 +310,8 @@ NumericInput.propTypes = {
     placeholder:       React.PropTypes.string,
     isCurrency:        React.PropTypes.bool,
     decimals:          React.PropTypes.number,
+    labelColumns:      React.PropTypes.object,
+    inputColumns:      React.PropTypes.object,
     value:             React.PropTypes.oneOfType([
         React.PropTypes.string,
         React.PropTypes.number,
