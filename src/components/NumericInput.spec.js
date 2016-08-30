@@ -826,6 +826,7 @@ the onValidation handler for the NumericInput component
     should not be called after change without prior blur event
     should be called on blur event
     should be called after change following a previous blur event
+    should be called with a custom message on blur event with validationMessage=something
 */
 describe('the onValidation handler for the NumericInput component', () => {
 
