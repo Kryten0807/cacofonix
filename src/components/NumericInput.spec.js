@@ -1571,6 +1571,8 @@ in terms of basic markup, the NumericInput component
         specified & required is not set
     should not include a label with the the required flag if a label is not
         specified & required is set
+    should have the readonly property on the input when readonly=true
+    should not have the readonly property on the input when readonly=false
 */
 describe('in terms of basic markup, the NumericInput component', () => {
 
