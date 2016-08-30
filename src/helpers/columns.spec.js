@@ -74,8 +74,8 @@ describe('the columns function', () => {
     it('should return the correct string for a collection of keys', () => {
         expect(columns({
             xs: 12,
-            md: 8,
             sm: 10,
+            md: 8,
             lg: 6,
         })).to.equal('col-xs-12 col-sm-10 col-md-8 col-lg-6');
     });
