@@ -1571,6 +1571,8 @@ in terms of basic markup, the NumericInput component
         specified & required is not set
     should not include a label with the the required flag if a label is not
         specified & required is set
+    should have the readonly property on the input when readonly=true
+    should not have the readonly property on the input when readonly=false
 */
 describe('in terms of basic markup, the NumericInput component', () => {
 
@@ -1642,4 +1644,22 @@ describe('in terms of basic markup, the NumericInput component', () => {
 
         expect(component.find('Label').length).to.equal(0);
     });
+
+    it('should have the readOnly property on the input when readOnly=true', () => {
+        const readOnly = true;
+
+        const component = shallow(<NumericInput readOnly={readOnly} />);
+
+        expect(component.find('input').props().readOnly).to.equal(true);
+    });
+
+    it('should not have the readOnly property on the input when readOnly=false', () => {
+        const readOnly = false;
+
+        const component = shallow(<NumericInput readOnly={readOnly} />);
+
+        expect(component.find('input').props().readOnly).to.equal(false);
+    });
+
+
 });
