@@ -267,6 +267,7 @@ class NumericInput extends React.Component {
                         htmlFor={this.id}
                         required={!!this.props.required}
                         label={this.props.label}
+                        className={columns(this.props.labelColumns)}
                     />
                     : ''
                 }
