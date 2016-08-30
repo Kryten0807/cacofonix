@@ -12,6 +12,12 @@ import NumericInput from './NumericInput';
 
 const expect = chai.expect;
 
+// Tests to write:
+// new props
+// validation message
+// remove formatting on focus
+// format on blur
+
 /* *****************************************************************************
 the onChange handler for the NumericInput component
     should not be called on initialization
