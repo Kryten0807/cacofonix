@@ -698,6 +698,28 @@ describe('after the user edits the value, the TextInput component', () => {
 
     });
 
+    it('should update the value of the input element', () => {
+        const required = true;
+        const value = 'woooo!';
+
+        const newValue = 'something else';
+
+        const component = mount(<TextInput
+            required={required}
+            description={description}
+            value={value}
+        />);
+
+        expect(component.find('input').props().value).to.equal(value, 'before');
+
+        component.find('input').simulate('change', {
+            target: { value: newValue }
+        });
+
+        expect(component.find('input').props().value).to.equal(newValue, 'after');
+
+    });
+
 });
 
 /* *****************************************************************************
