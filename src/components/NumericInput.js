@@ -17,12 +17,21 @@ class NumericInput extends React.Component {
     constructor(props) {
         super(props);
 
+        // generate a unique ID for the component
+        //
         this.id = uniqueId('NumericInput-');
 
-        this.validationMessage = this.props.validationMessage || `${props.description} is required`;
+        // set the validation message from the properties or from a default
+        //
+        this.validationMessage = this.props.validationMessage
+            || `${props.description} is required`;
 
+        // initialize the component state
+        //
         this.state = this.validate(props.value, true);
 
+        // bind `this` to the event handlers
+        //
         this.onBlur = this.onBlur.bind(this);
         this.onChange = this.onChange.bind(this);
         this.onFocus = this.onFocus.bind(this);
