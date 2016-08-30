@@ -1655,5 +1655,16 @@ describe('on initialization, the Dropdown component', () => {
         expect(component.find('select option[value="2"]').text()).to.equal(options[1].name, '2');
     });
 
+    it('should have the correct label widths when labelColumns is set', () => {
+        const label = 'this sucks';
+        const columns = { xs: 10, md: 8};
+        const expectedClass = "col-xs-10 col-md-8";
+
+        const component = shallow(<Dropdown options={options} label={label} labelColumns={columns}/>);
+
+        console.log(component.debug());
+        expect(component.find('Label').props().className).to.contain(expectedClass);
+    });
+
 
 });
