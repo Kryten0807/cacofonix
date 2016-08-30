@@ -28,7 +28,8 @@ when the parent component sends new value prop, a required NumericInput componen
     should not call the onValidation handler when value has not changed
     should not call the onChange handler when value has not changed
 */
-describe('when the parent component sends new value prop, a required NumericInput component', () => {
+describe('when the parent component sends new value prop, a required ' +
+    'NumericInput component', () => {
 
     const required = true;
     const description = 'this thing';
@@ -89,7 +90,12 @@ describe('when the parent component sends new value prop, a required NumericInpu
         const initialValue = 88;
         const testValue = '';
 
-        const parent = mount(<TestParentBeta testValue={initialValue} onValidation={onValidation} />);
+        const parent = mount(
+            <TestParentBeta
+                testValue={initialValue}
+                onValidation={onValidation}
+            />
+        );
 
         expect(onValidation.callCount).to.equal(1);
 
@@ -181,7 +187,12 @@ describe('when the parent component sends new value prop, a required NumericInpu
         const initialValue = 88;
         const testValue = initialValue;
 
-        const parent = mount(<TestParentBeta testValue={initialValue} onValidation={onValidation} />);
+        const parent = mount(
+            <TestParentBeta
+                testValue={initialValue}
+                onValidation={onValidation}
+            />
+        );
 
         expect(onValidation.callCount).to.equal(1);
 
@@ -223,7 +234,8 @@ when the parent component sends new value prop, a non-required NumericInput comp
     should not call the onValidation handler when value has not changed
     should not call the onChange handler when value has not changed
 */
-describe('when the parent component sends new value prop, a non-required NumericInput component', () => {
+describe('when the parent component sends new value prop, a non-required ' +
+    'NumericInput component', () => {
 
     const required = false;
     const description = 'gibberish';
@@ -284,7 +296,12 @@ describe('when the parent component sends new value prop, a non-required Numeric
         const initialValue = 42;
         const testValue = '';
 
-        const parent = mount(<TestParentAlpha testValue={initialValue} onValidation={onValidation} />);
+        const parent = mount(
+            <TestParentAlpha
+                testValue={initialValue}
+                onValidation={onValidation}
+            />
+        );
 
         expect(onValidation.callCount).to.equal(1);
 
@@ -374,7 +391,12 @@ describe('when the parent component sends new value prop, a non-required Numeric
         const finalValue = initialValue;
 
 
-        const parent = mount(<TestParentAlpha testValue={initialValue} onValidation={onValidation} />);
+        const parent = mount(
+            <TestParentAlpha
+                testValue={initialValue}
+                onValidation={onValidation}
+            />
+        );
 
         expect(onValidation.callCount).to.equal(1);
 
@@ -1437,7 +1459,8 @@ describe('the onValidation handler for the NumericInput component', () => {
         expect(onValidation.args[2][2]).to.equal(expectedMessage, 'args[2][2]');
     });
 
-    it('should be called with a custom message on blur event with validationMessage=something', () => {
+    it('should be called with a custom message on blur event with ' +
+        'validationMessage=something', () => {
         const onValidation = sinon.spy();
 
         const required = true;
