@@ -144,6 +144,8 @@ NumericInput.propTypes = {
     description:  React.PropTypes.string,
     required:     React.PropTypes.bool,
     placeholder:  React.PropTypes.string,
+    isCurrency:   React.PropTypes.bool,
+    decimals:     React.PropTypes.number,
     value:        React.PropTypes.oneOfType([
         React.PropTypes.string,
         React.PropTypes.number,
