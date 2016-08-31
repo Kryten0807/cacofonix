@@ -175,15 +175,19 @@ class TextInput extends React.Component {
             'has-error': (this.state.hasValidated && !this.state.isValid),
         });
 
+        const helpBlock = this.state.hasValidated && !this.state.isValid
+            ? (
+                <span className="help-block">{this.state.validationMessage}</span>
+
+            )
+            : '';
+
         // render the component & return it
         //
         return (
             <div className={classes}>
                 {this.props.label &&
                     <Label htmlFor={this.id} label={this.props.label} className={columns(this.props.labelColumns)} />
-                }
-                {(this.state.hasValidated && !this.state.isValid) &&
-                    <span className="help-block">{this.state.validationMessage}</span>
                 }
                 <div className={columns(this.props.inputColumns)}>
                     <input
