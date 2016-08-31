@@ -22,7 +22,8 @@ when editing, the NumericInput component
 */
 describe('when editing, the NumericInput component', () => {
 
-    it('should preserve the trailing decimal through multiple character steps with non-zero decimals', () => {
+    it('should preserve the trailing decimal through multiple character ' +
+        'steps with non-zero decimals', () => {
         const required = false;
         const description = 'blah blah';
         const initialValue = 42;
@@ -60,7 +61,8 @@ describe('when editing, the NumericInput component', () => {
         });
     });
 
-    it('should preserve the trailing decimal through multiple character steps with zero decimals', () => {
+    it('should preserve the trailing decimal through multiple character ' +
+        'steps with zero decimals', () => {
         const required = false;
         const description = 'blah blah';
         const initialValue = 42;
@@ -98,7 +100,8 @@ describe('when editing, the NumericInput component', () => {
         });
     });
 
-    it('should preserve the trailing decimal through multiple character steps with negative numbers', () => {
+    it('should preserve the trailing decimal through multiple character ' +
+        'steps with negative numbers', () => {
         const required = false;
         const description = 'blah blah';
         const initialValue = 42;

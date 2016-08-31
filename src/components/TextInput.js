@@ -4,6 +4,7 @@ import React from 'react';
 import uniqueId from 'lodash/uniqueId';
 import classnames from 'classnames';
 import Label from './Label';
+import columns from '../helpers/columns';
 
 /**
  * The TextInput component
@@ -174,25 +175,33 @@ class TextInput extends React.Component {
             'has-error': (this.state.hasValidated && !this.state.isValid),
         });
 
+        const helpBlock = this.state.hasValidated && !this.state.isValid
+            ? <span className="help-block">{this.state.validationMessage}</span>
+            : '';
+
         // render the component & return it
         //
         return (
             <div className={classes}>
                 {this.props.label &&
-                    <Label htmlFor={this.id} label={this.props.label} />
+                    <Label
+                        htmlFor={this.id}
+                        label={this.props.label}
+                        className={columns(this.props.labelColumns)}
+                    />
                 }
-                <input
-                    id={this.id}
-                    type="text"
-                    value={this.state.value}
-                    className="form-control"
-                    placeholder={this.props.placeholder || ''}
-                    onBlur={this.onBlur}
-                    onChange={this.onChange}
-                />
-                {(this.state.hasValidated && !this.state.isValid) &&
-                    <span className="help-block">{this.state.validationMessage}</span>
-                }
+                <div className={columns(this.props.inputColumns)}>
+                    <input
+                        id={this.id}
+                        type="text"
+                        value={this.state.value}
+                        className="form-control"
+                        placeholder={this.props.placeholder || ''}
+                        onBlur={this.onBlur}
+                        onChange={this.onChange}
+                    />
+                    {helpBlock}
+                </div>
             </div>
         );
     }
@@ -207,6 +216,8 @@ TextInput.propTypes = {
     description:       React.PropTypes.string,
     placeholder:       React.PropTypes.string,
     validationMessage: React.PropTypes.string,
+    labelColumns:      React.PropTypes.object,
+    inputColumns:      React.PropTypes.object,
     value:             React.PropTypes.oneOfType([
         React.PropTypes.string,
         React.PropTypes.number,

@@ -1677,6 +1677,8 @@ in terms of basic markup, the TextInput component
     should include an input.form-control
     should include a label with the appropriate text if a label is specified
     should include a placeholder if a placeholder is specified
+    should have the correct label widths when labelColumns is set
+    should have the correct select widths when inputColumns is set
 */
 describe('in terms of basic markup, the TextInput component', () => {
 
@@ -1716,4 +1718,21 @@ describe('in terms of basic markup, the TextInput component', () => {
         expect(component.find('div.form-group input').prop('placeholder')).to.equal(placeholder);
     });
 
+    it('should have the correct label widths when labelColumns is set', () => {
+        const columns = { xs: 10, md: 8 };
+        const expectedClass = 'col-xs-10 col-md-8';
+
+        const component = shallow(<TextInput label={label} labelColumns={columns} />);
+
+        expect(component.find('Label').props().className).to.equal(expectedClass);
+    });
+
+    it('should have the correct select widths when inputColumns is set', () => {
+        const columns = { xs: 10, md: 8 };
+        const expectedClass = '.col-xs-10.col-md-8';
+
+        const component = shallow(<TextInput label={label} inputColumns={columns} />);
+
+        expect(component.find(`div${expectedClass} input`).length).to.equal(1);
+    });
 });
