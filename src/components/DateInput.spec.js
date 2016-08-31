@@ -20,6 +20,20 @@ on blur, the DateInput component
     should call onValidation with hasValidated=true
     should call onChange with the formatted value
 */
+describe('on blur, the DateInput component', () => {
+
+    // it('should reformat a valid value as a date', () => {});
+
+    // it('should leave an invalid value as is', () => {});
+
+    // it('should leave a blank value as is', () => {});
+
+    // it('should call onValidation with hasValidated=true', () => {});
+
+    // it('should call onChange with the formatted value', () => {});
+
+});
+
 /* *****************************************************************************
 during editing, the DateInput component
     should maintain the correct value at each step when entering a valid date
