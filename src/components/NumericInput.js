@@ -47,7 +47,7 @@ class NumericInput extends React.Component {
 
         // initialize the component state
         //
-        this.state = this.validate(props.value, true);
+        this.state = this.validate(props.value);
 
         // bind `this` to the event handlers
         //
@@ -79,7 +79,7 @@ class NumericInput extends React.Component {
     componentWillReceiveProps(newProps) {
         // validate the new value
         //
-        const newState = this.validate(newProps.value, false);
+        const newState = this.validate(newProps.value);
 
         // ensure that we preserve the `hasValidated` state of the component
         //
@@ -118,7 +118,7 @@ class NumericInput extends React.Component {
     onBlur(event) {
         // validate the new value WITH FORMATTING
         //
-        const newState = this.validate(event.target.value, true);
+        const newState = this.validate(event.target.value);
 
         // set `hasValidated` to true
         //
@@ -136,7 +136,7 @@ class NumericInput extends React.Component {
     onChange(event) {
         // validate the new value without formatting it
         //
-        const newState = this.validate(event.target.value, false);
+        const newState = this.validate(event.target.value);
 
         // preserve the `hasValidated` state
         //
@@ -182,7 +182,7 @@ class NumericInput extends React.Component {
     onFocus(event) {
         // validate the new value
         //
-        const newState = this.validate(event.target.value, false);
+        const newState = this.validate(event.target.value);
 
         // preserve the `hasValidated` state
         //
@@ -202,7 +202,7 @@ class NumericInput extends React.Component {
      * @return {Object}                 The new state for the component,
      *                                  including value & validation state
      */
-    validate(newValue, format) {
+    validate(newValue) {
         // clean the value & convert it to a floating point number
         //
         let value = parseFloat(clean(newValue));
