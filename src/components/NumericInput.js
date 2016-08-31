@@ -86,7 +86,6 @@ class NumericInput extends React.Component {
         //
         newState.hasValidated = this.state.hasValidated;
         newState.isEditing = this.state.isEditing;
-        newState.hasTrailingDecimal = this.state.hasTrailingDecimal;
 
         // do we have a new value? if not, then don't bother changing anything
         //
@@ -131,10 +130,6 @@ class NumericInput extends React.Component {
         //
         newState.isEditing = false;
 
-        // set `hasTrailingDecimal` to false (since we're no longer editing)
-        //
-        newState.hasTrailingDecimal = false;
-
         // handle the updated state
         //
         this.onUpdatedState(newState);
@@ -156,11 +151,6 @@ class NumericInput extends React.Component {
         // set `isEditing` to true, since the user is currently editing
         //
         newState.isEditing = true;
-
-        // set the `hasTrailingDecimal` based on whether the rightmost character
-        // of the event value is a decimal
-        //
-        newState.hasTrailingDecimal = event.target.value[event.target.value.length - 1] === '.';
 
         // handle the updated state
         //
@@ -212,10 +202,6 @@ class NumericInput extends React.Component {
         // element
         //
         newState.isEditing = true;
-
-        // preserve the `hasTrailingDecimal` state
-        //
-        newState.hasTrailingDecimal = this.state.hasTrailingDecimal;
 
         // set the new state
         //
@@ -283,13 +269,6 @@ class NumericInput extends React.Component {
             } else if (this.props.decimals || this.props.decimals === 0) {
                 value = decimals(this.state.value, this.props.decimals);
             }
-        }
-
-        // if the hasTrailingDecimal flag is set, then append a decimal
-        // character
-        //
-        if (this.state.hasTrailingDecimal) {
-            value += '.';
         }
 
         // generate the classes for the outermost div element
