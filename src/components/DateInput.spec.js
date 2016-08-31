@@ -27,7 +27,19 @@ the onValidation handler for the DateInput component
 */
 describe('the onValidation handler for the DateInput component', () => {
 
-    // it('should be called on initialization with required=true, value=valid', () => {});
+    it('should be called on initialization with required=true, value=valid', () => {
+        const onValidation = sinon.spy();
+
+        const required = true;
+        const value = '6/24/2016';
+
+        const component = mount(<DateInput required={required} value={value} onValidation={onValidation} />);
+
+        expect(onValidation.callCount).to.equal(1, 'callcount');
+        expect(onValidation.args[0][0]).to.equal(false, 'args[0][0]');
+        expect(onValidation.args[0][1]).to.equal(true, 'args[0][1]');
+        expect(onValidation.args[0][2]).to.equal(null, 'args[0][2]');
+    });
 
     // it('should be called on initialization with required=true, value=invalid', () => {});
 
