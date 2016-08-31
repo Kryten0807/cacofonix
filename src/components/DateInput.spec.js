@@ -12,6 +12,14 @@ import DateInput from './DateInput';
 
 const expect = chai.expect;
 
+
+/* *****************************************************************************
+given an invalid value, the validation error message
+    should not be displayed after initialization
+    should not be displayed after focus
+    should be displayed after editing
+    should be displayed after blur
+*/
 /* *****************************************************************************
 on focus, the DateInput component
     should format a valid value as a date for the input element
