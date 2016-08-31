@@ -139,6 +139,7 @@ class DateInput extends React.Component {
                         placeholder={this.props.placeholder}
                         onBlur={this.onBlur}
                         onChange={this.onChange}
+                        onFocus={this.onFocus}
                     />
                 </div>
             </div>
