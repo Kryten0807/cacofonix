@@ -281,6 +281,13 @@ class NumericInput extends React.Component {
             }
         }
 
+        // if the hasTrailingDecimal flag is set, then append a decimal
+        // character
+        //
+        if (this.state.hasTrailingDecimal) {
+            value += '.';
+        }
+
         // generate the classes for the outermost div element
         //
         const divClasses = classnames('form-group', {
