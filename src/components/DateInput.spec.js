@@ -20,6 +20,19 @@ given an invalid value, the validation error message
     should be displayed after editing
     should be displayed after blur
 */
+describe('given an invalid value, the validation error message', () => {
+
+    // it('should not be displayed after initialization', () => {});
+
+    // it('should not be displayed after focus', () => {});
+
+    // it('should be displayed after editing', () => {});
+
+    // it('should be displayed after blur', () => {});
+
+});
+
+
 /* *****************************************************************************
 on focus, the DateInput component
     should format a valid value as a date for the input element
