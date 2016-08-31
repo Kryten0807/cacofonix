@@ -11,7 +11,8 @@ class DateInput extends React.Component {
 
         this.id = uniqueId('DateInput-');
 
-        this.validationMessage = props.validationMessage || `${props.description} is not a valid date`;
+        this.validationMessage = props.validationMessage
+            || `${props.description} is not a valid date`;
 
         this.state = this.validate(props.value);
 
@@ -21,7 +22,11 @@ class DateInput extends React.Component {
 
     componentWillMount() {
         if (this.props.onValidation) {
-            this.props.onValidation(this.state.hasValidated, this.state.isValid, this.state.validationMessage);
+            this.props.onValidation(
+                this.state.hasValidated,
+                this.state.isValid,
+                this.state.validationMessage
+            );
         }
     }
 
@@ -32,7 +37,11 @@ class DateInput extends React.Component {
         this.setState(newState);
 
         if (this.props.onValidation) {
-            this.props.onValidation(newState.hasValidated, newState.isValid, newState.validationMessage);
+            this.props.onValidation(
+                newState.hasValidated,
+                newState.isValid,
+                newState.validationMessage
+            );
         }
     }
 
@@ -43,7 +52,11 @@ class DateInput extends React.Component {
         this.setState(newState);
 
         if (this.props.onValidation && newState.hasValidated) {
-            this.props.onValidation(newState.hasValidated, newState.isValid, newState.validationMessage);
+            this.props.onValidation(
+                newState.hasValidated,
+                newState.isValid,
+                newState.validationMessage
+            );
         }
     }
 
