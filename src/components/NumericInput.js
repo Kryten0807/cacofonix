@@ -27,7 +27,7 @@ const decimals = (value, count) => (value !== '' ? `${value.toFixed(count)}` : '
  * @param  {Number} value The value to convert
  * @return {String}       The formatted value
  */
-const currency = (value) => `$ ${decimals(value, 2)}`;
+const currency = (value) => (value !== '' ? `$ ${decimals(value, 2)}` : '');
 
 /**
  * The NumericInput component
