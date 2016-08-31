@@ -33,6 +33,7 @@ class DateInput extends React.Component {
     onBlur(event) {
         const newState = this.validate(event.target.value);
         newState.hasValidated = true;
+        newState.isEditing = false;
 
         this.setState(newState);
 
