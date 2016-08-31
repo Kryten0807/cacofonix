@@ -257,6 +257,8 @@ class NumericInput extends React.Component {
     render() {
         let value = `${this.state.value}`;
 
+        // are we currently editing? if not, then format the value appropriately
+        //
         if (!this.state.isEditing) {
             if (this.props.isCurrency) {
                 value = currency(this.state.value);
