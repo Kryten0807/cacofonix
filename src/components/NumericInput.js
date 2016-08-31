@@ -209,7 +209,7 @@ class NumericInput extends React.Component {
     }
 
     /**
-     * Validate a value, optionally formatting it
+     * Validate a new value
      * @param  {String|Number} newValue The new value
      * @param  {Boolean} format         If true, then format the value according
      *                                  to the component props; otherwise, just
@@ -259,7 +259,7 @@ class NumericInput extends React.Component {
      * @return {React.Element} The React Element representing this component
      */
     render() {
-        let value = `${this.state.value}`;
+        let value = `${this.state.editingValue}`;
 
         // are we currently editing? if not, then format the value appropriately
         //
