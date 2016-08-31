@@ -53,6 +53,7 @@ class DateInput extends React.Component {
     onChange(event) {
         const newState = this.validate(event.target.value);
         newState.hasValidated = this.state.hasValidated;
+        newState.isEditing = true;
 
         this.setState(newState);
 
