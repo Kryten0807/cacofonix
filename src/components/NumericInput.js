@@ -213,6 +213,10 @@ class NumericInput extends React.Component {
         //
         newState.isEditing = true;
 
+        // preserve the `hasTrailingDecimal` state
+        //
+        newState.hasTrailingDecimal = this.state.hasTrailingDecimal;
+
         // set the new state
         //
         this.setState(newState);
