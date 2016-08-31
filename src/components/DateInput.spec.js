@@ -21,7 +21,6 @@ on focus, the DateInput component
 describe('on focus, the DateInput component', () => {
 
     const description = 'mumble mumble';
-    const expectedMessage = `${description} is not a valid date`;
 
     it('should format a valid value as a date for the input element', () => {
 
