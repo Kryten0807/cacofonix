@@ -15,6 +15,51 @@ const expect = chai.expect;
 // @TODO write tests to ensure new props do not interrupt user editing
 
 /* *****************************************************************************
+when editing, the NumericInput component
+    should preserve the trailing decimal through multiple character steps
+*/
+describe('when editing, the NumericInput component', () => {
+
+    it('should preserve the trailing decimal through multiple character steps', () => {
+        const required = false;
+        const description = 'blah blah';
+        const initialValue = 42;
+
+        // simulate a series of edits from empty to '100.99'
+        const editingList = [
+            '',
+            '1',
+            '10',
+            '100',
+            '100.',
+            '100.9',
+            '100.99',
+        ];
+
+        const component = mount(
+            <NumericInput
+                required={required}
+                description={description}
+                value={initialValue}
+            />
+        );
+
+        editingList.forEach((str) => {
+            // simulate the change to the current string
+            //
+            component.find('input').simulate('change', {
+                target: { value: str }
+            });
+
+            // check to make sure the input element correctly reflects the
+            // change
+            //
+            expect(component.find('input').props().value).to.equal(str);
+        });
+    });
+});
+
+/* *****************************************************************************
 when the parent component sends new value prop, a required NumericInput component
     should call the onValidation handler when required=true, value=valid
     should call the onValidation handler when required=true, value=blank
