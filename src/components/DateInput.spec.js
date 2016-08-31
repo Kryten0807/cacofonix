@@ -18,7 +18,8 @@ on blur, the DateInput component
     should leave an invalid value as is
     should leave a blank value as is
     should call onValidation with hasValidated=true
-    should call onChange with the formatted value
+    should call onChange with the formatted value for a valid value
+    should call onChange with null for an invalid value
 */
 describe('on blur, the DateInput component', () => {
 
