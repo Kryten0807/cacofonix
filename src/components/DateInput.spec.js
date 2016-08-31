@@ -18,6 +18,18 @@ during editing, the DateInput component
     should maintain the correct value at each step when entering an invalid date
     should maintain the correct value at each step when deleting the current value
 */
+describe('during editing, the DateInput component', () => {
+
+    // it('should maintain the correct value at each step when entering a valid date', () => {});
+
+    // it('should maintain the correct value at each step when entering an invalid date', () => {});
+
+    // it('should maintain the correct value at each step when deleting the current value', () => {});
+
+});
+
+
+
 
 /* *****************************************************************************
 the onChange handler for the DateInput component
