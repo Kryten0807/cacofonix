@@ -107,4 +107,21 @@ class DateInput extends React.Component {
     }
 }
 
+// set the property types for the DateInput component
+//
+DateInput.propTypes = {
+    placeholder:       React.PropTypes.string,
+    readOnly:          React.PropTypes.bool,
+    labelColumns:      React.PropTypes.object,
+    inputColumns:      React.PropTypes.object,
+    label:             React.PropTypes.string,
+    required:          React.PropTypes.bool,
+    value:             React.PropTypes.string,
+    description:       React.PropTypes.string,
+    validationMessage: React.PropTypes.string,
+    onValidation:      React.PropTypes.func,
+    onChange:          React.PropTypes.func,
+};
+
+
 export default DateInput;
