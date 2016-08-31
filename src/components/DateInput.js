@@ -10,6 +10,13 @@ class DateInput extends React.Component {
 
         this.id = uniqueId('DateInput-');
     }
+
+    componentWillMount() {
+        if (this.props.onValidation) {
+            this.props.onValidation(false, true, null);
+        }
+    }
+
     render() {
         return (
             <div className="form-group">
