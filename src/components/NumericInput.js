@@ -81,9 +81,11 @@ class NumericInput extends React.Component {
         //
         const newState = this.validate(newProps.value);
 
-        // ensure that we preserve the `hasValidated` state of the component
+        // ensure that we preserve the `hasValidated` & `isEditing` state of the
+        // component
         //
         newState.hasValidated = this.state.hasValidated;
+        newState.isEditing = this.state.isEditing;
 
         // do we have a new value? if not, then don't bother changing anything
         //
@@ -124,6 +126,10 @@ class NumericInput extends React.Component {
         //
         newState.hasValidated = true;
 
+        // set `isEditing` to false (since the user has just tabbed away)
+        //
+        newState.isEditing = false;
+
         // handle the updated state
         //
         this.onUpdatedState(newState);
@@ -141,6 +147,10 @@ class NumericInput extends React.Component {
         // preserve the `hasValidated` state
         //
         newState.hasValidated = this.state.hasValidated;
+
+        // set `isEditing` to true, since the user is currently editing
+        //
+        newState.isEditing = true;
 
         // handle the updated state
         //
@@ -187,6 +197,11 @@ class NumericInput extends React.Component {
         // preserve the `hasValidated` state
         //
         newState.hasValidated = this.state.hasValidated;
+
+        // set `isEditing` to true, since the user has just focused the input
+        // element
+        //
+        newState.isEditing = true;
 
         // set the new state
         //
