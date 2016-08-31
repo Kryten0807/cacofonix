@@ -1202,7 +1202,7 @@ describe('the onChange handler for the NumericInput component', () => {
 
         const required = true;
         const initialValue = 123.456;
-        const finalValue = '99.9999';
+        const finalValue = 99.9999;
 
         const component = mount(
             <NumericInput
@@ -1251,7 +1251,7 @@ describe('the onChange handler for the NumericInput component', () => {
 
         const required = true;
         const initialValue = 123.456;
-        const finalValue = '4213.21';
+        const finalValue = -4213.21;
 
         const component = mount(
             <NumericInput
