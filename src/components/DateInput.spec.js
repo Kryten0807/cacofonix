@@ -22,6 +22,9 @@ on blur, the DateInput component
 */
 describe('on blur, the DateInput component', () => {
 
+    const description = 'xyz 123';
+    const expectedMessage = `${description} is not a valid date`;
+
     it('should reformat a valid value as a date', () => {
 
         const required = true;
@@ -39,13 +42,87 @@ describe('on blur, the DateInput component', () => {
         expect(component.find('input').props().value).to.equal(expectedValue);
     });
 
-    // it('should leave an invalid value as is', () => {});
+    it('should leave an invalid value as is', () => {
 
-    // it('should leave a blank value as is', () => {});
+        const required = true;
 
-    // it('should call onValidation with hasValidated=true', () => {});
+        const value = '1/1/2016';
+        const newValue = 'no no no no no!';
+        const expectedValue = newValue;
 
-    // it('should call onChange with the formatted value', () => {});
+        const component = mount(<DateInput required={required} value={value} />);
+
+        component.find('input').simulate('blur', {
+            target: { value: newValue }
+        });
+
+        expect(component.find('input').props().value).to.equal(expectedValue);
+    });
+
+    it('should leave a blank value as is', () => {
+
+        const required = true;
+
+        const value = '1/1/2016';
+        const newValue = '';
+        const expectedValue = newValue;
+
+        const component = mount(<DateInput required={required} value={value} />);
+
+        component.find('input').simulate('blur', {
+            target: { value: newValue }
+        });
+
+        expect(component.find('input').props().value).to.equal(expectedValue);
+    });
+
+    it('should call onValidation with hasValidated=true', () => {
+
+        const onValidation = sinon.spy();
+
+        const required = true;
+
+        const value = '1/1/2016';
+        const newValue = 'no no no no no!';
+        const expectedValue = newValue;
+
+        const component = mount(<DateInput description={description} required={required} value={value} onValidation={onValidation} />);
+
+        expect(onValidation.callCount).to.equal(1);
+
+        component.find('input').simulate('blur', {
+            target: { value: newValue }
+        });
+
+        expect(onValidation.callCount).to.equal(2);
+        expect(onValidation.args[1][0]).to.equal(true, 'args[1][0]');
+        expect(onValidation.args[1][1]).to.equal(false, 'args[1][1]');
+        expect(onValidation.args[1][2]).to.equal(expectedMessage, 'args[1][2]');
+
+
+
+        expect(onValidation.calledWith(true, false, expectedMessage)).to.equal(true);
+    });
+
+    it('should call onChange with the formatted value', () => {
+
+        const onChange = sinon.spy();
+
+        const required = true;
+
+        const value = '1/1/2016';
+        const newValue = '03/06/2014';
+        const expectedValue = '3/6/2014';
+
+        const component = mount(<DateInput required={required} value={value} onChange={onChange} />);
+
+        component.find('input').simulate('blur', {
+            target: { value: newValue }
+        });
+
+        expect(onChange.callCount).to.equal(1);
+        expect(onChange.calledWith(expectedValue)).to.equal(true);
+    });
 
 });
 
