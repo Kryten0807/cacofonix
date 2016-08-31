@@ -48,9 +48,67 @@ describe('during editing, the DateInput component', () => {
         });
     });
 
-    // it('should maintain the correct value at each step when entering an invalid date', () => {});
+    it('should maintain the correct value at each step when entering an invalid date', () => {
+        const steps = [
+            '',
+            'a',
+            'a ',
+            'a b',
+            'a bi',
+            'a big',
+            'a big ',
+            'a big r',
+            'a big re',
+            'a big red',
+            'a big red ',
+            'a big red t',
+            'a big red tr',
+            'a big red tru',
+            'a big red truc',
+            'a big red truck',
+        ];
 
-    // it('should maintain the correct value at each step when deleting the current value', () => {});
+        const required = true;
+        const value = '1/1/2016';
+
+        const component = mount(<DateInput required={required} value={value} />);
+
+        steps.forEach((step) => {
+            component.find('input').simulate('change', {
+                target: { value: step }
+            });
+
+            expect(component.find('input').props().value).to.equal(step, step);
+        });
+    });
+
+    it('should maintain the correct value at each step when deleting the current value', () => {
+        const steps = [
+            '6/24/2016',
+            '6/24/201',
+            '6/24/20',
+            '6/24/2',
+            '6/24/',
+            '6/24',
+            '6/2',
+            '6/',
+            '6',
+            '',
+        ];
+
+        const required = true;
+        const value = '6/24/2016';
+
+        const component = mount(<DateInput required={required} value={value} />);
+
+        steps.forEach((step) => {
+            component.find('input').simulate('change', {
+                target: { value: step }
+            });
+
+            expect(component.find('input').props().value).to.equal(step, step);
+        });
+    });
 
 });
 
