@@ -22,15 +22,97 @@ the onChange handler for the DateInput component
 */
 describe('the onChange handler for the DateInput component', () => {
 
-    // it('should not be called on initialization', () => {});
+    const description = 'a component';
+    const expectedMessage = `${description} is not a valid date`;
 
-    // it('should be called on edit when the value has changed', () => {});
+    it('should not be called on initialization', () => {
+        const onChange = sinon.spy();
 
-    // it('should not be called on edit when the value has not changed', () => {});
+        const required = true;
+        const value = '6/24/2016';
 
-    // it('should be called on blur when the value has changed', () => {});
+        mount(<DateInput required={required} value={value} onChange={onChange} />);
 
-    // it('should not be called on blur when the value has not changed', () => {});
+        expect(onChange.callCount).to.equal(0, 'callcount');
+    });
+
+    it('should be called on edit when the value has changed', () => {
+        const onChange = sinon.spy();
+
+        const required = true;
+        const value = '6/24/2016';
+
+        const newValue = '6/25/2016';
+
+        const component = mount(<DateInput required={required} value={value} onChange={onChange} />);
+
+        expect(onChange.callCount).to.equal(0, 'callcount');
+
+        component.find('input').simulate('change', {
+            target: { value: newValue }
+        });
+
+        expect(onChange.callCount).to.equal(1, 'callcount');
+        expect(onChange.calledWith(newValue)).to.equal(true, 'called with');
+    });
+
+    it('should not be called on edit when the value has not changed', () => {
+        const onChange = sinon.spy();
+
+        const required = true;
+        const value = '6/24/2016';
+
+        const newValue = value;
+
+        const component = mount(<DateInput required={required} value={value} onChange={onChange} />);
+
+        expect(onChange.callCount).to.equal(0, 'callcount');
+
+        component.find('input').simulate('change', {
+            target: { value: newValue }
+        });
+
+        expect(onChange.callCount).to.equal(0, 'callcount');
+    });
+
+    it('should be called on blur when the value has changed', () => {
+        const onChange = sinon.spy();
+
+        const required = true;
+        const value = '6/24/2016';
+
+        const newValue = '6/25/2016';
+
+        const component = mount(<DateInput required={required} value={value} onChange={onChange} />);
+
+        expect(onChange.callCount).to.equal(0, 'callcount');
+
+        component.find('input').simulate('blur', {
+            target: { value: newValue }
+        });
+
+        expect(onChange.callCount).to.equal(1, 'callcount');
+        expect(onChange.calledWith(newValue)).to.equal(true, 'called with');
+    });
+
+    it('should not be called on blur when the value has not changed', () => {
+        const onChange = sinon.spy();
+
+        const required = true;
+        const value = '6/24/2016';
+
+        const newValue = value;
+
+        const component = mount(<DateInput required={required} value={value} onChange={onChange} />);
+
+        expect(onChange.callCount).to.equal(0, 'callcount');
+
+        component.find('input').simulate('blur', {
+            target: { value: newValue }
+        });
+
+        expect(onChange.callCount).to.equal(0, 'callcount');
+    });
 
 });
 
