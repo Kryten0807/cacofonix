@@ -123,5 +123,6 @@ DateInput.propTypes = {
     onChange:          React.PropTypes.func,
 };
 
-
+// export the component
+//
 export default DateInput;
