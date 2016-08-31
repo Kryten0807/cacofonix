@@ -20,7 +20,33 @@ during editing, the DateInput component
 */
 describe('during editing, the DateInput component', () => {
 
-    // it('should maintain the correct value at each step when entering a valid date', () => {});
+    it('should maintain the correct value at each step when entering a valid date', () => {
+        const steps = [
+            '',
+            '6',
+            '6/',
+            '6/2',
+            '6/24',
+            '6/24/',
+            '6/24/2',
+            '6/24/20',
+            '6/24/201',
+            '6/24/2016',
+        ];
+
+        const required = true;
+        const value = '1/1/2016';
+
+        const component = mount(<DateInput required={required} value={value} />);
+
+        steps.forEach((step) => {
+            component.find('input').simulate('change', {
+                target: { value: step }
+            });
+
+            expect(component.find('input').props().value).to.equal(step, step);
+        });
+    });
 
     // it('should maintain the correct value at each step when entering an invalid date', () => {});
 
