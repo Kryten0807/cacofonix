@@ -86,7 +86,6 @@ class NumericInput extends React.Component {
         //
         newState.hasValidated = this.state.hasValidated;
         newState.isEditing = this.state.isEditing;
-        newState.hasTrailingDecimal = this.state.hasTrailingDecimal;
 
         // do we have a new value? if not, then don't bother changing anything
         //
@@ -119,7 +118,7 @@ class NumericInput extends React.Component {
      * @param  {Object} event The event object
      */
     onBlur(event) {
-        // validate the new value WITH FORMATTING
+        // validate the new value
         //
         const newState = this.validate(event.target.value);
 
@@ -130,10 +129,6 @@ class NumericInput extends React.Component {
         // set `isEditing` to false (since the user has just tabbed away)
         //
         newState.isEditing = false;
-
-        // set `hasTrailingDecimal` to false (since we're no longer editing)
-        //
-        newState.hasTrailingDecimal = false;
 
         // handle the updated state
         //
@@ -156,11 +151,6 @@ class NumericInput extends React.Component {
         // set `isEditing` to true, since the user is currently editing
         //
         newState.isEditing = true;
-
-        // set the `hasTrailingDecimal` based on whether the rightmost character
-        // of the event value is a decimal
-        //
-        newState.hasTrailingDecimal = event.target.value[event.target.value.length - 1] === '.';
 
         // handle the updated state
         //
@@ -213,17 +203,13 @@ class NumericInput extends React.Component {
         //
         newState.isEditing = true;
 
-        // preserve the `hasTrailingDecimal` state
-        //
-        newState.hasTrailingDecimal = this.state.hasTrailingDecimal;
-
         // set the new state
         //
         this.setState(newState);
     }
 
     /**
-     * Validate a value, optionally formatting it
+     * Validate a new value
      * @param  {String|Number} newValue The new value
      * @param  {Boolean} format         If true, then format the value according
      *                                  to the component props; otherwise, just
@@ -232,9 +218,13 @@ class NumericInput extends React.Component {
      *                                  including value & validation state
      */
     validate(newValue) {
+        // clean it and set it as the editing value
+        //
+        const editingValue = clean(newValue);
+
         // clean the value & convert it to a floating point number
         //
-        let value = parseFloat(clean(newValue));
+        let value = parseFloat(editingValue);
 
         // determine if the value is not a number (NaN)
         //
@@ -256,11 +246,11 @@ class NumericInput extends React.Component {
         //
         return {
             value,
+            editingValue,
             isValid,
             validationMessage:  isValid ? null : this.validationMessage,
             hasValidated:       false,
             isEditing:          false,
-            hasTrailingDecimal: false,
         };
     }
 
@@ -269,7 +259,7 @@ class NumericInput extends React.Component {
      * @return {React.Element} The React Element representing this component
      */
     render() {
-        let value = `${this.state.value}`;
+        let value = `${this.state.editingValue}`;
 
         // are we currently editing? if not, then format the value appropriately
         //
@@ -279,13 +269,6 @@ class NumericInput extends React.Component {
             } else if (this.props.decimals || this.props.decimals === 0) {
                 value = decimals(this.state.value, this.props.decimals);
             }
-        }
-
-        // if the hasTrailingDecimal flag is set, then append a decimal
-        // character
-        //
-        if (this.state.hasTrailingDecimal) {
-            value += '.';
         }
 
         // generate the classes for the outermost div element

@@ -16,11 +16,13 @@ const expect = chai.expect;
 
 /* *****************************************************************************
 when editing, the NumericInput component
-    should preserve the trailing decimal through multiple character steps
+    should preserve the trailing decimal through multiple character steps with non-zero decimals
+    should preserve the trailing decimal through multiple character steps with zero decimals
+    should preserve the trailing decimal through multiple character steps with negative numbers
 */
 describe('when editing, the NumericInput component', () => {
 
-    it('should preserve the trailing decimal through multiple character steps', () => {
+    it('should preserve the trailing decimal through multiple character steps with non-zero decimals', () => {
         const required = false;
         const description = 'blah blah';
         const initialValue = 42;
@@ -34,6 +36,83 @@ describe('when editing, the NumericInput component', () => {
             '100.',
             '100.9',
             '100.99',
+        ];
+
+        const component = mount(
+            <NumericInput
+                required={required}
+                description={description}
+                value={initialValue}
+            />
+        );
+
+        editingList.forEach((str) => {
+            // simulate the change to the current string
+            //
+            component.find('input').simulate('change', {
+                target: { value: str }
+            });
+
+            // check to make sure the input element correctly reflects the
+            // change
+            //
+            expect(component.find('input').props().value).to.equal(str);
+        });
+    });
+
+    it('should preserve the trailing decimal through multiple character steps with zero decimals', () => {
+        const required = false;
+        const description = 'blah blah';
+        const initialValue = 42;
+
+        // simulate a series of edits from empty to '100.99'
+        const editingList = [
+            '',
+            '1',
+            '10',
+            '100',
+            '100.',
+            '100.0',
+            '100.09',
+        ];
+
+        const component = mount(
+            <NumericInput
+                required={required}
+                description={description}
+                value={initialValue}
+            />
+        );
+
+        editingList.forEach((str) => {
+            // simulate the change to the current string
+            //
+            component.find('input').simulate('change', {
+                target: { value: str }
+            });
+
+            // check to make sure the input element correctly reflects the
+            // change
+            //
+            expect(component.find('input').props().value).to.equal(str);
+        });
+    });
+
+    it('should preserve the trailing decimal through multiple character steps with negative numbers', () => {
+        const required = false;
+        const description = 'blah blah';
+        const initialValue = 42;
+
+        // simulate a series of edits from empty to '100.99'
+        const editingList = [
+            '',
+            '-',
+            '-1',
+            '-10',
+            '-100',
+            '-100.',
+            '-100.0',
+            '-100.09',
         ];
 
         const component = mount(
