@@ -246,6 +246,7 @@ class NumericInput extends React.Component {
             validationMessage: isValid ? null : this.validationMessage,
             hasValidated:      false,
             isEditing:         false,
+            hasTrailingDecimal: false,
         };
     }
 
