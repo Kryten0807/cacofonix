@@ -1809,6 +1809,4 @@ describe('in terms of basic markup, the NumericInput component', () => {
 
         expect(component.find(`div${expectedClass} input`).length).to.equal(1);
     });
-
-
 });
