@@ -79,7 +79,15 @@ class DateInput extends React.Component {
                     : ''
                 }
                 <div className={columns(this.props.inputColumns)}>
-                    <input id={this.id} type="text" readOnly={this.props.readOnly} className="form-control" placeholder={this.props.placeholder} />
+                    <input
+                        id={this.id}
+                        type="text"
+                        readOnly={this.props.readOnly}
+                        className="form-control"
+                        placeholder={this.props.placeholder}
+                        onBlur={this.onBlur}
+                        onChange={this.onChange}
+                    />
                 </div>
             </div>
         );
