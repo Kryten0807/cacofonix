@@ -176,10 +176,7 @@ class TextInput extends React.Component {
         });
 
         const helpBlock = this.state.hasValidated && !this.state.isValid
-            ? (
-                <span className="help-block">{this.state.validationMessage}</span>
-
-            )
+            ? <span className="help-block">{this.state.validationMessage}</span>
             : '';
 
         // render the component & return it
