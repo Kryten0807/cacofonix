@@ -1679,6 +1679,11 @@ in terms of basic markup, the TextInput component
     should include a placeholder if a placeholder is specified
     should have the correct label widths when labelColumns is set
     should have the correct select widths when inputColumns is set
+    should include a label with the the required flag if a label is specified & required is set
+    should not include a label with the the required flag if a label is
+        specified & required is not set
+    should not include a label with the the required flag if a label is not
+        specified & required is set
 */
 describe('in terms of basic markup, the TextInput component', () => {
 
