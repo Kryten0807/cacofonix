@@ -81,11 +81,12 @@ class NumericInput extends React.Component {
         //
         const newState = this.validate(newProps.value);
 
-        // ensure that we preserve the `hasValidated` & `isEditing` state of the
-        // component
+        // ensure that we preserve the `hasValidated`, `isEditing`, and
+        // `hasTrailingDecimal` state of the component
         //
         newState.hasValidated = this.state.hasValidated;
         newState.isEditing = this.state.isEditing;
+        newState.hasTrailingDecimal = this.state.hasTrailingDecimal;
 
         // do we have a new value? if not, then don't bother changing anything
         //
@@ -130,6 +131,10 @@ class NumericInput extends React.Component {
         //
         newState.isEditing = false;
 
+        // set `hasTrailingDecimal` to false (since we're no longer editing)
+        //
+        newState.hasTrailingDecimal = false;
+
         // handle the updated state
         //
         this.onUpdatedState(newState);
@@ -151,6 +156,11 @@ class NumericInput extends React.Component {
         // set `isEditing` to true, since the user is currently editing
         //
         newState.isEditing = true;
+
+        // set the `hasTrailingDecimal` based on whether the rightmost character
+        // of the event value is a decimal
+        //
+        newState.hasTrailingDecimal = event.target.value[event.target.value.length - 1] === '.';
 
         // handle the updated state
         //
