@@ -13,6 +13,14 @@ import DateInput from './DateInput';
 const expect = chai.expect;
 
 /* *****************************************************************************
+on blur, the DateInput component
+    should reformat a valid value as a date
+    should leave an invalid value as is
+    should leave a blank value as is
+    should call onValidation with hasValidated=true
+    should call onChange with the formatted value
+*/
+/* *****************************************************************************
 during editing, the DateInput component
     should maintain the correct value at each step when entering a valid date
     should maintain the correct value at each step when entering an invalid date
