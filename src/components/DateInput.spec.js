@@ -36,7 +36,7 @@ describe('the onValidation handler for the DateInput component', () => {
         const required = true;
         const value = '6/24/2016';
 
-        const component = mount(<DateInput required={required} value={value} onValidation={onValidation} />);
+        mount(<DateInput required={required} value={value} onValidation={onValidation} />);
 
         expect(onValidation.callCount).to.equal(1, 'callcount');
         expect(onValidation.args[0][0]).to.equal(false, 'args[0][0]');
@@ -50,7 +50,7 @@ describe('the onValidation handler for the DateInput component', () => {
         const required = true;
         const value = 'not a date';
 
-        const component = mount(
+        mount(
             <DateInput
                 description={description}
                 required={required}
@@ -71,7 +71,7 @@ describe('the onValidation handler for the DateInput component', () => {
         const required = true;
         const value = '';
 
-        const component = mount(
+        mount(
             <DateInput
                 description={description}
                 required={required}
@@ -92,7 +92,7 @@ describe('the onValidation handler for the DateInput component', () => {
         const required = false;
         const value = '11/3/2014';
 
-        const component = mount(
+        mount(
             <DateInput
                 description={description}
                 required={required}
@@ -113,7 +113,7 @@ describe('the onValidation handler for the DateInput component', () => {
         const required = false;
         const value = 'another non-date';
 
-        const component = mount(
+        mount(
             <DateInput
                 description={description}
                 required={required}
@@ -134,7 +134,7 @@ describe('the onValidation handler for the DateInput component', () => {
         const required = false;
         const value = '';
 
-        const component = mount(
+        mount(
             <DateInput
                 description={description}
                 required={required}
@@ -237,7 +237,8 @@ describe('the onValidation handler for the DateInput component', () => {
         expect(onValidation.args[2][2]).to.equal(expectedMessage, 'args[2][2]');
     });
 
-    it('should be called with a custom message on blur event with validationMessage=something', () => {
+    it('should be called with a custom message on blur event with ' +
+        'validationMessage=something', () => {
         const onValidation = sinon.spy();
 
         const required = true;
@@ -330,7 +331,8 @@ describe('the basic markup of the DateInput component', () => {
         expect(component.find('input').props().placeholder).to.equal(placeholder);
     });
 
-    it('should include a label with the the required flag if a label is specified & required is set', () => {
+    it('should include a label with the the required flag if a label is ' +
+        'specified & required is set', () => {
         const required = true;
         const label = 'this is silly';
 
@@ -341,7 +343,8 @@ describe('the basic markup of the DateInput component', () => {
 
     });
 
-    it('should not include a label with the the required flag if a label is specified & required is not set', () => {
+    it('should not include a label with the the required flag if a label is ' +
+        'specified & required is not set', () => {
         const required = false;
         const label = 'this is silly';
 
@@ -351,7 +354,8 @@ describe('the basic markup of the DateInput component', () => {
         expect(component.find('Label').props().required).to.equal(required);
     });
 
-    it('should not include a label with the the required flag if a label is not specified & required is set', () => {
+    it('should not include a label with the the required flag if a label is ' +
+        'not specified & required is set', () => {
         const required = true;
 
         const component = shallow(<DateInput required={required} />);
