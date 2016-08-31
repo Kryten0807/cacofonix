@@ -187,6 +187,7 @@ class TextInput extends React.Component {
                     <Label
                         htmlFor={this.id}
                         label={this.props.label}
+                        required={this.props.required}
                         className={columns(this.props.labelColumns)}
                     />
                 }

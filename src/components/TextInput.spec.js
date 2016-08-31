@@ -1679,6 +1679,11 @@ in terms of basic markup, the TextInput component
     should include a placeholder if a placeholder is specified
     should have the correct label widths when labelColumns is set
     should have the correct select widths when inputColumns is set
+    should include a label with the the required flag if a label is specified & required is set
+    should not include a label with the the required flag if a label is
+        specified & required is not set
+    should not include a label with the the required flag if a label is not
+        specified & required is set
 */
 describe('in terms of basic markup, the TextInput component', () => {
 
@@ -1735,4 +1740,34 @@ describe('in terms of basic markup, the TextInput component', () => {
 
         expect(component.find(`div${expectedClass} input`).length).to.equal(1);
     });
+
+    it('should include a label with the the required flag if a label is ' +
+        'specified & required is set', () => {
+        const required = true;
+
+        const component = shallow(<TextInput required={required} label={label} />);
+
+        expect(component.find('Label').length).to.equal(1);
+        expect(component.find('Label').props().required).to.equal(required);
+    });
+
+    it('should not include a label with the required flag if a label is ' +
+        'specified & required is not set', () => {
+        const required = false;
+
+        const component = shallow(<TextInput required={required} label={label} />);
+
+        expect(component.find('Label').length).to.equal(1);
+        expect(component.find('Label').props().required).to.equal(required);
+    });
+
+    it('should not include a label with the the required flag if a label is ' +
+        'not specified & required is set', () => {
+        const required = true;
+
+        const component = shallow(<TextInput required={required} />);
+
+        expect(component.find('Label').length).to.equal(0);
+    });
+
 });
