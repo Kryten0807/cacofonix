@@ -18,6 +18,16 @@ on focus, the DateInput component
     should leave an invalid value as is for the input element
     should leave a blank value as is for the input element
 */
+describe('on focus, the DateInput component', () => {
+
+    // it('should format a valid value as a date for the input element', () => {});
+
+    // it('should leave an invalid value as is for the input element', () => {});
+
+    // it('should leave a blank value as is for the input element', () => {});
+
+});
+
 /* *****************************************************************************
 on blur, the DateInput component
     should reformat a valid value as a date
