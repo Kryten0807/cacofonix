@@ -254,6 +254,16 @@ class NumericInput extends React.Component {
      * @return {React.Element} The React Element representing this component
      */
     render() {
+        let value = `${this.state.value}`;
+
+        if (!this.state.isEditing) {
+            if (this.props.isCurrency) {
+                value = currency(this.state.value);
+            } else if (this.props.decimals || this.props.decimals === 0) {
+                value = decimals(this.state.value, this.props.decimals);
+            }
+        }
+
         // generate the classes for the outermost div element
         //
         const divClasses = classnames('form-group', {
@@ -268,7 +278,7 @@ class NumericInput extends React.Component {
                 id={this.id}
                 className="form-control"
                 placeholder={this.props.placeholder || ''}
-                value={this.state.value}
+                value={value}
                 readOnly={this.props.readOnly}
                 onBlur={this.onBlur}
                 onChange={this.onChange}
