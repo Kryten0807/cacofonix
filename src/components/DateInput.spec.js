@@ -27,6 +27,9 @@ the onValidation handler for the DateInput component
 */
 describe('the onValidation handler for the DateInput component', () => {
 
+    const description = 'a component';
+    const expectedMessage = `${description} is not a valid date`;
+
     it('should be called on initialization with required=true, value=valid', () => {
         const onValidation = sinon.spy();
 
@@ -41,23 +44,235 @@ describe('the onValidation handler for the DateInput component', () => {
         expect(onValidation.args[0][2]).to.equal(null, 'args[0][2]');
     });
 
-    // it('should be called on initialization with required=true, value=invalid', () => {});
+    it('should be called on initialization with required=true, value=invalid', () => {
+        const onValidation = sinon.spy();
 
-    // it('should be called on initialization with required=true, value=blank', () => {});
+        const required = true;
+        const value = 'not a date';
 
-    // it('should be called on initialization with required=false, value=valid', () => {});
+        const component = mount(
+            <DateInput
+                description={description}
+                required={required}
+                value={value}
+                onValidation={onValidation}
+            />
+        );
 
-    // it('should be called on initialization with required=false, value=invalid', () => {});
+        expect(onValidation.callCount).to.equal(1, 'callcount');
+        expect(onValidation.args[0][0]).to.equal(false, 'args[0][0]');
+        expect(onValidation.args[0][1]).to.equal(false, 'args[0][1]');
+        expect(onValidation.args[0][2]).to.equal(expectedMessage, 'args[0][2]');
+    });
 
-    // it('should be called on initialization with required=false, value=blank', () => {});
+    it('should be called on initialization with required=true, value=blank', () => {
+        const onValidation = sinon.spy();
 
-    // it('should not be called after change without prior blur event', () => {});
+        const required = true;
+        const value = '';
 
-    // it('should be called on blur event', () => {});
+        const component = mount(
+            <DateInput
+                description={description}
+                required={required}
+                value={value}
+                onValidation={onValidation}
+            />
+        );
 
-    // it('should be called after change following a previous blur event', () => {});
+        expect(onValidation.callCount).to.equal(1, 'callcount');
+        expect(onValidation.args[0][0]).to.equal(false, 'args[0][0]');
+        expect(onValidation.args[0][1]).to.equal(false, 'args[0][1]');
+        expect(onValidation.args[0][2]).to.equal(expectedMessage, 'args[0][2]');
+    });
 
-    // it('should be called with a custom message on blur event with validationMessage=something', () => {});
+    it('should be called on initialization with required=false, value=valid', () => {
+        const onValidation = sinon.spy();
+
+        const required = false;
+        const value = '11/3/2014';
+
+        const component = mount(
+            <DateInput
+                description={description}
+                required={required}
+                value={value}
+                onValidation={onValidation}
+            />
+        );
+
+        expect(onValidation.callCount).to.equal(1, 'callcount');
+        expect(onValidation.args[0][0]).to.equal(false, 'args[0][0]');
+        expect(onValidation.args[0][1]).to.equal(true, 'args[0][1]');
+        expect(onValidation.args[0][2]).to.equal(null, 'args[0][2]');
+    });
+
+    it('should be called on initialization with required=false, value=invalid', () => {
+        const onValidation = sinon.spy();
+
+        const required = false;
+        const value = 'another non-date';
+
+        const component = mount(
+            <DateInput
+                description={description}
+                required={required}
+                value={value}
+                onValidation={onValidation}
+            />
+        );
+
+        expect(onValidation.callCount).to.equal(1, 'callcount');
+        expect(onValidation.args[0][0]).to.equal(false, 'args[0][0]');
+        expect(onValidation.args[0][1]).to.equal(false, 'args[0][1]');
+        expect(onValidation.args[0][2]).to.equal(expectedMessage, 'args[0][2]');
+    });
+
+    it('should be called on initialization with required=false, value=blank', () => {
+        const onValidation = sinon.spy();
+
+        const required = false;
+        const value = '';
+
+        const component = mount(
+            <DateInput
+                description={description}
+                required={required}
+                value={value}
+                onValidation={onValidation}
+            />
+        );
+
+        expect(onValidation.callCount).to.equal(1, 'callcount');
+        expect(onValidation.args[0][0]).to.equal(false, 'args[0][0]');
+        expect(onValidation.args[0][1]).to.equal(true, 'args[0][1]');
+        expect(onValidation.args[0][2]).to.equal(null, 'args[0][2]');
+    });
+
+    it('should not be called after change without prior blur event', () => {
+        const onValidation = sinon.spy();
+
+        const required = true;
+        const initialValue = '3/6/2016';
+        const finalValue = '6/8/2019';
+
+        const component = mount(
+            <DateInput
+                description={description}
+                required={required}
+                value={initialValue}
+                onValidation={onValidation}
+            />
+        );
+
+        expect(onValidation.callCount).to.equal(1, 'callcount');
+
+        component.find('input').simulate('change', {
+            target: { value: finalValue }
+        });
+
+        expect(onValidation.callCount).to.equal(1, 'callcount');
+    });
+
+    it('should be called on blur event', () => {
+        const onValidation = sinon.spy();
+
+        const required = true;
+        const initialValue = '3/6/2016';
+        const finalValue = '6/8/2019';
+
+        const component = mount(
+            <DateInput
+                description={description}
+                required={required}
+                value={initialValue}
+                onValidation={onValidation}
+            />
+        );
+
+        expect(onValidation.callCount).to.equal(1, 'callcount');
+
+        component.find('input').simulate('blur', {
+            target: { value: finalValue }
+        });
+
+        expect(onValidation.callCount).to.equal(2, 'callcount');
+        expect(onValidation.args[1][0]).to.equal(true, 'args[1][0]');
+        expect(onValidation.args[1][1]).to.equal(true, 'args[1][1]');
+        expect(onValidation.args[1][2]).to.equal(null, 'args[1][2]');
+    });
+
+    it('should be called after change following a previous blur event', () => {
+        const onValidation = sinon.spy();
+
+        const required = true;
+        const initialValue = '3/6/2016';
+        const secondValue = '2/27/2011';
+        const finalValue = 'whoops!';
+
+        const component = mount(
+            <DateInput
+                description={description}
+                required={required}
+                value={initialValue}
+                onValidation={onValidation}
+            />
+        );
+
+        expect(onValidation.callCount).to.equal(1, 'callcount 1');
+
+        component.find('input').simulate('blur', {
+            target: { value: secondValue }
+        });
+
+        expect(onValidation.callCount).to.equal(2, 'callcount 2');
+
+        component.find('input').simulate('change', {
+            target: { value: finalValue }
+        });
+
+        expect(onValidation.callCount).to.equal(3, 'callcount 3');
+        expect(onValidation.args[2][0]).to.equal(true, 'args[2][0]');
+        expect(onValidation.args[2][1]).to.equal(false, 'args[2][1]');
+        expect(onValidation.args[2][2]).to.equal(expectedMessage, 'args[2][2]');
+    });
+
+    it('should be called with a custom message on blur event with validationMessage=something', () => {
+        const onValidation = sinon.spy();
+
+        const required = true;
+        const validationMessage = 'this is my custom message';
+        const initialValue = '3/6/2016';
+        const secondValue = '2/27/2011';
+        const finalValue = 'whoops!';
+
+        const component = mount(
+            <DateInput
+                description={description}
+                required={required}
+                validationMessage={validationMessage}
+                value={initialValue}
+                onValidation={onValidation}
+            />
+        );
+
+        expect(onValidation.callCount).to.equal(1, 'callcount 1');
+
+        component.find('input').simulate('blur', {
+            target: { value: secondValue }
+        });
+
+        expect(onValidation.callCount).to.equal(2, 'callcount 2');
+
+        component.find('input').simulate('change', {
+            target: { value: finalValue }
+        });
+
+        expect(onValidation.callCount).to.equal(3, 'callcount 3');
+        expect(onValidation.args[2][0]).to.equal(true, 'args[2][0]');
+        expect(onValidation.args[2][1]).to.equal(false, 'args[2][1]');
+        expect(onValidation.args[2][2]).to.equal(validationMessage, 'args[2][2]');
+    });
 
 });
 
