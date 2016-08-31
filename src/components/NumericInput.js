@@ -20,14 +20,14 @@ const clean = (value) => `${value}`.replace(/[^0-9.-]/g, '');
  * @param  {Number} count The number of decimal places
  * @return {String}       The formatted number
  */
-const decimals = (value, count) => `${value.toFixed(count)}`;
+const decimals = (value, count) => (value !== '' ? `${value.toFixed(count)}` : '');
 
 /**
  * Convert a value to a currency string (2 decimal places, prefixed by "$")
  * @param  {Number} value The value to convert
  * @return {String}       The formatted value
  */
-const currency = (value) => `$ ${decimals(value, 2)}`;
+const currency = (value) => (value !== '' ? `$ ${decimals(value, 2)}` : '');
 
 /**
  * The NumericInput component
@@ -47,7 +47,7 @@ class NumericInput extends React.Component {
 
         // initialize the component state
         //
-        this.state = this.validate(props.value, true);
+        this.state = this.validate(props.value);
 
         // bind `this` to the event handlers
         //
@@ -79,11 +79,13 @@ class NumericInput extends React.Component {
     componentWillReceiveProps(newProps) {
         // validate the new value
         //
-        const newState = this.validate(newProps.value, false);
+        const newState = this.validate(newProps.value);
 
-        // ensure that we preserve the `hasValidated` state of the component
+        // ensure that we preserve the `hasValidated` & `isEditing` state of the
+        // component
         //
         newState.hasValidated = this.state.hasValidated;
+        newState.isEditing = this.state.isEditing;
 
         // do we have a new value? if not, then don't bother changing anything
         //
@@ -118,11 +120,15 @@ class NumericInput extends React.Component {
     onBlur(event) {
         // validate the new value WITH FORMATTING
         //
-        const newState = this.validate(event.target.value, true);
+        const newState = this.validate(event.target.value);
 
         // set `hasValidated` to true
         //
         newState.hasValidated = true;
+
+        // set `isEditing` to false (since the user has just tabbed away)
+        //
+        newState.isEditing = false;
 
         // handle the updated state
         //
@@ -136,11 +142,15 @@ class NumericInput extends React.Component {
     onChange(event) {
         // validate the new value without formatting it
         //
-        const newState = this.validate(event.target.value, false);
+        const newState = this.validate(event.target.value);
 
         // preserve the `hasValidated` state
         //
         newState.hasValidated = this.state.hasValidated;
+
+        // set `isEditing` to true, since the user is currently editing
+        //
+        newState.isEditing = true;
 
         // handle the updated state
         //
@@ -182,11 +192,16 @@ class NumericInput extends React.Component {
     onFocus(event) {
         // validate the new value
         //
-        const newState = this.validate(event.target.value, false);
+        const newState = this.validate(event.target.value);
 
         // preserve the `hasValidated` state
         //
         newState.hasValidated = this.state.hasValidated;
+
+        // set `isEditing` to true, since the user has just focused the input
+        // element
+        //
+        newState.isEditing = true;
 
         // set the new state
         //
@@ -202,7 +217,7 @@ class NumericInput extends React.Component {
      * @return {Object}                 The new state for the component,
      *                                  including value & validation state
      */
-    validate(newValue, format) {
+    validate(newValue) {
         // clean the value & convert it to a floating point number
         //
         let value = parseFloat(clean(newValue));
@@ -211,31 +226,17 @@ class NumericInput extends React.Component {
         //
         const notANumber = Number.isNaN(value);
 
-        // examine the value & format it appropriately
+        // examine the value & ensure it's a number
         //
         if (notANumber) {
             // it's not a number - change to an empty string
             //
             value = '';
-        } else if (format && this.props.isCurrency) {
-            // the format option is set and the isCurrency flag is set - format
-            // it as currency
-            //
-            value = currency(value);
-        } else if (format && (this.props.decimals || this.props.decimals === 0)) {
-            // the format option is set and the decimals property is set -
-            // format it as a fixed decimal number
-            //
-            value = decimals(value, this.props.decimals);
-        } else {
-            // otherwise just convert it to a string as-is
-            //
-            value = `${value}`;
         }
 
         // check to see if the value is valid
         //
-        const isValid = !this.props.required || !!value;
+        const isValid = !this.props.required || (!!value || value === 0);
 
         // return the new component state
         //
@@ -244,6 +245,7 @@ class NumericInput extends React.Component {
             isValid,
             validationMessage: isValid ? null : this.validationMessage,
             hasValidated:      false,
+            isEditing:         false,
         };
     }
 
@@ -252,6 +254,16 @@ class NumericInput extends React.Component {
      * @return {React.Element} The React Element representing this component
      */
     render() {
+        let value = `${this.state.value}`;
+
+        if (!this.state.isEditing) {
+            if (this.props.isCurrency) {
+                value = currency(this.state.value);
+            } else if (this.props.decimals || this.props.decimals === 0) {
+                value = decimals(this.state.value, this.props.decimals);
+            }
+        }
+
         // generate the classes for the outermost div element
         //
         const divClasses = classnames('form-group', {
@@ -266,7 +278,7 @@ class NumericInput extends React.Component {
                 id={this.id}
                 className="form-control"
                 placeholder={this.props.placeholder || ''}
-                value={this.state.value}
+                value={value}
                 readOnly={this.props.readOnly}
                 onBlur={this.onBlur}
                 onChange={this.onChange}
