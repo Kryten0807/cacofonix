@@ -16,6 +16,7 @@ class DateInput extends React.Component {
         this.state = this.validate(props.value);
 
         this.onBlur = this.onBlur.bind(this);
+        this.onChange = this.onChange.bind(this);
     }
 
     componentWillMount() {
@@ -35,6 +36,14 @@ class DateInput extends React.Component {
         }
     }
 
+    onChange(event) {
+        const newState = this.validate(event.target.value);
+        newState.hasValidated = this.state.hasValidated;
+
+        this.setState(newState);
+
+        if (this.props.onValidation && newState.hasValidated) {
+            this.props.onValidation(newState.hasValidated, newState.isValid, newState.validationMessage);
         }
     }
 
