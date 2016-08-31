@@ -1,5 +1,6 @@
 import React from 'react';
 import uniqueId from 'lodash/uniqueId';
+import moment from 'moment';
 
 import Label from './Label';
 import columns from '../helpers/columns';
