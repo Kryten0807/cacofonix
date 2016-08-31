@@ -86,7 +86,7 @@ class DateInput extends React.Component {
 
         return {
             hasValidated: false,
-            value:        datetime.format('M/D/YYYY'),
+            value:        isValid ? datetime.format('M/D/YYYY') : editedValue,
             editedValue,
             isEditing:    false,
             isValid,
