@@ -15,6 +15,11 @@ const expect = chai.expect;
 // @TODO write tests to ensure new props do not interrupt user editing
 
 /* *****************************************************************************
+when editing, the NumericInput component
+    should preserve the trailing decimal through multiple character steps
+*/
+
+/* *****************************************************************************
 when the parent component sends new value prop, a required NumericInput component
     should call the onValidation handler when required=true, value=valid
     should call the onValidation handler when required=true, value=blank
