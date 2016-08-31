@@ -18,7 +18,10 @@ class DateInput extends React.Component {
 
     componentWillMount() {
         if (this.props.onValidation) {
-            this.props.onValidation(false, true, null);
+            this.props.onValidation(this.state.hasValidated, this.state.isValid, this.state.validationMessage);
+        }
+    }
+
         }
     }
 
