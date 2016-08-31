@@ -122,8 +122,6 @@ the onChange handler for the DateInput component
 */
 describe('the onChange handler for the DateInput component', () => {
 
-    const description = 'a component';
-
     it('should not be called on initialization', () => {
         const onChange = sinon.spy();
 
