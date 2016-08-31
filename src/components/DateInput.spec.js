@@ -20,11 +20,59 @@ on focus, the DateInput component
 */
 describe('on focus, the DateInput component', () => {
 
-    // it('should format a valid value as a date for the input element', () => {});
+    const description = 'mumble mumble';
+    const expectedMessage = `${description} is not a valid date`;
 
-    // it('should leave an invalid value as is for the input element', () => {});
+    it('should format a valid value as a date for the input element', () => {
 
-    // it('should leave a blank value as is for the input element', () => {});
+        const required = true;
+
+        const value = '1/1/2016';
+        const newValue = '3/6/2014';
+        const expectedValue = newValue;
+
+        const component = mount(<DateInput required={required} value={value} />);
+
+        component.find('input').simulate('focus', {
+            target: { value: newValue }
+        });
+
+        expect(component.find('input').props().value).to.equal(expectedValue);
+    });
+
+    it('should leave an invalid value as is for the input element', () => {
+
+        const required = true;
+
+        const value = '1/1/2016';
+        const newValue = 'a word';
+        const expectedValue = newValue;
+
+        const component = mount(<DateInput required={required} value={value} />);
+
+        component.find('input').simulate('focus', {
+            target: { value: newValue }
+        });
+
+        expect(component.find('input').props().value).to.equal(expectedValue);
+    });
+
+    it('should leave a blank value as is for the input element', () => {
+
+        const required = true;
+
+        const value = '1/1/2016';
+        const newValue = '';
+        const expectedValue = newValue;
+
+        const component = mount(<DateInput required={required} value={value} />);
+
+        component.find('input').simulate('focus', {
+            target: { value: newValue }
+        });
+
+        expect(component.find('input').props().value).to.equal(expectedValue);
+    });
 
 });
 
