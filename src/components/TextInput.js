@@ -182,18 +182,20 @@ class TextInput extends React.Component {
                 {this.props.label &&
                     <Label htmlFor={this.id} label={this.props.label} className={columns(this.props.labelColumns)} />
                 }
-                <input
-                    id={this.id}
-                    type="text"
-                    value={this.state.value}
-                    className="form-control"
-                    placeholder={this.props.placeholder || ''}
-                    onBlur={this.onBlur}
-                    onChange={this.onChange}
-                />
                 {(this.state.hasValidated && !this.state.isValid) &&
                     <span className="help-block">{this.state.validationMessage}</span>
                 }
+                <div className={columns(this.props.inputColumns)}>
+                    <input
+                        id={this.id}
+                        type="text"
+                        value={this.state.value}
+                        className="form-control"
+                        placeholder={this.props.placeholder || ''}
+                        onBlur={this.onBlur}
+                        onChange={this.onChange}
+                    />
+                </div>
             </div>
         );
     }
