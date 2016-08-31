@@ -12,6 +12,8 @@ class DateInput extends React.Component {
         this.id = uniqueId('DateInput-');
 
         this.validationMessage = props.validationMessage || `${props.description} is not a valid date`;
+
+        this.state = this.validate(props.value);
     }
 
     componentWillMount() {
