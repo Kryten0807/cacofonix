@@ -112,9 +112,6 @@ describe('during editing, the DateInput component', () => {
 
 });
 
-
-
-
 /* *****************************************************************************
 the onChange handler for the DateInput component
     should not be called on initialization
@@ -126,7 +123,6 @@ the onChange handler for the DateInput component
 describe('the onChange handler for the DateInput component', () => {
 
     const description = 'a component';
-    const expectedMessage = `${description} is not a valid date`;
 
     it('should not be called on initialization', () => {
         const onChange = sinon.spy();
@@ -147,7 +143,9 @@ describe('the onChange handler for the DateInput component', () => {
 
         const newValue = '6/25/2016';
 
-        const component = mount(<DateInput required={required} value={value} onChange={onChange} />);
+        const component = mount(
+            <DateInput required={required} value={value} onChange={onChange} />
+        );
 
         expect(onChange.callCount).to.equal(0, 'callcount');
 
@@ -167,7 +165,9 @@ describe('the onChange handler for the DateInput component', () => {
 
         const newValue = value;
 
-        const component = mount(<DateInput required={required} value={value} onChange={onChange} />);
+        const component = mount(
+            <DateInput required={required} value={value} onChange={onChange} />
+        );
 
         expect(onChange.callCount).to.equal(0, 'callcount');
 
@@ -186,7 +186,9 @@ describe('the onChange handler for the DateInput component', () => {
 
         const newValue = '6/25/2016';
 
-        const component = mount(<DateInput required={required} value={value} onChange={onChange} />);
+        const component = mount(
+            <DateInput required={required} value={value} onChange={onChange} />
+        );
 
         expect(onChange.callCount).to.equal(0, 'callcount');
 
@@ -206,7 +208,9 @@ describe('the onChange handler for the DateInput component', () => {
 
         const newValue = value;
 
-        const component = mount(<DateInput required={required} value={value} onChange={onChange} />);
+        const component = mount(
+            <DateInput required={required} value={value} onChange={onChange} />
+        );
 
         expect(onChange.callCount).to.equal(0, 'callcount');
 
