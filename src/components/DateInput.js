@@ -110,7 +110,7 @@ class DateInput extends React.Component {
                     <input
                         id={this.id}
                         type="text"
-                        value={this.state.editedValue}
+                        value={this.state.isEditing ? this.state.editedValue : this.state.value}
                         readOnly={this.props.readOnly}
                         className="form-control"
                         placeholder={this.props.placeholder}
