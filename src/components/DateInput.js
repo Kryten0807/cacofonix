@@ -20,6 +20,25 @@ class DateInput extends React.Component {
         }
     }
 
+    validate(value) {
+        const datetime = new moment(`${value || ''}`, 'M/D/YYYY');
+
+        let isValid = datetime.isValid();
+
+        if (!this.props.required && !value) {
+            isValid = true;
+        }
+
+        const validationMessage = isValid ? null : this.validationMessage;
+
+        return {
+            hasValidated: false,
+            value:        datetime.format('M/D/YYYY'),
+            isValid,
+            validationMessage,
+        };
+    }
+
     render() {
         return (
             <div className="form-group">
