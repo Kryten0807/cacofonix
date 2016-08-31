@@ -20,7 +20,7 @@ const clean = (value) => `${value}`.replace(/[^0-9.-]/g, '');
  * @param  {Number} count The number of decimal places
  * @return {String}       The formatted number
  */
-const decimals = (value, count) => `${value.toFixed(count)}`;
+const decimals = (value, count) => (value !== '' ? `${value.toFixed(count)}` : '');
 
 /**
  * Convert a value to a currency string (2 decimal places, prefixed by "$")
