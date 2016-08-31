@@ -12,8 +12,6 @@ import NumericInput from './NumericInput';
 
 const expect = chai.expect;
 
-// @TODO write tests to ensure new props do not interrupt user editing
-
 /* *****************************************************************************
 when editing, the NumericInput component
     should preserve the trailing decimal through multiple character steps with non-zero decimals
