@@ -1677,6 +1677,8 @@ in terms of basic markup, the TextInput component
     should include an input.form-control
     should include a label with the appropriate text if a label is specified
     should include a placeholder if a placeholder is specified
+    should have the correct label widths when labelColumns is set
+    should have the correct select widths when inputColumns is set
 */
 describe('in terms of basic markup, the TextInput component', () => {
 
