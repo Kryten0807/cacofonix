@@ -14,11 +14,24 @@ class DateInput extends React.Component {
         this.validationMessage = props.validationMessage || `${props.description} is not a valid date`;
 
         this.state = this.validate(props.value);
+
+        this.onBlur = this.onBlur.bind(this);
     }
 
     componentWillMount() {
         if (this.props.onValidation) {
             this.props.onValidation(this.state.hasValidated, this.state.isValid, this.state.validationMessage);
+        }
+    }
+
+    onBlur(event) {
+        const newState = this.validate(event.target.value);
+        newState.hasValidated = true;
+
+        this.setState(newState);
+
+        if (this.props.onValidation) {
+            this.props.onValidation(newState.hasValidated, newState.isValid, newState.validationMessage);
         }
     }
 
