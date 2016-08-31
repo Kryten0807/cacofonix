@@ -126,7 +126,7 @@ describe('when the parent component sends new value prop, a required ' +
 
         expect(onChange.callCount).to.equal(1);
 
-        expect(onChange.args[0][0]).to.equal(`${testValue}`, 'args[0][0]');
+        expect(onChange.args[0][0]).to.equal(testValue, 'args[0][0]');
     });
 
     it('should call the onChange handler when required=true, value=blank', () => {
@@ -375,7 +375,7 @@ describe('when the parent component sends new value prop, a non-required ' +
 
         expect(onChange.callCount).to.equal(1);
 
-        expect(onChange.args[0][0]).to.equal(`${testValue}`, 'args[0][0]');
+        expect(onChange.args[0][0]).to.equal(testValue, 'args[0][0]');
     });
 
     it('should call the onChange handler when required=false, value=blank', () => {
