@@ -1,6 +1,6 @@
 import React from 'react';
 import uniqueId from 'lodash/uniqueId';
-import moment from 'moment';
+import Moment from 'moment';
 
 import Label from './Label';
 import columns from '../helpers/columns';
@@ -48,7 +48,7 @@ class DateInput extends React.Component {
     }
 
     validate(value) {
-        const datetime = new moment(`${value || ''}`, 'M/D/YYYY');
+        const datetime = new Moment(`${value || ''}`, 'M/D/YYYY');
 
         let isValid = datetime.isValid();
 
