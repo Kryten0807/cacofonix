@@ -1727,4 +1727,16 @@ describe('in terms of basic markup, the TextInput component', () => {
 
         expect(component.find('Label').props().className).to.equal(expectedClass);
     });
+
+    it('should have the correct select widths when inputColumns is set', () => {
+        const label = 'my label';
+        const columns = { xs: 10, md: 8 };
+        const expectedClass = '.col-xs-10.col-md-8';
+
+        const component = shallow(<TextInput label={label} inputColumns={columns} />);
+
+        expect(component.find(`div${expectedClass} input`).length).to.equal(1);
+    });
+
+
 });
