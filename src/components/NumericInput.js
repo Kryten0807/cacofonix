@@ -232,9 +232,13 @@ class NumericInput extends React.Component {
      *                                  including value & validation state
      */
     validate(newValue) {
+        // clean it and set it as the editing value
+        //
+        const editingValue = clean(newValue);
+
         // clean the value & convert it to a floating point number
         //
-        let value = parseFloat(clean(newValue));
+        let value = parseFloat(editingValue);
 
         // determine if the value is not a number (NaN)
         //
@@ -256,11 +260,11 @@ class NumericInput extends React.Component {
         //
         return {
             value,
+            editingValue,
             isValid,
             validationMessage:  isValid ? null : this.validationMessage,
             hasValidated:       false,
             isEditing:          false,
-            hasTrailingDecimal: false,
         };
     }
 
