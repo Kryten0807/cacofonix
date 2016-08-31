@@ -118,7 +118,7 @@ class NumericInput extends React.Component {
      * @param  {Object} event The event object
      */
     onBlur(event) {
-        // validate the new value WITH FORMATTING
+        // validate the new value
         //
         const newState = this.validate(event.target.value);
 
