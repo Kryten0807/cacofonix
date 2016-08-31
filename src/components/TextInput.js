@@ -215,6 +215,8 @@ TextInput.propTypes = {
     description:       React.PropTypes.string,
     placeholder:       React.PropTypes.string,
     validationMessage: React.PropTypes.string,
+    labelColumns:      React.PropTypes.object,
+    inputColumns:      React.PropTypes.object,
     value:             React.PropTypes.oneOfType([
         React.PropTypes.string,
         React.PropTypes.number,
