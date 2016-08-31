@@ -1741,8 +1741,8 @@ describe('in terms of basic markup, the TextInput component', () => {
         expect(component.find(`div${expectedClass} input`).length).to.equal(1);
     });
 
-    it('should include a label with the the required flag if a label is specified & required is set', () => {
-        const label = 'some label';
+    it('should include a label with the the required flag if a label is ' +
+        'specified & required is set', () => {
         const required = true;
 
         const component = shallow(<TextInput required={required} label={label} />);
@@ -1751,8 +1751,8 @@ describe('in terms of basic markup, the TextInput component', () => {
         expect(component.find('Label').props().required).to.equal(required);
     });
 
-    it('should not include a label with the required flag if a label is specified & required is not set', () => {
-        const label = 'some label';
+    it('should not include a label with the required flag if a label is ' +
+        'specified & required is not set', () => {
         const required = false;
 
         const component = shallow(<TextInput required={required} label={label} />);
@@ -1761,7 +1761,8 @@ describe('in terms of basic markup, the TextInput component', () => {
         expect(component.find('Label').props().required).to.equal(required);
     });
 
-    it('should not include a label with the the required flag if a label is not specified & required is set', () => {
+    it('should not include a label with the the required flag if a label is ' +
+        'not specified & required is set', () => {
         const required = true;
 
         const component = shallow(<TextInput required={required} />);
