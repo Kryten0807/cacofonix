@@ -43,6 +43,10 @@ class DateInput extends React.Component {
                 newState.validationMessage
             );
         }
+
+        if (this.props.onChange && newState.value !== this.state.value) {
+            this.props.onChange(newState.value);
+        }
     }
 
     onChange(event) {
