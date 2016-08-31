@@ -236,7 +236,7 @@ class NumericInput extends React.Component {
 
         // check to see if the value is valid
         //
-        const isValid = !this.props.required || !!value;
+        const isValid = !this.props.required || (!!value || value === 0);
 
         // return the new component state
         //
