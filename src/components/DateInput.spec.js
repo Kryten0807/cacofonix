@@ -116,6 +116,27 @@ describe('on blur, the DateInput component', () => {
         const expectedValue = '3/6/2014';
 
         const component = mount(<DateInput required={required} value={value} onChange={onChange} />);
+        component.find('input').simulate('blur', {
+            target: { value: newValue }
+        });
+
+        expect(onChange.callCount).to.equal(1);
+        expect(onChange.calledWith(expectedValue)).to.equal(true);
+    });
+
+    it('should call onChange with null for an invalid value', () => {
+
+        const onChange = sinon.spy();
+
+        const required = true;
+
+        const value = '1/1/2016';
+        const newValue = 'this is not valid';
+        const expectedValue = null;
+
+        const component = mount(
+            <DateInput required={required} value={value} onChange={onChange} />
+        );
 
         component.find('input').simulate('blur', {
             target: { value: newValue }
