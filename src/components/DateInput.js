@@ -69,6 +69,9 @@ class DateInput extends React.Component {
     }
 
     validate(value) {
+
+        const editedValue = value;
+
         const datetime = new Moment(`${value || ''}`, 'M/D/YYYY');
 
         let isValid = datetime.isValid();
@@ -82,6 +85,7 @@ class DateInput extends React.Component {
         return {
             hasValidated: false,
             value:        datetime.format('M/D/YYYY'),
+            editedValue,
             isValid,
             validationMessage,
         };
