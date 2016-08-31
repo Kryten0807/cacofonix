@@ -13,6 +13,12 @@ import DateInput from './DateInput';
 const expect = chai.expect;
 
 /* *****************************************************************************
+on focus, the DateInput component
+    should format a valid value as a date for the input element
+    should leave an invalid value as is for the input element
+    should leave a blank value as is for the input element
+*/
+/* *****************************************************************************
 on blur, the DateInput component
     should reformat a valid value as a date
     should leave an invalid value as is
