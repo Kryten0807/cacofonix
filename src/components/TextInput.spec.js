@@ -1737,6 +1737,4 @@ describe('in terms of basic markup, the TextInput component', () => {
 
         expect(component.find(`div${expectedClass} input`).length).to.equal(1);
     });
-
-
 });
