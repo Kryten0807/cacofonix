@@ -85,9 +85,15 @@ describe('on blur, the DateInput component', () => {
 
         const value = '1/1/2016';
         const newValue = 'no no no no no!';
-        const expectedValue = newValue;
 
-        const component = mount(<DateInput description={description} required={required} value={value} onValidation={onValidation} />);
+        const component = mount(
+            <DateInput
+                description={description}
+                required={required}
+                value={value}
+                onValidation={onValidation}
+            />
+        );
 
         expect(onValidation.callCount).to.equal(1);
 
@@ -99,13 +105,9 @@ describe('on blur, the DateInput component', () => {
         expect(onValidation.args[1][0]).to.equal(true, 'args[1][0]');
         expect(onValidation.args[1][1]).to.equal(false, 'args[1][1]');
         expect(onValidation.args[1][2]).to.equal(expectedMessage, 'args[1][2]');
-
-
-
-        expect(onValidation.calledWith(true, false, expectedMessage)).to.equal(true);
     });
 
-    it('should call onChange with the formatted value', () => {
+    it('should call onChange with the formatted value for a valid value', () => {
 
         const onChange = sinon.spy();
 
@@ -115,7 +117,10 @@ describe('on blur, the DateInput component', () => {
         const newValue = '03/06/2014';
         const expectedValue = '3/6/2014';
 
-        const component = mount(<DateInput required={required} value={value} onChange={onChange} />);
+        const component = mount(
+            <DateInput required={required} value={value} onChange={onChange} />
+        );
+
         component.find('input').simulate('blur', {
             target: { value: newValue }
         });
