@@ -199,6 +199,7 @@ class TextInput extends React.Component {
                         onBlur={this.onBlur}
                         onChange={this.onChange}
                     />
+                    {helpBlock}
                 </div>
             </div>
         );
