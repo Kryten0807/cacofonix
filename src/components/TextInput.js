@@ -180,7 +180,7 @@ class TextInput extends React.Component {
         return (
             <div className={classes}>
                 {this.props.label &&
-                    <Label htmlFor={this.id} label={this.props.label} />
+                    <Label htmlFor={this.id} label={this.props.label} className={columns(this.props.labelColumns)} />
                 }
                 <input
                     id={this.id}
