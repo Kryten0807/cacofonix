@@ -22,7 +22,22 @@ on blur, the DateInput component
 */
 describe('on blur, the DateInput component', () => {
 
-    // it('should reformat a valid value as a date', () => {});
+    it('should reformat a valid value as a date', () => {
+
+        const required = true;
+
+        const value = '1/1/2016';
+        const newValue = '03/06/2014';
+        const expectedValue = '3/6/2014';
+
+        const component = mount(<DateInput required={required} value={value} />);
+
+        component.find('input').simulate('blur', {
+            target: { value: newValue }
+        });
+
+        expect(component.find('input').props().value).to.equal(expectedValue);
+    });
 
     // it('should leave an invalid value as is', () => {});
 
