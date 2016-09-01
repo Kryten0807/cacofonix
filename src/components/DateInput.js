@@ -80,8 +80,6 @@ class DateInput extends React.Component {
         newState.hasValidated = true;
         newState.isEditing = false;
 
-        this.setState(newState);
-
         if (this.props.onValidation) {
             this.props.onValidation(
                 newState.hasValidated,
@@ -93,6 +91,10 @@ class DateInput extends React.Component {
         if (this.props.onChange && newState.value !== this.state.value) {
             this.props.onChange(newState.isValid ? newState.value : null);
         }
+
+        // update the state
+        //
+        this.setState(newState);
     }
 
     onChange(event) {
