@@ -106,8 +106,6 @@ class DateInput extends React.Component {
         newState.hasValidated = this.state.hasValidated;
         newState.isEditing = true;
 
-        this.setState(newState);
-
         // call the `onValidation` handler if the `hasValidated` flag is set
         //
         if (newState.hasValidated) {
@@ -118,6 +116,9 @@ class DateInput extends React.Component {
         //
         this.callOnChange(newState);
 
+        // update the state
+        //
+        this.setState(newState);
     }
 
     onFocus(event) {
