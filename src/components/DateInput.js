@@ -146,6 +146,15 @@ class DateInput extends React.Component {
         }
     }
 
+    callOnChange(newState) {
+        // do we have an `onChange` handler? has the value changed? if so,
+        // call the handler with the new value
+        //
+        if (this.props.onChange && newState.value !== this.state.value) {
+            this.props.onChange(newState.value);
+        }
+    }
+
     validate(value) {
 
         const editedValue = value;
