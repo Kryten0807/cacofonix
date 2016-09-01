@@ -59,7 +59,7 @@ In order to test these components, I want to write tests that hit all of the maj
 1. basic markup (ie. what the thing looks like)
 1. validation error markup - what is displayed when a validation error occurs
 1. `onValidation` handler - what is passed out of the component when a validation error occurs
-    + this includes whether or not the handler is called `onFocus` and `onBlur`
 1. `onChange` handler - what is passed out of the component when a change occurs
-    + this includes whether or not the handler is called `onFocus` and `onBlur`
+1. what happens `onFocus` - the components will not have explicit `onFocus` handlers, but may call `onValidation` or `onChange` when this event fires
+1. what happens `onBlur` - the components will not have explicit `onBlur` handlers, but may call `onValidation` or `onChange` when this event fires
 1. what happens when the parent passes new props to the component via `componentWillReceiveProps`
