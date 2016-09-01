@@ -94,6 +94,9 @@ class DateInput extends React.Component {
         //
         newState.isEditing = false;
 
+        // do we have an `onValidation` handler? has the value changed? if so,
+        // call the handler with the new validation state
+        //
         if (this.props.onValidation && newState.value !== this.state.value) {
             this.props.onValidation(
                 newState.hasValidated,
