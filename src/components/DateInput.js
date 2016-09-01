@@ -129,14 +129,33 @@ class DateInput extends React.Component {
         this.setState(newState);
     }
 
+    /**
+     * Handle the focus event for the input element
+     * @param  {Object} event The event object
+     */
     onFocus(event) {
+        // validate the value & generate the new state
+        //
         const newState = this.validate(event.target.value);
+
+        // preserve the `hasValidated` state
+        //
         newState.hasValidated = this.state.hasValidated;
+
+        // set `isEditing` to true, since the user has now focused the input
+        // element
+        //
         newState.isEditing = true;
 
+        // update the state
+        //
         this.setState(newState);
     }
 
+    /**
+     * Call the onValidation handler if it exists and if the value has changed
+     * @param  {Object} newState The new component state
+     */
     callOnValidation(newState) {
         // do we have an `onValidation` handler? has the value changed? if so,
         // call the handler with the new validation state
@@ -150,9 +169,13 @@ class DateInput extends React.Component {
         }
     }
 
+    /**
+     * Call the onChange handler if it exists and if the value has changed
+     * @param  {Object} newState The new component state
+     */
     callOnChange(newState) {
         // do we have an `onChange` handler? has the value changed? if so,
-        // call the handler with the new value
+        // call the handler with the new value (or `null` if it's not valid)
         //
         if (this.props.onChange && newState.value !== this.state.value) {
             this.props.onChange(newState.isValid ? newState.value : null);
