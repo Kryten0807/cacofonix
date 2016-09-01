@@ -19,6 +19,7 @@ when new props are received, the DateInput component
     should not call onChange if the value does not change
     should call onValidation if the value changes
     should not call onValidation if the value does not change
+    should update the input element value
 */
 describe('when new props are received, the DateInput component', () => {
 
