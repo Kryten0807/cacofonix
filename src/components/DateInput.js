@@ -223,16 +223,25 @@ class DateInput extends React.Component {
         };
     }
 
+    /**
+     * Render the component
+     * @return {React.Element} The React Element describing the component
+     */
     render() {
-
+        // generate the outermost div classes
+        //
         const groupClasses = classnames('form-group', {
             'has-error': this.state.hasValidated && !this.state.isValid,
         });
 
+        // instantiate the help block if there's a validation error
+        //
         const helpBlock = this.state.hasValidated && !this.state.isValid
             ? <span className="help-block">{this.state.validationMessage}</span>
             : '';
 
+        // return the component
+        //
         return (
             <div className={groupClasses}>
                 {this.props.label
