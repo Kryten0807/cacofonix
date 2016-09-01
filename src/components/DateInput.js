@@ -196,21 +196,23 @@ class DateInput extends React.Component {
         const hasChanged = newState.value !== this.state.value
             || newState.editedValue !== this.state.editedValue;
 
-        // figure out what the edited value should be, in case we need to return
-        // it
-        //
-        const editedValue = newState.isEditing ? newState.editedValue : null;
-
-        // determine what value to return via the onChange handler
-        //
-        const value = newState.isValid
-            ? newState.value
-            : editedValue;
-
         // do we have an `onChange` handler? has the value changed? if so,
-        // call the handler with the new value (or `null` if it's not valid)
+        // determine what value to return & call the handler
         //
         if (this.props.onChange && hasChanged) {
+            // figure out what the edited value should be, in case we need to return
+            // it
+            //
+            const editedValue = newState.isEditing ? newState.editedValue : null;
+
+            // determine what value to return via the onChange handler
+            //
+            const value = newState.isValid
+                ? newState.value
+                : editedValue;
+
+            // call the onChange handler
+            //
             this.props.onChange(value);
         }
     }
