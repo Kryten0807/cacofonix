@@ -52,10 +52,6 @@ class DateInput extends React.Component {
         newState.hasValidated = this.state.hasValidated;
         newState.isEditing = this.state.isEditing;
 
-        // update the component state
-        //
-        this.setState(newState);
-
         // do we have an `onValidation` handler? has the value changed? if so,
         // call the `onValidation` handler with the new validation state
         //
@@ -73,6 +69,10 @@ class DateInput extends React.Component {
         if (this.props.onChange && newState.value !== this.state.value) {
             this.props.onChange(newState.value);
         }
+
+        // update the component state
+        //
+        this.setState(newState);
     }
 
     onBlur(event) {
