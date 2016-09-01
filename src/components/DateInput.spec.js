@@ -54,14 +54,99 @@ describe('when new props are received, the DateInput component', () => {
         onValidation: React.PropTypes.func,
     };
 
+    it('should call onChange if the value changes', () => {
 
-    // it('should call onChange if the value changes', () => {});
+        const onChange = sinon.spy();
 
-    // it('should not call onChange if the value does not change', () => {});
+        const initialValue = '6/9/2014';
+        const finalValue = '11/9/2014';
 
-    // it('should call onValidation if the value changes', () => {});
+        const parent = mount(<TestParent testValue={initialValue} onChange={onChange} />);
 
-    // it('should not call onValidation if the value does not change', () => {});
+        expect(onChange.callCount).to.equal(0);
+
+        // change the state of the parent
+        //
+        parent.setState({ testValue: finalValue });
+
+        expect(onChange.callCount).to.equal(1);
+
+        expect(onChange.args[0][0]).to.equal(finalValue, 'args[0][0]');
+    });
+
+    it('should not call onChange if the value does not change', () => {
+
+        const onChange = sinon.spy();
+
+        const initialValue = '6/9/2014';
+        const finalValue = initialValue;
+
+        const parent = mount(<TestParent testValue={initialValue} onChange={onChange} />);
+
+        expect(onChange.callCount).to.equal(0);
+
+        // change the state of the parent
+        //
+        parent.setState({ testValue: finalValue });
+
+        expect(onChange.callCount).to.equal(0);
+    });
+
+    it('should call onValidation if the value changes', () => {
+
+        const onValidation = sinon.spy();
+
+        const initialValue = '6/9/2014';
+        const finalValue = '11/9/2014';
+
+        const parent = mount(<TestParent testValue={initialValue} onValidation={onValidation} />);
+
+        expect(onValidation.callCount).to.equal(1);
+
+        // change the state of the parent
+        //
+        parent.setState({ testValue: finalValue });
+
+        expect(onValidation.callCount).to.equal(2);
+
+        expect(onValidation.args[1][0]).to.equal(false, 'args[1][0]');
+        expect(onValidation.args[1][1]).to.equal(true, 'args[1][1]');
+        expect(onValidation.args[1][2]).to.equal(null, 'args[1][2]');
+    });
+
+    it('should not call onValidation if the value does not change', () => {
+
+        const onValidation = sinon.spy();
+
+        const initialValue = '6/9/2014';
+        const finalValue = initialValue;
+
+        const parent = mount(<TestParent testValue={initialValue} onValidation={onValidation} />);
+
+        expect(onValidation.callCount).to.equal(1);
+
+        // change the state of the parent
+        //
+        parent.setState({ testValue: finalValue });
+
+        expect(onValidation.callCount).to.equal(1);
+    });
+
+    it('should update the input element value', () => {
+
+        const initialValue = '6/9/2014';
+        const finalValue = '11/9/2014';
+
+        const parent = mount(<TestParent testValue={initialValue} />);
+
+        expect(parent.find('input').props().value).to.equal(initialValue);
+
+        // change the state of the parent
+        //
+        parent.setState({ testValue: finalValue });
+
+        expect(parent.find('input').props().value).to.equal(finalValue);
+    });
 
 });
 
