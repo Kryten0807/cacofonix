@@ -6,19 +6,34 @@ import classnames from 'classnames';
 import Label from './Label';
 import columns from '../helpers/columns';
 
+/**
+ * The date validation regular expression
+ * @type {Regex}
+ */
 const dateRegex = /^([1-9]|0[1-9]|1[0-2])\/([1-9]|0[1-9]|[1-2][0-9]|3[0-1])\/[1-2][0-9]{3}$/;
 
+/**
+ * The DateInput component
+ */
 class DateInput extends React.Component {
     constructor(props) {
         super(props);
 
+        // generate a unique ID for the component
+        //
         this.id = uniqueId('DateInput-');
 
+        // initialize the validation message for the component
+        //
         this.validationMessage = props.validationMessage
             || `${props.description} is not a valid date`;
 
+        // initialize the component state
+        //
         this.state = this.validate(props.value);
 
+        // bind `this` to the event handlers
+        //
         this.onBlur = this.onBlur.bind(this);
         this.onChange = this.onChange.bind(this);
         this.onFocus = this.onFocus.bind(this);
@@ -176,11 +191,18 @@ class DateInput extends React.Component {
      * @param  {Object} newState The new component state
      */
     callOnChange(newState) {
+        // figure out if the state has changed
+        //
         const hasChanged = newState.value !== this.state.value
             || newState.editedValue !== this.state.editedValue;
 
+        // figure out what the edited value should be, in case we need to return
+        // it
+        //
         const editedValue = newState.isEditing ? newState.editedValue : null;
 
+        // determine what value to return via the onChange handler
+        //
         const value = newState.isValid
             ? newState.value
             : editedValue;
