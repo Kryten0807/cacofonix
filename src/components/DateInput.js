@@ -103,6 +103,10 @@ class DateInput extends React.Component {
         this.setState(newState);
     }
 
+    /**
+     * Handle a change event for the input element
+     * @param  {Object} event The event object
+     */
     onChange(event) {
         const newState = this.validate(event.target.value);
         newState.hasValidated = this.state.hasValidated;
