@@ -20,6 +20,7 @@ when new props are received, the DateInput component
     should call onValidation if the value changes
     should not call onValidation if the value does not change
     should update the input element value
+    should maintain the edited value if the component is currently editing
 */
 describe('when new props are received, the DateInput component', () => {
 
@@ -456,7 +457,6 @@ describe('on blur, the DateInput component', () => {
         expect(onChange.callCount).to.equal(1);
         expect(onChange.calledWith(expectedValue)).to.equal(true);
     });
-
 });
 
 /* *****************************************************************************
