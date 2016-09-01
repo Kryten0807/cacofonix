@@ -25,7 +25,6 @@ describe('when new props are received, the DateInput component', () => {
 
     const required = true;
     const description = 'mumble mumble';
-    const expectedMessage = `${description} is not a valid date`;
 
     class TestParent extends React.Component {
         constructor(props) {
@@ -167,8 +166,7 @@ describe('given an invalid value, the validation error message', () => {
 
         const required = true;
 
-        const value = '1/1/2016';
-        const newValue = 'something invalid';
+        const value = 'something invalid';
 
         const component = mount(<DateInput required={required} value={value} />);
 
@@ -215,7 +213,9 @@ describe('given an invalid value, the validation error message', () => {
         const value = '1/1/2016';
         const newValue = 'something invalid';
 
-        const component = mount(<DateInput description={description} required={required} value={value} />);
+        const component = mount(
+            <DateInput description={description} required={required} value={value} />
+        );
 
         component.find('input').simulate('blur', {
             target: { value: newValue }
@@ -233,7 +233,9 @@ describe('given an invalid value, the validation error message', () => {
         const value = '1/1/2016';
         const newValue = 'something invalid';
 
-        const component = mount(<DateInput description={description} required={required} value={value} />);
+        const component = mount(
+            <DateInput description={description} required={required} value={value} />
+        );
 
         component.find('input').simulate('blur', {
             target: { value }
@@ -261,8 +263,6 @@ on focus, the DateInput component
     should leave a blank value as is for the input element
 */
 describe('on focus, the DateInput component', () => {
-
-    const description = 'mumble mumble';
 
     it('should format a valid value as a date for the input element', () => {
 
