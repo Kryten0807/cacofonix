@@ -102,8 +102,16 @@ class DateInput extends React.Component {
      * @param  {Object} event The event object
      */
     onChange(event) {
+        // validate the value & generate the new state
+        //
         const newState = this.validate(event.target.value);
+
+        // preserve the `hasValidated` state
+        //
         newState.hasValidated = this.state.hasValidated;
+
+        // set `isEditing` flag to true
+        //
         newState.isEditing = true;
 
         // call the `onValidation` handler if the `hasValidated` flag is set
