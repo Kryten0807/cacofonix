@@ -52,16 +52,9 @@ class DateInput extends React.Component {
         newState.hasValidated = this.state.hasValidated;
         newState.isEditing = this.state.isEditing;
 
-        // do we have an `onValidation` handler? has the value changed? if so,
-        // call the `onValidation` handler with the new validation state
+        // call the `onValidation` handler
         //
-        if (this.props.onValidation && newState.value !== this.state.value) {
-            this.props.onValidation(
-                newState.hasValidated,
-                newState.isValid,
-                newState.validationMessage
-            );
-        }
+        this.callOnValidation(newState);
 
         // do we have an `onChange` handler? has the value changed? if so,
         // call the `onChange` handler with the new value
@@ -94,16 +87,9 @@ class DateInput extends React.Component {
         //
         newState.isEditing = false;
 
-        // do we have an `onValidation` handler? has the value changed? if so,
-        // call the handler with the new validation state
+        // call the `onValidation` handler
         //
-        if (this.props.onValidation && newState.value !== this.state.value) {
-            this.props.onValidation(
-                newState.hasValidated,
-                newState.isValid,
-                newState.validationMessage
-            );
-        }
+        this.callOnValidation(newState);
 
         // do we have an `onChange` handler? has the value changed? if so,
         // call the handler with the new value
@@ -124,12 +110,10 @@ class DateInput extends React.Component {
 
         this.setState(newState);
 
-        if (this.props.onValidation && newState.hasValidated) {
-            this.props.onValidation(
-                newState.hasValidated,
-                newState.isValid,
-                newState.validationMessage
-            );
+        // call the `onValidation` handler if the `hasValidated` flag is set
+        //
+        if (newState.hasValidated) {
+            this.callOnValidation(newState);
         }
 
         if (this.props.onChange && newState.value !== this.state.value) {
