@@ -151,7 +151,7 @@ class DateInput extends React.Component {
         // call the handler with the new value
         //
         if (this.props.onChange && newState.value !== this.state.value) {
-            this.props.onChange(newState.value);
+            this.props.onChange(newState.isValid ? newState.value : null);
         }
     }
 
