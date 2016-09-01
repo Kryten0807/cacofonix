@@ -325,8 +325,8 @@ on blur, the DateInput component
     should call onValidation with hasValidated=true
     should call onChange with the formatted value for a valid value
     should call onChange with null for an invalid value
-    should maintain the current value when the component is refocused
 */
+// @TODO should maintain the current value when the component is refocused (?)
 describe('on blur, the DateInput component', () => {
 
     const description = 'xyz 123';
