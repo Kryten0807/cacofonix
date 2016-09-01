@@ -194,7 +194,7 @@ class DateInput extends React.Component {
 
         // create a Moment object from the value
         //
-        const datetime = new Moment(`${value || ''}`, 'M/D/YYYY');
+        const datetime = new Moment(`${value}`, 'M/D/YYYY');
 
         // determine if it's a valid date/time
         //
