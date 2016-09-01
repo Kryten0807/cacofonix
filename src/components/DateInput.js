@@ -22,7 +22,13 @@ class DateInput extends React.Component {
         this.onFocus = this.onFocus.bind(this);
     }
 
+    /**
+     * Handle the initial mounting of the component
+     */
     componentWillMount() {
+        // do we have an onValidation handler? if so, call it with the current
+        // validation state
+        //
         if (this.props.onValidation) {
             this.props.onValidation(
                 this.state.hasValidated,
@@ -32,14 +38,27 @@ class DateInput extends React.Component {
         }
     }
 
+    /**
+     * Handle new props from the parent
+     * @param  {Object} newProps The new component properties
+     */
     componentWillReceiveProps(newProps) {
+        // validate the new props & create the new state
+        //
         const newState = this.validate(newProps.value);
 
+        // preserve the `hasValidated` and `isEditing` state
+        //
         newState.hasValidated = this.state.hasValidated;
         newState.isEditing = this.state.isEditing;
 
+        // update the component state
+        //
         this.setState(newState);
 
+        // do we have an `onValidation` handler? has the value changed? if so,
+        // call the `onValidation` handler with the new validation state
+        //
         if (this.props.onValidation && newState.value !== this.state.value) {
             this.props.onValidation(
                 newState.hasValidated,
@@ -48,6 +67,9 @@ class DateInput extends React.Component {
             );
         }
 
+        // do we have an `onChange` handler? has the value changed? if so,
+        // call the `onChange` handler with the new value
+        //
         if (this.props.onChange && newState.value !== this.state.value) {
             this.props.onChange(newState.value);
         }
