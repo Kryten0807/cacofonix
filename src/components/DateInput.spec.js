@@ -148,6 +148,51 @@ describe('when new props are received, the DateInput component', () => {
         expect(parent.find('input').props().value).to.equal(finalValue);
     });
 
+    it('should maintain the edited value if the component is currently editing', () => {
+
+        const onChange = sinon.spy();
+
+        const initialValue = 'something that is not a date';
+
+        const steps = [
+            '',
+            '1',
+            '11',
+            '11/',
+            '11/9',
+            '11/9/',
+            '11/9/2',
+            '11/9/20',
+            '11/9/201',
+            '11/9/2014',
+        ];
+
+        let callCount = 0;
+
+        const parent = mount(<TestParent testValue={initialValue} onChange={onChange} />);
+
+        expect(onChange.callCount).to.equal(callCount++, 'first callcount');
+
+        // as set step through the edits, the component is going to be passing
+        // values via the onChange handler up to its parent. The parent will
+        // then be passing those values back to the component via props
+
+        steps.forEach((step) => {
+            // change the component
+            parent.find('input').simulate('change', { target: { value: step } });
+
+            // expect the onChange handler
+            expect(onChange.callCount).to.equal(callCount++, `call count after '${step}'`);
+
+            // update the parent (to simulate the app state changing & passing
+            // the value back down)
+            parent.setState({ testValue: step });
+
+            // expect the input element to still have the same value
+            expect(parent.find('input').props().value).to.equal(step, 'value = step');
+        });
+    });
+
 });
 
 /* *****************************************************************************
