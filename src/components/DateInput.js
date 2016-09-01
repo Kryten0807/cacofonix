@@ -174,6 +174,8 @@ class DateInput extends React.Component {
      * @param  {Object} newState The new component state
      */
     callOnChange(newState) {
+        const hasChanged = newState.value !== this.state.value || newState.editedValue !== this.state.editedValue;
+
         // do we have an `onChange` handler? has the value changed? if so,
         // call the handler with the new value (or `null` if it's not valid)
         //
