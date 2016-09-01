@@ -22,6 +22,38 @@ when new props are received, the DateInput component
 */
 describe('when new props are received, the DateInput component', () => {
 
+    const required = true;
+    const description = 'mumble mumble';
+    const expectedMessage = `${description} is not a valid date`;
+
+    class TestParent extends React.Component {
+        constructor(props) {
+            super(props);
+
+            this.state = {
+                testValue: props.testValue || '',
+            };
+        }
+
+        render() {
+            return (<DateInput
+                ref="testComponent"
+                required={required}
+                description={description}
+                value={this.state.testValue}
+                onValidation={this.props.onValidation}
+                onChange={this.props.onChange}
+            />);
+        }
+    }
+
+    TestParent.propTypes = {
+        testValue:    React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]),
+        onChange:     React.PropTypes.func,
+        onValidation: React.PropTypes.func,
+    };
+
+
     // it('should call onChange if the value changes', () => {});
 
     // it('should not call onChange if the value does not change', () => {});
