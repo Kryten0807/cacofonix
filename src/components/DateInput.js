@@ -56,12 +56,9 @@ class DateInput extends React.Component {
         //
         this.callOnValidation(newState);
 
-        // do we have an `onChange` handler? has the value changed? if so,
         // call the `onChange` handler with the new value
         //
-        if (this.props.onChange && newState.value !== this.state.value) {
-            this.props.onChange(newState.value);
-        }
+        this.callOnChange(newState);
 
         // update the component state
         //
@@ -91,12 +88,9 @@ class DateInput extends React.Component {
         //
         this.callOnValidation(newState);
 
-        // do we have an `onChange` handler? has the value changed? if so,
-        // call the handler with the new value
+        // call the `onChange` handler with the new value
         //
-        if (this.props.onChange && newState.value !== this.state.value) {
-            this.props.onChange(newState.isValid ? newState.value : null);
-        }
+        this.callOnChange(newState);
 
         // update the state
         //
@@ -120,9 +114,10 @@ class DateInput extends React.Component {
             this.callOnValidation(newState);
         }
 
-        if (this.props.onChange && newState.value !== this.state.value) {
-            this.props.onChange(newState.value);
-        }
+        // call the `onChange` handler with the new value
+        //
+        this.callOnChange(newState);
+
     }
 
     onFocus(event) {
