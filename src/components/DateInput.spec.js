@@ -23,13 +23,96 @@ given an invalid value, the validation error message
 */
 describe('given an invalid value, the validation error message', () => {
 
-    // it('should not be displayed after initialization', () => {});
+    const description = 'mumble mumble';
+    const expectedMessage = `${description} is not a valid date`;
 
-    // it('should not be displayed after focus', () => {});
+    it('should not be displayed after initialization', () => {
 
-    // it('should be displayed after editing', () => {});
+        const required = true;
 
-    // it('should be displayed after blur', () => {});
+        const value = '1/1/2016';
+        const newValue = 'something invalid';
+
+        const component = mount(<DateInput required={required} value={value} />);
+
+        expect(component.find('div.form-group.has-error').length).to.equal(0);
+    });
+
+    it('should not be displayed after focus', () => {
+
+        const required = true;
+
+        const value = '1/1/2016';
+        const newValue = 'something invalid';
+
+        const component = mount(<DateInput required={required} value={value} />);
+
+        component.find('input').simulate('focus', {
+            target: { value: newValue }
+        });
+
+        expect(component.find('div.form-group.has-error').length).to.equal(0);
+    });
+
+    it('should not be displayed after editing without prior blur', () => {
+
+        const required = true;
+
+        const value = '1/1/2016';
+        const newValue = 'something invalid';
+
+        const component = mount(<DateInput required={required} value={value} />);
+
+        component.find('input').simulate('change', {
+            target: { value: newValue }
+        });
+
+        expect(component.find('div.form-group.has-error').length).to.equal(0);
+        expect(component.find('span.help-block').length).to.equal(0);
+    });
+
+    it('should be displayed after blur', () => {
+
+        const required = true;
+
+        const value = '1/1/2016';
+        const newValue = 'something invalid';
+
+        const component = mount(<DateInput description={description} required={required} value={value} />);
+
+        component.find('input').simulate('blur', {
+            target: { value: newValue }
+        });
+
+        expect(component.find('div.form-group.has-error').length).to.equal(1);
+        expect(component.find('span.help-block').length).to.equal(1);
+        expect(component.find('span.help-block').text()).to.equal(expectedMessage);
+    });
+
+    it('should be displayed after editing with prior blur', () => {
+
+        const required = true;
+
+        const value = '1/1/2016';
+        const newValue = 'something invalid';
+
+        const component = mount(<DateInput description={description} required={required} value={value} />);
+
+        component.find('input').simulate('blur', {
+            target: { value }
+        });
+
+        expect(component.find('div.form-group.has-error').length).to.equal(0);
+        expect(component.find('span.help-block').length).to.equal(0);
+
+        component.find('input').simulate('change', {
+            target: { value: newValue }
+        });
+
+        expect(component.find('div.form-group.has-error').length).to.equal(1);
+        expect(component.find('span.help-block').length).to.equal(1);
+        expect(component.find('span.help-block').text()).to.equal(expectedMessage);
+    });
 
 });
 
