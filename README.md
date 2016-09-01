@@ -58,6 +58,7 @@ In order to test these components, I want to write tests that hit all of the maj
 
 1. basic markup (ie. what the thing looks like)
 1. validation error markup - what is displayed when a validation error occurs
+    + this should include the testing of a custom validation error message
 1. `onValidation` handler - what is passed out of the component when a validation error occurs
     + this includes calling the `onValidation` handler when the component is initialized, in order to pass the initial validation state to the parent
 1. `onChange` handler - what is passed out of the component when a change occurs
