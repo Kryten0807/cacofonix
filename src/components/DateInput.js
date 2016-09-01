@@ -111,7 +111,7 @@ class DateInput extends React.Component {
         });
 
         return (
-            <div className="form-group">
+            <div className={groupClasses}>
                 {this.props.label
                     ? <Label
                         htmlFor={this.id}
