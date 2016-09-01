@@ -17,8 +17,9 @@ const expect = chai.expect;
 given an invalid value, the validation error message
     should not be displayed after initialization
     should not be displayed after focus
-    should be displayed after editing
+    should not be displayed after editing without prior blur
     should be displayed after blur
+    should be displayed after editing with prior blur
 */
 describe('given an invalid value, the validation error message', () => {
 
