@@ -181,6 +181,9 @@ class DateInput extends React.Component {
 
         const editedValue = newState.isEditing ? newState.editedValue : null;
 
+        const value = newState.isValid
+            ? newState.value
+            : editedValue;
 
         // do we have an `onChange` handler? has the value changed? if so,
         // call the handler with the new value (or `null` if it's not valid)
