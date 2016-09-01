@@ -51,3 +51,17 @@ The behaviour of the component looks like this:
 + when the user first starts editing, no validation error message is displayed, even if the user enters an invalid value (`hasValidated` = false, `isValid` = true or false, depending)
 + when the user tabs or clicks out of the control for the first time, the validation error message is displayed if the value is invalid (`hasValidated` = true, `isValid` = true or false, depending)
 + after that first tab/click out, any editing of the value will display the error message if the value is invalid (`hasValidated` = true, `isValid` = true or false, depending)
+
+## Testing
+
+In order to test these components, I want to write tests that hit all of the major "external" behaviours of the component. That means:
+
+1. basic markup (ie. what the thing looks like)
+1. validation error markup - what is displayed when a validation error occurs
+    + this should include the testing of a custom validation error message
+1. `onValidation` handler - what is passed out of the component when a validation error occurs
+    + this includes calling the `onValidation` handler when the component is initialized, in order to pass the initial validation state to the parent
+1. `onChange` handler - what is passed out of the component when a change occurs
+1. what happens `onFocus` - the components will not have explicit `onFocus` handlers, but may call `onValidation` or `onChange` when this event fires
+1. what happens `onBlur` - the components will not have explicit `onBlur` handlers, but may call `onValidation` or `onChange` when this event fires
+1. what happens when the parent passes new props to the component via `componentWillReceiveProps`
