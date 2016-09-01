@@ -110,6 +110,10 @@ class DateInput extends React.Component {
             'has-error': this.state.hasValidated && !this.state.isValid,
         });
 
+        const helpBlock = this.state.hasValidated && !this.state.isValid
+            ? <span className="help-block">{this.state.validationMessage}</span>
+            : '';
+
         return (
             <div className={groupClasses}>
                 {this.props.label
