@@ -20,6 +20,17 @@ when new props are received, the DateInput component
     should call onValidation if the value changes
     should not call onValidation if the value does not change
 */
+describe('when new props are received, the DateInput component', () => {
+
+    // it('should call onChange if the value changes', () => {});
+
+    // it('should not call onChange if the value does not change', () => {});
+
+    // it('should call onValidation if the value changes', () => {});
+
+    // it('should not call onValidation if the value does not change', () => {});
+
+});
 
 /* *****************************************************************************
 given an invalid value, the validation error message
