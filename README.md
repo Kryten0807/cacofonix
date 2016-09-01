@@ -59,6 +59,7 @@ In order to test these components, I want to write tests that hit all of the maj
 1. basic markup (ie. what the thing looks like)
 1. validation error markup - what is displayed when a validation error occurs
 1. `onValidation` handler - what is passed out of the component when a validation error occurs
+    + this includes calling the `onValidation` handler when the component is initialized, in order to pass the initial validation state to the parent
 1. `onChange` handler - what is passed out of the component when a change occurs
 1. what happens `onFocus` - the components will not have explicit `onFocus` handlers, but may call `onValidation` or `onChange` when this event fires
 1. what happens `onBlur` - the components will not have explicit `onBlur` handlers, but may call `onValidation` or `onChange` when this event fires

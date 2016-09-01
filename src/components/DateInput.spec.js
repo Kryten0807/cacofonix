@@ -14,6 +14,14 @@ const expect = chai.expect;
 
 
 /* *****************************************************************************
+when new props are received, the DateInput component
+    should call onChange if the value changes
+    should not call onChange if the value does not change
+    should call onValidation if the value changes
+    should not call onValidation if the value does not change
+*/
+
+/* *****************************************************************************
 given an invalid value, the validation error message
     should not be displayed after initialization
     should not be displayed after focus
