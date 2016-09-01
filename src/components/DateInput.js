@@ -6,6 +6,8 @@ import classnames from 'classnames';
 import Label from './Label';
 import columns from '../helpers/columns';
 
+const dateRegex = /^([1-9]|0[1-9]|1[0-2])\/([1-9]|0[1-9]|[1-2][0-9]|3[0-1])\/[1-2][0-9]{3}$/;
+
 class DateInput extends React.Component {
     constructor(props) {
         super(props);
@@ -200,7 +202,7 @@ class DateInput extends React.Component {
 
         // determine if it's a valid date/time
         //
-        let isValid = /^([1-9]|0[1-9]|1[0-2])\/([1-9]|0[1-9]|[1-2][0-9]|3[0-1])\/[1-2][0-9]{3}$/.test(`${value}`);
+        let isValid = dateRegex.test(`${value}`);
 
         // check for a valid blank value - if it's not required and the value is
         // falsy, then count it as true
