@@ -75,9 +75,23 @@ class DateInput extends React.Component {
         this.setState(newState);
     }
 
+    /**
+     * Handle a blur event for the input element
+     * @param  {Object} event The event object
+     */
     onBlur(event) {
+        // validate the value & generate the new state
+        //
         const newState = this.validate(event.target.value);
+
+        // set `hasValidated` to true, since the component has officially been
+        // validated now that the user has tabbed out of it
+        //
         newState.hasValidated = true;
+
+        // set `isEditing` to false since the user is no longer "in" the
+        // component
+        //
         newState.isEditing = false;
 
         if (this.props.onValidation) {
@@ -88,6 +102,9 @@ class DateInput extends React.Component {
             );
         }
 
+        // do we have an `onChange` handler? has the value changed? if so,
+        // call the handler with the new value
+        //
         if (this.props.onChange && newState.value !== this.state.value) {
             this.props.onChange(newState.isValid ? newState.value : null);
         }
