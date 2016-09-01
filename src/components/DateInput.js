@@ -137,6 +137,7 @@ class DateInput extends React.Component {
                         onChange={this.onChange}
                         onFocus={this.onFocus}
                     />
+                    {helpBlock}
                 </div>
             </div>
         );
