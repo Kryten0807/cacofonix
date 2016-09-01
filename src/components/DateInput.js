@@ -32,6 +32,27 @@ class DateInput extends React.Component {
         }
     }
 
+    componentWillReceiveProps(newProps) {
+        const newState = this.validate(newProps.value);
+
+        newState.hasValidated = this.state.hasValidated;
+        newState.isEditing = this.state.isEditing;
+
+        this.setState(newState);
+
+        if (this.props.onValidation && newState.value !== this.state.value) {
+            this.props.onValidation(
+                newState.hasValidated,
+                newState.isValid,
+                newState.validationMessage
+            );
+        }
+
+        if (this.props.onChange && newState.value !== this.state.value) {
+            this.props.onChange(newState.value);
+        }
+    }
+
     onBlur(event) {
         const newState = this.validate(event.target.value);
         newState.hasValidated = true;
