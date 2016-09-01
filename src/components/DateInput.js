@@ -182,20 +182,37 @@ class DateInput extends React.Component {
         }
     }
 
+    /**
+     * Validate a value, generating new component state in the process
+     * @param  {String} value The value to validate
+     * @return {Object}       The updated component state
+     */
     validate(value) {
-
+        // save the value that is currently being edited
+        //
         const editedValue = value;
 
+        // create a Moment object from the value
+        //
         const datetime = new Moment(`${value || ''}`, 'M/D/YYYY');
 
+        // determine if it's a valid date/time
+        //
         let isValid = datetime.isValid();
 
+        // check for a valid blank value - if it's not required and the value is
+        // falsy, then count it as true
+        //
         if (!this.props.required && !value) {
             isValid = true;
         }
 
+        // determine the validation message based on the `isValid` flag
+        //
         const validationMessage = isValid ? null : this.validationMessage;
 
+        // return the new component state
+        //
         return {
             hasValidated: false,
             value:        isValid ? datetime.format('M/D/YYYY') : editedValue,
