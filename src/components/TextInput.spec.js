@@ -13,6 +13,35 @@ import TextInput from './TextInput';
 const expect = chai.expect;
 
 /* *****************************************************************************
+when the password flag is set/not set, the TextInput component
+    should have an input[type="password"] when password=true
+    should have an input[type="text"] when password=false
+*/
+describe('when the password flag is set/not set, the TextInput component', () => {
+
+    const label = 'enter your password';
+
+    it('should have an input[type="password"] when password=true', () => {
+        const password = true;
+
+        const component = shallow(<TextInput password={password} label={label} />);
+
+        expect(component.find('input[type="password"]').length).to.equal(1);
+        expect(component.find('input[type="text"]').length).to.equal(0);
+    });
+
+    it('should have an input[type="text"] when password=false', () => {
+        const password = false;
+
+        const component = shallow(<TextInput password={password} label={label} />);
+
+        expect(component.find('input[type="text"]').length).to.equal(1);
+        expect(component.find('input[type="password"]').length).to.equal(0);
+    });
+
+});
+
+/* *****************************************************************************
 when the parent component sends new value prop, a non-required TextInput component
     should call the onValidation handler when required=false, value=valid
     should call the onValidation handler when required=false, value=blank
