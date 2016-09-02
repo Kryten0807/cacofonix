@@ -194,7 +194,7 @@ class TextInput extends React.Component {
                 <div className={columns(this.props.inputColumns)}>
                     <input
                         id={this.id}
-                        type="text"
+                        type={this.props.password ? 'password' : 'text'}
                         value={this.state.value}
                         className="form-control"
                         placeholder={this.props.placeholder || ''}
