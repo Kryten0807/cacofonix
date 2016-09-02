@@ -28,9 +28,16 @@ describe('when the password flag is set/not set, the TextInput component', () =>
 
         expect(component.find('input[type="password"]').length).to.equal(1);
         expect(component.find('input[type="text"]').length).to.equal(0);
-});
+    });
 
-    // it('should have an input[type="text"] when password=false', () => {});
+    it('should have an input[type="text"] when password=false', () => {
+        const password = false;
+
+        const component = shallow(<TextInput password={password} label={label} />);
+
+        expect(component.find('input[type="text"]').length).to.equal(1);
+        expect(component.find('input[type="password"]').length).to.equal(0);
+    });
 
 });
 
