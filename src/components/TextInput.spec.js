@@ -13,6 +13,12 @@ import TextInput from './TextInput';
 const expect = chai.expect;
 
 /* *****************************************************************************
+when the password flag is set/not set, the TextInput component
+    should have an input[type="password"] when password=true
+    should have an input[type="text"] when password=false
+*/
+
+/* *****************************************************************************
 when the parent component sends new value prop, a non-required TextInput component
     should call the onValidation handler when required=false, value=valid
     should call the onValidation handler when required=false, value=blank
