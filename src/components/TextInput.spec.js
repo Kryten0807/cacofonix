@@ -17,6 +17,13 @@ when the password flag is set/not set, the TextInput component
     should have an input[type="password"] when password=true
     should have an input[type="text"] when password=false
 */
+describe('when the password flag is set/not set, the TextInput component', () => {
+
+    // it('should have an input[type="password"] when password=true', () => {});
+
+    // it('should have an input[type="text"] when password=false', () => {});
+
+});
 
 /* *****************************************************************************
 when the parent component sends new value prop, a non-required TextInput component
