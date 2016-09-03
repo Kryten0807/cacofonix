@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "prepublish": "gulp build",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "gulp test"
   },
   "author": "Dave Thomas <dave@monstergfx.com>",
   "license": "ISC",
