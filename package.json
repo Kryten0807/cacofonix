@@ -11,9 +11,9 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "https://bitbucket.org/wondercreatives/cacofonix"
+    "url": "https://github.com/Kryten0807/cacofonix"
   },
-  "bugs": "https://bitbucket.org/wondercreatives/cacofonix/issues",
+  "bugs": "https://github.com/Kryten0807/cacofonix/issues",
   "dependencies": {
     "classnames": "^2.2.5",
     "lodash": "^4.15.0",
