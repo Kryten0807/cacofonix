@@ -13,6 +13,7 @@
     "type": "git",
     "url": "https://bitbucket.org/wondercreatives/cacofonix"
   },
+  "bugs": "https://bitbucket.org/wondercreatives/cacofonix/issues",
   "dependencies": {
     "classnames": "^2.2.5",
     "lodash": "^4.15.0",
