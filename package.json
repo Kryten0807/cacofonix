@@ -1,6 +1,6 @@
 {
   "name": "cacofonix",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A collection of Bootstrap-themed React form components with support for validation",
   "main": "dist/index.js",
   "scripts": {
@@ -9,6 +9,11 @@
   },
   "author": "Dave Thomas <dave@monstergfx.com>",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Kryten0807/cacofonix"
+  },
+  "bugs": "https://github.com/Kryten0807/cacofonix/issues",
   "dependencies": {
     "classnames": "^2.2.5",
     "lodash": "^4.15.0",
