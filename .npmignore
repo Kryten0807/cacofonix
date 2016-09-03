@@ -1,0 +1,14 @@
+# ignore everything EXCEPT ./dist
+#
+# in the final package, all we want are the package.json (which will actually be
+# built during npm install) and the dist directory, which contains the actual
+# built files
+#
+!dist
+src
+test
+.babelrc
+.eslintrc.js
+.gitkeep
+gulpfile.js
+.npmignore
