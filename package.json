@@ -9,6 +9,10 @@
   },
   "author": "Dave Thomas <dave@monstergfx.com>",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://bitbucket.org/wondercreatives/cacofonix"
+  },
   "dependencies": {
     "classnames": "^2.2.5",
     "lodash": "^4.15.0",
