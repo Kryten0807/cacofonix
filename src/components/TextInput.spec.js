@@ -459,6 +459,40 @@ describe('when the parent component sends new value prop, the TextInput componen
 
         expect(onChange.callCount).to.equal(0);
     });
+
+    it('should show the validation message when value=blank after prior editing', () => {
+
+        const initialValue = 'something';
+
+        const testValue = '';
+
+        const parent = mount(<TestParent2 testValue={initialValue} />);
+
+        // edit the value
+        //
+        parent.find('input').simulate('change', {
+            target: { value: testValue }
+        });
+
+        expect(parent.find('span.help-block').length).to.equal(0, 'len after change');
+
+        // blur
+        //
+        parent.find('input').simulate('blur', {
+            target: { value: testValue }
+        });
+
+        expect(parent.find('span.help-block').length).to.equal(1, 'len after blur');
+
+        // change the state of the parent, which will pass new props to the
+        // component
+        //
+        parent.setState({ testValue });
+
+        expect(parent.find('span.help-block').length).to.equal(1, 'len after new props');
+        expect(parent.find('span.help-block').text()).to.equal(expectedMessage, 'msg after new props');
+    });
+
 });
 
 /* *****************************************************************************
