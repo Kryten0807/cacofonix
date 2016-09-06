@@ -270,6 +270,8 @@ when the parent component sends new value prop, a required TextInput component
     should show the validation message when value=blank
     should not call the onValidation handler when value has not changed
     should not call the onChange handler when value has not changed
+
+    should show the validation message when value=blank after prior editing
 */
 describe('when the parent component sends new value prop, the TextInput component', () => {
 
