@@ -106,20 +106,21 @@ class TextInput extends React.Component {
 
         // update the state
         //
-        this.setState({ value, isValid, validationMessage, hasValidated });
+        this.setState({ value, isValid, validationMessage, hasValidated }, () => {
+            // do we have an onChange handler? if so, call it with the new value
+            //
+            if (this.props.onChange) {
+                this.props.onChange(value);
+            }
 
-        // do we have an onChange handler? if so, call it with the new value
-        //
-        if (this.props.onChange) {
-            this.props.onChange(value);
-        }
+            // has the component validated? do we have an onValidation handler? if
+            // so, call it with the validation state
+            //
+            if (hasValidated && this.props.onValidation) {
+                this.props.onValidation(hasValidated, isValid, validationMessage);
+            }
+        });
 
-        // has the component validated? do we have an onValidation handler? if
-        // so, call it with the validation state
-        //
-        if (hasValidated && this.props.onValidation) {
-            this.props.onValidation(hasValidated, isValid, validationMessage);
-        }
     }
 
     /**
