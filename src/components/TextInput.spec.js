@@ -13,6 +13,33 @@ import TextInput from './TextInput';
 const expect = chai.expect;
 
 /* *****************************************************************************
+when the readOnly flag is set/not set, the TextInput component
+    should have an input with prop readOnly=true when readOnly=true
+    should have an input with prop readOnly=false when readOnly=false
+*/
+describe('when the readOnly flag is set/not set, the TextInput component', () => {
+
+    const label = 'enter something';
+
+    it('should have an input with prop readOnly=true when readOnly=true', () => {
+        const readOnly = true;
+
+        const component = shallow(<TextInput readOnly={readOnly} label={label} />);
+
+        expect(component.find('input').props().readOnly).to.equal(readOnly);
+    });
+
+    it('should have an input with prop readOnly=false when readOnly=false', () => {
+        const readOnly = false;
+
+        const component = shallow(<TextInput readOnly={readOnly} label={label} />);
+
+        expect(component.find('input').props().readOnly).to.equal(readOnly);
+    });
+
+});
+
+/* *****************************************************************************
 when the password flag is set/not set, the TextInput component
     should have an input[type="password"] when password=true
     should have an input[type="text"] when password=false
