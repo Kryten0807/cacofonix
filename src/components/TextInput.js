@@ -196,6 +196,7 @@ class TextInput extends React.Component {
                     <input
                         id={this.id}
                         type={this.props.password ? 'password' : 'text'}
+                        readOnly={!!this.props.readOnly}
                         value={this.state.value}
                         className="form-control"
                         placeholder={this.props.placeholder || ''}
