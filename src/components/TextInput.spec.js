@@ -19,7 +19,15 @@ when the readOnly flag is set/not set, the TextInput component
 */
 describe('when the readOnly flag is set/not set, the TextInput component', () => {
 
-    // it('should have an input with prop readOnly=true when readOnly=true', () => {});
+    const label = 'enter something';
+
+    it('should have an input with prop readOnly=true when readOnly=true', () => {
+        const readOnly = true;
+
+        const component = shallow(<TextInput readOnly={readOnly} label={label} />);
+
+        expect(component.find('input').props().readOnly).to.equal(true);
+    });
 
     // it('should have an input with prop readOnly=false when readOnly=false', () => {});
 
