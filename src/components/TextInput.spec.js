@@ -17,6 +17,13 @@ when the readOnly flag is set/not set, the TextInput component
     should have an input with prop readOnly=true when readOnly=true
     should have an input with prop readOnly=false when readOnly=false
 */
+describe('when the readOnly flag is set/not set, the TextInput component', () => {
+
+    // it('should have an input with prop readOnly=true when readOnly=true', () => {});
+
+    // it('should have an input with prop readOnly=false when readOnly=false', () => {});
+
+});
 
 /* *****************************************************************************
 when the password flag is set/not set, the TextInput component
