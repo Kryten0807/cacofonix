@@ -35,6 +35,10 @@ class Dropdown extends React.Component {
         //
         this.state.hasValidated = false;
 
+        // add the options to the state (in case they change later)
+        //
+        this.state.options = props.options;
+
         // bind `this` to the onEvent method
         //
         this.onEvent = this.onEvent.bind(this);
