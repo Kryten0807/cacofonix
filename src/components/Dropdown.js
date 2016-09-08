@@ -105,6 +105,10 @@ class Dropdown extends React.Component {
                 this.props.onChange(newState.value);
             }
         }
+
+        if (newProps.options && newProps.options !== this.state.options) {
+            this.setState((state) => update(state, { options: { $set: newProps.options } }));
+        }
     }
 
     /**
