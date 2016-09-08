@@ -35,6 +35,15 @@ Dropdown Behaviour
 */
 
 /* *****************************************************************************
+when the parent component sends new options prop, the Dropdown component
+    should update the options in the markup
+*/
+describe('when the parent component sends new options prop, the Dropdown component', () => {
+
+    it('should update the options in the markup', () => {});
+});
+
+/* *****************************************************************************
 when the parent component sends new value prop, a non-required Dropdown component
     should call the onValidation handler when value=valid
     should call the onValidation handler when value=blank
