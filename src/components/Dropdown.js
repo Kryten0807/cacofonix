@@ -111,6 +111,10 @@ class Dropdown extends React.Component {
         //
         if (newProps.options && newProps.options !== this.state.options) {
             this.setState((state) => update(state, { options: { $set: newProps.options } }));
+
+            // build a newlist of permitted values from the options values
+            //
+            this.permittedValues = newProps.options.map((opt) => opt.value);
         }
     }
 
