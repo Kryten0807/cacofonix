@@ -209,7 +209,7 @@ class Dropdown extends React.Component {
                     </option>
                     : ''
                 }
-                {this.props.options.map((opt) =>
+                {this.state.options.map((opt) =>
                     <option key={uniqueId('Dropdown-')} value={opt.value}>{opt.name}</option>)
                 }
             </select>
