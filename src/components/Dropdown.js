@@ -106,6 +106,9 @@ class Dropdown extends React.Component {
             }
         }
 
+        // do we have new options? are they different from the old options? if
+        // so, replace them
+        //
         if (newProps.options && newProps.options !== this.state.options) {
             this.setState((state) => update(state, { options: { $set: newProps.options } }));
         }
