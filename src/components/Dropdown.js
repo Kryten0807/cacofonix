@@ -1,6 +1,7 @@
 // dependencies
 //
 import React from 'react';
+import update from 'react-addons-update';
 import uniqueId from 'lodash/uniqueId';
 import classnames from 'classnames';
 import Label from './Label';
@@ -34,6 +35,10 @@ class Dropdown extends React.Component {
         // set the `hasValidated` state to its initial value
         //
         this.state.hasValidated = false;
+
+        // add the options to the state (in case they change later)
+        //
+        this.state.options = props.options;
 
         // bind `this` to the onEvent method
         //
@@ -99,6 +104,17 @@ class Dropdown extends React.Component {
             if (this.props.onChange) {
                 this.props.onChange(newState.value);
             }
+        }
+
+        // do we have new options? are they different from the old options? if
+        // so, replace them
+        //
+        if (newProps.options && newProps.options !== this.state.options) {
+            this.setState((state) => update(state, { options: { $set: newProps.options } }));
+
+            // build a newlist of permitted values from the options values
+            //
+            this.permittedValues = newProps.options.map((opt) => opt.value);
         }
     }
 
@@ -205,7 +221,7 @@ class Dropdown extends React.Component {
                     </option>
                     : ''
                 }
-                {this.props.options.map((opt) =>
+                {this.state.options.map((opt) =>
                     <option key={uniqueId('Dropdown-')} value={opt.value}>{opt.name}</option>)
                 }
             </select>
