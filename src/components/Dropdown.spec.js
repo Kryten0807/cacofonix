@@ -100,9 +100,9 @@ describe('when the parent component sends new options prop, the Dropdown compone
 
         expect(parent.find('option').length).to.equal(newOptions.length, 'after len')
         expect(parent.find('option[value="1"]').length).to.equal(1, 'after 1')
-        expect(parent.find('option[value="2"]').length).to.equal(1, 'after 2')
-        expect(parent.find('option[value="3"]').length).to.equal(0, 'after 3')
-        expect(parent.find('option[value="5"]').length).to.equal(0, 'after 5')
+        expect(parent.find('option[value="2"]').length).to.equal(0, 'after 2')
+        expect(parent.find('option[value="3"]').length).to.equal(1, 'after 3')
+        expect(parent.find('option[value="5"]').length).to.equal(1, 'after 5')
     });
 });
 
