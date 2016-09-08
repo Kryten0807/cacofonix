@@ -40,7 +40,74 @@ when the parent component sends new options prop, the Dropdown component
 */
 describe('when the parent component sends new options prop, the Dropdown component', () => {
 
-    it('should update the options in the markup', () => {});
+    const required = false;
+    const description = 'nonsense';
+
+    const value = '1';
+
+    const initialOptions = [
+        { value: '1', name: 'one' },
+        { value: '2', name: 'two' },
+    ];
+
+    class TestParentGamma extends React.Component {
+        constructor(props) {
+            super(props);
+
+            this.state = {
+                testOptions: props.testOptions || [],
+            };
+        }
+
+        render() {
+            return (<Dropdown
+                ref="testComponent"
+                required={required}
+                description={description}
+                value={value}
+                options={this.state.testOptions}
+                onValidation={this.props.onValidation}
+                onChange={this.props.onChange}
+            />);
+        }
+    }
+
+    TestParentGamma.propTypes = {
+        testOptions:  React.PropTypes.array,
+        onChange:     React.PropTypes.func,
+        onValidation: React.PropTypes.func,
+    };
+
+    it('should update the options in the markup', () => {
+
+        const newOptions = [
+            { value: '1', name: 'one' },
+            { value: '3', name: 'three' },
+            { value: '5', name: 'five' },
+        ];
+
+        const parent = mount(<TestParentGamma testOptions={initialOptions} />);
+
+        // console.log('-------------------------');
+        // console.log(parent.debug());
+        // console.log('-------------------------');
+        //
+        expect(parent.find('option').length).to.equal(initialOptions.length, 'before len')
+        expect(parent.find('option[value="1"]').length).to.equal(1, 'before 1')
+        expect(parent.find('option[value="2"]').length).to.equal(1, 'before 2')
+        expect(parent.find('option[value="3"]').length).to.equal(0, 'before 3')
+        expect(parent.find('option[value="5"]').length).to.equal(0, 'before 5')
+
+        // change the state of the parent
+        //
+        parent.setState({ testOptions: newOptions });
+
+        expect(parent.find('option').length).to.equal(newOptions.length, 'after len')
+        expect(parent.find('option[value="1"]').length).to.equal(1, 'after 1')
+        expect(parent.find('option[value="2"]').length).to.equal(1, 'after 2')
+        expect(parent.find('option[value="3"]').length).to.equal(0, 'after 3')
+        expect(parent.find('option[value="5"]').length).to.equal(0, 'after 5')
+    });
 });
 
 /* *****************************************************************************
