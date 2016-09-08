@@ -88,10 +88,6 @@ describe('when the parent component sends new options prop, the Dropdown compone
 
         const parent = mount(<TestParentGamma testOptions={initialOptions} />);
 
-        // console.log('-------------------------');
-        // console.log(parent.debug());
-        // console.log('-------------------------');
-        //
         expect(parent.find('option').length).to.equal(initialOptions.length, 'before len')
         expect(parent.find('option[value="1"]').length).to.equal(1, 'before 1')
         expect(parent.find('option[value="2"]').length).to.equal(1, 'before 2')
