@@ -1,6 +1,6 @@
 {
   "name": "cacofonix",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "A collection of Bootstrap-themed React form components with support for validation",
   "main": "dist/index.js",
   "scripts": {
