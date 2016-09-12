@@ -1,6 +1,6 @@
 {
   "name": "cacofonix",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "A collection of Bootstrap-themed React form components with support for validation",
   "main": "dist/index.js",
   "scripts": {
@@ -42,6 +42,7 @@
     "gulp-if": "^2.0.1",
     "gulp-mocha": "^3.0.1",
     "gulp-shell": "^0.5.2",
+    "jsdom": "^9.5.0",
     "react-addons-test-utils": "^15.3.1",
     "sinon": "^1.17.5"
   }

@@ -10,7 +10,8 @@ import columns from '../helpers/columns';
  * The date validation regular expression
  * @type {Regex}
  */
-const dateRegex = /^([1-9]|0[1-9]|1[0-2])\/([1-9]|0[1-9]|[1-2][0-9]|3[0-1])\/[1-2][0-9]{3}$/;
+const dateRegex =
+    /^([1-9]|0[1-9]|1[0-2])\/([1-9]|0[1-9]|[1-2][0-9]|3[0-1])(\/([1-2][0-9]{3}|[0-9]{2}))?$/;
 
 /**
  * The DateInput component

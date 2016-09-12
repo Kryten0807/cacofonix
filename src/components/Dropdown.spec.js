@@ -88,21 +88,21 @@ describe('when the parent component sends new options prop, the Dropdown compone
 
         const parent = mount(<TestParentGamma testOptions={initialOptions} />);
 
-        expect(parent.find('option').length).to.equal(initialOptions.length, 'before len')
-        expect(parent.find('option[value="1"]').length).to.equal(1, 'before 1')
-        expect(parent.find('option[value="2"]').length).to.equal(1, 'before 2')
-        expect(parent.find('option[value="3"]').length).to.equal(0, 'before 3')
-        expect(parent.find('option[value="5"]').length).to.equal(0, 'before 5')
+        expect(parent.find('option').length).to.equal(initialOptions.length, 'before len');
+        expect(parent.find('option[value="1"]').length).to.equal(1, 'before 1');
+        expect(parent.find('option[value="2"]').length).to.equal(1, 'before 2');
+        expect(parent.find('option[value="3"]').length).to.equal(0, 'before 3');
+        expect(parent.find('option[value="5"]').length).to.equal(0, 'before 5');
 
         // change the state of the parent
         //
         parent.setState({ testOptions: newOptions });
 
-        expect(parent.find('option').length).to.equal(newOptions.length, 'after len')
-        expect(parent.find('option[value="1"]').length).to.equal(1, 'after 1')
-        expect(parent.find('option[value="2"]').length).to.equal(0, 'after 2')
-        expect(parent.find('option[value="3"]').length).to.equal(1, 'after 3')
-        expect(parent.find('option[value="5"]').length).to.equal(1, 'after 5')
+        expect(parent.find('option').length).to.equal(newOptions.length, 'after len');
+        expect(parent.find('option[value="1"]').length).to.equal(1, 'after 1');
+        expect(parent.find('option[value="2"]').length).to.equal(0, 'after 2');
+        expect(parent.find('option[value="3"]').length).to.equal(1, 'after 3');
+        expect(parent.find('option[value="5"]').length).to.equal(1, 'after 5');
     });
 });
 

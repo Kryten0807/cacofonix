@@ -517,7 +517,8 @@ describe('when the parent component sends new value prop, the TextInput componen
         parent.setState({ testValue });
 
         expect(parent.find('span.help-block').length).to.equal(1, 'len after new props');
-        expect(parent.find('span.help-block').text()).to.equal(expectedMessage, 'msg after new props');
+        expect(parent.find('span.help-block').text())
+            .to.equal(expectedMessage, 'msg after new props');
     });
 
 });
