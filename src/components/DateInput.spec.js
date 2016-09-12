@@ -21,6 +21,47 @@ when a value with month and day only is entered, the DateInput component
     should not show the validation error message with a prior blur event
     should update the input element value on blur (assuming current year)
 */
+describe('when a value with month and day only is entered, the DateInput component', () => {
+
+    const currentYear = new Date().getFullYear();
+
+    it('should call the onChange handler with the properly formatted value (assuming current year)', () => {
+
+        const onChange = sinon.spy();
+
+        const required = true;
+
+        const value = '1/1/2016';
+        const newValue = '03/06';
+        const expectedValue = `3/6/${currentYear}`;
+
+        const component = mount(
+            <DateInput required={required} value={value} onChange={onChange} />
+        );
+
+        expect(onChange.callCount).to.equal(0);
+
+        component.find('input').simulate('change', {
+            target: { value: newValue }
+        });
+
+        component.find('input').simulate('blur', {
+            target: { value: newValue }
+        });
+
+        expect(onChange.callCount).to.equal(1);
+        expect(onChange.calledWith(expectedValue)).to.equal(true);
+    });
+
+    // it('should call onValidation with the correct values', () => {});
+
+    // it('should not show the validation error message without a prior blur event', () => {});
+
+    // it('should not show the validation error message with a prior blur event', () => {});
+
+    // it('should update the input element value on blur (assuming current year)', () => {});
+
+});
 
 /* *****************************************************************************
 when a value with a 2-digit year is entered, the DateInput component
