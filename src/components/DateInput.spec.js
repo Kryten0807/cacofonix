@@ -59,7 +59,6 @@ describe('when a value with month and day only is entered, the DateInput compone
 
         const required = true;
 
-    // it('should update the input element value on blur (assuming current year)', () => {});
         const value = '1/1/2016';
         const newValue = '03/06';
 
@@ -116,6 +115,22 @@ describe('when a value with month and day only is entered, the DateInput compone
         expect(component.find('span.help-block').length).to.equal(0);
     });
 
+    it('should update the input element value on blur (assuming current year)', () => {
+
+        const required = true;
+
+        const value = '1/1/2016';
+        const newValue = '03/06';
+        const expectedValue = `3/6/${currentYear}`;
+
+        const component = mount(<DateInput required={required} value={value} />);
+
+        component.find('input').simulate('blur', {
+            target: { value: newValue }
+        });
+
+        expect(component.find('input').props().value).to.equal(expectedValue);
+    });
 
 });
 
