@@ -54,7 +54,6 @@ describe('when a value with a 2-digit year is entered, the DateInput component',
 
     it('should call onValidation with the correct values', () => {
 
-    // it('should not show the validation error message without a prior blur event', () => {});
         const onValidation = sinon.spy();
 
         const required = true;
@@ -80,6 +79,23 @@ describe('when a value with a 2-digit year is entered, the DateInput component',
         expect(onValidation.args[1][2]).to.equal(null, 'args[1][2]');
     });
 
+    it('should not show the validation error message without a prior blur event', () => {
+
+        const required = true;
+
+        const value = '1/1/2016';
+        const newValue = '03/06/14';
+        const expectedValue = '3/6/2014';
+
+        const component = mount(<DateInput required={required} value={value}/>);
+
+        component.find('input').simulate('change', {
+            target: { value: newValue }
+        });
+
+        expect(component.find('div.form-group').length).to.equal(1);
+        expect(component.find('span.help-block').length).to.equal(0);
+    });
 
     // it('should not show the validation error message with a prior blur event', () => {});
 
