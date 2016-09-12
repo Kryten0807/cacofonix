@@ -115,7 +115,22 @@ describe('when a value with a 2-digit year is entered, the DateInput component',
         expect(component.find('span.help-block').length).to.equal(0);
     });
 
-    // it('should update the input element value on blur', () => {});
+    it('should update the input element value on blur', () => {
+
+        const required = true;
+
+        const value = '1/1/2016';
+        const newValue = '03/06/14';
+        const expectedValue = '3/6/2014';
+
+        const component = mount(<DateInput required={required} value={value} />);
+
+        component.find('input').simulate('blur', {
+            target: { value: newValue }
+        });
+
+        expect(component.find('input').props().value).to.equal(expectedValue);
+    });
 
 });
 
