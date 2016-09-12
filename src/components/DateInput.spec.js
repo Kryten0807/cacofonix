@@ -14,6 +14,15 @@ const expect = chai.expect;
 
 
 /* *****************************************************************************
+when a value with a 2-digit year is entered, the DateInput component
+    should call the onChange handler with the properly formatted value
+    should call onValidation with the correct values
+    should not show the validation error message without a prior blur event
+    should not show the validation error message with a prior blur event
+    should update the input element value on blur
+*/
+
+/* *****************************************************************************
 when new props are received, the DateInput component
     should call onChange if the value changes
     should not call onChange if the value does not change
