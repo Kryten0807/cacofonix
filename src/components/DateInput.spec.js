@@ -38,6 +38,8 @@ describe('when a value with a 2-digit year is entered, the DateInput component',
 
         const component = mount(<DateInput required={required} value={value} onChange={onChange}/>);
 
+        expect(onChange.callCount).to.equal(0);
+
         component.find('input').simulate('change', {
             target: { value: newValue }
         });
