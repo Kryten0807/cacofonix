@@ -23,9 +23,6 @@ when a value with a 2-digit year is entered, the DateInput component
 */
 describe('when a value with a 2-digit year is entered, the DateInput component', () => {
 
-    const description = 'xyz 123';
-    const expectedMessage = `${description} is not a valid date`;
-
     it('should call the onChange handler with the properly formatted value', () => {
 
         const onChange = sinon.spy();
@@ -36,7 +33,9 @@ describe('when a value with a 2-digit year is entered, the DateInput component',
         const newValue = '03/06/14';
         const expectedValue = '3/6/2014';
 
-        const component = mount(<DateInput required={required} value={value} onChange={onChange}/>);
+        const component = mount(
+            <DateInput required={required} value={value} onChange={onChange} />
+        );
 
         expect(onChange.callCount).to.equal(0);
 
@@ -60,9 +59,10 @@ describe('when a value with a 2-digit year is entered, the DateInput component',
 
         const value = '1/1/2016';
         const newValue = '03/06/14';
-        const expectedValue = '3/6/2014';
 
-        const component = mount(<DateInput required={required} value={value} onValidation={onValidation}/>);
+        const component = mount(
+            <DateInput required={required} value={value} onValidation={onValidation} />
+        );
 
         expect(onValidation.callCount).to.equal(1, 'callCount before');
         expect(onValidation.args[0][0]).to.equal(false, 'args[0][0]');
@@ -85,7 +85,6 @@ describe('when a value with a 2-digit year is entered, the DateInput component',
 
         const value = '1/1/2016';
         const newValue = '03/06/14';
-        const expectedValue = '3/6/2014';
 
         const component = mount(<DateInput required={required} value={value} />);
 
@@ -103,7 +102,6 @@ describe('when a value with a 2-digit year is entered, the DateInput component',
 
         const value = '1/1/2016';
         const newValue = '03/06/14';
-        const expectedValue = '3/6/2014';
 
         const component = mount(<DateInput required={required} value={value} />);
 
