@@ -52,9 +52,34 @@ describe('when a value with a 2-digit year is entered, the DateInput component',
         expect(onChange.calledWith(expectedValue)).to.equal(true);
     });
 
-    // it('should call onValidation with the correct values', () => {});
+    it('should call onValidation with the correct values', () => {
 
     // it('should not show the validation error message without a prior blur event', () => {});
+        const onValidation = sinon.spy();
+
+        const required = true;
+
+        const value = '1/1/2016';
+        const newValue = '03/06/14';
+        const expectedValue = '3/6/2014';
+
+        const component = mount(<DateInput required={required} value={value} onValidation={onValidation}/>);
+
+        expect(onValidation.callCount).to.equal(1, 'callCount before');
+        expect(onValidation.args[0][0]).to.equal(false, 'args[0][0]');
+        expect(onValidation.args[0][1]).to.equal(true, 'args[0][1]');
+        expect(onValidation.args[0][2]).to.equal(null, 'args[0][2]');
+
+        component.find('input').simulate('blur', {
+            target: { value: newValue }
+        });
+
+        expect(onValidation.callCount).to.equal(2, 'callcount after');
+        expect(onValidation.args[1][0]).to.equal(true, 'args[1][0]');
+        expect(onValidation.args[1][1]).to.equal(true, 'args[1][1]');
+        expect(onValidation.args[1][2]).to.equal(null, 'args[1][2]');
+    });
+
 
     // it('should not show the validation error message with a prior blur event', () => {});
 
