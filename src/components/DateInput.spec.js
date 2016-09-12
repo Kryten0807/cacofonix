@@ -23,7 +23,33 @@ when a value with a 2-digit year is entered, the DateInput component
 */
 describe('when a value with a 2-digit year is entered, the DateInput component', () => {
 
-    // it('should call the onChange handler with the properly formatted value', () => {});
+    const description = 'xyz 123';
+    const expectedMessage = `${description} is not a valid date`;
+
+    it('should call the onChange handler with the properly formatted value', () => {
+
+        const onChange = sinon.spy();
+
+        const required = true;
+
+        const value = '1/1/2016';
+        const newValue = '03/06/14';
+        const expectedValue = '3/6/2014';
+
+        const component = mount(<DateInput required={required} value={value} />);
+
+        component.find('input').simulate('change', {
+            target: { value: newValue }
+        });
+
+        component.find('input').simulate('blur', {
+            target: { value: newValue }
+        });
+
+        expect(component.find('input').props().value).to.equal(expectedValue);
+    });
+
+
 
     // it('should call onValidation with the correct values', () => {});
 
