@@ -14,6 +14,128 @@ const expect = chai.expect;
 
 
 /* *****************************************************************************
+when a value with month and day only is entered, the DateInput component
+    should call the onChange handler with the properly formatted value (assuming current year)
+    should call onValidation with the correct values
+    should not show the validation error message without a prior blur event
+    should not show the validation error message with a prior blur event
+    should update the input element value on blur (assuming current year)
+*/
+describe('when a value with month and day only is entered, the DateInput component', () => {
+
+    const currentYear = new Date().getFullYear();
+
+    it('should call the onChange handler with the properly formatted value ' +
+        '(assuming current year)', () => {
+
+        const onChange = sinon.spy();
+
+        const required = true;
+
+        const value = '1/1/2016';
+        const newValue = '03/06';
+        const expectedValue = `3/6/${currentYear}`;
+
+        const component = mount(
+            <DateInput required={required} value={value} onChange={onChange} />
+        );
+
+        expect(onChange.callCount).to.equal(0);
+
+        component.find('input').simulate('change', {
+            target: { value: newValue }
+        });
+
+        component.find('input').simulate('blur', {
+            target: { value: newValue }
+        });
+
+        expect(onChange.callCount).to.equal(1);
+        expect(onChange.calledWith(expectedValue)).to.equal(true);
+    });
+
+    it('should call onValidation with the correct values', () => {
+
+        const onValidation = sinon.spy();
+
+        const required = true;
+
+        const value = '1/1/2016';
+        const newValue = '03/06';
+
+        const component = mount(
+            <DateInput required={required} value={value} onValidation={onValidation} />
+        );
+
+        expect(onValidation.callCount).to.equal(1, 'callCount before');
+        expect(onValidation.args[0][0]).to.equal(false, 'args[0][0]');
+        expect(onValidation.args[0][1]).to.equal(true, 'args[0][1]');
+        expect(onValidation.args[0][2]).to.equal(null, 'args[0][2]');
+
+        component.find('input').simulate('blur', {
+            target: { value: newValue }
+        });
+
+        expect(onValidation.callCount).to.equal(2, 'callcount after');
+        expect(onValidation.args[1][0]).to.equal(true, 'args[1][0]');
+        expect(onValidation.args[1][1]).to.equal(true, 'args[1][1]');
+        expect(onValidation.args[1][2]).to.equal(null, 'args[1][2]');
+    });
+
+    it('should not show the validation error message without a prior blur event', () => {
+
+        const required = true;
+
+        const value = '1/1/2016';
+        const newValue = '03/06';
+
+        const component = mount(<DateInput required={required} value={value} />);
+
+        component.find('input').simulate('change', {
+            target: { value: newValue }
+        });
+
+        expect(component.find('div.form-group').length).to.equal(1);
+        expect(component.find('span.help-block').length).to.equal(0);
+    });
+
+    it('should not show the validation error message with a prior blur event', () => {
+
+        const required = true;
+
+        const value = '1/1/2016';
+        const newValue = '03/06';
+
+        const component = mount(<DateInput required={required} value={value} />);
+
+        component.find('input').simulate('blur', {
+            target: { value: newValue }
+        });
+
+        expect(component.find('div.form-group').length).to.equal(1);
+        expect(component.find('span.help-block').length).to.equal(0);
+    });
+
+    it('should update the input element value on blur (assuming current year)', () => {
+
+        const required = true;
+
+        const value = '1/1/2016';
+        const newValue = '03/06';
+        const expectedValue = `3/6/${currentYear}`;
+
+        const component = mount(<DateInput required={required} value={value} />);
+
+        component.find('input').simulate('blur', {
+            target: { value: newValue }
+        });
+
+        expect(component.find('input').props().value).to.equal(expectedValue);
+    });
+
+});
+
+/* *****************************************************************************
 when a value with a 2-digit year is entered, the DateInput component
     should call the onChange handler with the properly formatted value
     should call onValidation with the correct values
