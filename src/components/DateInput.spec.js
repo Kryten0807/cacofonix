@@ -25,7 +25,8 @@ describe('when a value with month and day only is entered, the DateInput compone
 
     const currentYear = new Date().getFullYear();
 
-    it('should call the onChange handler with the properly formatted value (assuming current year)', () => {
+    it('should call the onChange handler with the properly formatted value ' +
+        '(assuming current year)', () => {
 
         const onChange = sinon.spy();
 
