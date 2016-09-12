@@ -55,7 +55,6 @@ describe('when a value with month and day only is entered, the DateInput compone
 
     it('should call onValidation with the correct values', () => {
 
-    // it('should not show the validation error message without a prior blur event', () => {});
         const onValidation = sinon.spy();
 
     // it('should not show the validation error message with a prior blur event', () => {});
@@ -82,6 +81,23 @@ describe('when a value with month and day only is entered, the DateInput compone
         expect(onValidation.args[1][0]).to.equal(true, 'args[1][0]');
         expect(onValidation.args[1][1]).to.equal(true, 'args[1][1]');
         expect(onValidation.args[1][2]).to.equal(null, 'args[1][2]');
+    });
+
+    it('should not show the validation error message without a prior blur event', () => {
+
+        const required = true;
+
+        const value = '1/1/2016';
+        const newValue = '03/06';
+
+        const component = mount(<DateInput required={required} value={value} />);
+
+        component.find('input').simulate('change', {
+            target: { value: newValue }
+        });
+
+        expect(component.find('div.form-group').length).to.equal(1);
+        expect(component.find('span.help-block').length).to.equal(0);
     });
 
 
