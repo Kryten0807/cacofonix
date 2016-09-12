@@ -18,13 +18,11 @@ This is a set of Bootstrap-themed React components.
 1. **NumericInput** - a text input which requires input to be numeric, with configurable decimal places and an optional dollar sign/currency formatting when blurred
 1. **DateInput** - a text input which accepts a date value
     1. allow 2-digit year
+    1. if no year entered, assume the current year
 
 ## In Progress
 
 ## To Do
-
-1. **DateInput**
-    1. if no year entered, assume the current year
 
 ### Components
 
