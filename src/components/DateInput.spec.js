@@ -36,7 +36,7 @@ describe('when a value with a 2-digit year is entered, the DateInput component',
         const newValue = '03/06/14';
         const expectedValue = '3/6/2014';
 
-        const component = mount(<DateInput required={required} value={value} />);
+        const component = mount(<DateInput required={required} value={value} onChange={onChange}/>);
 
         component.find('input').simulate('change', {
             target: { value: newValue }
@@ -46,10 +46,9 @@ describe('when a value with a 2-digit year is entered, the DateInput component',
             target: { value: newValue }
         });
 
-        expect(component.find('input').props().value).to.equal(expectedValue);
+        expect(onChange.callCount).to.equal(1);
+        expect(onChange.calledWith(expectedValue)).to.equal(true);
     });
-
-
 
     // it('should call onValidation with the correct values', () => {});
 
