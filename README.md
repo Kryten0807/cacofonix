@@ -22,6 +22,10 @@ This is a set of Bootstrap-themed React components.
 
 ## To Do
 
+1. **DateInput**
+1. allow 2-digit year
+1. if no year entered, assume the current year
+
 ### Components
 
 1. **CheckboxGroup** - a group of checkboxes, optionally requiring at least one to be checked
