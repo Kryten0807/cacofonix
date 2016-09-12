@@ -21,6 +21,19 @@ when a value with a 2-digit year is entered, the DateInput component
     should not show the validation error message with a prior blur event
     should update the input element value on blur
 */
+describe('when a value with a 2-digit year is entered, the DateInput component', () => {
+
+    // it('should call the onChange handler with the properly formatted value', () => {});
+
+    // it('should call onValidation with the correct values', () => {});
+
+    // it('should not show the validation error message without a prior blur event', () => {});
+
+    // it('should not show the validation error message with a prior blur event', () => {});
+
+    // it('should update the input element value on blur', () => {});
+
+});
 
 /* *****************************************************************************
 when new props are received, the DateInput component
