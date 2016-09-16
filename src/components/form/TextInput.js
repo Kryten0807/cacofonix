@@ -45,12 +45,10 @@ class TextInput extends React.Component {
         //
         this.setState({ isValid });
 
-        if (this.props.onChildValidationEvent) {
-            this.props.onChildValidationEvent(
-                this.props.validationKey,
-                isValid ? null : this.validationMessage
-            );
-        }
+        this.props.onChildValidationEvent(
+            this.props.validationKey,
+            isValid ? null : this.validationMessage
+        );
     }
 
     /**
@@ -58,9 +56,7 @@ class TextInput extends React.Component {
      * @param  {Object} event The event object
      */
     onChange(event) {
-        const value = event.target.value;
-
-        this.setState({ value });
+        this.setState({ value: event.target.value });
     }
 
     /**
