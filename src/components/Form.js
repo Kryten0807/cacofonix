@@ -70,8 +70,14 @@ class Form extends React.Component {
     }
 }
 
-
-
+// set the property types for the component
+//
+Form.propTypes = {
+    children: React.PropTypes.oneOfType([
+        React.PropTypes.arrayOf(React.PropTypes.node),
+        React.PropTypes.node,
+    ]).isRequired,
+};
 
 // add the "sub-components"
 //
