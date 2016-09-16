@@ -22,6 +22,8 @@ const debug = (component) => {
 /* *****************************************************************************
 the Form component
     should be a form element
+    should be a form.form-inline element when inline=true
+    should be a form.form-horizontal element when horizontal=true
 */
 describe('the Form component', () => {
 
@@ -29,6 +31,22 @@ describe('the Form component', () => {
         const component = shallow(<Form />);
 
         expect(component.is('form')).to.equal(true);
+        expect(component.is('form.form-inline')).to.equal(false);
+        expect(component.is('form.form-horizontal')).to.equal(false);
+    });
+
+    it('should be a form.form-inline element', () => {
+        const component = shallow(<Form inline />);
+
+        expect(component.is('form.form-inline')).to.equal(true);
+        expect(component.is('form.form-horizontal')).to.equal(false);
+    });
+
+    it('should be a form.form-horizontal element', () => {
+        const component = shallow(<Form horizontal />);
+
+        expect(component.is('form.form-inline')).to.equal(false);
+        expect(component.is('form.form-horizontal')).to.equal(true);
     });
 
 });
