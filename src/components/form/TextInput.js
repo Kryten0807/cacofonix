@@ -55,4 +55,16 @@ class TextInput extends React.Component {
     }
 }
 
+
+// set the property types for the component
+//
+TextInput.propTypes = {
+    required:               React.PropTypes.bool,
+    value:                  React.PropTypes.string,
+    description:            React.PropTypes.string,
+    validationMessage:      React.PropTypes.string,
+    validationKey:          React.PropTypes.string.isRequired,
+    onChildValidationEvent: React.PropTypes.func.isRequired,
+};
+
 export default TextInput;
