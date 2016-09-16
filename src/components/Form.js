@@ -7,7 +7,11 @@ import TextInput from './form/TextInput';
 
 class Form extends React.Component {
     render() {
-        return (<form />);
+        return (
+            <form>
+                {this.props.children}
+            </form>
+        );
     }
 }
 
