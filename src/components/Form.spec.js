@@ -51,6 +51,59 @@ when initializing a Form with a required TextInput
 */
 describe('when initializing a Form with a required TextInput', () => {
 
+    const required = true;
+
+    it('the validation message should not be displayed with a valid value', () => {
+        const initialValue = 'something';
+
+        const component = render(
+            <Form>
+                <Form.TextInput required={required} value={initialValue} />
+            </Form>
+        );
+
+        expect(component.find('Alert')).to.have.length(0);
+        expect(component.find('.has-error')).to.have.length(0);
+    });
+
+    it('the component validation message should not be displayed with a valid value', () => {
+        const initialValue = 'something';
+
+        const component = render(
+            <Form>
+                <Form.TextInput required={required} value={initialValue} />
+            </Form>
+        );
+
+        expect(component.find('.help-block')).to.have.length(0);
+    });
+
+    it('the validation message should not be displayed with an invalid value', () => {
+        const initialValue = '';
+
+        const component = render(
+            <Form>
+                <Form.TextInput required={required} value={initialValue} />
+            </Form>
+        );
+
+        expect(component.find('Alert')).to.have.length(0);
+        expect(component.find('.has-error')).to.have.length(0);
+    });
+
+    it('the component validation message should not be displayed with an invalid value', () => {
+        const initialValue = '';
+
+        const component = render(
+            <Form>
+                <Form.TextInput required={required} value={initialValue} />
+            </Form>
+        );
+
+        expect(component.find('.help-block')).to.have.length(0);
+    });
+
+});
     it('the validation message should not be displayed with a valid value', () => {
         const initialValue = 'something';
 
