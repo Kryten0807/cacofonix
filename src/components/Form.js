@@ -54,7 +54,14 @@ class Form extends React.Component {
     render() {
         const errors = this.validationErrors();
 
-        const alert = errors.length > 0 ? <Alert /> : '';
+        const alert = errors.length > 0
+            ? <Alert>
+                <p>Please correct the following problems:</p>
+                <ul>
+                    {errors.map((err) => <li key={uniqueId()}>{err}</li>)}
+                </ul>
+            </Alert>
+            : '';
         return (
             <form>
                 {alert}
