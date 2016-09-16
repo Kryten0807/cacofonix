@@ -11,6 +11,12 @@ import Form from './Form';
 
 const expect = chai.expect;
 
+const debug = (component) => {
+    console.log('------------------------------------------------------------');
+    console.log(component.debug());
+    console.log('------------------------------------------------------------');
+};
+
 /* *****************************************************************************
 the Form component
     should be a <form> element
