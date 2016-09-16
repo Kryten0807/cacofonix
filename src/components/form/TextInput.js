@@ -17,6 +17,18 @@ class TextInput extends React.Component {
         this.onChange = this.onChange.bind(this);
     }
 
+    onBlur(event) {
+        const value = event.target.value;
+
+        const isValid = !this.props.required || !!value ;
+
+        this.setState({ isValid });
+
+        if (this.props.onChildValidationEvent) {
+            this.props.onChildValidationEvent(this.props.validationKey, isValid ? null : 'some validation error message');
+        }
+    }
+
     render() {
         return (<input type="text" />);
     }
