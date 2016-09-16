@@ -9,7 +9,6 @@ import uniqueId from 'lodash/uniqueId';
  *
  * @TODO add regex validation
  * @TODO add different validation error messages for failing different rules
- * @TODO label
  * @TODO horizontal form - label & input element widths
  */
 class TextInput extends React.Component {
