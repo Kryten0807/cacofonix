@@ -86,6 +86,7 @@ class TextInput extends React.Component {
                 <input
                     type="text"
                     value={this.state.value}
+                    className="form-control"
                     onBlur={this.onBlur}
                     onChange={this.onChange}
                 />
