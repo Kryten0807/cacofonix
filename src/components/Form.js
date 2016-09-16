@@ -41,6 +41,16 @@ class Form extends React.Component {
         this.setState(update(this.state, { validation: delta }));
     }
 
+    validationErrors() {
+        const errors = [];
+        Object.keys(this.state.validation).forEach((key) => {
+            if (this.state.validation[key]) {
+                errors.push(this.state.validation[key]);
+            }
+        });
+        return errors;
+    }
+
     render() {
         return (
             <form>
