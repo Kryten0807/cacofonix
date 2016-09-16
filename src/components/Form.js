@@ -18,16 +18,10 @@ class Form extends React.Component {
 
 
 
-
+// add the "sub-components"
+//
 Form.TextInput = TextInput;
 
-
-
-
-
-
-
-
-
-
+// export the component
+//
 export default Form;
