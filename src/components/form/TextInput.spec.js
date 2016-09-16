@@ -605,7 +605,8 @@ describe('when changing (and blurring) the value of a TextInput with parent comp
             <TestParent testValue={initialValue} />
         );
 
-        expect(component.find('input').props().value).to.equal(initialValue, 'input - initialValue');
+        expect(component.find('input').props().value)
+            .to.equal(initialValue, 'input - initialValue');
         expect(component.state().testValue).to.equal(initialValue, 'state - initialValue');
 
         component.find('input').simulate('change', {
