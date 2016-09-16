@@ -13,6 +13,8 @@ class TextInput extends React.Component {
             isValid: true,
         };
 
+        this.validationMessage = `${this.props.description} is required`;
+
         this.onBlur = this.onBlur.bind(this);
         this.onChange = this.onChange.bind(this);
     }
