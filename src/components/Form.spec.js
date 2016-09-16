@@ -21,11 +21,11 @@ const debug = (component) => {
 
 /* *****************************************************************************
 the Form component
-    should be a <form> element
+    should be a form element
 */
 describe('the Form component', () => {
 
-    it('should be a <form> element', () => {
+    it('should be a form element', () => {
         const component = shallow(<Form />);
 
         expect(component.is('form')).to.equal(true);
