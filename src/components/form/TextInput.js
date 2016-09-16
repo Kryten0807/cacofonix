@@ -104,9 +104,9 @@ TextInput.propTypes = {
     value:                  React.PropTypes.string,
     description:            React.PropTypes.string,
     validationMessage:      React.PropTypes.string,
-    validationKey:          React.PropTypes.string.isRequired,
     onChange:               React.PropTypes.func,
-    onChildValidationEvent: React.PropTypes.func.isRequired,
+    validationKey:          React.PropTypes.string,
+    onChildValidationEvent: React.PropTypes.func,
 };
 
 export default TextInput;
