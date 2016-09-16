@@ -86,8 +86,10 @@ class TextInput extends React.Component {
     render() {
         return (
             <div className={classnames('form-group', { 'has-error': !this.state.isValid })}>
+                {this.props.label ? <label htmlFor={this.id}>{this.props.label}</label> : ''}
                 <input
                     type="text"
+                    id={this.id}
                     value={this.state.value}
                     className="form-control"
                     onBlur={this.onBlur}
