@@ -29,6 +29,12 @@ class TextInput extends React.Component {
         }
     }
 
+    onChange(event) {
+        const value = event.target.value;
+
+        this.setState({ value });
+    }
+
     render() {
         return (<input type="text" />);
     }
