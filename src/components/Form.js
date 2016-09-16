@@ -54,6 +54,7 @@ class Form extends React.Component {
     render() {
         const errors = this.validationErrors();
 
+        const alert = errors.length > 0 ? <Alert /> : '';
         return (
             <form>
                 {this.props.children}
