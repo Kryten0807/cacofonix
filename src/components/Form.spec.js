@@ -433,7 +433,6 @@ describe('when changing (and blurring) the value of a required TextInput', () =>
             target: { value: finalValue }
         });
 
-        // debug(component);
         expect(component.find('.has-error')).to.have.length(1, 'has-error');
         expect(component.find('.help-block')).to.have.length(1, 'help-block');
     });
@@ -474,8 +473,6 @@ describe('when changing (and blurring) the value of a required TextInput with an
         component.find('input').simulate('blur', {
             target: { value: finalValue }
         });
-
-        debug(component);
 
         expect(component.find('Alert ul li').text()).to.contain(expectedMessage);
     });
