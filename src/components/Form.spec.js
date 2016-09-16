@@ -104,12 +104,24 @@ describe('when initializing a Form with a required TextInput', () => {
     });
 
 });
+
+/* *****************************************************************************
+when initializing a Form with a non-required TextInput
+    the global validation message should not be displayed with a valid value
+    the component validation message should not be displayed with a valid value
+    the global validation message should not be displayed with an invalid value
+    the component validation message should not be displayed with an invalid value
+*/
+describe('when initializing a Form with a non-required TextInput', () => {
+
+    const required = false;
+
     it('the validation message should not be displayed with a valid value', () => {
         const initialValue = 'something';
 
         const component = render(
             <Form>
-                <Form.TextInput required value={initialValue} />
+                <Form.TextInput required={required} value={initialValue} />
             </Form>
         );
 
@@ -122,7 +134,7 @@ describe('when initializing a Form with a required TextInput', () => {
 
         const component = render(
             <Form>
-                <Form.TextInput required value={initialValue} />
+                <Form.TextInput required={required} value={initialValue} />
             </Form>
         );
 
@@ -134,7 +146,7 @@ describe('when initializing a Form with a required TextInput', () => {
 
         const component = render(
             <Form>
-                <Form.TextInput required value={initialValue} />
+                <Form.TextInput required={required} value={initialValue} />
             </Form>
         );
 
@@ -147,7 +159,7 @@ describe('when initializing a Form with a required TextInput', () => {
 
         const component = render(
             <Form>
-                <Form.TextInput required value={initialValue} />
+                <Form.TextInput required={required} value={initialValue} />
             </Form>
         );
 
