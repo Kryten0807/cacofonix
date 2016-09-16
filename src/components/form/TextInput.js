@@ -36,7 +36,20 @@ class TextInput extends React.Component {
     }
 
     render() {
-        return (<input type="text" />);
+        return (
+            <div className={classnames('form-group', { 'has-error': !this.state.isValid })}>
+                <input
+                    type="text"
+                    value={this.state.value}
+                    onBlur={this.onBlur}
+                    onChange={this.onChange}
+                />
+                {!this.state.isValid
+                    ? <span className="help-block">Error!</span>
+                    : null
+                }
+            </div>
+        );
     }
 }
 
