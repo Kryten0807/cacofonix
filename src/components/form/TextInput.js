@@ -8,6 +8,8 @@ import classnames from 'classnames';
  *
  * @TODO add regex validation
  * @TODO add different validation error messages for failing different rules
+ * @TODO improve styling
+ * @TODO label
  */
 class TextInput extends React.Component {
     /**
