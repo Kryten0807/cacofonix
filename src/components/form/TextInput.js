@@ -97,6 +97,7 @@ class TextInput extends React.Component {
 }
 
 // set the property types for the component
+// @TODO placeholder
 //
 TextInput.propTypes = {
     required:               React.PropTypes.bool,
