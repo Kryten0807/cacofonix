@@ -47,7 +47,7 @@ class TextInput extends React.Component {
                     onChange={this.onChange}
                 />
                 {!this.state.isValid
-                    ? <span className="help-block">Error!</span>
+                    ? <span className="help-block">{this.validationMessage}</span>
                     : null
                 }
             </div>
