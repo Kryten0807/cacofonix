@@ -63,7 +63,6 @@ describe('when initializing a Form with a required TextInput', () => {
         );
 
         expect(component.find('Alert')).to.have.length(0);
-        expect(component.find('.has-error')).to.have.length(0);
     });
 
     it('the component validation message should not be displayed with a valid value', () => {
@@ -75,6 +74,7 @@ describe('when initializing a Form with a required TextInput', () => {
             </Form>
         );
 
+        expect(component.find('.has-error')).to.have.length(0);
         expect(component.find('.help-block')).to.have.length(0);
     });
 
@@ -88,7 +88,6 @@ describe('when initializing a Form with a required TextInput', () => {
         );
 
         expect(component.find('Alert')).to.have.length(0);
-        expect(component.find('.has-error')).to.have.length(0);
     });
 
     it('the component validation message should not be displayed with an invalid value', () => {
@@ -100,6 +99,7 @@ describe('when initializing a Form with a required TextInput', () => {
             </Form>
         );
 
+        expect(component.find('.has-error')).to.have.length(0);
         expect(component.find('.help-block')).to.have.length(0);
     });
 
@@ -126,7 +126,6 @@ describe('when initializing a Form with a non-required TextInput', () => {
         );
 
         expect(component.find('Alert')).to.have.length(0);
-        expect(component.find('.has-error')).to.have.length(0);
     });
 
     it('the component validation message should not be displayed with a valid value', () => {
@@ -138,6 +137,7 @@ describe('when initializing a Form with a non-required TextInput', () => {
             </Form>
         );
 
+        expect(component.find('.has-error')).to.have.length(0);
         expect(component.find('.help-block')).to.have.length(0);
     });
 
@@ -151,7 +151,6 @@ describe('when initializing a Form with a non-required TextInput', () => {
         );
 
         expect(component.find('Alert')).to.have.length(0);
-        expect(component.find('.has-error')).to.have.length(0);
     });
 
     it('the component validation message should not be displayed with an invalid value', () => {
@@ -163,6 +162,7 @@ describe('when initializing a Form with a non-required TextInput', () => {
             </Form>
         );
 
+        expect(component.find('.has-error')).to.have.length(0);
         expect(component.find('.help-block')).to.have.length(0);
     });
 
@@ -194,7 +194,6 @@ describe('when changing the value of a required TextInput (but not blurring)', (
         });
 
         expect(component.find('Alert')).to.have.length(0);
-        expect(component.find('.has-error')).to.have.length(0);
     });
 
     it('the component validation message should not be displayed with a valid value', () => {
@@ -211,6 +210,7 @@ describe('when changing the value of a required TextInput (but not blurring)', (
             target: { value: finalValue }
         });
 
+        expect(component.find('.has-error')).to.have.length(0);
         expect(component.find('.help-block')).to.have.length(0);
     });
 
@@ -229,7 +229,6 @@ describe('when changing the value of a required TextInput (but not blurring)', (
         });
 
         expect(component.find('Alert')).to.have.length(0);
-        expect(component.find('.has-error')).to.have.length(0);
     });
 
     it('the component validation message should not be displayed with an invalid value', () => {
@@ -246,6 +245,7 @@ describe('when changing the value of a required TextInput (but not blurring)', (
             target: { value: finalValue }
         });
 
+        expect(component.find('.has-error')).to.have.length(0);
         expect(component.find('.help-block')).to.have.length(0);
     });
 
@@ -277,7 +277,6 @@ describe('when changing the value of a non-required TextInput (but not blurring)
         });
 
         expect(component.find('Alert')).to.have.length(0);
-        expect(component.find('.has-error')).to.have.length(0);
     });
 
     it('the component validation message should not be displayed with a valid value', () => {
@@ -294,6 +293,7 @@ describe('when changing the value of a non-required TextInput (but not blurring)
             target: { value: finalValue }
         });
 
+        expect(component.find('.has-error')).to.have.length(0);
         expect(component.find('.help-block')).to.have.length(0);
     });
 
@@ -312,7 +312,6 @@ describe('when changing the value of a non-required TextInput (but not blurring)
         });
 
         expect(component.find('Alert')).to.have.length(0);
-        expect(component.find('.has-error')).to.have.length(0);
     });
 
     it('the component validation message should not be displayed with an invalid value', () => {
@@ -329,6 +328,7 @@ describe('when changing the value of a non-required TextInput (but not blurring)
             target: { value: finalValue }
         });
 
+        expect(component.find('.has-error')).to.have.length(0);
         expect(component.find('.help-block')).to.have.length(0);
     });
 
