@@ -65,7 +65,13 @@ class TextInput extends React.Component {
      * @param  {Object} event The event object
      */
     onChange(event) {
-        this.setState({ value: event.target.value });
+        const value = event.target.value;
+
+        this.setState({ value });
+
+        if (this.props.onChange) {
+            this.props.onChange(value);
+        }
     }
 
     /**
