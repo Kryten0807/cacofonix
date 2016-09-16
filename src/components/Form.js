@@ -34,6 +34,13 @@ class Form extends React.Component {
         );
     }
 
+    onChildValidationEvent(validationKey, message) {
+        const delta = {};
+        delta[validationKey] = { $set: message };
+
+        this.setState(update(this.state, { validation: delta }));
+    }
+
     render() {
         return (
             <form>
