@@ -5,7 +5,7 @@
 /* eslint-disable no-unused-expressions */
 
 import React from 'react';
-import { shallow, render } from 'enzyme';
+import { shallow, render, mount } from 'enzyme';
 import chai from 'chai';
 import Form from './Form';
 
