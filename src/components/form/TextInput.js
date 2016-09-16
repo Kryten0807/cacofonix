@@ -105,6 +105,7 @@ class TextInput extends React.Component {
 TextInput.propTypes = {
     required:               React.PropTypes.bool,
     value:                  React.PropTypes.string,
+    label:                  React.PropTypes.string,
     description:            React.PropTypes.string,
     validationMessage:      React.PropTypes.string,
     onChange:               React.PropTypes.func,
