@@ -5,6 +5,9 @@ import classnames from 'classnames';
 
 /**
  * The TextInput component
+ *
+ * @TODO add regex validation
+ * @TODO add different validation error messages for failing different rules
  */
 class TextInput extends React.Component {
     /**
