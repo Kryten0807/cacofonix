@@ -63,10 +63,12 @@ class Form extends React.Component {
             </Alert>
             : '';
         return (
-            <form className={classnames({
-                'form-inline':     this.props.inline,
-                'form-horizontal': this.props.horizontal,
-            })}>
+            <form
+                className={classnames({
+                    'form-inline':     this.props.inline,
+                    'form-horizontal': this.props.horizontal,
+                })}
+            >
                 {alert}
                 {this.children}
             </form>
