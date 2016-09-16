@@ -167,3 +167,40 @@ describe('when initializing a Form with a non-required TextInput', () => {
     });
 
 });
+
+/* *****************************************************************************
+when changing the value of a required TextInput (but not blurring)
+    the global validation message should not be displayed with a valid value
+    the component validation message should not be displayed with a valid value
+    the global validation message should not be displayed with an invalid value
+    the component validation message should not be displayed with an invalid value
+*/
+describe('when changing the value of a required TextInput (but not blurring)', () => {
+
+    const required = true;
+
+    it('the validation message should not be displayed with a valid value', () => {
+        const initialValue = 'something';
+        const finalValue = 'something else';
+
+        const component = mount(
+            <Form>
+                <Form.TextInput required={required} value={initialValue} />
+            </Form>
+        );
+
+        component.find('input').simulate('change', {
+            target: { value: finalValue }
+        });
+
+        expect(component.find('Alert')).to.have.length(0);
+        expect(component.find('.has-error')).to.have.length(0);
+    });
+
+    // it('the component validation message should not be displayed with a valid value', () => {});
+
+    // it('the validation message should not be displayed with an invalid value', () => {});
+
+    // it('the component validation message should not be displayed with an invalid value', () => {});
+
+});
