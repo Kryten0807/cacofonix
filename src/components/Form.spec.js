@@ -438,3 +438,22 @@ describe('when changing (and blurring) the value of a required TextInput', () =>
         expect(component.find('.help-block')).to.have.length(1, 'help-block');
     });
 });
+
+/* *****************************************************************************
+when changing (and blurring) the value of a required TextInput with an invalid value
+    the error message displayed in the form should be the default value when validationMessage is not set
+    the error message displayed in the form should be the custom value when validationMessage is set
+    the error message displayed in the component should be the default value when validationMessage is not set
+    the error message displayed in the component should be the custom value when validationMessage is set
+*/
+describe('when changing (and blurring) the value of a required TextInput with an invalid value', () => {
+
+    // it('the error message displayed in the form should be the default value when validationMessage is not set', () => {});
+
+    // it('the error message displayed in the form should be the custom value when validationMessage is set', () => {});
+
+    // it('the error message displayed in the component should be the default value when validationMessage is not set', () => {});
+
+    // it('the error message displayed in the component should be the custom value when validationMessage is set', () => {});
+
+});
