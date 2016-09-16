@@ -44,13 +44,19 @@ describe('a Form component with a TextInput element', () => {
 
 /* *****************************************************************************
 when initializing a Form with a required TextInput
-    the validation message should not be displayed with a valid value
-    the validation message should not be displayed with an invalid value
+    the global validation message should not be displayed with a valid value
+    the component validation message should not be displayed with a valid value
+    the global validation message should not be displayed with an invalid value
+    the component validation message should not be displayed with an invalid value
 */
 describe('when initializing a Form with a required TextInput', () => {
 
     // it('the validation message should not be displayed with a valid value', () => {});
 
+    // it('the component validation message should not be displayed with a valid value', () => {});
+
     // it('the validation message should not be displayed with an invalid value', () => {});
+
+    // it('the component validation message should not be displayed with an invalid value', () => {});
 
 });
