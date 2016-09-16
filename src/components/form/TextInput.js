@@ -22,7 +22,7 @@ class TextInput extends React.Component {
     onBlur(event) {
         const value = event.target.value;
 
-        const isValid = !this.props.required || !!value ;
+        const isValid = !this.props.required || !!value;
 
         this.setState({ isValid });
 
