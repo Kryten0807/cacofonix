@@ -448,7 +448,37 @@ when changing (and blurring) the value of a required TextInput with an invalid v
 */
 describe('when changing (and blurring) the value of a required TextInput with an invalid value', () => {
 
-    // it('the error message displayed in the form should be the default value when validationMessage is not set', () => {});
+    const required = true;
+    const description = 'My awesome component';
+
+    const expectedMessage = `${description} is required`;
+
+    it('the error message displayed in the form should be the default value when validationMessage is not set', () => {
+        const initialValue = 'something';
+        const finalValue = '';
+
+        const component = mount(
+            <Form>
+                <Form.TextInput
+                    required={required}
+                    value={initialValue}
+                    description={description}
+                />
+            </Form>
+        );
+
+        component.find('input').simulate('change', {
+            target: { value: finalValue }
+        });
+
+        component.find('input').simulate('blur', {
+            target: { value: finalValue }
+        });
+
+        debug(component);
+
+        expect(component.find('Alert ul li').text()).to.contain(expectedMessage);
+    });
 
     // it('the error message displayed in the form should be the custom value when validationMessage is set', () => {});
 
