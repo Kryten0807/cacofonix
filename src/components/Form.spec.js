@@ -449,7 +449,8 @@ when changing (and blurring) the value of a required TextInput with an invalid v
     the error message displayed in the component should be the custom value when
         validationMessage is set
 */
-describe('when changing (and blurring) the value of a required TextInput with an invalid value', () => {
+describe('when changing (and blurring) the value of a required TextInput ' +
+    'with an invalid value', () => {
 
     const required = true;
     const description = 'My awesome component';
@@ -458,7 +459,8 @@ describe('when changing (and blurring) the value of a required TextInput with an
 
     const expectedMessage = `${description} is required`;
 
-    it('the error message displayed in the form should be the default value when validationMessage is not set', () => {
+    it('the error message displayed in the form should be the default value ' +
+        'when validationMessage is not set', () => {
         const initialValue = 'something';
         const finalValue = '';
 
@@ -483,7 +485,8 @@ describe('when changing (and blurring) the value of a required TextInput with an
         expect(component.find('Alert ul li').text()).to.contain(expectedMessage);
     });
 
-    it('the error message displayed in the form should be the custom value when validationMessage is set', () => {
+    it('the error message displayed in the form should be the custom value ' +
+        'when validationMessage is set', () => {
         const initialValue = 'something';
         const finalValue = '';
 
@@ -508,7 +511,8 @@ describe('when changing (and blurring) the value of a required TextInput with an
         expect(component.find('Alert ul li').text()).to.contain(customMessage);
     });
 
-    it('the error message displayed in the component should be the default value when validationMessage is not set', () => {
+    it('the error message displayed in the component should be the default ' +
+        'value when validationMessage is not set', () => {
         const initialValue = 'something';
         const finalValue = '';
 
@@ -533,7 +537,8 @@ describe('when changing (and blurring) the value of a required TextInput with an
         expect(component.find('.help-block').text()).to.contain(expectedMessage);
     });
 
-    it('the error message displayed in the component should be the custom value when validationMessage is set', () => {
+    it('the error message displayed in the component should be the custom ' +
+        'value when validationMessage is set', () => {
         const initialValue = 'something';
         const finalValue = '';
 
