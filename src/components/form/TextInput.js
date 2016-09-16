@@ -21,9 +21,13 @@ class TextInput extends React.Component {
             isValid: true,
         };
 
+        // intialize the validation message for the component
+        //
         this.validationMessage = props.validationMessage
             || `${this.props.description} is required`;
 
+        // bind `this` to the component event handlers
+        //
         this.onBlur = this.onBlur.bind(this);
         this.onChange = this.onChange.bind(this);
     }
@@ -45,6 +49,8 @@ class TextInput extends React.Component {
         //
         this.setState({ isValid });
 
+        // call the `onChildValidationEvent` handler
+        //
         this.props.onChildValidationEvent(
             this.props.validationKey,
             isValid ? null : this.validationMessage
@@ -80,7 +86,6 @@ class TextInput extends React.Component {
         );
     }
 }
-
 
 // set the property types for the component
 //
