@@ -104,6 +104,7 @@ TextInput.propTypes = {
     description:            React.PropTypes.string,
     validationMessage:      React.PropTypes.string,
     validationKey:          React.PropTypes.string.isRequired,
+    onChange:               React.PropTypes.func,
     onChildValidationEvent: React.PropTypes.func.isRequired,
 };
 
