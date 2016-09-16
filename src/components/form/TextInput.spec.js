@@ -37,9 +37,28 @@ describe('a Form component with a TextInput element', () => {
         expect(component.find(Form.TextInput)).to.have.length(1);
     });
 
-    // it('should not include a label if label is omitted', () => {});
+    it('should not include a label if label is omitted', () => {
+        const component = render(
+            <Form>
+                <Form.TextInput />
+            </Form>
+        );
 
-    // it('should include a label if the label is set', () => {});
+        expect(component.find('label')).to.have.length(0);
+    });
+
+    it('should include a label if the label is set', () => {
+        const label = 'about this control';
+
+        const component = render(
+            <Form>
+                <Form.TextInput label={label} />
+            </Form>
+        );
+
+        expect(component.find('label')).to.have.length(1);
+        expect(component.find('label').text()).to.equal(label);
+    });
 
 
 });
