@@ -8,6 +8,8 @@ import classnames from 'classnames';
 import Alert from './Alert';
 import TextInput from './form/TextInput';
 
+// @TODO alert should have type="error"
+
 class Form extends React.Component {
 
     constructor(props) {
