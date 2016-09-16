@@ -349,12 +349,92 @@ when changing (and blurring) the value of a required TextInput
 */
 describe('when changing (and blurring) the value of a required TextInput', () => {
 
-    // it('the global validation message should not be displayed with a valid value', () => {});
+    const required = true;
 
-    // it('the component validation message should not be displayed with a valid value', () => {});
+    it('the global validation message should not be displayed with a valid value', () => {
+        const initialValue = 'something';
+        const finalValue = 'valid';
 
-    // it('the global validation message SHOULD be displayed with an invalid value', () => {});
+        const component = mount(
+            <Form>
+                <Form.TextInput required={required} value={initialValue} />
+            </Form>
+        );
 
-    // it('the component validation message SHOULD be displayed with an invalid value', () => {});
+        component.find('input').simulate('change', {
+            target: { value: finalValue }
+        });
 
+        component.find('input').simulate('blur', {
+            target: { value: finalValue }
+        });
+
+        expect(component.find('Alert')).to.have.length(0);
+    });
+
+    it('the component validation message should not be displayed with a valid value', () => {
+        const initialValue = 'something';
+        const finalValue = 'valid';
+
+        const component = mount(
+            <Form>
+                <Form.TextInput required={required} value={initialValue} />
+            </Form>
+        );
+
+        component.find('input').simulate('change', {
+            target: { value: finalValue }
+        });
+
+        component.find('input').simulate('blur', {
+            target: { value: finalValue }
+        });
+
+        expect(component.find('.has-error')).to.have.length(0);
+        expect(component.find('.help-block')).to.have.length(0);
+    });
+
+    it('the global validation message SHOULD be displayed with an invalid value', () => {
+        const initialValue = 'something';
+        const finalValue = '';
+
+        const component = mount(
+            <Form>
+                <Form.TextInput required={required} value={initialValue} />
+            </Form>
+        );
+
+        component.find('input').simulate('change', {
+            target: { value: finalValue }
+        });
+
+        component.find('input').simulate('blur', {
+            target: { value: finalValue }
+        });
+
+        expect(component.find('Alert')).to.have.length(1, 'Alert');
+    });
+
+    it('the component validation message SHOULD be displayed with an invalid value', () => {
+        const initialValue = 'something';
+        const finalValue = '';
+
+        const component = mount(
+            <Form>
+                <Form.TextInput required={required} value={initialValue} />
+            </Form>
+        );
+
+        component.find('input').simulate('change', {
+            target: { value: finalValue }
+        });
+
+        component.find('input').simulate('blur', {
+            target: { value: finalValue }
+        });
+
+        // debug(component);
+        expect(component.find('.has-error')).to.have.length(1, 'has-error');
+        expect(component.find('.help-block')).to.have.length(1, 'help-block');
+    });
 });
