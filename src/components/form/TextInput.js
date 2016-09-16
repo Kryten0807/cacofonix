@@ -6,7 +6,7 @@ import classnames from 'classnames';
 
 class TextInput extends React.Component {
     render() {
-        return (<div />);
+        return (<input type="text" />);
     }
 }
 
