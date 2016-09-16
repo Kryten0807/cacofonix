@@ -197,10 +197,56 @@ describe('when changing the value of a required TextInput (but not blurring)', (
         expect(component.find('.has-error')).to.have.length(0);
     });
 
-    // it('the component validation message should not be displayed with a valid value', () => {});
+    it('the component validation message should not be displayed with a valid value', () => {
+        const initialValue = 'something';
+        const finalValue = 'something else';
 
-    // it('the validation message should not be displayed with an invalid value', () => {});
+        const component = mount(
+            <Form>
+                <Form.TextInput required={required} value={initialValue} />
+            </Form>
+        );
 
-    // it('the component validation message should not be displayed with an invalid value', () => {});
+        component.find('input').simulate('change', {
+            target: { value: finalValue }
+        });
+
+        expect(component.find('.help-block')).to.have.length(0);
+    });
+
+    it('the validation message should not be displayed with an invalid value', () => {
+        const initialValue = 'something';
+        const finalValue = '';
+
+        const component = mount(
+            <Form>
+                <Form.TextInput required={required} value={initialValue} />
+            </Form>
+        );
+
+        component.find('input').simulate('change', {
+            target: { value: finalValue }
+        });
+
+        expect(component.find('Alert')).to.have.length(0);
+        expect(component.find('.has-error')).to.have.length(0);
+    });
+
+    it('the component validation message should not be displayed with an invalid value', () => {
+        const initialValue = 'something';
+        const finalValue = '';
+
+        const component = mount(
+            <Form>
+                <Form.TextInput required={required} value={initialValue} />
+            </Form>
+        );
+
+        component.find('input').simulate('change', {
+            target: { value: finalValue }
+        });
+
+        expect(component.find('.help-block')).to.have.length(0);
+    });
 
 });
