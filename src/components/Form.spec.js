@@ -41,3 +41,16 @@ describe('a Form component with a TextInput element', () => {
         expect(component.find(Form.TextInput)).to.have.length(1);
     });
 });
+
+/* *****************************************************************************
+when initializing a Form with a required TextInput
+    the validation message should not be displayed with a valid value
+    the validation message should not be displayed with an invalid value
+*/
+describe('when initializing a Form with a required TextInput', () => {
+
+    // it('the validation message should not be displayed with a valid value', () => {});
+
+    // it('the validation message should not be displayed with an invalid value', () => {});
+
+});
