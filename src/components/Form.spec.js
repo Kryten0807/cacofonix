@@ -24,3 +24,20 @@ describe('the Form component', () => {
     });
 
 });
+
+/* *****************************************************************************
+a Form component with a TextInput element
+    should include a <Form.TextInput> as a child
+*/
+describe('a Form component with a TextInput element', () => {
+
+    it('should include a <Form.TextInput> as a child', () => {
+        const component = shallow(
+            <Form>
+                <Form.TextInput />
+            </Form>
+        );
+
+        expect(component.find(Form.TextInput)).to.have.length(1);
+    });
+});
