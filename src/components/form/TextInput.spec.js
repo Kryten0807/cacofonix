@@ -559,5 +559,65 @@ when changing (and blurring) the value of a TextInput with parent component
 */
 describe('when changing (and blurring) the value of a TextInput with parent component', () => {
 
-    // it('should maintain the correct value in the input element', () => {});
+    const required = true;
+    const description = 'mumble mumble';
+
+    class TestParent extends React.Component {
+        constructor(props) {
+            super(props);
+
+            this.state = {
+                testValue: props.testValue || '',
+            };
+
+            this.onChange = this.onChange.bind(this);
+        }
+
+        onChange(testValue) {
+            this.setState({ testValue });
+        }
+
+        render() {
+            return (
+                <Form>
+                    <Form.TextInput
+                        required={required}
+                        value={this.props.testValue}
+                        description={description}
+                        onChange={this.onChange}
+                    />
+                </Form>
+            );
+        }
+    }
+
+    TestParent.propTypes = {
+        testValue:    React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]),
+        onChange:     React.PropTypes.func,
+        onValidation: React.PropTypes.func,
+    };
+
+    it('should maintain the correct value in the input element', () => {
+        const initialValue = 'this is first';
+        const finalValue = 'this is second';
+
+        const component = mount(
+            <TestParent testValue={initialValue} />
+        );
+
+        expect(component.find('input').props().value).to.equal(initialValue, 'input - initialValue');
+        expect(component.state().testValue).to.equal(initialValue, 'state - initialValue');
+
+        component.find('input').simulate('change', {
+            target: { value: finalValue }
+        });
+
+        component.find('input').simulate('blur', {
+            target: { value: finalValue }
+        });
+
+        expect(component.find('input').props().value).to.equal(finalValue, 'finalValue');
+        expect(component.state().testValue).to.equal(finalValue, 'state - finalValue');
+    });
+
 });
