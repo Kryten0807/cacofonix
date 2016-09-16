@@ -57,7 +57,8 @@ class Form extends React.Component {
         const alert = errors.length > 0 ? <Alert /> : '';
         return (
             <form>
-                {this.props.children}
+                {alert}
+                {this.children}
             </form>
         );
     }
