@@ -11,6 +11,7 @@ import isFunction from 'lodash/isFunction';
 // @TODO horizontal form - label & input element widths
 // @TODO permitted characters regex
 // @TODO parse & format functions for onFocus & onBlur handling of values
+// @TODO placeholder
 
 /**
  * The TextInput component
@@ -31,6 +32,8 @@ class TextInput extends React.Component {
             isValid: true,
         };
 
+        // generate a unique ID for this component instance
+        //
         this.id = uniqueId('form-textinput-');
 
         // intialize the validation message for the component
@@ -44,6 +47,9 @@ class TextInput extends React.Component {
         this.onChange = this.onChange.bind(this);
     }
 
+    /**
+     * Handle the "component is about to mount" event
+     */
     componentWillMount() {
         // call the `onChildValidationEvent` handler once with no error message,
         // just to ensure that the parent knows about this child
@@ -78,22 +84,43 @@ class TextInput extends React.Component {
      * @param  {Object} event The event object
      */
     onChange(event) {
+        // get the value from the event object
+        //
         const value = event.target.value;
 
+        // update the component state
+        //
         this.setState({ value });
 
+        // do we have an `onChange` handler? if so call it with the new value
+        //
         if (this.props.onChange) {
             this.props.onChange(value);
         }
     }
 
+    /**
+     * Validate a value
+     * @param  {String} value The value to validate
+     * @return {Boolean}      True if the value is valid, false otherwise
+     */
     validate(value) {
+        // declare a variable to hold the result
+        //
         let isValid = true;
 
+        // do we have a pattern prop?
+        //
         if (this.props.pattern) {
+            // is the pattern a regex? is it a function?
+            //
             if (isRegExp(this.props.pattern)) {
+                // the pattern is a regex. Test the value against it
+                //
                 isValid = isValid && this.props.pattern.test(`${value}`);
             } else if (isFunction(this.props.pattern)) {
+                // the pattern is a function. Pass the value to the function
+                //
                 isValid = isValid && this.props.pattern(value);
             }
         }
@@ -127,7 +154,6 @@ class TextInput extends React.Component {
 }
 
 // set the property types for the component
-// @TODO placeholder
 //
 TextInput.propTypes = {
     required:               React.PropTypes.bool,
