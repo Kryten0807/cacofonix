@@ -109,23 +109,29 @@ class TextInput extends React.Component {
         //
         let isValid = true;
 
-        // do we have a pattern prop?
-        //
-        if (this.props.pattern) {
-            // is the pattern a regex? is it a function?
+        if (!value) {
+            isValid = !this.props.required;
+        } else {
+            // do we have a pattern prop?
             //
-            if (isRegExp(this.props.pattern)) {
-                // the pattern is a regex. Test the value against it
+            if (this.props.pattern) {
+                // is the pattern a regex? is it a function?
                 //
-                isValid = isValid && this.props.pattern.test(`${value}`);
-            } else if (isFunction(this.props.pattern)) {
-                // the pattern is a function. Pass the value to the function
-                //
-                isValid = isValid && this.props.pattern(value);
+                if (isRegExp(this.props.pattern)) {
+                    // the pattern is a regex. Test the value against it
+                    //
+                    isValid = this.props.pattern.test(`${value}`);
+                } else if (isFunction(this.props.pattern)) {
+                    // the pattern is a function. Pass the value to the function
+                    //
+                    isValid = this.props.pattern(value);
+                }
+            } else {
+                isValid = true;
             }
         }
 
-        return isValid && (!this.props.required || value);
+        return isValid;
     }
 
     /**
