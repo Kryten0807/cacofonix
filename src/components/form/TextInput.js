@@ -66,7 +66,7 @@ class TextInput extends React.Component {
     onBlur() {
         // get the new value
         //
-        const value = event.target.value;
+        const value = this.props.format ? this.props.format(this.state.value) : this.state.value;
 
         // determine if it's valid
         //
