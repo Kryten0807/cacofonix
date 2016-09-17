@@ -6,11 +6,11 @@ import uniqueId from 'lodash/uniqueId';
 import isRegExp from 'lodash/isRegExp';
 import isFunction from 'lodash/isFunction';
 
+// @TODO parse & format functions for onFocus & onBlur handling of values
 // @TODO pattern = function which returns true if value passes
 // @TODO add different validation error messages for failing different rules
 // @TODO horizontal form - label & input element widths
 // @TODO permitted characters regex
-// @TODO parse & format functions for onFocus & onBlur handling of values
 // @TODO placeholder
 
 /**
