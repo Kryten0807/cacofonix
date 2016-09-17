@@ -777,7 +777,8 @@ describe('when changing (and blurring) the value of a TextInput', () => {
         expect(component.find('Alert')).to.have.length(0);
     });
 
-    it('should display validation error when required=true, pattern=regex, and value=blank', () => {
+    it('should display validation error when required=true, pattern=regex, ' +
+        'and value=blank', () => {
         const required = true;
         const pattern = /^[0-9]{3}$/;
 
@@ -805,7 +806,8 @@ describe('when changing (and blurring) the value of a TextInput', () => {
         expect(component.find('Alert')).to.have.length(1);
     });
 
-    it('should display validation error when required=true, pattern=regex, and value=non-match', () => {
+    it('should display validation error when required=true, pattern=regex, ' +
+        'and value=non-match', () => {
         const required = true;
         const pattern = /^[0-9]{3}$/;
 
@@ -833,7 +835,8 @@ describe('when changing (and blurring) the value of a TextInput', () => {
         expect(component.find('Alert')).to.have.length(1);
     });
 
-    it('should not display validation error when required=true, pattern=regex, and value=match', () => {
+    it('should not display validation error when required=true, ' +
+        'pattern=regex, and value=match', () => {
         const required = true;
         const pattern = /^[0-9]{3}$/;
 
@@ -861,7 +864,8 @@ describe('when changing (and blurring) the value of a TextInput', () => {
         expect(component.find('Alert')).to.have.length(0);
     });
 
-    it('should not display validation error when required=false, pattern=regex, and value=blank', () => {
+    it('should not display validation error when required=false, ' +
+        'pattern=regex, and value=blank', () => {
         const required = false;
         const pattern = /^[0-9]{3}$/;
 
@@ -889,7 +893,8 @@ describe('when changing (and blurring) the value of a TextInput', () => {
         expect(component.find('Alert')).to.have.length(0);
     });
 
-    it('should display validation error when required=false, pattern=regex, and value=non-match', () => {
+    it('should display validation error when required=false, pattern=regex, ' +
+        'and value=non-match', () => {
         const required = false;
         const pattern = /^[0-9]{3}$/;
 
@@ -917,7 +922,8 @@ describe('when changing (and blurring) the value of a TextInput', () => {
         expect(component.find('Alert')).to.have.length(1);
     });
 
-    it('should not display validation error when required=false, pattern=regex, and value=match', () => {
+    it('should not display validation error when required=false, ' +
+        'pattern=regex, and value=match', () => {
         const required = false;
         const pattern = /^[0-9]{3}$/;
 
@@ -945,7 +951,8 @@ describe('when changing (and blurring) the value of a TextInput', () => {
         expect(component.find('Alert')).to.have.length(0);
     });
 
-    it('should display validation error when required=true, pattern=function, and value=blank', () => {
+    it('should display validation error when required=true, pattern=function, ' +
+        'and value=blank', () => {
         const required = true;
         const pattern = (val) => val === 'xyz';
 
@@ -973,7 +980,8 @@ describe('when changing (and blurring) the value of a TextInput', () => {
         expect(component.find('Alert')).to.have.length(1);
     });
 
-    it('should display validation error when required=true, pattern=function, and value=non-match', () => {
+    it('should display validation error when required=true, ' +
+        'pattern=function, and value=non-match', () => {
         const required = true;
         const pattern = (val) => val === 'xyz';
 
@@ -1001,7 +1009,8 @@ describe('when changing (and blurring) the value of a TextInput', () => {
         expect(component.find('Alert')).to.have.length(1);
     });
 
-    it('should not display validation error when required=true, pattern=function, and value=match', () => {
+    it('should not display validation error when required=true, ' +
+        'pattern=function, and value=match', () => {
         const required = true;
         const pattern = (val) => val === 'xyz';
 
@@ -1029,7 +1038,8 @@ describe('when changing (and blurring) the value of a TextInput', () => {
         expect(component.find('Alert')).to.have.length(0);
     });
 
-    it('should not display validation error when required=false, pattern=function, and value=blank', () => {
+    it('should not display validation error when required=false, ' +
+        'pattern=function, and value=blank', () => {
         const required = false;
         const pattern = (val) => val === 'xyz';
 
@@ -1057,7 +1067,8 @@ describe('when changing (and blurring) the value of a TextInput', () => {
         expect(component.find('Alert')).to.have.length(0);
     });
 
-    it('should display validation error when required=false, pattern=function, and value=non-match', () => {
+    it('should display validation error when required=false, ' +
+        'pattern=function, and value=non-match', () => {
         const required = false;
         const pattern = (val) => val === 'xyz';
 
@@ -1085,7 +1096,8 @@ describe('when changing (and blurring) the value of a TextInput', () => {
         expect(component.find('Alert')).to.have.length(1);
     });
 
-    it('should not display validation error when required=false, pattern=function, and value=match', () => {
+    it('should not display validation error when required=false, ' +
+        'pattern=function, and value=match', () => {
         const required = false;
         const pattern = (val) => val === 'xyz';
 
