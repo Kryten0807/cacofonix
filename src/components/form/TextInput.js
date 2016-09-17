@@ -119,6 +119,15 @@ class TextInput extends React.Component {
     }
 }
 
+const regexPropType = (props, propName, componentName) => (
+    isRegExp(props[propName])
+        ? null
+        : new Error(
+            `Invalid prop ${propName} supplied to ${componentName}` +
+            ' - should be a regular expression'
+        )
+);
+
 // set the property types for the component
 // @TODO placeholder
 //
