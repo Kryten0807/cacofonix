@@ -39,6 +39,13 @@ class TextInput extends React.Component {
         this.onChange = this.onChange.bind(this);
     }
 
+    componentWillMount() {
+        // call the `onChildValidationEvent` handler once with no error message,
+        // just to ensure that the parent knows about this child
+        //
+        this.context.onChildValidationEvent(this.id, null);
+    }
+
     /**
      * Handle the blur event for the input element
      * @param  {Object} event The event object
