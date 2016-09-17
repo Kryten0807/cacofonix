@@ -109,13 +109,19 @@ class TextInput extends React.Component {
         //
         let isValid = true;
 
+        // do we have a value?
+        //
         if (!value) {
+            // we do not have a value - in this case, whether it's valid or not
+            // is determined solely by whether a valid is required or not
+            //
             isValid = !this.props.required;
         } else {
-            // do we have a pattern prop?
+            // we do have a value. Do we have a pattern prop?
             //
             if (this.props.pattern) {
-                // is the pattern a regex? is it a function?
+                // yes, we have a pattern prop. is the pattern a regex or is it
+                // a function?
                 //
                 if (isRegExp(this.props.pattern)) {
                     // the pattern is a regex. Test the value against it
@@ -127,10 +133,16 @@ class TextInput extends React.Component {
                     isValid = this.props.pattern(value);
                 }
             } else {
+                // we don't have a pattern prop. That means if we get here that
+                // we have a value and it doesn't matter whether it's required
+                // or not because we have a value
+                //
                 isValid = true;
             }
         }
 
+        // return the results of the validation
+        //
         return isValid;
     }
 
