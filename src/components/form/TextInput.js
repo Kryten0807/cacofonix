@@ -193,8 +193,12 @@ TextInput.propTypes = {
     onChildValidationEvent: React.PropTypes.func,
 };
 
+// set the context types for values received from higher up the food chain
+//
 TextInput.contextTypes = {
     onChildValidationEvent: React.PropTypes.func,
 };
 
+// export the component
+//
 export default TextInput;
