@@ -59,7 +59,7 @@ class TextInput extends React.Component {
 
         // determine if it's valid
         //
-        const isValid = !this.props.required || !!value;
+        const isValid = this.validate(value);
 
         // set the `isValid` state
         //
