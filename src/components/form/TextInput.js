@@ -136,7 +136,7 @@ TextInput.propTypes = {
     description:            React.PropTypes.string,
     validationMessage:      React.PropTypes.string,
     pattern:                (props, propName, componentName) => {
-        if (props.pattern && !isRegExp(props.pattern)) {
+        if (props.pattern && !isRegExp(props.pattern) && !isFunction(props.pattern)) {
             return new Error(
                 `Invalid prop ${propName} supplied to ${componentName}` +
                 ' - should be a regular expression'
