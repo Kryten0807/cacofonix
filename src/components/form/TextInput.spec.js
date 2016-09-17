@@ -454,6 +454,17 @@ describe('when changing (and blurring) the value of a required TextInput', () =>
 });
 
 /* *****************************************************************************
+when changing (and blurring) the value of a TextInput with a pattern function
+    the global validation message should not be displayed with a valid value
+    the component validation message should not be displayed with a valid value
+    the global validation message SHOULD be displayed with an invalid value
+    the component validation message SHOULD be displayed with an invalid value
+*/
+
+
+
+
+/* *****************************************************************************
 when changing (and blurring) the value of a TextInput with a pattern regex
     the global validation message should not be displayed with a valid value
     the component validation message should not be displayed with a valid value
