@@ -25,10 +25,12 @@ class TextInput extends React.Component {
     constructor(props) {
         super(props);
 
+        const value = props.format ? props.format(props.value) : props.value;
+
         // initialize the state for the component
         //
         this.state = {
-            value:   props.value,
+            value,
             isValid: true,
         };
 
