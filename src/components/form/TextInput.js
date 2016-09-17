@@ -4,6 +4,7 @@ import React from 'react';
 import classnames from 'classnames';
 import uniqueId from 'lodash/uniqueId';
 import isRegExp from 'lodash/isRegExp';
+import isFunction from 'lodash/isFunction';
 
 // @TODO pattern = function which returns true if value passes
 // @TODO add different validation error messages for failing different rules
