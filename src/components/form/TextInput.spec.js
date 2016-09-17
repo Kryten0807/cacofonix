@@ -675,6 +675,445 @@ when changing (and blurring) the value of a TextInput
     should display validation error when required=false, pattern=function, and value=non-match
     should not display validation error when required=false, pattern=function, and value=match
 */
+describe('when changing (and blurring) the value of a TextInput', () => {
+
+    it('should display validation error when required=true and value=blank', () => {
+        const required = true;
+        const initialValue = 'something';
+        const finalValue = '';
+
+        const component = mount(
+            <Form>
+                <Form.TextInput
+                    required={required}
+                    value={initialValue}
+                />
+            </Form>
+        );
+
+        component.find('input').simulate('change', {
+            target: { value: finalValue }
+        });
+
+        component.find('input').simulate('blur', {
+            target: { value: finalValue }
+        });
+
+        expect(component.find('Alert')).to.have.length(1);
+    });
+
+    it('should not display validation error when required=true and value=something', () => {
+        const required = true;
+        const initialValue = 'something';
+        const finalValue = 'a new something';
+
+        const component = mount(
+            <Form>
+                <Form.TextInput
+                    required={required}
+                    value={initialValue}
+                />
+            </Form>
+        );
+
+        component.find('input').simulate('change', {
+            target: { value: finalValue }
+        });
+
+        component.find('input').simulate('blur', {
+            target: { value: finalValue }
+        });
+
+        expect(component.find('Alert')).to.have.length(0);
+    });
+
+    it('should not display validation error when required=false and value=blank', () => {
+        const required = false;
+        const initialValue = 'something';
+        const finalValue = '';
+
+        const component = mount(
+            <Form>
+                <Form.TextInput
+                    required={required}
+                    value={initialValue}
+                />
+            </Form>
+        );
+
+        component.find('input').simulate('change', {
+            target: { value: finalValue }
+        });
+
+        component.find('input').simulate('blur', {
+            target: { value: finalValue }
+        });
+
+        expect(component.find('Alert')).to.have.length(0);
+    });
+
+    it('should not display validation error when required=false and value=something', () => {
+        const required = false;
+        const initialValue = 'something';
+        const finalValue = 'nothing';
+
+        const component = mount(
+            <Form>
+                <Form.TextInput
+                    required={required}
+                    value={initialValue}
+                />
+            </Form>
+        );
+
+        component.find('input').simulate('change', {
+            target: { value: finalValue }
+        });
+
+        component.find('input').simulate('blur', {
+            target: { value: finalValue }
+        });
+
+        expect(component.find('Alert')).to.have.length(0);
+    });
+
+    it('should display validation error when required=true, pattern=regex, and value=blank', () => {
+        const required = true;
+        const pattern = /^[0-9]{3}$/;
+
+        const initialValue = '123';
+        const finalValue = '';
+
+        const component = mount(
+            <Form>
+                <Form.TextInput
+                    required={required}
+                    pattern={pattern}
+                    value={initialValue}
+                />
+            </Form>
+        );
+
+        component.find('input').simulate('change', {
+            target: { value: finalValue }
+        });
+
+        component.find('input').simulate('blur', {
+            target: { value: finalValue }
+        });
+
+        expect(component.find('Alert')).to.have.length(1);
+    });
+
+    it('should display validation error when required=true, pattern=regex, and value=non-match', () => {
+        const required = true;
+        const pattern = /^[0-9]{3}$/;
+
+        const initialValue = '123';
+        const finalValue = 'does not match';
+
+        const component = mount(
+            <Form>
+                <Form.TextInput
+                    required={required}
+                    pattern={pattern}
+                    value={initialValue}
+                />
+            </Form>
+        );
+
+        component.find('input').simulate('change', {
+            target: { value: finalValue }
+        });
+
+        component.find('input').simulate('blur', {
+            target: { value: finalValue }
+        });
+
+        expect(component.find('Alert')).to.have.length(1);
+    });
+
+    it('should not display validation error when required=true, pattern=regex, and value=match', () => {
+        const required = true;
+        const pattern = /^[0-9]{3}$/;
+
+        const initialValue = '123';
+        const finalValue = '456';
+
+        const component = mount(
+            <Form>
+                <Form.TextInput
+                    required={required}
+                    pattern={pattern}
+                    value={initialValue}
+                />
+            </Form>
+        );
+
+        component.find('input').simulate('change', {
+            target: { value: finalValue }
+        });
+
+        component.find('input').simulate('blur', {
+            target: { value: finalValue }
+        });
+
+        expect(component.find('Alert')).to.have.length(0);
+    });
+
+    it('should not display validation error when required=false, pattern=regex, and value=blank', () => {
+        const required = false;
+        const pattern = /^[0-9]{3}$/;
+
+        const initialValue = '123';
+        const finalValue = '';
+
+        const component = mount(
+            <Form>
+                <Form.TextInput
+                    required={required}
+                    pattern={pattern}
+                    value={initialValue}
+                />
+            </Form>
+        );
+
+        component.find('input').simulate('change', {
+            target: { value: finalValue }
+        });
+
+        component.find('input').simulate('blur', {
+            target: { value: finalValue }
+        });
+
+        expect(component.find('Alert')).to.have.length(0);
+    });
+
+    it('should display validation error when required=false, pattern=regex, and value=non-match', () => {
+        const required = false;
+        const pattern = /^[0-9]{3}$/;
+
+        const initialValue = '123';
+        const finalValue = 'woooo';
+
+        const component = mount(
+            <Form>
+                <Form.TextInput
+                    required={required}
+                    pattern={pattern}
+                    value={initialValue}
+                />
+            </Form>
+        );
+
+        component.find('input').simulate('change', {
+            target: { value: finalValue }
+        });
+
+        component.find('input').simulate('blur', {
+            target: { value: finalValue }
+        });
+
+        expect(component.find('Alert')).to.have.length(1);
+    });
+
+    it('should not display validation error when required=false, pattern=regex, and value=match', () => {
+        const required = false;
+        const pattern = /^[0-9]{3}$/;
+
+        const initialValue = '123';
+        const finalValue = '987';
+
+        const component = mount(
+            <Form>
+                <Form.TextInput
+                    required={required}
+                    pattern={pattern}
+                    value={initialValue}
+                />
+            </Form>
+        );
+
+        component.find('input').simulate('change', {
+            target: { value: finalValue }
+        });
+
+        component.find('input').simulate('blur', {
+            target: { value: finalValue }
+        });
+
+        expect(component.find('Alert')).to.have.length(0);
+    });
+
+    it('should display validation error when required=true, pattern=function, and value=blank', () => {
+        const required = true;
+        const pattern = (val) => val === 'xyz';
+
+        const initialValue = '123';
+        const finalValue = '';
+
+        const component = mount(
+            <Form>
+                <Form.TextInput
+                    required={required}
+                    pattern={pattern}
+                    value={initialValue}
+                />
+            </Form>
+        );
+
+        component.find('input').simulate('change', {
+            target: { value: finalValue }
+        });
+
+        component.find('input').simulate('blur', {
+            target: { value: finalValue }
+        });
+
+        expect(component.find('Alert')).to.have.length(1);
+    });
+
+    it('should display validation error when required=true, pattern=function, and value=non-match', () => {
+        const required = true;
+        const pattern = (val) => val === 'xyz';
+
+        const initialValue = '123';
+        const finalValue = 'abc';
+
+        const component = mount(
+            <Form>
+                <Form.TextInput
+                    required={required}
+                    pattern={pattern}
+                    value={initialValue}
+                />
+            </Form>
+        );
+
+        component.find('input').simulate('change', {
+            target: { value: finalValue }
+        });
+
+        component.find('input').simulate('blur', {
+            target: { value: finalValue }
+        });
+
+        expect(component.find('Alert')).to.have.length(1);
+    });
+
+    it('should not display validation error when required=true, pattern=function, and value=match', () => {
+        const required = true;
+        const pattern = (val) => val === 'xyz';
+
+        const initialValue = '123';
+        const finalValue = 'xyz';
+
+        const component = mount(
+            <Form>
+                <Form.TextInput
+                    required={required}
+                    pattern={pattern}
+                    value={initialValue}
+                />
+            </Form>
+        );
+
+        component.find('input').simulate('change', {
+            target: { value: finalValue }
+        });
+
+        component.find('input').simulate('blur', {
+            target: { value: finalValue }
+        });
+
+        expect(component.find('Alert')).to.have.length(0);
+    });
+
+    it('should not display validation error when required=false, pattern=function, and value=blank', () => {
+        const required = false;
+        const pattern = (val) => val === 'xyz';
+
+        const initialValue = '123';
+        const finalValue = '';
+
+        const component = mount(
+            <Form>
+                <Form.TextInput
+                    required={required}
+                    pattern={pattern}
+                    value={initialValue}
+                />
+            </Form>
+        );
+
+        component.find('input').simulate('change', {
+            target: { value: finalValue }
+        });
+
+        component.find('input').simulate('blur', {
+            target: { value: finalValue }
+        });
+
+        expect(component.find('Alert')).to.have.length(0);
+    });
+
+    it('should display validation error when required=false, pattern=function, and value=non-match', () => {
+        const required = false;
+        const pattern = (val) => val === 'xyz';
+
+        const initialValue = '123';
+        const finalValue = 'abcdef';
+
+        const component = mount(
+            <Form>
+                <Form.TextInput
+                    required={required}
+                    pattern={pattern}
+                    value={initialValue}
+                />
+            </Form>
+        );
+
+        component.find('input').simulate('change', {
+            target: { value: finalValue }
+        });
+
+        component.find('input').simulate('blur', {
+            target: { value: finalValue }
+        });
+
+        expect(component.find('Alert')).to.have.length(1);
+    });
+
+    it('should not display validation error when required=false, pattern=function, and value=match', () => {
+        const required = false;
+        const pattern = (val) => val === 'xyz';
+
+        const initialValue = '123';
+        const finalValue = 'xyz';
+
+        const component = mount(
+            <Form>
+                <Form.TextInput
+                    required={required}
+                    pattern={pattern}
+                    value={initialValue}
+                />
+            </Form>
+        );
+
+        component.find('input').simulate('change', {
+            target: { value: finalValue }
+        });
+
+        component.find('input').simulate('blur', {
+            target: { value: finalValue }
+        });
+
+        expect(component.find('Alert')).to.have.length(0);
+    });
+
+});
 
 /* *****************************************************************************
 when changing (and blurring) the value of a required TextInput with an invalid value
