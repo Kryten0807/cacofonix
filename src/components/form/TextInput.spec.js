@@ -1323,3 +1323,11 @@ describe('when changing (and blurring) the value of a TextInput with parent comp
     });
 
 });
+
+/* *****************************************************************************
+when the TextInput has a format prop
+    the value is formatted on initialization
+    the value is untouched after focus
+    the value is untouched after change
+    the value is formatted after blur
+*/
