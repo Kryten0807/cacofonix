@@ -84,6 +84,16 @@ class TextInput extends React.Component {
         }
     }
 
+    validate(value) {
+        let isValid = true;
+
+        if (this.props.pattern) {
+            isValid = isValid && this.props.pattern.test(`${value}`);
+        }
+
+        return isValid && (!this.props.required || value);
+    }
+
     /**
      * Render the component
      * @return {React.Element} The React element describing the component
