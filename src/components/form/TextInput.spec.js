@@ -552,9 +552,6 @@ describe('when changing (and blurring) the value of a TextInput with a pattern f
 
 });
 
-
-
-
 /* *****************************************************************************
 when changing (and blurring) the value of a TextInput with a pattern regex
     the global validation message should not be displayed with a valid value
