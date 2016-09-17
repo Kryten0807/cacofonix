@@ -460,6 +460,17 @@ when changing (and blurring) the value of a TextInput with a pattern function
     the global validation message SHOULD be displayed with an invalid value
     the component validation message SHOULD be displayed with an invalid value
 */
+describe('when changing (and blurring) the value of a TextInput with a pattern function', () => {
+
+    // it('the global validation message should not be displayed with a valid value', () => {});
+
+    // it('the component validation message should not be displayed with a valid value', () => {});
+
+    // it('the global validation message SHOULD be displayed with an invalid value', () => {});
+
+    // it('the component validation message SHOULD be displayed with an invalid value', () => {});
+
+});
 
 
 
