@@ -1353,10 +1353,80 @@ describe('when the TextInput has a format prop', () => {
         expect(component.find('input').props().value).to.equal(expectedValue);
     });
 
-    // it('the value is untouched after focus', () => {});
+    it('the value is untouched after focus', () => {
+        const required = true;
+        const format = (value) => `${value}-${value}`;
+        const initialValue = 'something';
 
-    // it('the value is untouched after change', () => {});
+        const expectedValue = format(initialValue);
 
-    // it('the value is formatted after blur', () => {});
+        const component = mount(
+            <Form>
+                <Form.TextInput
+                    required={required}
+                    value={initialValue}
+                    format={format}
+                />
+            </Form>
+        );
+
+        component.find('input').simulate('focus');
+
+        expect(component.find('input').props().value).to.equal(expectedValue);
+    });
+
+    it('the value is untouched after change', () => {
+        const required = true;
+        const format = (value) => `${value}-${value}`;
+        const initialValue = 'something';
+
+        const newValue = 'blue';
+
+        const expectedValue = newValue;
+
+        const component = mount(
+            <Form>
+                <Form.TextInput
+                    required={required}
+                    value={initialValue}
+                    format={format}
+                />
+            </Form>
+        );
+
+        component.find('input').simulate('change', {
+            target: { value: newValue }
+        });
+
+        expect(component.find('input').props().value).to.equal(expectedValue);
+    });
+
+    it('the value is formatted after blur', () => {
+        const required = true;
+        const format = (value) => `${value}-${value}`;
+        const initialValue = 'something';
+
+        const newValue = 'red';
+
+        const expectedValue = format(newValue);
+
+        const component = mount(
+            <Form>
+                <Form.TextInput
+                    required={required}
+                    value={initialValue}
+                    format={format}
+                />
+            </Form>
+        );
+
+        component.find('input').simulate('change', {
+            target: { value: newValue }
+        });
+
+        component.find('input').simulate('blur');
+
+        expect(component.find('input').props().value).to.equal(expectedValue);
+    });
 
 });
