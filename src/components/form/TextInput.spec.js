@@ -462,9 +462,52 @@ when changing (and blurring) the value of a TextInput with a pattern regex
 */
 describe('when changing (and blurring) the value of a TextInput with a pattern regex', () => {
 
-    // it('the global validation message should not be displayed with a valid value', () => {});
+    // a simple zip code pattern
+    //
+    const pattern = /^[0-9]{5}$/;
 
-    // it('the component validation message should not be displayed with a valid value', () => {});
+    it('the global validation message should not be displayed with a valid value', () => {
+        const initialValue = '12345';
+        const finalValue = '54321';
+
+        const component = mount(
+            <Form>
+                <Form.TextInput pattern={pattern} value={initialValue} />
+            </Form>
+        );
+
+        component.find('input').simulate('change', {
+            target: { value: finalValue }
+        });
+
+        component.find('input').simulate('blur', {
+            target: { value: finalValue }
+        });
+
+        expect(component.find('Alert')).to.have.length(0, 'Alert');
+    });
+
+    it('the component validation message should not be displayed with a valid value', () => {
+        const initialValue = '12345';
+        const finalValue = '54321';
+
+        const component = mount(
+            <Form>
+                <Form.TextInput pattern={pattern} value={initialValue} />
+            </Form>
+        );
+
+        component.find('input').simulate('change', {
+            target: { value: finalValue }
+        });
+
+        component.find('input').simulate('blur', {
+            target: { value: finalValue }
+        });
+
+        expect(component.find('.has-error')).to.have.length(0, 'has-error');
+        expect(component.find('.help-block')).to.have.length(0, 'help-block');
+    });
 
     // it('the global validation message SHOULD be displayed with an invalid value', () => {});
 
