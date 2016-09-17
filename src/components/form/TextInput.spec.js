@@ -655,6 +655,28 @@ describe('when changing (and blurring) the value of a TextInput with a pattern r
 
 
 /* *****************************************************************************
+when changing (and blurring) the value of a TextInput
+    should display validation error when required=true and value=blank
+    should not display validation error when required=true and value=something
+    should not display validation error when required=false and value=blank
+    should not display validation error when required=false and value=something
+
+    should display validation error when required=true, pattern=regex, and value=blank
+    should display validation error when required=true, pattern=regex, and value=non-match
+    should not display validation error when required=true, pattern=regex, and value=match
+    should not display validation error when required=false, pattern=regex, and value=blank
+    should display validation error when required=false, pattern=regex, and value=non-match
+    should not display validation error when required=false, pattern=regex, and value=match
+
+    should display validation error when required=true, pattern=function, and value=blank
+    should display validation error when required=true, pattern=function, and value=non-match
+    should not display validation error when required=true, pattern=function, and value=match
+    should not display validation error when required=false, pattern=function, and value=blank
+    should display validation error when required=false, pattern=function, and value=non-match
+    should not display validation error when required=false, pattern=function, and value=match
+*/
+
+/* *****************************************************************************
 when changing (and blurring) the value of a required TextInput with an invalid value
     the error message displayed in the form should be the default value when
         validationMessage is not set
