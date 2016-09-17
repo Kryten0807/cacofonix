@@ -509,14 +509,50 @@ describe('when changing (and blurring) the value of a TextInput with a pattern r
         expect(component.find('.help-block')).to.have.length(0, 'help-block');
     });
 
-    // it('the global validation message SHOULD be displayed with an invalid value', () => {});
+    it('the global validation message SHOULD be displayed with an invalid value', () => {
+        const initialValue = '12345';
+        const finalValue = '999';
 
-    // it('the component validation message SHOULD be displayed with an invalid value', () => {});
+        const component = mount(
+            <Form>
+                <Form.TextInput pattern={pattern} value={initialValue} />
+            </Form>
+        );
+
+        component.find('input').simulate('change', {
+            target: { value: finalValue }
+        });
+
+        component.find('input').simulate('blur', {
+            target: { value: finalValue }
+        });
+
+        expect(component.find('Alert')).to.have.length(1, 'Alert');
+    });
+
+    it('the component validation message SHOULD be displayed with an invalid value', () => {
+        const initialValue = '12345';
+        const finalValue = '999';
+
+        const component = mount(
+            <Form>
+                <Form.TextInput pattern={pattern} value={initialValue} />
+            </Form>
+        );
+
+        component.find('input').simulate('change', {
+            target: { value: finalValue }
+        });
+
+        component.find('input').simulate('blur', {
+            target: { value: finalValue }
+        });
+
+        expect(component.find('.has-error')).to.have.length(1, 'has-error');
+        expect(component.find('.help-block')).to.have.length(1, 'help-block');
+    });
 
 });
-
-
-
 
 
 /* *****************************************************************************
