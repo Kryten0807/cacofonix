@@ -4,12 +4,13 @@ import React from 'react';
 import classnames from 'classnames';
 import uniqueId from 'lodash/uniqueId';
 
+// @TODO add regex validation
+// @TODO add different validation error messages for failing different rules
+// @TODO horizontal form - label & input element widths
+
 /**
  * The TextInput component
  *
- * @TODO add regex validation
- * @TODO add different validation error messages for failing different rules
- * @TODO horizontal form - label & input element widths
  */
 class TextInput extends React.Component {
     /**
