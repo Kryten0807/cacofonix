@@ -52,6 +52,7 @@ class Form extends React.Component {
                 </ul>
             </Alert>
             : '';
+
         return (
             <form
                 className={classnames({
