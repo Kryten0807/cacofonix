@@ -128,6 +128,7 @@ TextInput.propTypes = {
     label:                  React.PropTypes.string,
     description:            React.PropTypes.string,
     validationMessage:      React.PropTypes.string,
+    pattern:                regexPropType,
     onChange:               React.PropTypes.func,
     validationKey:          React.PropTypes.string,
     onChildValidationEvent: React.PropTypes.func,
