@@ -63,7 +63,7 @@ class TextInput extends React.Component {
      * Handle the blur event for the input element
      * @param  {Object} event The event object
      */
-    onBlur(event) {
+    onBlur() {
         // get the new value
         //
         const value = event.target.value;
