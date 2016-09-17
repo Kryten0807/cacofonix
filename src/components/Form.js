@@ -77,6 +77,11 @@ Form.propTypes = {
     ]).isRequired,
 };
 
+Form.childContextTypes = {
+    onChildValidationEvent: React.PropTypes.func,
+};
+
+
 // add the "sub-components"
 //
 Form.TextInput = TextInput;
