@@ -60,7 +60,7 @@ class Form extends React.Component {
                 })}
             >
                 {alert}
-                {this.children}
+                {this.props.children}
             </form>
         );
     }
