@@ -3,6 +3,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import uniqueId from 'lodash/uniqueId';
+import isRegExp from 'lodash/isRegExp';
 
 // @TODO add regex validation
 // @TODO add different validation error messages for failing different rules
