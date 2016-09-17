@@ -117,4 +117,8 @@ TextInput.propTypes = {
     onChildValidationEvent: React.PropTypes.func,
 };
 
+TextInput.contextTypes = {
+    onChildValidationEvent: React.PropTypes.func,
+};
+
 export default TextInput;
