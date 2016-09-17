@@ -4,12 +4,14 @@ import React from 'react';
 import classnames from 'classnames';
 import uniqueId from 'lodash/uniqueId';
 import isRegExp from 'lodash/isRegExp';
+import isFunction from 'lodash/isFunction';
 
 // @TODO pattern = function which returns true if value passes
 // @TODO add different validation error messages for failing different rules
 // @TODO horizontal form - label & input element widths
 // @TODO permitted characters regex
 // @TODO parse & format functions for onFocus & onBlur handling of values
+// @TODO placeholder
 
 /**
  * The TextInput component
@@ -30,6 +32,8 @@ class TextInput extends React.Component {
             isValid: true,
         };
 
+        // generate a unique ID for this component instance
+        //
         this.id = uniqueId('form-textinput-');
 
         // intialize the validation message for the component
@@ -43,6 +47,9 @@ class TextInput extends React.Component {
         this.onChange = this.onChange.bind(this);
     }
 
+    /**
+     * Handle the "component is about to mount" event
+     */
     componentWillMount() {
         // call the `onChildValidationEvent` handler once with no error message,
         // just to ensure that the parent knows about this child
@@ -77,23 +84,66 @@ class TextInput extends React.Component {
      * @param  {Object} event The event object
      */
     onChange(event) {
+        // get the value from the event object
+        //
         const value = event.target.value;
 
+        // update the component state
+        //
         this.setState({ value });
 
+        // do we have an `onChange` handler? if so call it with the new value
+        //
         if (this.props.onChange) {
             this.props.onChange(value);
         }
     }
 
+    /**
+     * Validate a value
+     * @param  {String} value The value to validate
+     * @return {Boolean}      True if the value is valid, false otherwise
+     */
     validate(value) {
+        // declare a variable to hold the result
+        //
         let isValid = true;
 
-        if (this.props.pattern) {
-            isValid = isValid && this.props.pattern.test(`${value}`);
+        // do we have a value?
+        //
+        if (!value) {
+            // we do not have a value - in this case, whether it's valid or not
+            // is determined solely by whether a valid is required or not
+            //
+            isValid = !this.props.required;
+        } else {
+            // we do have a value. Do we have a pattern prop?
+            //
+            if (this.props.pattern) {
+                // yes, we have a pattern prop. is the pattern a regex or is it
+                // a function?
+                //
+                if (isRegExp(this.props.pattern)) {
+                    // the pattern is a regex. Test the value against it
+                    //
+                    isValid = this.props.pattern.test(`${value}`);
+                } else if (isFunction(this.props.pattern)) {
+                    // the pattern is a function. Pass the value to the function
+                    //
+                    isValid = this.props.pattern(value);
+                }
+            } else {
+                // we don't have a pattern prop. That means if we get here that
+                // we have a value and it doesn't matter whether it's required
+                // or not because we have a value
+                //
+                isValid = true;
+            }
         }
 
-        return isValid && (!this.props.required || value);
+        // return the results of the validation
+        //
+        return isValid;
     }
 
     /**
@@ -122,7 +172,6 @@ class TextInput extends React.Component {
 }
 
 // set the property types for the component
-// @TODO placeholder
 //
 TextInput.propTypes = {
     required:               React.PropTypes.bool,
@@ -131,7 +180,7 @@ TextInput.propTypes = {
     description:            React.PropTypes.string,
     validationMessage:      React.PropTypes.string,
     pattern:                (props, propName, componentName) => {
-        if (props.pattern && !isRegExp(props.pattern)) {
+        if (props.pattern && !isRegExp(props.pattern) && !isFunction(props.pattern)) {
             return new Error(
                 `Invalid prop ${propName} supplied to ${componentName}` +
                 ' - should be a regular expression'
@@ -144,8 +193,12 @@ TextInput.propTypes = {
     onChildValidationEvent: React.PropTypes.func,
 };
 
+// set the context types for values received from higher up the food chain
+//
 TextInput.contextTypes = {
     onChildValidationEvent: React.PropTypes.func,
 };
 
+// export the component
+//
 export default TextInput;
