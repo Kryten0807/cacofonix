@@ -8,6 +8,7 @@ import isRegExp from 'lodash/isRegExp';
 // @TODO add different validation error messages for failing different rules
 // @TODO horizontal form - label & input element widths
 // @TODO permitted characters regex
+// @TODO pattern = function which returns true if value passes
 
 /**
  * The TextInput component
