@@ -1333,7 +1333,25 @@ when the TextInput has a format prop
 */
 describe('when the TextInput has a format prop', () => {
 
-    // it('the value is formatted on initialization', () => {});
+    it('the value is formatted on initialization', () => {
+        const required = true;
+        const format = (value) => `${value}-${value}`;
+        const initialValue = 'something';
+
+        const expectedValue = format(initialValue);
+
+        const component = mount(
+            <Form>
+                <Form.TextInput
+                    required={required}
+                    value={initialValue}
+                    format={format}
+                />
+            </Form>
+        );
+
+        expect(component.find('input').props().value).to.equal(expectedValue);
+    });
 
     // it('the value is untouched after focus', () => {});
 
