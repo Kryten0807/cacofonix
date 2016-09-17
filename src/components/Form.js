@@ -18,6 +18,10 @@ class Form extends React.Component {
         this.onChildValidationEvent = this.onChildValidationEvent.bind(this);
     }
 
+    getChildContext() {
+        return {
+            onChildValidationEvent: this.onChildValidationEvent,
+        };
     }
 
     onChildValidationEvent(validationKey, message) {
