@@ -1331,3 +1331,14 @@ when the TextInput has a format prop
     the value is untouched after change
     the value is formatted after blur
 */
+describe('when the TextInput has a format prop', () => {
+
+    // it('the value is formatted on initialization', () => {});
+
+    // it('the value is untouched after focus', () => {});
+
+    // it('the value is untouched after change', () => {});
+
+    // it('the value is formatted after blur', () => {});
+
+});
