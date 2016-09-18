@@ -6,11 +6,10 @@ import uniqueId from 'lodash/uniqueId';
 import isRegExp from 'lodash/isRegExp';
 import isFunction from 'lodash/isFunction';
 
-// @TODO parse function to format value onFocus
+// @TODO placeholder
 // @TODO add different validation error messages for failing different rules
 // @TODO horizontal form - label & input element widths
 // @TODO permitted characters regex
-// @TODO placeholder
 
 /**
  * The TextInput component
@@ -47,6 +46,7 @@ class TextInput extends React.Component {
         // bind `this` to the component event handlers
         //
         this.onBlur = this.onBlur.bind(this);
+        this.onFocus = this.onFocus.bind(this);
         this.onChange = this.onChange.bind(this);
     }
 
@@ -85,6 +85,19 @@ class TextInput extends React.Component {
         //
         if (this.props.onChange) {
             this.props.onChange(value);
+        }
+    }
+
+    /**
+     * Handle the `onFocus` event
+     */
+    onFocus() {
+        // do we have a parse prop?
+        //
+        if (this.props.parse) {
+            // yes! parse the value before editing begins
+            //
+            this.setState({ value: this.props.parse(this.state.value) });
         }
     }
 
@@ -169,6 +182,7 @@ class TextInput extends React.Component {
                     value={this.state.value}
                     className="form-control"
                     onBlur={this.onBlur}
+                    onFocus={this.onFocus}
                     onChange={this.onChange}
                 />
                 {!this.state.isValid
@@ -198,6 +212,7 @@ TextInput.propTypes = {
         return null;
     },
     format:                 React.PropTypes.func,
+    parse:                  React.PropTypes.func,
     onChange:               React.PropTypes.func,
     validationKey:          React.PropTypes.string,
     onChildValidationEvent: React.PropTypes.func,

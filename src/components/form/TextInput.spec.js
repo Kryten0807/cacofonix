@@ -1430,3 +1430,118 @@ describe('when the TextInput has a format prop', () => {
     });
 
 });
+
+/* *****************************************************************************
+when the TextInput has a parse prop
+    should not parse the value on initialization
+    should parse the value after focus
+    should not parse the value after change
+    should not parse the value after blur
+*/
+describe('when the TextInput has a parse prop', () => {
+
+    it('should not parse the value on initialization', () => {
+        const required = true;
+        const parse = (value) => value.split('-')[0];
+
+        const initialValue = 'aaa-aaa';
+
+        const expectedValue = initialValue;
+
+        const component = mount(
+            <Form>
+                <Form.TextInput
+                    required={required}
+                    value={initialValue}
+                    parse={parse}
+                />
+            </Form>
+        );
+
+        expect(component.find('input').props().value).to.equal(expectedValue);
+    });
+
+    it('should parse the value after focus', () => {
+        const required = true;
+        const parse = (value) => value.split('-')[0];
+
+        const initialValue = 'aaa-aaa';
+
+        const expectedValue = parse(initialValue);
+
+        const component = mount(
+            <Form>
+                <Form.TextInput
+                    required={required}
+                    value={initialValue}
+                    parse={parse}
+                />
+            </Form>
+        );
+
+        component.find('input').simulate('focus');
+
+        expect(component.find('input').props().value).to.equal(expectedValue);
+    });
+
+    it('should not parse the value after change', () => {
+        const required = true;
+        const parse = (value) => value.split('-')[0];
+
+        const initialValue = 'aaa-aaa';
+
+        const newValue = 'bbb-bbb';
+
+        const expectedValue = newValue;
+
+        const component = mount(
+            <Form>
+                <Form.TextInput
+                    required={required}
+                    value={initialValue}
+                    parse={parse}
+                />
+            </Form>
+        );
+
+        component.find('input').simulate('focus');
+
+        component.find('input').simulate('change', {
+            target: { value: newValue }
+        });
+
+        expect(component.find('input').props().value).to.equal(expectedValue);
+    });
+
+    it('should not parse the value after blur', () => {
+        const required = true;
+        const parse = (value) => value.split('-')[0];
+
+        const initialValue = 'aaa-aaa';
+
+        const newValue = 'bbb-bbb';
+
+        const expectedValue = newValue;
+
+        const component = mount(
+            <Form>
+                <Form.TextInput
+                    required={required}
+                    value={initialValue}
+                    parse={parse}
+                />
+            </Form>
+        );
+
+        component.find('input').simulate('focus');
+
+        component.find('input').simulate('change', {
+            target: { value: newValue }
+        });
+
+        component.find('input').simulate('blur');
+
+        expect(component.find('input').props().value).to.equal(expectedValue);
+    });
+
+});
