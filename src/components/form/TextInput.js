@@ -213,6 +213,7 @@ TextInput.propTypes = {
         return null;
     },
     format:                 React.PropTypes.func,
+    parse:                  React.PropTypes.func,
     onChange:               React.PropTypes.func,
     validationKey:          React.PropTypes.string,
     onChildValidationEvent: React.PropTypes.func,
