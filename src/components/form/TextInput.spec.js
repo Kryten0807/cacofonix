@@ -1438,3 +1438,14 @@ when the TextInput has a parse prop
     should not parse the value after change
     should not parse the value after blur
 */
+describe('when the TextInput has a parse prop', () => {
+
+    // it('should not parse the value on initialization', () => {});
+
+    // it('should parse the value after focus', () => {});
+
+    // it('should not parse the value after change', () => {});
+
+    // it('should not parse the value after blur', () => {});
+
+});
