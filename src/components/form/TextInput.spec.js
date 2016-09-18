@@ -1430,3 +1430,11 @@ describe('when the TextInput has a format prop', () => {
     });
 
 });
+
+/* *****************************************************************************
+when the TextInput has a parse prop
+    should not parse the value on initialization
+    should parse the value after focus
+    should not parse the value after change
+    should not parse the value after blur
+*/
