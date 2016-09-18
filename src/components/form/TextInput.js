@@ -24,6 +24,8 @@ class TextInput extends React.Component {
     constructor(props) {
         super(props);
 
+        // format the value if we have a format method
+        //
         const value = props.format ? props.format(props.value) : props.value;
 
         // initialize the state for the component
@@ -63,7 +65,7 @@ class TextInput extends React.Component {
      * @param  {Object} event The event object
      */
     onBlur() {
-        // get the new value
+        // get the new value, formatting it if necessary
         //
         const value = this.props.format ? this.props.format(this.state.value) : this.state.value;
 
