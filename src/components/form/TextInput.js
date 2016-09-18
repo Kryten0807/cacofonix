@@ -6,7 +6,6 @@ import uniqueId from 'lodash/uniqueId';
 import isRegExp from 'lodash/isRegExp';
 import isFunction from 'lodash/isFunction';
 
-// @TODO format function to format value onBlur
 // @TODO parse function to format value onFocus
 // @TODO add different validation error messages for failing different rules
 // @TODO horizontal form - label & input element widths
