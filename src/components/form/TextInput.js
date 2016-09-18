@@ -7,10 +7,10 @@ import isRegExp from 'lodash/isRegExp';
 import isFunction from 'lodash/isFunction';
 
 // @TODO parse function to format value onFocus
+// @TODO placeholder
 // @TODO add different validation error messages for failing different rules
 // @TODO horizontal form - label & input element widths
 // @TODO permitted characters regex
-// @TODO placeholder
 
 /**
  * The TextInput component
