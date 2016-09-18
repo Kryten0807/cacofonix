@@ -47,6 +47,7 @@ class TextInput extends React.Component {
         // bind `this` to the component event handlers
         //
         this.onBlur = this.onBlur.bind(this);
+        this.onFocus = this.onFocus.bind(this);
         this.onChange = this.onChange.bind(this);
     }
 
@@ -86,6 +87,12 @@ class TextInput extends React.Component {
         if (this.props.onChange) {
             this.props.onChange(value);
         }
+    }
+
+    onFocus() {
+        const value = this.props.parse ? this.props.parse(this.state.value) : this.state.value;
+
+        this.setState({ value });
     }
 
     /**
