@@ -6,11 +6,10 @@ import uniqueId from 'lodash/uniqueId';
 import isRegExp from 'lodash/isRegExp';
 import isFunction from 'lodash/isFunction';
 
-// @TODO pattern = function which returns true if value passes
+// @TODO parse function to format value onFocus
 // @TODO add different validation error messages for failing different rules
 // @TODO horizontal form - label & input element widths
 // @TODO permitted characters regex
-// @TODO parse & format functions for onFocus & onBlur handling of values
 // @TODO placeholder
 
 /**
@@ -25,10 +24,14 @@ class TextInput extends React.Component {
     constructor(props) {
         super(props);
 
+        // format the value if we have a format method
+        //
+        const value = props.format ? props.format(props.value) : props.value;
+
         // initialize the state for the component
         //
         this.state = {
-            value:   props.value,
+            value,
             isValid: true,
         };
 
@@ -61,10 +64,10 @@ class TextInput extends React.Component {
      * Handle the blur event for the input element
      * @param  {Object} event The event object
      */
-    onBlur(event) {
-        // get the new value
+    onBlur() {
+        // get the new value, formatting it if necessary
         //
-        const value = event.target.value;
+        const value = this.props.format ? this.props.format(this.state.value) : this.state.value;
 
         // determine if it's valid
         //
@@ -72,11 +75,17 @@ class TextInput extends React.Component {
 
         // set the `isValid` state
         //
-        this.setState({ isValid });
+        this.setState({ value, isValid });
 
         // call the `onChildValidationEvent` handler
         //
         this.context.onChildValidationEvent(this.id, isValid ? null : this.validationMessage);
+
+        // call the `onChange` handler
+        //
+        if (this.props.onChange) {
+            this.props.onChange(value);
+        }
     }
 
     /**
@@ -188,6 +197,7 @@ TextInput.propTypes = {
         }
         return null;
     },
+    format:                 React.PropTypes.func,
     onChange:               React.PropTypes.func,
     validationKey:          React.PropTypes.string,
     onChildValidationEvent: React.PropTypes.func,
