@@ -93,14 +93,13 @@ class TextInput extends React.Component {
      * Handle the `onFocus` event
      */
     onFocus() {
-        // do we have a parse prop? if so, parse the value; otherwise, don't
-        // touch it
+        // do we have a parse prop?
         //
-        const value = this.props.parse ? this.props.parse(this.state.value) : this.state.value;
-
-        // set the new value
-        //
-        this.setState({ value });
+        if (this.props.parse) {
+            // yes! parse the value before editing begins
+            //
+            this.setState({ value: this.props.parse(this.state.value) });
+        }
     }
 
     /**
