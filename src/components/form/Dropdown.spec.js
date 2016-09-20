@@ -26,3 +26,10 @@ a Form component containing a Dropdown
     should include a <Form.Dropdown> as a child
     should be a select.form-control
 */
+describe('a Form component containing a Dropdown', () => {
+
+    // it('should include a <Form.Dropdown> as a child', () => {});
+
+    // it('should be a select.form-control', () => {});
+
+});
