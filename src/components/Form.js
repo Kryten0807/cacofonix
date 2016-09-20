@@ -64,12 +64,15 @@ class Form extends React.Component {
     onChildValidationEvent(validationKey, hasValidated, message) {
         // build a change event to update the state
         //
-        const delta = {};
-        delta[validationKey] = { $set: message };
+        const validation = {};
+        validation[validationKey] = { $set: message };
+
+        const hasValidated = {};
+        hasValidated[validationKey] = { $set: !!hasValidated };
 
         // update the Form component state
         //
-        this.setState(update(this.state, { validation: delta }));
+        this.setState(update(this.state, { validation, hasValidated }));
     }
 
     isValid() {
