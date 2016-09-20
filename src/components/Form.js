@@ -79,7 +79,9 @@ class Form extends React.Component {
         const keys = Object.keys(this.state.validation);
 
         for (let idx = 0; idx < keys.length; idx++) {
-            if (this.state.validation[keys[idx]]) {
+            const key = keys[idx];
+
+            if (this.state.validation[key]) {
                 return false;
             }
         }
