@@ -38,6 +38,14 @@ describe('a Form component containing a Dropdown', () => {
         expect(component.find(Form.Dropdown)).to.have.length(1);
     });
 
-    // it('should be a select.form-control', () => {});
+    it('should be a select.form-control', () => {
+        const component = render(
+            <Form>
+                <Form.Dropdown />
+            </Form>
+        );
+
+        expect(component.find('select.form-control')).to.have.length(1);
+    });
 
 });
