@@ -40,11 +40,17 @@ describe('a Form component containing a Dropdown', () => {
     });
 
     it('should be a select.form-control', () => {
+        const options = [
+            { value: '1', name: 'one' },
+            { value: '2', name: 'two' },
+        ];
+
         const component = render(
             <Form>
-                <Form.Dropdown />
+                <Form.Dropdown options={options} />
             </Form>
         );
+
 
         expect(component.find('select.form-control')).to.have.length(1);
     });
