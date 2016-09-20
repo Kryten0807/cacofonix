@@ -26,7 +26,11 @@ class Form extends React.Component {
         // `onChildValidationEvent` handler, at which time this state will
         // become populated with values
         //
-        this.state = { validation: {} };
+        this.state = {
+            validation:   {},
+            hasValidated: {},
+        };
+
         // bind `this` to the `isValid` method
         //
         this.isValid = this.isValid.bind(this);
