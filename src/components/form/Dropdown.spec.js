@@ -21,11 +21,34 @@ const debug = (component) => {
 };
 /* eslint-enable no-unused-vars */
 
+/*
+
+<Dropdown
+    options={stateOptions}
+
+    label="State/Province"
+    required
+    description="The state or province"
+    value={this.props.form.state || ''}
+    labelColumns={{ xs: 2, md: 3 }}
+    dropdownColumns={{ xs: 10, md: 9 }}
+    onChange={(value) =>
+        this.props.updateField('state', value)
+    }
+    onValidation={(isValid, message) =>
+        this.onValidation('state', isValid, message)
+    }
+/>
+
+*/
+
 /* *****************************************************************************
 a Form component containing a Dropdown
     should include a <Form.Dropdown> as a child
     should be a select.form-control
     should have the options specified in the `options` prop
+    should not include a label if none was specified
+    should include a label if one was specified
 */
 describe('a Form component containing a Dropdown', () => {
 
