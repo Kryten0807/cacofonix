@@ -96,8 +96,12 @@ class Form extends React.Component {
             }
         }
 
+        // if we get here, then none of the children have failed validation.
+        // Return true
+        //
         return true;
     }
+
     /**
      * Build a list of validation errors for the Form
      * @return {Array} An array of validation errors (possibly empty, if all
