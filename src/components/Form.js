@@ -57,7 +57,7 @@ class Form extends React.Component {
      * @param  {String|null} message  The validation error message, or null if
      *                                the component is valid
      */
-    onChildValidationEvent(validationKey, message) {
+    onChildValidationEvent(validationKey, hasValidated, message) {
         // build a change event to update the state
         //
         const delta = {};
