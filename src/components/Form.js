@@ -89,6 +89,10 @@ class Form extends React.Component {
         // iterate over the list of keys
         //
         for (let idx = 0; idx < keys.length; idx++) {
+            // do we have a validation error message for the current item? if
+            // so, return false, since we have at least one component which has
+            // failed validation
+            //
             if (this.state.validation[keys[idx]]) {
                 return false;
             }
