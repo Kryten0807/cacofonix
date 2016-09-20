@@ -11,6 +11,14 @@ import Form from '../Form';
 
 const expect = chai.expect;
 
+/* eslint-disable no-unused-vars */
+const debug = (component) => {
+    console.info('------------------------------------------------------------');
+    console.info(component.debug());
+    console.info('------------------------------------------------------------');
+};
+/* eslint-enable no-unused-vars */
+
 /* *****************************************************************************
 a Form component containing a SubmitButton
     should include a <Form.SubmitButton> as a child
