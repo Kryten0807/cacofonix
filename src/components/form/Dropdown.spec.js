@@ -28,7 +28,15 @@ a Form component containing a Dropdown
 */
 describe('a Form component containing a Dropdown', () => {
 
-    // it('should include a <Form.Dropdown> as a child', () => {});
+    it('should include a <Form.Dropdown> as a child', () => {
+        const component = shallow(
+            <Form>
+                <Form.Dropdown />
+            </Form>
+        );
+
+        expect(component.find(Form.Dropdown)).to.have.length(1);
+    });
 
     // it('should be a select.form-control', () => {});
 
