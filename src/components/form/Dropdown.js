@@ -10,6 +10,11 @@ class Dropdown extends React.Component {
         this.id = uniqueId('form-dropdown-');
     }
 
+    onChange(event) {
+        if (this.props.onChange) {
+            this.props.onChange(this.isValid(event.target.value) ? event.target.value : this.props.options[0].value);
+        }
+    }
 
     isValid(value = this.props.value) {
         const validOptions = this.props.options.map((opt) => opt.value);
