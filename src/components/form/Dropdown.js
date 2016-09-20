@@ -2,6 +2,6 @@
 //
 import React from 'react';
 
-const Dropdown = () => (<p>Stuff</p>);
+const Dropdown = () => (<select className="form-control" />);
 
 export default Dropdown;
