@@ -27,6 +27,9 @@ class Form extends React.Component {
         // become populated with values
         //
         this.state = { validation: {} };
+        // bind `this` to the `isValid` method
+        //
+        this.isValid = this.isValid.bind(this);
 
         // bind `this` to the onChildValidationEvent handler
         //
@@ -64,6 +67,17 @@ class Form extends React.Component {
         this.setState(update(this.state, { validation: delta }));
     }
 
+    isValid() {
+        const keys = Object.keys(this.state.validation);
+
+        for (let idx = 0; idx < keys.length; idx++) {
+            if (this.state.validation[keys[idx]]) {
+                return false;
+            }
+        }
+
+        return true;
+    }
     /**
      * Build a list of validation errors for the Form
      * @return {Array} An array of validation errors (possibly empty, if all
