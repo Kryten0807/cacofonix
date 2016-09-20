@@ -200,3 +200,8 @@ describe('a Form component containing a Dropdown', () => {
 
 
 });
+
+/* *****************************************************************************
+the Dropdown element
+    should call onChange on value change
+*/
