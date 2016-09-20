@@ -112,8 +112,54 @@ describe('given a Form containing a required TextInput and a SubmitButton', () =
         expect(component.find('button.btn-default').props().disabled).to.equal(true);
     });
 
-    // it('after changing from invalid to valid, the SubmitButton should be enabled', () => {});
+    it('after changing from invalid to valid, the SubmitButton should be enabled', () => {
+        const label = 'my label';
 
-    // it('after changing from valid to invalid, the SubmitButton should be disabled', () => {});
+        const initialValue = '';
+
+        const finalValue = 'I wish I were an Oscar Meyer weiner';
+
+        const component = mount(
+            <Form>
+                <Form.TextInput required value={initialValue} />
+                <Form.SubmitButton label={label} />
+            </Form>
+        );
+
+        expect(component.find('button.btn-default').props().disabled).to.equal(true);
+
+        component.find('input').simulate('change', {
+            target: { value: finalValue }
+        });
+
+        component.find('input').simulate('blur');
+
+        expect(component.find('button.btn-default').props().disabled).to.equal(false);
+    });
+
+    it('after changing from valid to invalid, the SubmitButton should be disabled', () => {
+        const label = 'my label';
+
+        const initialValue = 'I wish I were an Oscar Meyer weiner';
+
+        const finalValue = '';
+
+        const component = mount(
+            <Form>
+                <Form.TextInput required value={initialValue} />
+                <Form.SubmitButton label={label} />
+            </Form>
+        );
+
+        expect(component.find('button.btn-default').props().disabled).to.equal(false);
+
+        component.find('input').simulate('change', {
+            target: { value: finalValue }
+        });
+
+        component.find('input').simulate('blur');
+
+        expect(component.find('button.btn-default').props().disabled).to.equal(true);
+    });
 
 });
