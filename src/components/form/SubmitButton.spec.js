@@ -74,7 +74,20 @@ given a Form containing a required TextInput and a SubmitButton
 */
 describe('given a Form containing a required TextInput and a SubmitButton', () => {
 
-    // it('after initialization with a valid value, the SubmitButton should be enabled', () => {});
+    it('after initialization with a valid value, the SubmitButton should be enabled', () => {
+        const label = 'my label';
+
+        const value = 'a valid value';
+
+        const component = mount(
+            <Form>
+                <Form.TextInput required value={value} />
+                <Form.SubmitButton label={label} />
+            </Form>
+        );
+
+        expect(component.find('button.btn-default').props().disabled).to.equal(false);
+    });
 
     // it('after initialization with an invalid value, the SubmitButton should be disabled', () => {});
 
