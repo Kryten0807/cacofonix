@@ -54,10 +54,15 @@ class TextInput extends React.Component {
      * Handle the "component is about to mount" event
      */
     componentWillMount() {
-        // call the `onChildValidationEvent` handler once with no error message,
-        // just to ensure that the parent knows about this child
+        // determine if it's valid
         //
-        this.context.onChildValidationEvent(this.id, null);
+        const isValid = this.validate(this.state.value);
+
+        // call the `onChildValidationEvent` handler once with
+        // `hasValidated`=false, just to ensure that the parent knows about this
+        // child
+        //
+        this.context.onChildValidationEvent(this.id, false, isValid ? null : this.validationMessage);
     }
 
     /**
