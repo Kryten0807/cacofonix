@@ -3,14 +3,29 @@
 import React from 'react';
 import uniqueId from 'lodash/uniqueId';
 
-const Dropdown = ({ options }) => {
-    return (
-        <select className="form-control">
-            {options.map((opt) =>
-                <option key={uniqueId('form-dropdown-option-')} value={opt.value}>{opt.name}</option>
-            )}
-        </select>
-    );
-};
+class Dropdown extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.id = uniqueId('form-dropdown-');
+    }
+
+    render() {
+
+        const label = this.props.label ? <label htmlFor={this.id}>{this.props.label}</label> : null;
+
+        const select = (
+            <select id={this.id} className="form-control">
+                {this.props.options.map((opt) =>
+                    <option key={uniqueId('form-dropdown-option-')} value={opt.value}>{opt.name}</option>
+                )}
+            </select>
+        );
+
+        return label
+            ? <div className="form-group">{label}{select}</div>
+            : select;
+    }
+}
 
 export default Dropdown;
