@@ -10,6 +10,7 @@ const SubmitButton = ({ label, onClick }, { isValid }) => (
 
 SubmitButton.propTypes = {
     label: React.PropTypes.string,
+    onClick: React.PropTypes.func,
 };
 
 // set the context types for values received from higher up the food chain
