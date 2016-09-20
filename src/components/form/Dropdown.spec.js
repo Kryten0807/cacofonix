@@ -55,4 +55,26 @@ describe('a Form component containing a Dropdown', () => {
         expect(component.find('select.form-control')).to.have.length(1);
     });
 
+    it('should have the options specified in the `options` prop', () => {
+
+        const options = [
+            { value: '1', name: 'one' },
+            { value: '2', name: 'two' },
+        ];
+
+        const component = render(
+            <Form>
+                <Form.Dropdown options={options} />
+            </Form>
+        );
+
+        expect(component.find('option')).to.have.length(options.length, 'options count');
+
+        options.forEach((opt) => {
+            expect(component.find(`option[value="${opt.value}"]`)).to.have.length(1, `value=${opt.value}`);
+            expect(component.find(`option[value="${opt.value}"]`).text()).to.equal(opt.name, `name=${opt.name}`);
+
+        });
+    });
+
 });
