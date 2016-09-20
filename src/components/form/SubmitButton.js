@@ -9,7 +9,7 @@ const SubmitButton = ({ label, onClick }, { isValid }) => (
 );
 
 SubmitButton.propTypes = {
-    label: React.PropTypes.string,
+    label:   React.PropTypes.string,
     onClick: React.PropTypes.func,
 };
 
