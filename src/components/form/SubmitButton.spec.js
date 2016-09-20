@@ -7,6 +7,8 @@
 import React from 'react';
 import { shallow, render, mount } from 'enzyme';
 import chai from 'chai';
+import sinon from 'sinon';
+
 import Form from '../Form';
 
 const expect = chai.expect;
@@ -168,3 +170,22 @@ describe('given a Form containing a required TextInput and a SubmitButton', () =
 a SubmitButton
     should call onClick when the button in a form is clicked
 */
+describe('a SubmitButton', () => {
+
+    it('should call onClick when the button in a form is clicked', () => {
+
+        const onClick = sinon.spy();
+
+        const label = 'my label';
+
+        const component = mount(
+            <Form>
+                <Form.SubmitButton label={label} onClick={onClick} />
+            </Form>
+        );
+
+        component.find('button').simulate('click');
+
+        expect(onClick.callCount).to.equal(1);
+    });
+});
