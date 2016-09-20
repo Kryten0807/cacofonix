@@ -6,6 +6,7 @@ import uniqueId from 'lodash/uniqueId';
 import classnames from 'classnames';
 
 import Alert from './Alert';
+import SubmitButton from './form/SubmitButton';
 import TextInput from './form/TextInput';
 
 /**
@@ -25,7 +26,14 @@ class Form extends React.Component {
         // `onChildValidationEvent` handler, at which time this state will
         // become populated with values
         //
-        this.state = { validation: {} };
+        this.state = {
+            validation:   {},
+            hasValidated: {},
+        };
+
+        // bind `this` to the `isValid` method
+        //
+        this.isValid = this.isValid.bind(this);
 
         // bind `this` to the onChildValidationEvent handler
         //
@@ -41,26 +49,59 @@ class Form extends React.Component {
      */
     getChildContext() {
         return {
+            isValid:                this.isValid(),
             onChildValidationEvent: this.onChildValidationEvent,
         };
     }
 
     /**
      * Handle a validation event from one of the children of this Form
-     * @param  {String} validationKey A unique key identifying the child
-     *                                component
-     * @param  {String|null} message  The validation error message, or null if
-     *                                the component is valid
+     * @param  {String} validationKey     A unique key identifying the child
+     *                                    component
+     * @param  {[type]} childHasValidated A flag to indicate whether the component has validated in response to user input
+     * @param  {String|null} message      The validation error message, or null
+     *                                    if the component is valid
      */
-    onChildValidationEvent(validationKey, message) {
-        // build a change event to update the state
+    onChildValidationEvent(validationKey, childHasValidated, message) {
+        // build a change event to update the `validation` and `hasValidated`
+        // state
         //
-        const delta = {};
-        delta[validationKey] = { $set: message };
+        const validation = {};
+        validation[validationKey] = { $set: message };
+
+        const hasValidated = {};
+        hasValidated[validationKey] = { $set: !!childHasValidated };
 
         // update the Form component state
         //
-        this.setState(update(this.state, { validation: delta }));
+        this.setState(update(this.state, { validation, hasValidated }));
+    }
+
+    /**
+     * Determine if the form is valid
+     * @return {Boolean} If true, then all form components are valid
+     */
+    isValid() {
+        // get the list of keys from the validation state
+        //
+        const keys = Object.keys(this.state.validation);
+
+        // iterate over the list of keys
+        //
+        for (let idx = 0; idx < keys.length; idx++) {
+            // do we have a validation error message for the current item? if
+            // so, return false, since we have at least one component which has
+            // failed validation
+            //
+            if (this.state.validation[keys[idx]]) {
+                return false;
+            }
+        }
+
+        // if we get here, then none of the children have failed validation.
+        // Return true
+        //
+        return true;
     }
 
     /**
@@ -138,12 +179,14 @@ Form.propTypes = {
 // set the child context types to propagate to the children
 //
 Form.childContextTypes = {
+    isValid:                React.PropTypes.bool,
     onChildValidationEvent: React.PropTypes.func,
 };
 
 // add the "sub-components" so that they can be imported as part of the same
 // package
 //
+Form.SubmitButton = SubmitButton;
 Form.TextInput = TextInput;
 
 // export the component
