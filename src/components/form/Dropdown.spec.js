@@ -20,3 +20,9 @@ const debug = (component) => {
     console.info('------------------------------------------------------------');
 };
 /* eslint-enable no-unused-vars */
+
+/* *****************************************************************************
+a Form component containing a Dropdown
+    should include a <Form.Dropdown> as a child
+    should be a select.form-control
+*/
