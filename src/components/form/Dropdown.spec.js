@@ -100,4 +100,40 @@ describe('a Form component containing a Dropdown', () => {
         });
     });
 
+    it('should not include a label if none was specified', () => {
+        const options = [
+            { value: '1', name: 'one' },
+            { value: '2', name: 'two' },
+        ];
+
+        const component = render(
+            <Form>
+                <Form.Dropdown options={options} />
+            </Form>
+        );
+
+
+        expect(component.find('label')).to.have.length(0);
+    });
+
+    it('should include a label if one was specified', () => {
+        const options = [
+            { value: '1', name: 'one' },
+            { value: '2', name: 'two' },
+        ];
+
+        const label = 'some label';
+
+        const component = render(
+            <Form>
+                <Form.Dropdown options={options} label={label} />
+            </Form>
+        );
+
+
+        expect(component.find('label')).to.have.length(1);
+        expect(component.find('label').text()).to.equal(label);
+    });
+
+
 });
