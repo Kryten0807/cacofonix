@@ -45,6 +45,7 @@ class Form extends React.Component {
      */
     getChildContext() {
         return {
+            isValid:                this.isValid(),
             onChildValidationEvent: this.onChildValidationEvent,
         };
     }
@@ -153,6 +154,7 @@ Form.propTypes = {
 // set the child context types to propagate to the children
 //
 Form.childContextTypes = {
+    isValid:                React.PropTypes.bool,
     onChildValidationEvent: React.PropTypes.func,
 };
 
