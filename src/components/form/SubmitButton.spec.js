@@ -163,3 +163,8 @@ describe('given a Form containing a required TextInput and a SubmitButton', () =
     });
 
 });
+
+/* *****************************************************************************
+a SubmitButton
+    should call onClick when the button in a form is clicked
+*/
