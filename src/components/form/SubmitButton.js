@@ -2,6 +2,6 @@
 //
 import React from 'react';
 
-const SubmitButton = () => (<h1>Hello</h1>);
+const SubmitButton = () => (<button className="btn btn-default">Hello</button>);
 
 export default SubmitButton;
