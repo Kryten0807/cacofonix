@@ -25,6 +25,7 @@ const debug = (component) => {
 a Form component containing a Dropdown
     should include a <Form.Dropdown> as a child
     should be a select.form-control
+    should have the options specified in the `options` prop
 */
 describe('a Form component containing a Dropdown', () => {
 
