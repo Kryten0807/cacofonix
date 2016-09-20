@@ -56,9 +56,14 @@ a Form component containing a Dropdown
 describe('a Form component containing a Dropdown', () => {
 
     it('should include a <Form.Dropdown> as a child', () => {
+        const options = [
+            { value: '1', name: 'one' },
+            { value: '2', name: 'two' },
+        ];
+
         const component = shallow(
             <Form>
-                <Form.Dropdown />
+                <Form.Dropdown options={options} />
             </Form>
         );
 
