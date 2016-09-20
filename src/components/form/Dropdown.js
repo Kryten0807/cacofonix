@@ -32,7 +32,9 @@ class Dropdown extends React.Component {
         const select = (
             <select id={this.id} className="form-control" value={this.isValid() ? this.props.value : this.props.options[0].value} onChange={this.onChange}>
                 {this.props.options.map((opt) =>
-                    <option key={uniqueId('form-dropdown-option-')} value={opt.value}>{opt.name}</option>
+                    <option key={uniqueId('form-dropdown-option-')} value={opt.value}>
+                        {opt.name}
+                    </option>
                 )}
             </select>
         );
