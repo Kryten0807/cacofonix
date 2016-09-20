@@ -14,6 +14,8 @@ class Dropdown extends React.Component {
 
         const validOptions = this.props.options.map((opt) => opt.value);
 
+        const isValidOption = this.props.options.findIndex((opt) => opt.value === this.props.value) !== -1;
+
         const label = this.props.label ? <label htmlFor={this.id}>{this.props.label}</label> : null;
 
         const select = (
