@@ -14,6 +14,7 @@ const expect = chai.expect;
 /* *****************************************************************************
 a Form component containing a SubmitButton
     should include a <Form.SubmitButton> as a child
+    should be a button.btn.btn-default
 */
 describe('a Form component containing a SubmitButton', () => {
 
