@@ -138,5 +138,41 @@ describe('a Form component containing a Dropdown', () => {
         expect(component.find('label').text()).to.equal(label);
     });
 
+    it('should select a specific value when value is set', () => {
+        const options = [
+            { value: '1', name: 'one' },
+            { value: '2', name: 'two' },
+            { value: '3', name: 'three' },
+        ];
+
+        const value = '2';
+
+        const component = mount(
+            <Form>
+                <Form.Dropdown options={options} value={value} />
+            </Form>
+        );
+
+
+        expect(component.find('select').props().value).to.equal(value);
+    });
+
+    it('should select the first item when value is not set', () => {
+        const options = [
+            { value: '1', name: 'one' },
+            { value: '2', name: 'two' },
+            { value: '3', name: 'three' },
+        ];
+
+        const component = mount(
+            <Form>
+                <Form.Dropdown options={options} />
+            </Form>
+        );
+
+
+        expect(component.find('select').props().value).to.equal(options[0].value);
+    });
+
 
 });
