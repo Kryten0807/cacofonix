@@ -72,3 +72,14 @@ given a Form containing a required TextInput and a SubmitButton
     after changing from invalid to valid, the SubmitButton should be enabled
     after changing from valid to invalid, the SubmitButton should be disabled
 */
+describe('given a Form containing a required TextInput and a SubmitButton', () => {
+
+    // it('after initialization with a valid value, the SubmitButton should be enabled', () => {});
+
+    // it('after initialization with an invalid value, the SubmitButton should be disabled', () => {});
+
+    // it('after changing from invalid to valid, the SubmitButton should be enabled', () => {});
+
+    // it('after changing from valid to invalid, the SubmitButton should be disabled', () => {});
+
+});
