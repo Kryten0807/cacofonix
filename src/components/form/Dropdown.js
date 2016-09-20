@@ -10,11 +10,14 @@ class Dropdown extends React.Component {
         this.id = uniqueId('form-dropdown-');
     }
 
-    render() {
 
+    isValid(value = this.props.value) {
         const validOptions = this.props.options.map((opt) => opt.value);
 
-        const isValidOption = this.props.options.findIndex((opt) => opt.value === this.props.value) !== -1;
+        return this.props.options.findIndex((opt) => opt.value === value) !== -1;
+    }
+
+    render() {
 
         const label = this.props.label ? <label htmlFor={this.id}>{this.props.label}</label> : null;
 
