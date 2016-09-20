@@ -25,11 +25,11 @@ const debug = (component) => {
 
 <Dropdown
     options={stateOptions}
-
     label="State/Province"
+    value={this.props.form.state || ''}
+
     required
     description="The state or province"
-    value={this.props.form.state || ''}
     labelColumns={{ xs: 2, md: 3 }}
     dropdownColumns={{ xs: 10, md: 9 }}
     onChange={(value) =>
@@ -49,6 +49,9 @@ a Form component containing a Dropdown
     should have the options specified in the `options` prop
     should not include a label if none was specified
     should include a label if one was specified
+    should select a specific value when value is set
+    should select the first item when value is not set
+    should select the first item when value is set to an invalid value
 */
 describe('a Form component containing a Dropdown', () => {
 
