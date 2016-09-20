@@ -27,6 +27,18 @@ describe('a Form component containing a SubmitButton', () => {
 
         expect(component.find(Form.SubmitButton)).to.have.length(1);
     });
+
+    it('should be a button.btn.btn-default', () => {
+        const component = render(
+            <Form>
+                <Form.SubmitButton />
+            </Form>
+        );
+
+        expect(component.find('button')).to.have.length(1, 'button');
+        expect(component.find('button.btn-default')).to.have.length(1, 'button.btn.btn-default');
+    });
+
 });
 
 /* *****************************************************************************
