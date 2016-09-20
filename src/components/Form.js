@@ -61,14 +61,14 @@ class Form extends React.Component {
      * @param  {String|null} message  The validation error message, or null if
      *                                the component is valid
      */
-    onChildValidationEvent(validationKey, hasValidated, message) {
+    onChildValidationEvent(validationKey, childHasValidated, message) {
         // build a change event to update the state
         //
         const validation = {};
         validation[validationKey] = { $set: message };
 
         const hasValidated = {};
-        hasValidated[validationKey] = { $set: !!hasValidated };
+        hasValidated[validationKey] = { $set: !!childHasValidated };
 
         // update the Form component state
         //
