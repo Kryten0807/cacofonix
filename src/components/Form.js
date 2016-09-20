@@ -6,6 +6,7 @@ import uniqueId from 'lodash/uniqueId';
 import classnames from 'classnames';
 
 import Alert from './Alert';
+import SubmitButton from './form/SubmitButton';
 import TextInput from './form/TextInput';
 
 /**
@@ -144,6 +145,7 @@ Form.childContextTypes = {
 // add the "sub-components" so that they can be imported as part of the same
 // package
 //
+Form.SubmitButton = SubmitButton;
 Form.TextInput = TextInput;
 
 // export the component
