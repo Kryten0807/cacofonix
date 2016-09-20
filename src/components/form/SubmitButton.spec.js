@@ -40,6 +40,18 @@ describe('a Form component containing a SubmitButton', () => {
         expect(component.find('button.btn-default')).to.have.length(1, 'button.btn.btn-default');
     });
 
+    it('should have the label specified by the `label` property', () => {
+        const label = 'my label';
+
+        const component = render(
+            <Form>
+                <Form.SubmitButton label={label} />
+            </Form>
+        );
+
+        expect(component.find('button.btn-default').text()).to.equal(label);
+    });
+
 });
 
 /* *****************************************************************************
