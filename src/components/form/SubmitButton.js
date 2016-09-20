@@ -2,8 +2,8 @@
 //
 import React from 'react';
 
-const SubmitButton = (props, context) => (
-    <button className="btn btn-default" disabled={!context.isValid}>{props.label || 'Submit'}</button>
+const SubmitButton = ({ label }, context) => (
+    <button className="btn btn-default" disabled={!context.isValid}>{label || 'Submit'}</button>
 );
 
 SubmitButton.propTypes = {
