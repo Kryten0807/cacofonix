@@ -8,6 +8,9 @@ class Dropdown extends React.Component {
         super(props);
 
         this.id = uniqueId('form-dropdown-');
+
+        this.isValid = this.isValid.bind(this);
+        this.onChange = this.onChange.bind(this);
     }
 
     onChange(event) {
