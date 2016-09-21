@@ -49,7 +49,7 @@ describe('a Form component containing a SubmitButton', () => {
         expect(component.find(Form.SubmitButton)).to.have.length(1);
     });
 
-    it('should be a button.btn.btn-default', () => {
+    it('should be a button.btn', () => {
         const component = render(
             <Form>
                 <Form.SubmitButton />
