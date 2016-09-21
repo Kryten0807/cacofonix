@@ -87,18 +87,17 @@ class TextInput extends React.Component {
      * @param  {Object} event The event object
      */
     onBlur() {
-        if (!this.props.readOnly) {
-            // get the new value, formatting it if necessary
-            //
-            const value = this.props.format ? this.props.format(this.state.value) : this.state.value;
+        // get the new value, formatting it if necessary
+        //
+        const value = this.props.format ? this.props.format(this.state.value) : this.state.value;
 
-            // determine if it's valid
-            //
-            const isValid = this.validate(value);
+        // determine if it's valid
+        //
+        const isValid = this.validate(value);
 
-            // set the `isValid` state
-            //
-            this.setState({ value, isValid });
+        // set the `isValid` state
+        //
+        this.setState(() => ({ value, isValid }));
 
         // call the `onChildValidationEvent` handler
         //
@@ -110,11 +109,10 @@ class TextInput extends React.Component {
             );
         }
 
-            // call the `onChange` handler
-            //
-            if (this.props.onChange) {
-                this.props.onChange(value);
-            }
+        // call the `onChange` handler
+        //
+        if (this.props.onChange) {
+            this.props.onChange(value);
         }
     }
 
