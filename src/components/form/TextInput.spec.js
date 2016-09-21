@@ -1329,7 +1329,10 @@ describe('when changing (and blurring) the value of a TextInput with parent comp
         }
 
         TestParent.propTypes = {
-            testValue:    React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]),
+            testValue:    React.PropTypes.oneOfType([
+                React.PropTypes.string,
+                React.PropTypes.number,
+            ]),
             onChange:     React.PropTypes.func,
             onValidation: React.PropTypes.func,
         };
@@ -1404,7 +1407,10 @@ describe('when changing (and blurring) the value of a TextInput with parent comp
         }
 
         TestParent.propTypes = {
-            testValue:    React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]),
+            testValue:    React.PropTypes.oneOfType([
+                React.PropTypes.string,
+                React.PropTypes.number,
+            ]),
             onChange:     React.PropTypes.func,
             onValidation: React.PropTypes.func,
         };
