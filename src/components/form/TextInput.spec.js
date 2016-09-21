@@ -1308,7 +1308,7 @@ describe('when changing (and blurring) the value of a TextInput with parent comp
         }
 
         onChange(testValue) {
-            this.setState({ testValue });
+            this.setState(() => ({ testValue }));
         }
 
         render() {
