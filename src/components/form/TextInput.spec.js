@@ -1591,6 +1591,12 @@ describe('when a TextInput with a calculated value is updated', () => {
             this.state = {
                 testValue: props.testValue || '',
             };
+
+            this.onChange = this.onChange.bind(this);
+        }
+
+        onChange(testValue) {
+            this.setState({ testValue });
         }
 
         render() {
