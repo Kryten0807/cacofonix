@@ -1347,9 +1347,7 @@ describe('when changing (and blurring) the value of a TextInput with parent comp
             target: { value: finalValue }
         });
 
-        component.find('input').simulate('blur', {
-            target: { value: finalValue }
-        });
+        component.find('input').simulate('blur');
 
         expect(component.find('input').props().value).to.equal(finalValue, 'finalValue');
         expect(component.state().testValue).to.equal(finalValue, 'state - finalValue');
