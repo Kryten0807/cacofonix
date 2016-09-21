@@ -161,7 +161,7 @@ class Form extends React.Component {
         // if we have errors, then add an Alert component describing the
         // problems
         //
-        const alert = errors.length > 0
+        const alert = errors.length > 0 && this.allChildrenHaveValidated()
             ? <Alert style="error">
                 <p>Please correct the following problems:</p>
                 <ul>
