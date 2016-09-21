@@ -101,9 +101,9 @@ class TextInput extends React.Component {
      * Handle the `onFocus` event
      */
     onFocus() {
-        // do we have a parse prop?
+        // do we have a parse prop? is the component NOT read only?
         //
-        if (this.props.parse) {
+        if (this.props.parse && !this.props.readOnly) {
             // yes! parse the value before editing begins
             //
             this.setState({ value: this.props.parse(this.state.value) });
