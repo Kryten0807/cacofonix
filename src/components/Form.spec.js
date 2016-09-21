@@ -75,7 +75,6 @@ describe('the Form component', () => {
             </Form>
         );
 
-        debug(component);
 
         expect(component.find('Alert')).to.have.length(0);
     });
