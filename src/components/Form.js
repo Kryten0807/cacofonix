@@ -72,9 +72,11 @@ class Form extends React.Component {
         const hasValidated = {};
         hasValidated[validationKey] = { $set: !!childHasValidated };
 
+        const delta = { validation, hasValidated };
+
         // update the Form component state
         //
-        this.setState(update(this.state, { validation, hasValidated }));
+        this.setState((state) => update(state, delta));
     }
 
     /**
