@@ -3,7 +3,6 @@
 import React from 'react';
 import classnames from 'classnames';
 
-
 /**
  * The SubmitButton component
  * @param  {String}   label   The label to display in the button
