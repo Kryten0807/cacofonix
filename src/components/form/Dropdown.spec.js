@@ -102,8 +102,10 @@ describe('a Form component containing a Dropdown', () => {
         expect(component.find('option')).to.have.length(options.length, 'options count');
 
         options.forEach((opt) => {
-            expect(component.find(`option[value="${opt.value}"]`)).to.have.length(1, `value=${opt.value}`);
-            expect(component.find(`option[value="${opt.value}"]`).text()).to.equal(opt.name, `name=${opt.name}`);
+            expect(component.find(`option[value="${opt.value}"]`))
+                .to.have.length(1, `value=${opt.value}`);
+            expect(component.find(`option[value="${opt.value}"]`).text())
+                .to.equal(opt.name, `name=${opt.name}`);
 
         });
     });
