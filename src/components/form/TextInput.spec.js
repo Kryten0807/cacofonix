@@ -24,6 +24,7 @@ a Form component with a TextInput element
     should include a <Form.TextInput> as a child
     should not include a label if label is omitted
     should include a label if the label is set
+    should include a placeholder if the placeholder is set
 */
 describe('a Form component with a TextInput element', () => {
 
