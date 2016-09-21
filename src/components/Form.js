@@ -58,7 +58,9 @@ class Form extends React.Component {
      * Handle a validation event from one of the children of this Form
      * @param  {String} validationKey     A unique key identifying the child
      *                                    component
-     * @param  {[type]} childHasValidated A flag to indicate whether the component has validated in response to user input
+     * @param  {[type]} childHasValidated A flag to indicate whether the
+     *                                    component has validated in response to
+     *                                    user input
      * @param  {String|null} message      The validation error message, or null
      *                                    if the component is valid
      */
@@ -117,10 +119,10 @@ class Form extends React.Component {
         const errors = [];
 
         // iterate through the keys of the validation state and add non-null
-        // messages to the array
+        // messages for children which have validated to the array
         //
         Object.keys(this.state.validation).forEach((key) => {
-            if (this.state.validation[key]) {
+            if (this.state.hasValidated[key] && this.state.validation[key]) {
                 errors.push(this.state.validation[key]);
             }
         });

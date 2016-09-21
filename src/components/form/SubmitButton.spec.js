@@ -120,7 +120,8 @@ describe('given a Form containing a required TextInput and a SubmitButton', () =
         expect(component.find('button.btn-default').props().disabled).to.equal(false);
     });
 
-    it('after initialization with multiple invalid values, the SubmitButton should be disabled', () => {
+    it('after initialization with multiple invalid values, the SubmitButton ' +
+        'should be disabled', () => {
         const label = 'my label';
 
         const value = '';
@@ -137,7 +138,8 @@ describe('given a Form containing a required TextInput and a SubmitButton', () =
         expect(component.find('button.btn-default').props().disabled).to.equal(true);
     });
 
-    it('after initialization with a mix of valid & invalid values, the SubmitButton should be disabled', () => {
+    it('after initialization with a mix of valid & invalid values, the ' +
+        'SubmitButton should be disabled', () => {
         const label = 'my label';
 
         const invalid = '';
