@@ -75,6 +75,22 @@ describe('the Form component', () => {
             </Form>
         );
 
+        expect(component.find('Alert')).to.have.length(0);
+    });
+
+    it('should not show the alert message if initialized with all valid values', () => {
+        const label = 'my label';
+
+        const valid = 'triceratops';
+
+        const component = mount(
+            <Form>
+                <Form.TextInput required value={valid} />
+                <Form.TextInput required value={valid} />
+                <Form.TextInput required value={valid} />
+                <Form.SubmitButton label={label} />
+            </Form>
+        );
 
         expect(component.find('Alert')).to.have.length(0);
     });
