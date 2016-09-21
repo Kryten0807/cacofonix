@@ -82,6 +82,114 @@ describe('a Form component containing a SubmitButton', () => {
         expect(component.find('button.btn').text()).to.equal('Submit');
     });
 
+    it('should be button.btn.btn-default when no style is provided', () => {
+        const component = render(
+            <Form>
+                <Form.SubmitButton />
+            </Form>
+        );
+
+        expect(component.find('button')).to.have.length(1, 'button');
+        expect(component.find('button.btn.btn-default')).to.have.length(1, 'button.btn.btn-default');
+    });
+
+    it('should be button.btn.btn-danger when style=danger', () => {
+
+        const style = 'danger';
+
+        const component = render(
+            <Form>
+                <Form.SubmitButton style={style} />
+            </Form>
+        );
+
+        expect(component.find('button')).to.have.length(1, 'button');
+        expect(component.find('button.btn.btn-danger')).to.have.length(1, 'button.btn.btn-danger');
+    });
+
+    it('should be button.btn.btn-danger when style=error', () => {
+
+        const style = 'error';
+
+        const component = render(
+            <Form>
+                <Form.SubmitButton style={style} />
+            </Form>
+        );
+
+        expect(component.find('button')).to.have.length(1, 'button');
+        expect(component.find('button.btn.btn-danger')).to.have.length(1, 'button.btn.btn-danger');
+    });
+
+    it('should be button.btn.btn-warning when style=warning', () => {
+
+        const style = 'warning';
+
+        const component = render(
+            <Form>
+                <Form.SubmitButton style={style} />
+            </Form>
+        );
+
+        expect(component.find('button')).to.have.length(1, 'button');
+        expect(component.find('button.btn.btn-warning')).to.have.length(1, 'button.btn.btn-warning');
+    });
+
+    it('should be button.btn.btn-warning when style=warn', () => {
+
+        const style = 'warn';
+
+        const component = render(
+            <Form>
+                <Form.SubmitButton style={style} />
+            </Form>
+        );
+
+        expect(component.find('button')).to.have.length(1, 'button');
+        expect(component.find('button.btn.btn-warning')).to.have.length(1, 'button.btn.btn-warning');
+    });
+
+    it('should be button.btn.btn-info when style=info', () => {
+
+        const style = 'info';
+
+        const component = render(
+            <Form>
+                <Form.SubmitButton style={style} />
+            </Form>
+        );
+
+        expect(component.find('button')).to.have.length(1, 'button');
+        expect(component.find('button.btn.btn-info')).to.have.length(1, 'button.btn.btn-info');
+    });
+
+    it('should be button.btn.btn-success when style=success', () => {
+
+        const style = 'success';
+
+        const component = render(
+            <Form>
+                <Form.SubmitButton style={style} />
+            </Form>
+        );
+
+        expect(component.find('button')).to.have.length(1, 'button');
+        expect(component.find('button.btn.btn-success')).to.have.length(1, 'button.btn.btn-success');
+    });
+
+    it('should be button.btn.btn-success when style=ok', () => {
+
+        const style = 'ok';
+
+        const component = render(
+            <Form>
+                <Form.SubmitButton style={style} />
+            </Form>
+        );
+
+        expect(component.find('button')).to.have.length(1, 'button');
+        expect(component.find('button.btn.btn-success')).to.have.length(1, 'button.btn.btn-success');
+    });
 });
 
 /* *****************************************************************************
