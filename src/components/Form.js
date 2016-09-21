@@ -120,7 +120,7 @@ class Form extends React.Component {
         // messages to the array
         //
         Object.keys(this.state.validation).forEach((key) => {
-            if (this.state.validation[key]) {
+            if (this.state.hasValidated[key] && this.state.validation[key]) {
                 errors.push(this.state.validation[key]);
             }
         });
