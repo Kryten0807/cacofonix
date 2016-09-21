@@ -55,3 +55,7 @@ describe('the Form component', () => {
 the Form component
     should not show the alert message if initialized with a mix of valid & invalid values
 */
+describe('the Form component', () => {
+
+    it('should not show the alert message if initialized with a mix of valid & invalid values', () => {});
+});
