@@ -57,7 +57,7 @@ describe('a Form component containing a SubmitButton', () => {
         );
 
         expect(component.find('button')).to.have.length(1, 'button');
-        expect(component.find('button.btn-default')).to.have.length(1, 'button.btn.btn-default');
+        expect(component.find('button.btn')).to.have.length(1, 'button.btn.btn-default');
     });
 
     it('should have the label specified by the `label` property', () => {
@@ -69,7 +69,7 @@ describe('a Form component containing a SubmitButton', () => {
             </Form>
         );
 
-        expect(component.find('button.btn-default').text()).to.equal(label);
+        expect(component.find('button.btn').text()).to.equal(label);
     });
 
     it('should have the default label if no `label` property specified', () => {
@@ -79,7 +79,7 @@ describe('a Form component containing a SubmitButton', () => {
             </Form>
         );
 
-        expect(component.find('button.btn-default').text()).to.equal('Submit');
+        expect(component.find('button.btn').text()).to.equal('Submit');
     });
 
 });
@@ -107,7 +107,7 @@ describe('given a Form containing a required TextInput and a SubmitButton', () =
             </Form>
         );
 
-        expect(component.find('button.btn-default').props().disabled).to.equal(false);
+        expect(component.find('button.btn').props().disabled).to.equal(false);
     });
 
     it('after initialization with several valid values, the SubmitButton should be enabled', () => {
@@ -126,7 +126,7 @@ describe('given a Form containing a required TextInput and a SubmitButton', () =
             </Form>
         );
 
-        expect(component.find('button.btn-default').props().disabled).to.equal(false);
+        expect(component.find('button.btn').props().disabled).to.equal(false);
     });
 
     it('after initialization with multiple invalid values, the SubmitButton ' +
@@ -144,7 +144,7 @@ describe('given a Form containing a required TextInput and a SubmitButton', () =
             </Form>
         );
 
-        expect(component.find('button.btn-default').props().disabled).to.equal(true);
+        expect(component.find('button.btn').props().disabled).to.equal(true);
     });
 
     it('after initialization with a mix of valid & invalid values, the ' +
@@ -164,7 +164,7 @@ describe('given a Form containing a required TextInput and a SubmitButton', () =
             </Form>
         );
 
-        expect(component.find('button.btn-default').props().disabled).to.equal(true);
+        expect(component.find('button.btn').props().disabled).to.equal(true);
     });
 
     it('after changing from invalid to valid, the SubmitButton should be enabled', () => {
@@ -181,7 +181,7 @@ describe('given a Form containing a required TextInput and a SubmitButton', () =
             </Form>
         );
 
-        expect(component.find('button.btn-default').props().disabled).to.equal(true);
+        expect(component.find('button.btn').props().disabled).to.equal(true);
 
         component.find('input').simulate('change', {
             target: { value: finalValue }
@@ -189,7 +189,7 @@ describe('given a Form containing a required TextInput and a SubmitButton', () =
 
         component.find('input').simulate('blur');
 
-        expect(component.find('button.btn-default').props().disabled).to.equal(false);
+        expect(component.find('button.btn').props().disabled).to.equal(false);
     });
 
     it('after changing from valid to invalid, the SubmitButton should be disabled', () => {
@@ -206,7 +206,7 @@ describe('given a Form containing a required TextInput and a SubmitButton', () =
             </Form>
         );
 
-        expect(component.find('button.btn-default').props().disabled).to.equal(false);
+        expect(component.find('button.btn').props().disabled).to.equal(false);
 
         component.find('input').simulate('change', {
             target: { value: finalValue }
@@ -214,7 +214,7 @@ describe('given a Form containing a required TextInput and a SubmitButton', () =
 
         component.find('input').simulate('blur');
 
-        expect(component.find('button.btn-default').props().disabled).to.equal(true);
+        expect(component.find('button.btn').props().disabled).to.equal(true);
     });
 
 });
