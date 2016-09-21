@@ -1294,45 +1294,46 @@ when changing (and blurring) the value of a TextInput with parent component
 */
 describe('when changing (and blurring) the value of a TextInput with parent component', () => {
 
-    const required = true;
-    const description = 'mumble mumble';
-
-    class TestParent extends React.Component {
-        constructor(props) {
-            super(props);
-
-            this.state = {
-                testValue: props.testValue || '',
-            };
-
-            this.onChange = this.onChange.bind(this);
-        }
-
-        onChange(testValue) {
-            this.setState(() => ({ testValue }));
-        }
-
-        render() {
-            return (
-                <Form>
-                    <Form.TextInput
-                        required={required}
-                        value={this.state.testValue}
-                        description={description}
-                        onChange={this.onChange}
-                    />
-                </Form>
-            );
-        }
-    }
-
-    TestParent.propTypes = {
-        testValue:    React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]),
-        onChange:     React.PropTypes.func,
-        onValidation: React.PropTypes.func,
-    };
-
     it('should maintain the correct value in the input element', () => {
+
+        const required = true;
+        const description = 'mumble mumble';
+
+        class TestParent extends React.Component {
+            constructor(props) {
+                super(props);
+
+                this.state = {
+                    testValue: props.testValue || '',
+                };
+
+                this.onChange = this.onChange.bind(this);
+            }
+
+            onChange(testValue) {
+                this.setState(() => ({ testValue }));
+            }
+
+            render() {
+                return (
+                    <Form>
+                        <Form.TextInput
+                            required={required}
+                            value={this.state.testValue}
+                            description={description}
+                            onChange={this.onChange}
+                        />
+                    </Form>
+                );
+            }
+        }
+
+        TestParent.propTypes = {
+            testValue:    React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]),
+            onChange:     React.PropTypes.func,
+            onValidation: React.PropTypes.func,
+        };
+
         const initialValue = 'this is first';
         const finalValue = 'this is second';
 
