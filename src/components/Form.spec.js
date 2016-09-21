@@ -28,7 +28,7 @@ the Form component
 describe('the Form component', () => {
 
     it('should be a form element', () => {
-        const component = shallow(<Form />);
+        const component = shallow(<Form>a child</Form>);
 
         expect(component.is('form')).to.equal(true);
         expect(component.is('form.form-inline')).to.equal(false);
@@ -36,14 +36,14 @@ describe('the Form component', () => {
     });
 
     it('should be a form.form-inline element', () => {
-        const component = shallow(<Form inline />);
+        const component = shallow(<Form inline>a child</Form>);
 
         expect(component.is('form.form-inline')).to.equal(true);
         expect(component.is('form.form-horizontal')).to.equal(false);
     });
 
     it('should be a form.form-horizontal element', () => {
-        const component = shallow(<Form horizontal />);
+        const component = shallow(<Form horizontal>a child</Form>);
 
         expect(component.is('form.form-inline')).to.equal(false);
         expect(component.is('form.form-horizontal')).to.equal(true);
