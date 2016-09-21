@@ -1,6 +1,7 @@
 // dependencies
 //
 import React from 'react';
+import update from 'react-addons-update';
 import classnames from 'classnames';
 import uniqueId from 'lodash/uniqueId';
 import isRegExp from 'lodash/isRegExp';
