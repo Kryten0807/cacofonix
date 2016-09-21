@@ -74,26 +74,28 @@ class TextInput extends React.Component {
      * @param  {Object} event The event object
      */
     onBlur() {
-        // get the new value, formatting it if necessary
-        //
-        const value = this.props.format ? this.props.format(this.state.value) : this.state.value;
+        if (!this.props.readOnly) {
+            // get the new value, formatting it if necessary
+            //
+            const value = this.props.format ? this.props.format(this.state.value) : this.state.value;
 
-        // determine if it's valid
-        //
-        const isValid = this.validate(value);
+            // determine if it's valid
+            //
+            const isValid = this.validate(value);
 
-        // set the `isValid` state
-        //
-        this.setState({ value, isValid });
+            // set the `isValid` state
+            //
+            this.setState({ value, isValid });
 
-        // call the `onChildValidationEvent` handler
-        //
-        this.context.onChildValidationEvent(this.id, true, isValid ? null : this.validationMessage);
+            // call the `onChildValidationEvent` handler
+            //
+            this.context.onChildValidationEvent(this.id, true, isValid ? null : this.validationMessage);
 
-        // call the `onChange` handler
-        //
-        if (this.props.onChange) {
-            this.props.onChange(value);
+            // call the `onChange` handler
+            //
+            if (this.props.onChange) {
+                this.props.onChange(value);
+            }
         }
     }
 
@@ -208,14 +210,15 @@ class TextInput extends React.Component {
 // set the property types for the component
 //
 TextInput.propTypes = {
-    required:               React.PropTypes.bool,
-    readOnly:               React.PropTypes.bool,
-    id:                     React.PropTypes.string,
-    value:                  React.PropTypes.string,
-    label:                  React.PropTypes.string,
-    description:            React.PropTypes.string,
-    validationMessage:      React.PropTypes.string,
-    pattern:                (props, propName, componentName) => {
+    required:          React.PropTypes.bool,
+    readOnly:          React.PropTypes.bool,
+    id:                React.PropTypes.string,
+    value:             React.PropTypes.string,
+    label:             React.PropTypes.string,
+    placeholder:       React.PropTypes.string,
+    description:       React.PropTypes.string,
+    validationMessage: React.PropTypes.string,
+    pattern:           (props, propName, componentName) => {
         if (props.pattern && !isRegExp(props.pattern) && !isFunction(props.pattern)) {
             return new Error(
                 `Invalid prop ${propName} supplied to ${componentName}` +
@@ -224,11 +227,10 @@ TextInput.propTypes = {
         }
         return null;
     },
-    format:                 React.PropTypes.func,
-    parse:                  React.PropTypes.func,
-    onChange:               React.PropTypes.func,
-    validationKey:          React.PropTypes.string,
-    onChildValidationEvent: React.PropTypes.func,
+    format:            React.PropTypes.func,
+    parse:             React.PropTypes.func,
+    onChange:          React.PropTypes.func,
+    validationKey:     React.PropTypes.string,
 };
 
 // set the context types for values received from higher up the food chain
