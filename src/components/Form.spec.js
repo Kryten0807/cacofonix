@@ -57,5 +57,24 @@ the Form component
 */
 describe('the Form component', () => {
 
-    it('should not show the alert message if initialized with a mix of valid & invalid values', () => {});
+    it('should not show the alert message if initialized with a mix of valid & invalid values', () => {
+        const label = 'my label';
+
+        const invalid = '';
+
+        const valid = 'triceratops';
+
+        const component = mount(
+            <Form>
+                <Form.TextInput required value={invalid} />
+                <Form.TextInput required value={invalid} />
+                <Form.TextInput required value={valid} />
+                <Form.SubmitButton label={label} />
+            </Form>
+        );
+
+        debug(component);
+
+        expect(component.find('Alert')).to.have.length(0);
+    });
 });
