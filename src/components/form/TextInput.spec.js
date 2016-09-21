@@ -1316,7 +1316,7 @@ describe('when changing (and blurring) the value of a TextInput with parent comp
                 <Form>
                     <Form.TextInput
                         required={required}
-                        value={this.props.testValue}
+                        value={this.state.testValue}
                         description={description}
                         onChange={this.onChange}
                     />
