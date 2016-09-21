@@ -208,14 +208,15 @@ class TextInput extends React.Component {
 // set the property types for the component
 //
 TextInput.propTypes = {
-    required:               React.PropTypes.bool,
-    readOnly:               React.PropTypes.bool,
-    id:                     React.PropTypes.string,
-    value:                  React.PropTypes.string,
-    label:                  React.PropTypes.string,
-    description:            React.PropTypes.string,
-    validationMessage:      React.PropTypes.string,
-    pattern:                (props, propName, componentName) => {
+    required:          React.PropTypes.bool,
+    readOnly:          React.PropTypes.bool,
+    id:                React.PropTypes.string,
+    value:             React.PropTypes.string,
+    label:             React.PropTypes.string,
+    placeholder:       React.PropTypes.string,
+    description:       React.PropTypes.string,
+    validationMessage: React.PropTypes.string,
+    pattern:           (props, propName, componentName) => {
         if (props.pattern && !isRegExp(props.pattern) && !isFunction(props.pattern)) {
             return new Error(
                 `Invalid prop ${propName} supplied to ${componentName}` +
@@ -224,10 +225,10 @@ TextInput.propTypes = {
         }
         return null;
     },
-    format:                 React.PropTypes.func,
-    parse:                  React.PropTypes.func,
-    onChange:               React.PropTypes.func,
-    validationKey:          React.PropTypes.string,
+    format:            React.PropTypes.func,
+    parse:             React.PropTypes.func,
+    onChange:          React.PropTypes.func,
+    validationKey:     React.PropTypes.string,
 };
 
 // set the context types for values received from higher up the food chain
