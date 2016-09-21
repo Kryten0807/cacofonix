@@ -94,4 +94,23 @@ describe('the Form component', () => {
 
         expect(component.find('Alert')).to.have.length(0);
     });
+
+    it('should not show the alert message if initialized with all invalid values', () => {
+        const label = 'my label';
+
+        const invalid = '';
+
+        const component = mount(
+            <Form>
+                <Form.TextInput required value={invalid} />
+                <Form.TextInput required value={invalid} />
+                <Form.TextInput required value={invalid} />
+                <Form.SubmitButton label={label} />
+            </Form>
+        );
+
+        expect(component.find('Alert')).to.have.length(0);
+    });
+
+
 });
