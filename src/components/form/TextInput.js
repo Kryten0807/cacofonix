@@ -6,7 +6,6 @@ import uniqueId from 'lodash/uniqueId';
 import isRegExp from 'lodash/isRegExp';
 import isFunction from 'lodash/isFunction';
 
-// @TODO placeholder
 // @TODO add different validation error messages for failing different rules
 // @TODO horizontal form - label & input element widths
 // @TODO permitted characters regex
@@ -190,6 +189,7 @@ class TextInput extends React.Component {
                     type="text"
                     id={this.id}
                     value={this.state.value}
+                    placeholder={this.props.placeholder}
                     className="form-control"
                     onBlur={this.onBlur}
                     onFocus={this.onFocus}

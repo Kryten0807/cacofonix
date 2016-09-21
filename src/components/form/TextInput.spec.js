@@ -24,6 +24,7 @@ a Form component with a TextInput element
     should include a <Form.TextInput> as a child
     should not include a label if label is omitted
     should include a label if the label is set
+    should include a placeholder if the placeholder is set
 */
 describe('a Form component with a TextInput element', () => {
 
@@ -60,7 +61,18 @@ describe('a Form component with a TextInput element', () => {
         expect(component.find('label').text()).to.equal(label);
     });
 
+    it('should include a placeholder if the placeholder is set', () => {
+        const placeholder = 'this is my placeholder';
 
+        const component = mount(
+            <Form>
+                <Form.TextInput placeholder={placeholder} />
+            </Form>
+        );
+
+        expect(component.find('input')).to.have.length(1);
+        expect(component.find('input').props().placeholder).to.equal(placeholder);
+    });
 });
 
 /* *****************************************************************************
