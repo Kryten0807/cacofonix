@@ -1604,6 +1604,7 @@ describe('when a TextInput with a calculated value is updated', () => {
                         required={required}
                         description={description}
                         value={this.state.testValue}
+                        onChange={this.onChange}
                     />
                 </Form>
             );
