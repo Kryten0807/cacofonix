@@ -1555,13 +1555,11 @@ describe('when the TextInput has a parse prop', () => {
         const expectedValue = newValue;
 
         const component = mount(
-            <Form>
-                <Form.TextInput
-                    required={required}
-                    value={initialValue}
-                    parse={parse}
-                />
-            </Form>
+            <Form.TextInput
+                required={required}
+                value={initialValue}
+                parse={parse}
+            />
         );
 
         component.find('input').simulate('focus');
