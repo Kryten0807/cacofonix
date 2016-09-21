@@ -228,7 +228,6 @@ TextInput.propTypes = {
     parse:                  React.PropTypes.func,
     onChange:               React.PropTypes.func,
     validationKey:          React.PropTypes.string,
-    onChildValidationEvent: React.PropTypes.func,
 };
 
 // set the context types for values received from higher up the food chain
