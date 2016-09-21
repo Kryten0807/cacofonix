@@ -1,17 +1,29 @@
 // dependencies
 //
 import React from 'react';
+import classnames from 'classnames';
 
 /**
  * The SubmitButton component
  * @param  {String}   label   The label to display in the button
+ * @param  {String}   style   The style with which to display the button
  * @param  {Function} onClick The `onClick` handler for the button
  * @param  {Boolean}  isValid A flag indicating whether the form to which this
  *                            button is attached is valid
  * @return {React.Element}    The React element describing this component
  */
-const SubmitButton = ({ label, onClick }, { isValid }) => (
-    <button className="btn btn-default" disabled={!isValid} onClick={onClick}>
+const SubmitButton = ({ label, style, onClick }, { isValid }) => (
+    <button
+        className={classnames('btn', {
+            'btn-danger':  style === 'danger' || style === 'error',
+            'btn-warning': style === 'warning' || style === 'warn',
+            'btn-info':    style === 'info',
+            'btn-success': style === 'success' || style === 'ok',
+            'btn-default': !style,
+        })}
+        disabled={!isValid}
+        onClick={onClick}
+    >
         {label || 'Submit'}
     </button>
 );
