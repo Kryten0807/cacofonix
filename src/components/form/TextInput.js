@@ -71,6 +71,15 @@ class TextInput extends React.Component {
             );
         }
     }
+
+    componentWillReceiveProps(newProps) {
+        // get the value from the event object
+        //
+        const value = this.props.format ? this.props.format(newProps.value) : newProps.value;
+
+        // update the component state
+        //
+        this.setState((state) => update(state, { value: { $set: value } }));
     }
 
     /**
