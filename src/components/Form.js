@@ -119,7 +119,7 @@ class Form extends React.Component {
         const errors = [];
 
         // iterate through the keys of the validation state and add non-null
-        // messages to the array
+        // messages for children which have validated to the array
         //
         Object.keys(this.state.validation).forEach((key) => {
             if (this.state.hasValidated[key] && this.state.validation[key]) {
