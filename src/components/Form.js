@@ -106,6 +106,25 @@ class Form extends React.Component {
         return true;
     }
 
+    allChildrenHaveValidated() {
+        // get the list of keys from the validation state
+        //
+        const keys = Object.keys(this.state.hasValidated);
+
+        // iterate over the list of keys
+        //
+        for (let idx = 0; idx < keys.length; idx++) {
+            if (!this.state.hasValidated[keys[idx]]) {
+                return false;
+            }
+        }
+
+        // if we get here, then none of the children have failed validation.
+        // Return true
+        //
+        return true;
+    }
+
     /**
      * Build a list of validation errors for the Form
      * @return {Array} An array of validation errors (possibly empty, if all
