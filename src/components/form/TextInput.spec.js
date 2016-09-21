@@ -1572,3 +1572,8 @@ describe('when the TextInput has a parse prop', () => {
     });
 
 });
+
+/* *****************************************************************************
+when a TextInput with a calculated value is updated
+    the value in the input element should change
+*/
