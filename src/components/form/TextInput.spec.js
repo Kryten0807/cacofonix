@@ -1444,13 +1444,11 @@ describe('when the TextInput has a format prop', () => {
         const expectedValue = format(newValue);
 
         const component = mount(
-            <Form>
-                <Form.TextInput
-                    required={required}
-                    value={initialValue}
-                    format={format}
-                />
-            </Form>
+            <Form.TextInput
+                required={required}
+                value={initialValue}
+                format={format}
+            />
         );
 
         component.find('input').simulate('change', {
