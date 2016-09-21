@@ -76,7 +76,7 @@ class Form extends React.Component {
 
         // update the Form component state
         //
-        this.setState(update(this.state, { validation, hasValidated }));
+        this.setState((state) => update(state, delta));
     }
 
     /**
