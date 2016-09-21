@@ -90,7 +90,8 @@ describe('a Form component containing a SubmitButton', () => {
         );
 
         expect(component.find('button')).to.have.length(1, 'button');
-        expect(component.find('button.btn.btn-default')).to.have.length(1, 'button.btn.btn-default');
+        expect(component.find('button.btn.btn-default'))
+            .to.have.length(1, 'button.btn.btn-default');
     });
 
     it('should be button.btn.btn-danger when style=danger', () => {
@@ -132,7 +133,8 @@ describe('a Form component containing a SubmitButton', () => {
         );
 
         expect(component.find('button')).to.have.length(1, 'button');
-        expect(component.find('button.btn.btn-warning')).to.have.length(1, 'button.btn.btn-warning');
+        expect(component.find('button.btn.btn-warning'))
+            .to.have.length(1, 'button.btn.btn-warning');
     });
 
     it('should be button.btn.btn-warning when style=warn', () => {
@@ -146,7 +148,8 @@ describe('a Form component containing a SubmitButton', () => {
         );
 
         expect(component.find('button')).to.have.length(1, 'button');
-        expect(component.find('button.btn.btn-warning')).to.have.length(1, 'button.btn.btn-warning');
+        expect(component.find('button.btn.btn-warning'))
+            .to.have.length(1, 'button.btn.btn-warning');
     });
 
     it('should be button.btn.btn-info when style=info', () => {
@@ -174,7 +177,8 @@ describe('a Form component containing a SubmitButton', () => {
         );
 
         expect(component.find('button')).to.have.length(1, 'button');
-        expect(component.find('button.btn.btn-success')).to.have.length(1, 'button.btn.btn-success');
+        expect(component.find('button.btn.btn-success'))
+            .to.have.length(1, 'button.btn.btn-success');
     });
 
     it('should be button.btn.btn-success when style=ok', () => {
@@ -188,7 +192,8 @@ describe('a Form component containing a SubmitButton', () => {
         );
 
         expect(component.find('button')).to.have.length(1, 'button');
-        expect(component.find('button.btn.btn-success')).to.have.length(1, 'button.btn.btn-success');
+        expect(component.find('button.btn.btn-success'))
+            .to.have.length(1, 'button.btn.btn-success');
     });
 });
 
