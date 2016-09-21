@@ -11,8 +11,18 @@ import classnames from 'classnames';
  *                            button is attached is valid
  * @return {React.Element}    The React element describing this component
  */
-    <button className="btn btn-default" disabled={!isValid} onClick={onClick}>
 const SubmitButton = ({ label, style, onClick }, { isValid }) => (
+    <button
+        className={classnames('btn', {
+            'btn-danger':  style === 'danger' || style === 'error',
+            'btn-warning': style === 'warning' || style === 'warn',
+            'btn-info':    style === 'info',
+            'btn-success': style === 'success' || style === 'ok',
+            'btn-default': !style,
+        })}
+        disabled={!isValid}
+        onClick={onClick}
+    >
         {label || 'Submit'}
     </button>
 );
