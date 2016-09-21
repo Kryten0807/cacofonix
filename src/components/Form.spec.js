@@ -56,7 +56,6 @@ the Form component
     should not show the alert message if initialized with a mix of valid & invalid values
     should not show the alert message if initialized with all valid values
     should not show the alert message if initialized with all invalid values
-
     should show an alert with a single error message when one child is blurred (1 invalid child)
     should show an alert with a single error message when one child is blurred (2 invalid children)
 */
