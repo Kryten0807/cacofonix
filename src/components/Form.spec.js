@@ -115,5 +115,69 @@ describe('the Form component', () => {
         expect(component.find('Alert')).to.have.length(0);
     });
 
+    it('should show an alert with a single error message when one child is blurred (1 invalid child)', () => {
+        const label = 'my label';
+
+        const descriptionForValid = 'this should not appear';
+        const descriptionForInvalid = 'should see this';
+
+        const initialValue = 'this is valid';
+
+        const newValue = '';
+
+        const component = mount(
+            <Form>
+                <Form.TextInput required id="1" description={descriptionForValid} value={initialValue} />
+                <Form.TextInput required id="2" description={descriptionForInvalid} value={initialValue} />
+                <Form.TextInput required id="3" description={descriptionForValid} value={initialValue} />
+                <Form.SubmitButton label={label} />
+            </Form>
+        );
+
+        expect(component.find('Alert')).to.have.length(0);
+
+        component.find('input[id="2"]').simulate('change', {
+            target: { value: newValue }
+        });
+
+        component.find('input[id="2"]').simulate('blur');
+
+        expect(component.find('Alert')).to.have.length(1);
+        expect(component.find('Alert').text()).to.not.contain(descriptionForValid)
+        expect(component.find('Alert').text()).to.contain(descriptionForInvalid)
+    });
+
+    it('should show an alert with a single error message when one child is blurred (2 invalid children)', () => {
+        const label = 'my label';
+
+        const descriptionForValid = 'this should not appear';
+        const descriptionForInvalid = 'should see this';
+
+        const valid = 'this is valid';
+        const invalid = '';
+
+        const newValue = '';
+
+        const component = mount(
+            <Form>
+                <Form.TextInput required id="1" description={descriptionForValid} value={valid} />
+                <Form.TextInput required id="2" description={descriptionForInvalid} value={valid} />
+                <Form.TextInput required id="3" description={descriptionForValid} value={invalid} />
+                <Form.SubmitButton label={label} />
+            </Form>
+        );
+
+        expect(component.find('Alert')).to.have.length(0);
+
+        component.find('input[id="2"]').simulate('change', {
+            target: { value: newValue }
+        });
+
+        component.find('input[id="2"]').simulate('blur');
+
+        expect(component.find('Alert')).to.have.length(1);
+        expect(component.find('Alert').text()).to.not.contain(descriptionForValid)
+        expect(component.find('Alert').text()).to.contain(descriptionForInvalid)
+    });
 
 });
