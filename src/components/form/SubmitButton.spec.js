@@ -78,7 +78,9 @@ describe('a Form component containing a SubmitButton', () => {
 /* *****************************************************************************
 given a Form containing a required TextInput and a SubmitButton
     after initialization with a valid value, the SubmitButton should be enabled
-    after initialization with an invalid value, the SubmitButton should be disabled
+    after initialization with several valid values, the SubmitButton should be enabled
+    after initialization with multiple invalid values, the SubmitButton should be disabled
+    after initialization with a mix of valid & invalid values, the SubmitButton should be disabled
     after changing from invalid to valid, the SubmitButton should be enabled
     after changing from valid to invalid, the SubmitButton should be disabled
 */
