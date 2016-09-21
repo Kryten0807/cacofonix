@@ -143,7 +143,10 @@ class TextInput extends React.Component {
         const value = event.target.value;
         // update the component state
         //
-        this.setState({ value });
+        this.setState((state) => update(state, {
+            value:     { $set: value },
+            isEditing: { $set: true },
+        }));
 
         // do we have an `onChange` handler? if so call it with the new value
         //
