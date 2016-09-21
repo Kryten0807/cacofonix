@@ -76,9 +76,7 @@ class TextInput extends React.Component {
     componentWillReceiveProps(newProps) {
         // get the value from the event object
         //
-        const value = (this.props.format && !this.state.isEditing)
-            ? this.props.format(newProps.value)
-            : newProps.value;
+        const value = newProps.value;
 
         // update the component state
         //
