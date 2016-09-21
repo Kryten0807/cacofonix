@@ -25,6 +25,7 @@ a Form component with a TextInput element
     should not include a label if label is omitted
     should include a label if the label is set
     should include a placeholder if the placeholder is set
+    should include the readonly flag when readonly is set
 */
 describe('a Form component with a TextInput element', () => {
 
@@ -73,6 +74,20 @@ describe('a Form component with a TextInput element', () => {
         expect(component.find('input')).to.have.length(1);
         expect(component.find('input').props().placeholder).to.equal(placeholder);
     });
+
+    it('should include the readonly flag when readonly is set', () => {
+        const readOnly = true;
+
+        const component = mount(
+            <Form>
+                <Form.TextInput readOnly={readOnly} />
+            </Form>
+        );
+
+        expect(component.find('input')).to.have.length(1);
+        expect(component.find('input').props().readOnly).to.equal(true);
+    });
+
 });
 
 /* *****************************************************************************

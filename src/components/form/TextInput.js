@@ -187,6 +187,7 @@ class TextInput extends React.Component {
                 {this.props.label ? <label htmlFor={this.id}>{this.props.label}</label> : ''}
                 <input
                     type="text"
+                    readOnly={!!this.props.readOnly}
                     id={this.id}
                     value={this.state.value}
                     placeholder={this.props.placeholder}
@@ -208,6 +209,7 @@ class TextInput extends React.Component {
 //
 TextInput.propTypes = {
     required:               React.PropTypes.bool,
+    readOnly:               React.PropTypes.bool,
     id:                     React.PropTypes.string,
     value:                  React.PropTypes.string,
     label:                  React.PropTypes.string,
