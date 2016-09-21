@@ -6,6 +6,7 @@ import classnames from 'classnames';
 /**
  * The SubmitButton component
  * @param  {String}   label   The label to display in the button
+ * @param  {String}   style   The style with which to display the button
  * @param  {Function} onClick The `onClick` handler for the button
  * @param  {Boolean}  isValid A flag indicating whether the form to which this
  *                            button is attached is valid
