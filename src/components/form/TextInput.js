@@ -34,7 +34,8 @@ class TextInput extends React.Component {
             isValid: true,
         };
 
-        // generate a unique ID for this component instance
+        // generate a unique ID for this component instance if an ID prop has
+        // not been provided
         //
         this.id = this.props.id || uniqueId('form-textinput-');
 
