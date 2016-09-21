@@ -190,6 +190,7 @@ class TextInput extends React.Component {
                     type="text"
                     id={this.id}
                     value={this.state.value}
+                    placeholder={this.props.placeholder}
                     className="form-control"
                     onBlur={this.onBlur}
                     onFocus={this.onFocus}
