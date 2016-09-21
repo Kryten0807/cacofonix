@@ -15,13 +15,15 @@ class Dropdown extends React.Component {
 
     onChange(event) {
         if (this.props.onChange) {
-            this.props.onChange(this.isValid(event.target.value) ? event.target.value : this.props.options[0].value);
+            this.props.onChange(
+                this.isValid(event.target.value)
+                    ? event.target.value
+                    : this.props.options[0].value
+            );
         }
     }
 
     isValid(value = this.props.value) {
-        const validOptions = this.props.options.map((opt) => opt.value);
-
         return this.props.options.findIndex((opt) => opt.value === value) !== -1;
     }
 
@@ -30,7 +32,12 @@ class Dropdown extends React.Component {
         const label = this.props.label ? <label htmlFor={this.id}>{this.props.label}</label> : null;
 
         const select = (
-            <select id={this.id} className="form-control" value={this.isValid() ? this.props.value : this.props.options[0].value} onChange={this.onChange}>
+            <select
+                id={this.id}
+                className="form-control"
+                value={this.isValid() ? this.props.value : this.props.options[0].value}
+                onChange={this.onChange}
+            >
                 {this.props.options.map((opt) =>
                     <option key={uniqueId('form-dropdown-option-')} value={opt.value}>
                         {opt.name}
