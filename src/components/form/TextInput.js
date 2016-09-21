@@ -126,7 +126,10 @@ class TextInput extends React.Component {
         if (this.props.parse && !this.props.readOnly) {
             // yes! parse the value before editing begins
             //
-            this.setState({ value: this.props.parse(this.state.value) });
+            this.setState((state) => update(state, {
+                value:     { $set: this.props.parse(this.state.value) },
+                isEditing: { $set: true },
+            }));
         }
     }
 
