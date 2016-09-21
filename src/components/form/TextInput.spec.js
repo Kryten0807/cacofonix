@@ -1579,5 +1579,50 @@ when a TextInput with a calculated value is updated
 */
 describe('when a TextInput with a calculated value is updated', () => {
 
-    it('the value in the input element should change', () => {});
+    const required = false;
+    const description = 'gibberish';
+
+    class TestParent extends React.Component {
+        constructor(props) {
+            super(props);
+
+            this.state = {
+                testValue: props.testValue || '',
+            };
+        }
+
+        render() {
+            return (
+                <Form>
+                    <Form.TextInput
+                        required={required}
+                        description={description}
+                        value={this.state.testValue}
+                    />
+                </Form>
+            );
+        }
+    }
+
+    TestParent.propTypes = {
+        testValue:    React.PropTypes.string,
+        onChange:     React.PropTypes.func,
+        onValidation: React.PropTypes.func,
+    };
+
+    it('the value in the input element should change', () => {
+
+        const initialValue = 'before';
+        const newValue = 'after';
+
+        const parent = mount(<TestParent testValue={initialValue} />);
+
+        expect(parent.find('input').props().value).to.equal(initialValue);
+
+        // change the state of the parent
+        //
+        parent.setState({ testValue: newValue });
+
+        expect(parent.find('input').props().value).to.equal(newValue);
+    });
 });
