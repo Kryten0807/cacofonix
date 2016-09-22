@@ -11,8 +11,10 @@ const CheckboxGroup = ({ label, options }) => (
         }
         {options.map((opt) =>
             <div key={uniqueId('form-checkboxgroup-option-')} className="checkbox">
-                <label>{opt.name}</label>
+                <label>
                     <input type="checkbox" value={opt.value} />
+                    <span>{opt.name}</span>
+                </label>
             </div>
         )}
     </div>
