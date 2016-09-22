@@ -73,6 +73,10 @@ class TextInput extends React.Component {
         }
     }
 
+    /**
+     * Handle new props received from parent components
+     * @param  {Object} newProps The new properties for the component
+     */
     componentWillReceiveProps(newProps) {
         // get the value from the event object
         //
