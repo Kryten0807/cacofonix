@@ -17,10 +17,10 @@ class RadioButtonGroup extends React.Component {
                 : `${this.props.options[0].value}`,
         };
 
-        this.onClick = this.onClick.bind(this);
+        this.onChange = this.onChange.bind(this);
     }
 
-    onClick(event) {
+    onChange(event) {
         const value = `${event.target.value}`;
 
         if (value !== this.state.value) {
@@ -52,7 +52,7 @@ class RadioButtonGroup extends React.Component {
                                 name={this.id}
                                 value={opt.value}
                                 checked={this.state.value === opt.value}
-                                onClick={this.onClick}
+                                onChange={this.onChange}
                             />
                             <span>{opt.name}</span>
                         </label>
