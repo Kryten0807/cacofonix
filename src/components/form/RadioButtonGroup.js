@@ -3,9 +3,6 @@
 import React from 'react';
 import uniqueId from 'lodash/uniqueId';
 
-
-    </div>
-
 class RadioButtonGroup extends React.Component {
     constructor(props) {
         super(props);
