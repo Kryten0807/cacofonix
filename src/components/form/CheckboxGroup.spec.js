@@ -57,7 +57,22 @@ describe('a Form component containing a CheckboxGroup', () => {
             </Form>
         );
 
-    // it('should contain a label if the label prop is set', () => {});
+        expect(component.find('div.form-group')).to.have.length(1);
+    });
+
+    it('should contain a label if the label prop is set', () => {
+
+        const label = 'humpty dumpty';
+
+        const component = mount(
+            <Form>
+                <Form.CheckboxGroup label={label} options={options} />
+            </Form>
+        );
+
+        expect(component.find('label')).to.have.length(1);
+        expect(component.find('label').text()).to.equal(label);
+    });
 
     // it('should not contain a label if the label prop is not set', () => {});
 
