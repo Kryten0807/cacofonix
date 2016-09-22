@@ -32,10 +32,16 @@ a Form component containing a RadioButtonGroup
 */
 describe('a Form component containing a RadioButtonGroup', () => {
 
+    const options = [
+        { value: '1', name: 'One' },
+        { value: '2', name: 'Two' },
+        { value: '3', name: 'Three' },
+    ];
+
     it('should include a <Form.RadioButtonGroup> as a child', () => {
         const component = shallow(
             <Form>
-                <Form.RadioButtonGroup />
+                <Form.RadioButtonGroup options={options} />
             </Form>
         );
 
@@ -48,7 +54,7 @@ describe('a Form component containing a RadioButtonGroup', () => {
 
         const component = mount(
             <Form>
-                <Form.RadioButtonGroup label={label}/>
+                <Form.RadioButtonGroup label={label} options={options} />
             </Form>
         );
 
@@ -60,7 +66,7 @@ describe('a Form component containing a RadioButtonGroup', () => {
 
         const component = mount(
             <Form>
-                <Form.RadioButtonGroup />
+                <Form.RadioButtonGroup options={options} />
             </Form>
         );
 
