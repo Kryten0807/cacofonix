@@ -126,6 +126,28 @@ describe('a Form component containing a RadioButtonGroup', () => {
         expect(component.find('div.radio input[type="radio"]').at(1).props().value).to.equal(options[1].value);
         expect(component.find('div.radio input[type="radio"]').at(2).props().value).to.equal(options[2].value);
     });
+
+    it('should select the first item if the value prop is not set', () => {
+
+        const label = 'peter piper';
+
+        const component = mount(
+            <Form>
+                <Form.RadioButtonGroup label={label} options={options} />
+            </Form>
+        );
+
+        expect(component.find('div.radio input[type="radio"]')).to.have.length(options.length);
+        expect(component.find('div.radio input[type="radio"]').at(0).props().checked).to.equal(true);
+        expect(component.find('div.radio input[type="radio"]').at(1).props().checked).to.equal(false);
+        expect(component.find('div.radio input[type="radio"]').at(2).props().checked).to.equal(false);
+    });
+
+    // it('should select the first item if the value prop is invalid', () => {});
+
+    // it('should select the appropriate item if the value prop is set to a valid value', () => {});
+
+
 });
 
 /* *****************************************************************************
