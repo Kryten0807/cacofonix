@@ -23,7 +23,7 @@ class RadioButtonGroup extends React.Component {
                 {options.map((opt) => (
                     <div key={uniqueId('form-radiobuttongroup-option-')} className="radio">
                         <label>
-                            <input type="radio" name={this.id} value={opt.value} />
+                            <input type="radio" name={this.id} value={opt.value} checked={this.state.value === opt.value} />
                             <span>{opt.name}</span>
                         </label>
                     </div>
