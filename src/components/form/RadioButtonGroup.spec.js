@@ -73,5 +73,15 @@ describe('a Form component containing a RadioButtonGroup', () => {
         expect(component.find('label')).to.have.length(0);
     });
 
+    it('should include a div.radio for each option', () => {
+
+        const component = mount(
+            <Form>
+                <Form.RadioButtonGroup options={options} />
+            </Form>
+        );
+
+        expect(component.find('div.radio')).to.have.length(options.length);
+    });
 
 });
