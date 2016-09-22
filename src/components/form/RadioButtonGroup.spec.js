@@ -58,8 +58,8 @@ describe('a Form component containing a RadioButtonGroup', () => {
             </Form>
         );
 
-        expect(component.find('label')).to.have.length(1);
-        expect(component.find('label').text()).to.equal(label);
+        expect(component.find('label.radiobuttongroup')).to.have.length(1);
+        expect(component.find('label.radiobuttongroup').text()).to.equal(label);
     });
 
     it('should not include a label if the label prop is not set', () => {
@@ -70,7 +70,7 @@ describe('a Form component containing a RadioButtonGroup', () => {
             </Form>
         );
 
-        expect(component.find('label')).to.have.length(0);
+        expect(component.find('label.radiobuttongroup')).to.have.length(0);
     });
 
     it('should include a div.radio for each option', () => {
