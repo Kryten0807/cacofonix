@@ -191,6 +191,12 @@ when a radio button in the group is clicked
 describe('when a radio button in the group is clicked', () => {
 
     // it('the onChange handler should be called if a new value is clicked', () => {});
+    const options = [
+        { value: '1', name: 'One' },
+        { value: '2', name: 'Two' },
+        { value: '3', name: 'Three' },
+    ];
+
 
     // it('the onChange handler should not be called if the same value is clicked', () => {});
 
