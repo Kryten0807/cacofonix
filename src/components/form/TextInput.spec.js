@@ -1752,6 +1752,47 @@ when a TextInput with a parent component is hidden or shown
 */
 describe('when a TextInput with a parent component is hidden or shown', () => {
 
+    const required = false;
+    const description = 'gibberish';
+
+    class TestParent extends React.Component {
+        constructor(props) {
+            super(props);
+
+            this.state = {
+                testValue: props.testValue || '',
+                hidden:    !!props.textValue,
+            };
+
+            this.onChange = this.onChange.bind(this);
+        }
+
+        onChange(testValue) {
+            this.setState({ testValue });
+        }
+
+        render() {
+            return (
+                <Form>
+                    <Form.TextInput
+                        hidden={this.state.hidden}
+                        required={required}
+                        description={description}
+                        value={this.state.testValue}
+                        onChange={this.onChange}
+                    />
+                </Form>
+            );
+        }
+    }
+
+    TestParent.propTypes = {
+        hidden:       React.PropTypes.bool,
+        testValue:    React.PropTypes.string,
+        onChange:     React.PropTypes.func,
+        onValidation: React.PropTypes.func,
+    };
+
     // it('should hide the component when the hidden prop is changed to true', () => {});
 
     // it('should show the component when the hidden prop is changed to false', () => {});
