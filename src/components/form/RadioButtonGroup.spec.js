@@ -24,6 +24,8 @@ const debug = (component) => {
 /* *****************************************************************************
 a Form component containing a RadioButtonGroup
     should include a <Form.RadioButtonGroup> as a child
+    should include a label if the label prop is set
+    should include a not label if the label prop is not set
 */
 describe('a Form component containing a RadioButtonGroup', () => {
 
