@@ -188,13 +188,37 @@ when a radio button in the group is clicked
 */
 describe('when a radio button in the group is clicked', () => {
 
-    // it('the onChange handler should be called if a new value is clicked', () => {});
     const options = [
         { value: '1', name: 'One' },
         { value: '2', name: 'Two' },
         { value: '3', name: 'Three' },
     ];
 
+    it('the onChange handler should be called if a new value is clicked', () => {
+
+        const onChange = sinon.spy();
+
+        const label = 'little miss muffet';
+
+        const value = '1';
+
+        const clickedItem = 2;
+
+        const component = mount(
+            <Form>
+                <Form.RadioButtonGroup label={label} options={options} value={value} onChange={onChange} />
+            </Form>
+        );
+
+        expect(onChange.callCount).to.equal(0);
+
+        component.find('div.radio input[type="radio"]').at(1).simulate('click', {
+            target: { value: options[clickedItem].value }
+        });
+
+        expect(onChange.callCount).to.equal(1);
+        expect(onChange.calledWith(options[clickedItem].value)).to.equal(true);
+    });
 
     // it('the onChange handler should not be called if the same value is clicked', () => {});
 
