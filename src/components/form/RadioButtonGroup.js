@@ -16,6 +16,14 @@ class RadioButtonGroup extends React.Component {
                 ? `${this.props.value}`
                 : `${this.props.options[0].value}`,
         };
+
+        this.onClick = this.onClick.bind(this);
+    }
+
+    onClick(event) {
+        if (this.props.onChange) {
+            this.props.onChange(event.target.value);
+        }
     }
 
     isPermittedValue(value) {
