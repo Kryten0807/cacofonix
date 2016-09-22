@@ -16,6 +16,10 @@ class RadioButtonGroup extends React.Component {
         };
     }
 
+    isPermittedValue(value) {
+        return this.permittedValues.findIndex((val) => val === `${value}`) !== -1;
+    }
+
     render() {
         const { label, options } = this.props;
 
