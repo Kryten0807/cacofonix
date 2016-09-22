@@ -12,7 +12,9 @@ class RadioButtonGroup extends React.Component {
         this.permittedValues = this.props.options.map((opt) => `${opt.value}`);
 
         this.state = {
-            value: this.props.options[0].value,
+            value: this.isPermittedValue(this.props.value)
+                ? `${this.props.value}`
+                : `${this.props.options[0].value}`,
         };
     }
 
