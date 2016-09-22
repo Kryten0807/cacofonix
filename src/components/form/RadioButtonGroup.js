@@ -54,4 +54,16 @@ class RadioButtonGroup extends React.Component {
     }
 }
 
+// define the property types for the component
+//
+RadioButtonGroup.propTypes = {
+    label:    React.PropTypes.string,
+    options:  React.PropTypes.array,
+    value:    React.PropTypes.oneOfType([
+        React.PropTypes.string,
+        React.PropTypes.number,
+    ]),
+    onChange: React.PropTypes.func,
+};
+
 export default RadioButtonGroup;
