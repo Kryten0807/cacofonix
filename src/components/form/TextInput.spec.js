@@ -1750,3 +1750,11 @@ when a TextInput with a parent component is hidden or shown
     should hide the component when the hidden prop is changed to true
     should show the component when the hidden prop is changed to false
 */
+describe('when a TextInput with a parent component is hidden or shown', () => {
+
+    // it('should hide the component when the hidden prop is changed to true', () => {});
+
+    // it('should show the component when the hidden prop is changed to false', () => {});
+
+});
+
