@@ -7,6 +7,7 @@ import classnames from 'classnames';
 
 import Alert from './Alert';
 import Dropdown from './form/Dropdown';
+import RadioButtonGroup from './form/RadioButtonGroup';
 import SubmitButton from './form/SubmitButton';
 import TextInput from './form/TextInput';
 
@@ -192,6 +193,7 @@ Form.childContextTypes = {
 // package
 //
 Form.Dropdown = Dropdown;
+Form.RadioButtonGroup = RadioButtonGroup;
 Form.SubmitButton = SubmitButton;
 Form.TextInput = TextInput;
 
