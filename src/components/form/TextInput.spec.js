@@ -95,6 +95,17 @@ describe('a Form component with a TextInput element', () => {
         expect(component.find('input').props().readOnly).to.equal(true);
     });
 
+    it('should not be visible when hidden is set', () => {
+        const hidden = true;
+
+        const component = mount(
+            <Form>
+                <Form.TextInput hidden={hidden} />
+            </Form>
+        );
+
+        expect(component.find('input')).to.have.length(0);
+    });
 });
 
 /* *****************************************************************************
