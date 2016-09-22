@@ -27,5 +27,13 @@ a Form component containing a RadioButtonGroup
 */
 describe('a Form component containing a RadioButtonGroup', () => {
 
-    it('should include a <Form.RadioButtonGroup> as a child', () => {});
+    it('should include a <Form.RadioButtonGroup> as a child', () => {
+        const component = shallow(
+            <Form>
+                <Form.RadioButtonGroup />
+            </Form>
+        );
+
+        expect(component.find(Form.RadioButtonGroup)).to.have.length(1);
+    });
 });
