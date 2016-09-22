@@ -1761,7 +1761,7 @@ describe('when a TextInput with a parent component is hidden or shown', () => {
 
             this.state = {
                 testValue: props.testValue || '',
-                hidden:    !!props.textValue,
+                hidden:    !!props.hidden,
             };
 
             this.onChange = this.onChange.bind(this);
