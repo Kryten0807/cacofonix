@@ -17,6 +17,12 @@ const debug = (component) => {
     console.info(component.debug());
     console.info('------------------------------------------------------------');
 };
+
+const dump = (value, title = null) => {
+    console.info(`---${title || ''}---------------------------------------------------------`);
+    console.info(value);
+    console.info('------------------------------------------------------------');
+};
 /* eslint-enable no-unused-vars */
 
 /* *****************************************************************************
@@ -1284,48 +1290,53 @@ describe('when changing (and blurring) the value of a required TextInput ' +
 /* *****************************************************************************
 when changing (and blurring) the value of a TextInput with parent component
     should maintain the correct value in the input element
+    should have the correct value in the input element throughout the editing process
 */
 describe('when changing (and blurring) the value of a TextInput with parent component', () => {
 
-    const required = true;
-    const description = 'mumble mumble';
-
-    class TestParent extends React.Component {
-        constructor(props) {
-            super(props);
-
-            this.state = {
-                testValue: props.testValue || '',
-            };
-
-            this.onChange = this.onChange.bind(this);
-        }
-
-        onChange(testValue) {
-            this.setState({ testValue });
-        }
-
-        render() {
-            return (
-                <Form>
-                    <Form.TextInput
-                        required={required}
-                        value={this.props.testValue}
-                        description={description}
-                        onChange={this.onChange}
-                    />
-                </Form>
-            );
-        }
-    }
-
-    TestParent.propTypes = {
-        testValue:    React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]),
-        onChange:     React.PropTypes.func,
-        onValidation: React.PropTypes.func,
-    };
-
     it('should maintain the correct value in the input element', () => {
+
+        const required = true;
+        const description = 'mumble mumble';
+
+        class TestParent extends React.Component {
+            constructor(props) {
+                super(props);
+
+                this.state = {
+                    testValue: props.testValue || '',
+                };
+
+                this.onChange = this.onChange.bind(this);
+            }
+
+            onChange(testValue) {
+                this.setState(() => ({ testValue }));
+            }
+
+            render() {
+                return (
+                    <Form>
+                        <Form.TextInput
+                            required={required}
+                            value={this.state.testValue}
+                            description={description}
+                            onChange={this.onChange}
+                        />
+                    </Form>
+                );
+            }
+        }
+
+        TestParent.propTypes = {
+            testValue:    React.PropTypes.oneOfType([
+                React.PropTypes.string,
+                React.PropTypes.number,
+            ]),
+            onChange:     React.PropTypes.func,
+            onValidation: React.PropTypes.func,
+        };
+
         const initialValue = 'this is first';
         const finalValue = 'this is second';
 
@@ -1341,12 +1352,104 @@ describe('when changing (and blurring) the value of a TextInput with parent comp
             target: { value: finalValue }
         });
 
-        component.find('input').simulate('blur', {
-            target: { value: finalValue }
-        });
+        component.find('input').simulate('blur');
 
         expect(component.find('input').props().value).to.equal(finalValue, 'finalValue');
         expect(component.state().testValue).to.equal(finalValue, 'state - finalValue');
+    });
+
+    it('should have the correct value in the input element throughout the editing process', () => {
+
+        const formatCurrency = (value) => {
+            const val = parseFloat(`${value}`);
+
+            return Number.isNaN(val) ? '' : `$ ${val.toFixed(2)}`;
+        };
+
+        const parseCurrency = (value) => {
+            const val = parseFloat(`${value}`.replace(/[^\d.-]/g, ''));
+
+            return Number.isNaN(val) ? '' : `${val.toFixed(2)}`;
+        };
+
+        const required = true;
+        const description = 'mumble mumble';
+
+        class TestParent extends React.Component {
+            constructor(props) {
+                super(props);
+
+                this.state = {
+                    testValue: props.testValue || '',
+                };
+
+                this.onChange = this.onChange.bind(this);
+            }
+
+            onChange(testValue) {
+                this.setState(() => ({ testValue }));
+            }
+
+            render() {
+                return (
+                    <Form>
+                        <Form.TextInput
+                            required={required}
+                            value={this.state.testValue}
+                            description={description}
+                            format={formatCurrency}
+                            parse={parseCurrency}
+                            onChange={this.onChange}
+                        />
+                    </Form>
+                );
+            }
+        }
+
+        TestParent.propTypes = {
+            testValue:    React.PropTypes.oneOfType([
+                React.PropTypes.string,
+                React.PropTypes.number,
+            ]),
+            onChange:     React.PropTypes.func,
+            onValidation: React.PropTypes.func,
+        };
+
+        const initialValue = '10.00';
+
+        const edits = [
+            '',
+            '9',
+            '99',
+            '999',
+            '999.',
+            '999.1',
+            '999.10',
+        ];
+
+        const finalValue = '999.10';
+
+        const component = mount(<TestParent testValue={initialValue} />);
+
+        expect(component.find('input').props().value)
+            .to.equal(formatCurrency(initialValue), 'input - initialValue');
+
+        edits.forEach((edit) => {
+            component.find('input').simulate('change', {
+                target: { value: edit }
+            });
+
+            expect(component.find('input').props().value).to.equal(edit, `edit ${edit}`);
+        });
+
+        component.find('input').simulate('blur');
+
+        expect(component.find('input').props().value)
+            .to.equal(formatCurrency(finalValue), 'input - final value');
+
+        component.find('input').simulate('focus');
+
+        expect(component.find('input').props().value).to.equal(finalValue, 'state - finalValue');
     });
 
 });
@@ -1438,13 +1541,11 @@ describe('when the TextInput has a format prop', () => {
         const expectedValue = format(newValue);
 
         const component = mount(
-            <Form>
-                <Form.TextInput
-                    required={required}
-                    value={initialValue}
-                    format={format}
-                />
-            </Form>
+            <Form.TextInput
+                required={required}
+                value={initialValue}
+                format={format}
+            />
         );
 
         component.find('input').simulate('change', {
@@ -1551,13 +1652,11 @@ describe('when the TextInput has a parse prop', () => {
         const expectedValue = newValue;
 
         const component = mount(
-            <Form>
-                <Form.TextInput
-                    required={required}
-                    value={initialValue}
-                    parse={parse}
-                />
-            </Form>
+            <Form.TextInput
+                required={required}
+                value={initialValue}
+                parse={parse}
+            />
         );
 
         component.find('input').simulate('focus');
@@ -1579,5 +1678,57 @@ when a TextInput with a calculated value is updated
 */
 describe('when a TextInput with a calculated value is updated', () => {
 
-    it('the value in the input element should change', () => {});
+    const required = false;
+    const description = 'gibberish';
+
+    class TestParent extends React.Component {
+        constructor(props) {
+            super(props);
+
+            this.state = {
+                testValue: props.testValue || '',
+            };
+
+            this.onChange = this.onChange.bind(this);
+        }
+
+        onChange(testValue) {
+            this.setState({ testValue });
+        }
+
+        render() {
+            return (
+                <Form>
+                    <Form.TextInput
+                        required={required}
+                        description={description}
+                        value={this.state.testValue}
+                        onChange={this.onChange}
+                    />
+                </Form>
+            );
+        }
+    }
+
+    TestParent.propTypes = {
+        testValue:    React.PropTypes.string,
+        onChange:     React.PropTypes.func,
+        onValidation: React.PropTypes.func,
+    };
+
+    it('the value in the input element should change', () => {
+
+        const initialValue = 'before';
+        const newValue = 'after';
+
+        const parent = mount(<TestParent testValue={initialValue} />);
+
+        expect(parent.find('input').props().value).to.equal(initialValue);
+
+        // change the state of the parent
+        //
+        parent.setState({ testValue: newValue });
+
+        expect(parent.find('input').props().value).to.equal(newValue);
+    });
 });

@@ -1,6 +1,7 @@
 // dependencies
 //
 import React from 'react';
+import update from 'react-addons-update';
 import classnames from 'classnames';
 import uniqueId from 'lodash/uniqueId';
 import isRegExp from 'lodash/isRegExp';
@@ -30,7 +31,8 @@ class TextInput extends React.Component {
         //
         this.state = {
             value,
-            isValid: true,
+            isValid:   true,
+            isEditing: false,
         };
 
         // generate a unique ID for this component instance if an ID prop has
@@ -62,11 +64,23 @@ class TextInput extends React.Component {
         // `hasValidated`=false, just to ensure that the parent knows about this
         // child
         //
-        this.context.onChildValidationEvent(
-            this.id,
-            false,
-            isValid ? null : this.validationMessage
-        );
+        if (this.context.onChildValidationEvent) {
+            this.context.onChildValidationEvent(
+                this.id,
+                false,
+                isValid ? null : this.validationMessage
+            );
+        }
+    }
+
+    componentWillReceiveProps(newProps) {
+        // get the value from the event object
+        //
+        const value = newProps.value;
+
+        // update the component state
+        //
+        this.setState((state) => update(state, { value: { $set: value } }));
     }
 
     /**
@@ -74,28 +88,32 @@ class TextInput extends React.Component {
      * @param  {Object} event The event object
      */
     onBlur() {
-        if (!this.props.readOnly) {
-            // get the new value, formatting it if necessary
-            //
-            const value = this.props.format ? this.props.format(this.state.value) : this.state.value;
+        // get the value
+        //
+        const value = this.state.value;
 
-            // determine if it's valid
-            //
-            const isValid = this.validate(value);
+        // determine if it's valid
+        //
+        const isValid = this.validate(value);
 
-            // set the `isValid` state
-            //
-            this.setState({ value, isValid });
+        // set the `isValid` state
+        //
+        this.setState(() => ({ value, isValid, isEditing: false }));
 
-            // call the `onChildValidationEvent` handler
-            //
-            this.context.onChildValidationEvent(this.id, true, isValid ? null : this.validationMessage);
+        // call the `onChildValidationEvent` handler
+        //
+        if (this.context.onChildValidationEvent) {
+            this.context.onChildValidationEvent(
+                this.id,
+                true,
+                isValid ? null : this.validationMessage
+            );
+        }
 
-            // call the `onChange` handler
-            //
-            if (this.props.onChange) {
-                this.props.onChange(value);
-            }
+        // call the `onChange` handler
+        //
+        if (this.props.onChange) {
+            this.props.onChange(value);
         }
     }
 
@@ -108,7 +126,10 @@ class TextInput extends React.Component {
         if (this.props.parse && !this.props.readOnly) {
             // yes! parse the value before editing begins
             //
-            this.setState({ value: this.props.parse(this.state.value) });
+            this.setState((state) => update(state, {
+                value:     { $set: this.props.parse(this.state.value) },
+                isEditing: { $set: true },
+            }));
         }
     }
 
@@ -120,10 +141,12 @@ class TextInput extends React.Component {
         // get the value from the event object
         //
         const value = event.target.value;
-
         // update the component state
         //
-        this.setState({ value });
+        this.setState((state) => update(state, {
+            value:     { $set: value },
+            isEditing: { $set: true },
+        }));
 
         // do we have an `onChange` handler? if so call it with the new value
         //
@@ -184,6 +207,10 @@ class TextInput extends React.Component {
      * @return {React.Element} The React element describing the component
      */
     render() {
+        const value = (this.props.format && !this.state.isEditing)
+            ? this.props.format(this.state.value)
+            : this.state.value;
+
         return (
             <div className={classnames('form-group', { 'has-error': !this.state.isValid })}>
                 {this.props.label ? <label htmlFor={this.id}>{this.props.label}</label> : ''}
@@ -191,7 +218,7 @@ class TextInput extends React.Component {
                     type="text"
                     readOnly={!!this.props.readOnly}
                     id={this.id}
-                    value={this.state.value}
+                    value={value}
                     placeholder={this.props.placeholder}
                     className="form-control"
                     onBlur={this.onBlur}
