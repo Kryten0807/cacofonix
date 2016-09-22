@@ -24,6 +24,13 @@ const debug = (component) => {
 /* *****************************************************************************
 a Form component containing a CheckboxGroup
     should include a <Form.CheckboxGroup> as a child
+    should contain a div.form-group
+    should contain a label if the label prop is set
+    should not contain a label if the label prop is not set
+    should contain a div.checkbox for each option
+    should contain a label for each option
+    should contain an input[type="checkbox"] for each option
+    should contain a span with the option name for each option
 */
 describe('a Form component containing a CheckboxGroup', () => {
 
