@@ -21,8 +21,13 @@ class RadioButtonGroup extends React.Component {
     }
 
     onClick(event) {
-        if (this.props.onChange) {
-            this.props.onChange(event.target.value);
+        const value = `${event.target.value}`;
+
+        if (value !== this.state.value) {
+            this.setState({ value });
+            if (this.props.onChange) {
+                this.props.onChange(event.target.value);
+            }
         }
     }
 
