@@ -20,3 +20,8 @@ const debug = (component) => {
     console.info('------------------------------------------------------------');
 };
 /* eslint-enable no-unused-vars */
+
+/* *****************************************************************************
+a Form component containing a RadioButtonGroup
+    should include a <Form.RadioButtonGroup> as a child
+*/
