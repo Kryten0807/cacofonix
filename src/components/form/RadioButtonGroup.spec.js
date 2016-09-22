@@ -30,6 +30,9 @@ a Form component containing a RadioButtonGroup
     should include a label for each option
     should include a span containing the option name for each option
     should include an input[type="radio"] for each option
+    should select the first item if the value prop is not set
+    should select the first item if the value prop is invalid
+    should select the appropriate item if the value prop is set to a valid value
 */
 describe('a Form component containing a RadioButtonGroup', () => {
 
