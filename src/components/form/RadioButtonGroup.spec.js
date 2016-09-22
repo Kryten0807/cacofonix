@@ -5,7 +5,7 @@
 /* eslint-disable no-unused-expressions */
 
 import React from 'react';
-import { shallow, render, mount } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import chai from 'chai';
 import sinon from 'sinon';
 
@@ -122,9 +122,12 @@ describe('a Form component containing a RadioButtonGroup', () => {
         );
 
         expect(component.find('div.radio input[type="radio"]')).to.have.length(options.length);
-        expect(component.find('div.radio input[type="radio"]').at(0).props().value).to.equal(options[0].value);
-        expect(component.find('div.radio input[type="radio"]').at(1).props().value).to.equal(options[1].value);
-        expect(component.find('div.radio input[type="radio"]').at(2).props().value).to.equal(options[2].value);
+        expect(component.find('div.radio input[type="radio"]').at(0).props().value)
+            .to.equal(options[0].value);
+        expect(component.find('div.radio input[type="radio"]').at(1).props().value)
+            .to.equal(options[1].value);
+        expect(component.find('div.radio input[type="radio"]').at(2).props().value)
+            .to.equal(options[2].value);
     });
 
     it('should select the first item if the value prop is not set', () => {
@@ -138,9 +141,12 @@ describe('a Form component containing a RadioButtonGroup', () => {
         );
 
         expect(component.find('div.radio input[type="radio"]')).to.have.length(options.length);
-        expect(component.find('div.radio input[type="radio"]').at(0).props().checked).to.equal(true);
-        expect(component.find('div.radio input[type="radio"]').at(1).props().checked).to.equal(false);
-        expect(component.find('div.radio input[type="radio"]').at(2).props().checked).to.equal(false);
+        expect(component.find('div.radio input[type="radio"]').at(0).props().checked)
+            .to.equal(true);
+        expect(component.find('div.radio input[type="radio"]').at(1).props().checked)
+            .to.equal(false);
+        expect(component.find('div.radio input[type="radio"]').at(2).props().checked)
+            .to.equal(false);
     });
 
     it('should select the first item if the value prop is invalid', () => {
@@ -156,9 +162,12 @@ describe('a Form component containing a RadioButtonGroup', () => {
         );
 
         expect(component.find('div.radio input[type="radio"]')).to.have.length(options.length);
-        expect(component.find('div.radio input[type="radio"]').at(0).props().checked).to.equal(true);
-        expect(component.find('div.radio input[type="radio"]').at(1).props().checked).to.equal(false);
-        expect(component.find('div.radio input[type="radio"]').at(2).props().checked).to.equal(false);
+        expect(component.find('div.radio input[type="radio"]').at(0).props().checked)
+            .to.equal(true);
+        expect(component.find('div.radio input[type="radio"]').at(1).props().checked)
+            .to.equal(false);
+        expect(component.find('div.radio input[type="radio"]').at(2).props().checked)
+            .to.equal(false);
     });
 
     it('should select the appropriate item if the value prop is set to a valid value', () => {
@@ -174,9 +183,12 @@ describe('a Form component containing a RadioButtonGroup', () => {
         );
 
         expect(component.find('div.radio input[type="radio"]')).to.have.length(options.length);
-        expect(component.find('div.radio input[type="radio"]').at(0).props().checked).to.equal(false);
-        expect(component.find('div.radio input[type="radio"]').at(1).props().checked).to.equal(true);
-        expect(component.find('div.radio input[type="radio"]').at(2).props().checked).to.equal(false);
+        expect(component.find('div.radio input[type="radio"]').at(0).props().checked)
+            .to.equal(false);
+        expect(component.find('div.radio input[type="radio"]').at(1).props().checked)
+            .to.equal(true);
+        expect(component.find('div.radio input[type="radio"]').at(2).props().checked)
+            .to.equal(false);
     });
 });
 
@@ -206,7 +218,12 @@ describe('when a radio button in the group is clicked', () => {
 
         const component = mount(
             <Form>
-                <Form.RadioButtonGroup label={label} options={options} value={value} onChange={onChange} />
+                <Form.RadioButtonGroup
+                    label={label}
+                    options={options}
+                    value={value}
+                    onChange={onChange}
+                />
             </Form>
         );
 
@@ -232,7 +249,12 @@ describe('when a radio button in the group is clicked', () => {
 
         const component = mount(
             <Form>
-                <Form.RadioButtonGroup label={label} options={options} value={value} onChange={onChange} />
+                <Form.RadioButtonGroup
+                    label={label}
+                    options={options}
+                    value={value}
+                    onChange={onChange}
+                />
             </Form>
         );
 
