@@ -188,3 +188,12 @@ when a radio button in the group is clicked
     the onChange handler should not be called if the same value is clicked
     the new value should be selected and all others should not be selected
 */
+describe('when a radio button in the group is clicked', () => {
+
+    // it('the onChange handler should be called if a new value is clicked', () => {});
+
+    // it('the onChange handler should not be called if the same value is clicked', () => {});
+
+    // it('the new value should be selected and all others should not be selected', () => {});
+
+});
