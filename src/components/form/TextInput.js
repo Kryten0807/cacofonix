@@ -207,10 +207,20 @@ class TextInput extends React.Component {
      * @return {React.Element} The React element describing the component
      */
     render() {
+        // is the component hidden? if so, return null
+        //
+        if (this.props.hidden) {
+            return null;
+        }
+
+        // determine the value to display, formatting it if necessary
+        //
         const value = (this.props.format && !this.state.isEditing)
             ? this.props.format(this.state.value)
             : this.state.value;
 
+        // return the rendered component
+        //
         return (
             <div className={classnames('form-group', { 'has-error': !this.state.isValid })}>
                 {this.props.label ? <label htmlFor={this.id}>{this.props.label}</label> : ''}
