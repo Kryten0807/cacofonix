@@ -158,7 +158,7 @@ class Form extends React.Component {
         // render the component and return it
         //
         return (
-            <form
+            <div
                 className={classnames({
                     'form-inline':     this.props.inline,
                     'form-horizontal': this.props.horizontal,
@@ -166,7 +166,7 @@ class Form extends React.Component {
             >
                 {alert}
                 {this.props.children}
-            </form>
+            </div>
         );
     }
 }
