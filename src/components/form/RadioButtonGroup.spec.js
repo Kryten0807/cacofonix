@@ -178,8 +178,6 @@ describe('a Form component containing a RadioButtonGroup', () => {
         expect(component.find('div.radio input[type="radio"]').at(1).props().checked).to.equal(true);
         expect(component.find('div.radio input[type="radio"]').at(2).props().checked).to.equal(false);
     });
-
-
 });
 
 /* *****************************************************************************
