@@ -245,6 +245,38 @@ describe('when a radio button in the group is clicked', () => {
         expect(onChange.callCount).to.equal(0);
     });
 
-    // it('the new value should be selected and all others should not be selected', () => {});
+    it('the new value should be selected and all others should not be selected', () => {
+
+        const label = 'little miss muffet';
+
+        const value = '1';
+
+        const clickedItem = 1;
+
+        const component = mount(
+            <Form>
+                <Form.RadioButtonGroup label={label} options={options} value={value} />
+            </Form>
+        );
+
+        expect(component.find('div.radio input[type="radio"]')).to.have.length(options.length);
+        expect(component.find('div.radio input[type="radio"]').at(0).props().checked)
+            .to.equal(true, 'before - 0');
+        expect(component.find('div.radio input[type="radio"]').at(1).props().checked)
+            .to.equal(false, 'before - 1');
+        expect(component.find('div.radio input[type="radio"]').at(2).props().checked)
+            .to.equal(false, 'before - 2');
+
+        component.find('div.radio input[type="radio"]').at(1).simulate('click', {
+            target: { value: options[clickedItem].value }
+        });
+
+        expect(component.find('div.radio input[type="radio"]').at(0).props().checked)
+            .to.equal(false, 'after - 0');
+        expect(component.find('div.radio input[type="radio"]').at(1).props().checked)
+            .to.equal(true, 'after - 1');
+        expect(component.find('div.radio input[type="radio"]').at(2).props().checked)
+            .to.equal(false, 'after - 2');
+    });
 
 });
