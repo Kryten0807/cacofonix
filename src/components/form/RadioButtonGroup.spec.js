@@ -26,6 +26,9 @@ a Form component containing a RadioButtonGroup
     should include a <Form.RadioButtonGroup> as a child
     should include a label if the label prop is set
     should not include a label if the label prop is not set
+    should include a div.radio for each option
+    should include a label for each option
+    should include a span containing the option name for each option
 */
 describe('a Form component containing a RadioButtonGroup', () => {
 
