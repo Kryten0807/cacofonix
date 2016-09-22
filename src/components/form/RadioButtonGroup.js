@@ -53,7 +53,7 @@ class RadioButtonGroup extends React.Component {
             //
             this.setState({ value });
             if (this.props.onChange) {
-                this.props.onChange(event.target.value);
+                this.props.onChange(value);
             }
         }
     }
