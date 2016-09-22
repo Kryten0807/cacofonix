@@ -109,7 +109,6 @@ describe('a Form component containing a CheckboxGroup', () => {
 
     it('should contain an input[type="checkbox"] for each option', () => {
 
-    // it('should contain a span with the option name for each option', () => {});
         const component = mount(
             <Form>
                 <Form.CheckboxGroup options={options} />
@@ -122,5 +121,19 @@ describe('a Form component containing a CheckboxGroup', () => {
         expect(component.find('div.checkbox input[type="checkbox"]').at(2).props().value).to.equal(options[2].value);
     });
 
+    it('should contain a span with the option name for each option', () => {
+
+        const component = mount(
+            <Form>
+                <Form.CheckboxGroup options={options} />
+            </Form>
+        );
+
+        expect(component.find('div.checkbox span')).to.have.length(options.length);
+        expect(component.find('div.checkbox span').at(0).text()).to.equal(options[0].name);
+        expect(component.find('div.checkbox span').at(1).text()).to.equal(options[1].name);
+        expect(component.find('div.checkbox span').at(2).text()).to.equal(options[2].name);
+
+    });
 
 });
