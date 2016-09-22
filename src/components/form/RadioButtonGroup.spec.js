@@ -29,6 +29,7 @@ a Form component containing a RadioButtonGroup
     should include a div.radio for each option
     should include a label for each option
     should include a span containing the option name for each option
+    should include an input[type="radio"] for each option
 */
 describe('a Form component containing a RadioButtonGroup', () => {
 
