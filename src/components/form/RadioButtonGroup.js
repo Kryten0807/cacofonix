@@ -9,6 +9,8 @@ class RadioButtonGroup extends React.Component {
 
         this.id = uniqueId('form-radiobuttongroup-');
 
+        this.permittedValues = this.props.options.map((opt) => `${opt.value}`);
+
         this.state = {
             value: this.props.options[0].value,
         };
