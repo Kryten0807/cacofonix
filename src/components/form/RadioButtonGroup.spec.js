@@ -124,3 +124,10 @@ describe('a Form component containing a RadioButtonGroup', () => {
         expect(component.find('div.radio input[type="radio"]').at(2).props().value).to.equal(options[2].value);
     });
 });
+
+/* *****************************************************************************
+when a radio button in the group is clicked
+    the onChange handler should be called if a new value is clicked
+    the onChange handler should not be called if the same value is clicked
+    the new value should be selected and all others should not be selected
+*/
