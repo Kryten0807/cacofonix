@@ -52,19 +52,35 @@ class RadioButtonGroup extends React.Component {
             // update the component state
             //
             this.setState({ value });
+
+            // do we have an onChange handler? if so, call it
+            //
             if (this.props.onChange) {
                 this.props.onChange(value);
             }
         }
     }
 
+    /**
+     * Check a value to see if it's one of the permitted values
+     * @param  {String}  value The value to check
+     * @return {Boolean}       True if it's a permitted value; false otherwise
+     */
     isPermittedValue(value) {
         return this.permittedValues.findIndex((val) => val === `${value}`) !== -1;
     }
 
+    /**
+     * Render the component
+     * @return {React.Element} The React element describing the component
+     */
     render() {
+        // get the important values from the component properties
+        //
         const { label, options } = this.props;
 
+        // render the component & return it
+        //
         return (
             <div>
                 {label
@@ -102,4 +118,6 @@ RadioButtonGroup.propTypes = {
     onChange: React.PropTypes.func,
 };
 
+// export the component
+//
 export default RadioButtonGroup;
