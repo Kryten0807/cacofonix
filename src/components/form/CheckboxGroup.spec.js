@@ -49,4 +49,19 @@ describe('a Form component containing a CheckboxGroup', () => {
 
         expect(component.find(Form.CheckboxGroup)).to.have.length(1);
     });
+
+    // it('should contain a div.form-group', () => {});
+
+    // it('should contain a label if the label prop is set', () => {});
+
+    // it('should not contain a label if the label prop is not set', () => {});
+
+    // it('should contain a div.checkbox for each option', () => {});
+
+    // it('should contain a label for each option', () => {});
+
+    // it('should contain an input[type="checkbox"] for each option', () => {});
+
+    // it('should contain a span with the option name for each option', () => {});
+
 });
