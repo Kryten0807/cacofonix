@@ -9,7 +9,10 @@ const RadioButtonGroup = ({ label, options }) => (
         {label ? (<label className="radiobuttongroup">{label}</label>) : null}
         {options.map((opt) => (
             <div key={uniqueId('form-radiobuttongroup-option-')} className="radio">
-                <label />
+                <label>
+                    <input type="radio" value={opt.value} />
+                    <span>{opt.name}</span>
+                </label>
             </div>
         ))}
     </div>
