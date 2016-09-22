@@ -251,7 +251,10 @@ TextInput.propTypes = {
     readOnly:          React.PropTypes.bool,
     hidden:            React.PropTypes.bool,
     id:                React.PropTypes.string,
-    value:             React.PropTypes.string,
+    value:             React.PropTypes.oneOfType([
+        React.PropTypes.string,
+        React.PropTypes.number,
+    ]),
     label:             React.PropTypes.string,
     placeholder:       React.PropTypes.string,
     description:       React.PropTypes.string,
