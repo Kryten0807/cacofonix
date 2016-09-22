@@ -38,4 +38,31 @@ describe('a Form component containing a RadioButtonGroup', () => {
 
         expect(component.find(Form.RadioButtonGroup)).to.have.length(1);
     });
+
+    it('should include a label if the label prop is set', () => {
+
+        const label = 'fee fi fo fum';
+
+        const component = mount(
+            <Form>
+                <Form.RadioButtonGroup label={label}/>
+            </Form>
+        );
+
+        expect(component.find('label')).to.have.length(1);
+        expect(component.find('label').text()).to.equal(label);
+    });
+
+    it('should not include a label if the label prop is not set', () => {
+
+        const component = mount(
+            <Form>
+                <Form.RadioButtonGroup />
+            </Form>
+        );
+
+        expect(component.find('label')).to.have.length(0);
+    });
+
+
 });
