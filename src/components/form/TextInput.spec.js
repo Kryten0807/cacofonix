@@ -32,6 +32,7 @@ a Form component with a TextInput element
     should include a label if the label is set
     should include a placeholder if the placeholder is set
     should include the readonly flag when readonly is set
+    should not be visible when hidden is set
 */
 describe('a Form component with a TextInput element', () => {
 
@@ -94,6 +95,17 @@ describe('a Form component with a TextInput element', () => {
         expect(component.find('input').props().readOnly).to.equal(true);
     });
 
+    it('should not be visible when hidden is set', () => {
+        const hidden = true;
+
+        const component = mount(
+            <Form>
+                <Form.TextInput hidden={hidden} />
+            </Form>
+        );
+
+        expect(component.find('input')).to.have.length(0);
+    });
 });
 
 /* *****************************************************************************
@@ -1731,4 +1743,88 @@ describe('when a TextInput with a calculated value is updated', () => {
 
         expect(parent.find('input').props().value).to.equal(newValue);
     });
+});
+
+/* *****************************************************************************
+when a TextInput with a parent component is hidden or shown
+    should hide the component when the hidden prop is changed to true
+    should show the component when the hidden prop is changed to false
+*/
+describe('when a TextInput with a parent component is hidden or shown', () => {
+
+    const required = false;
+    const description = 'gibberish';
+
+    class TestParent extends React.Component {
+        constructor(props) {
+            super(props);
+
+            this.state = {
+                testValue: props.testValue || '',
+                hidden:    !!props.hidden,
+            };
+
+            this.onChange = this.onChange.bind(this);
+        }
+
+        onChange(testValue) {
+            this.setState({ testValue });
+        }
+
+        render() {
+            return (
+                <Form>
+                    <Form.TextInput
+                        hidden={this.state.hidden}
+                        required={required}
+                        description={description}
+                        value={this.state.testValue}
+                        onChange={this.onChange}
+                    />
+                </Form>
+            );
+        }
+    }
+
+    TestParent.propTypes = {
+        hidden:       React.PropTypes.bool,
+        testValue:    React.PropTypes.string,
+        onChange:     React.PropTypes.func,
+        onValidation: React.PropTypes.func,
+    };
+
+    it('should hide the component when the hidden prop is changed to true', () => {
+
+        const testValue = 'whatever';
+
+        const hidden = false;
+
+        const parent = mount(<TestParent testValue={testValue} hidden={hidden} />);
+
+        expect(parent.find('input')).to.have.length(1);
+
+        // change the state of the parent
+        //
+        parent.setState({ hidden: true });
+
+        expect(parent.find('input')).to.have.length(0);
+    });
+
+    it('should show the component when the hidden prop is changed to false', () => {
+
+        const testValue = 'whatever';
+
+        const hidden = true;
+
+        const parent = mount(<TestParent testValue={testValue} hidden={hidden} />);
+
+        expect(parent.find('input')).to.have.length(0);
+
+        // change the state of the parent
+        //
+        parent.setState({ hidden: false });
+
+        expect(parent.find('input')).to.have.length(1);
+    });
+
 });

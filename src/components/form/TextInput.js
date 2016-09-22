@@ -73,6 +73,10 @@ class TextInput extends React.Component {
         }
     }
 
+    /**
+     * Handle new props received from parent components
+     * @param  {Object} newProps The new properties for the component
+     */
     componentWillReceiveProps(newProps) {
         // get the value from the event object
         //
@@ -207,10 +211,20 @@ class TextInput extends React.Component {
      * @return {React.Element} The React element describing the component
      */
     render() {
+        // is the component hidden? if so, return null
+        //
+        if (this.props.hidden) {
+            return null;
+        }
+
+        // determine the value to display, formatting it if necessary
+        //
         const value = (this.props.format && !this.state.isEditing)
             ? this.props.format(this.state.value)
             : this.state.value;
 
+        // return the rendered component
+        //
         return (
             <div className={classnames('form-group', { 'has-error': !this.state.isValid })}>
                 {this.props.label ? <label htmlFor={this.id}>{this.props.label}</label> : ''}
@@ -239,8 +253,12 @@ class TextInput extends React.Component {
 TextInput.propTypes = {
     required:          React.PropTypes.bool,
     readOnly:          React.PropTypes.bool,
+    hidden:            React.PropTypes.bool,
     id:                React.PropTypes.string,
-    value:             React.PropTypes.string,
+    value:             React.PropTypes.oneOfType([
+        React.PropTypes.string,
+        React.PropTypes.number,
+    ]),
     label:             React.PropTypes.string,
     placeholder:       React.PropTypes.string,
     description:       React.PropTypes.string,
