@@ -27,7 +27,6 @@ a Form component containing a SubmitButton
     should be a button.btn
     should have the label specified by the `label` property
     should have the default label if no `label` property specified
-
     should be button.btn.btn-default when no style is provided
     should be button.btn.btn-danger when style=danger
     should be button.btn.btn-danger when style=error
