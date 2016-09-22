@@ -229,7 +229,7 @@ describe('when a radio button in the group is clicked', () => {
 
         expect(onChange.callCount).to.equal(0);
 
-        component.find('div.radio input[type="radio"]').at(1).simulate('click', {
+        component.find('div.radio input[type="radio"]').at(1).simulate('change', {
             target: { value: options[clickedItem].value }
         });
 
@@ -260,7 +260,7 @@ describe('when a radio button in the group is clicked', () => {
 
         expect(onChange.callCount).to.equal(0);
 
-        component.find('div.radio input[type="radio"]').at(1).simulate('click', {
+        component.find('div.radio input[type="radio"]').at(1).simulate('change', {
             target: { value: options[clickedItem].value }
         });
 
@@ -289,7 +289,7 @@ describe('when a radio button in the group is clicked', () => {
         expect(component.find('div.radio input[type="radio"]').at(2).props().checked)
             .to.equal(false, 'before - 2');
 
-        component.find('div.radio input[type="radio"]').at(1).simulate('click', {
+        component.find('div.radio input[type="radio"]').at(1).simulate('change', {
             target: { value: options[clickedItem].value }
         });
 
