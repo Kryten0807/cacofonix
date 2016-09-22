@@ -8,6 +8,10 @@ class RadioButtonGroup extends React.Component {
         super(props);
 
         this.id = uniqueId('form-radiobuttongroup-');
+
+        this.state = {
+            value: this.props.options[0].value,
+        };
     }
 
     render() {
