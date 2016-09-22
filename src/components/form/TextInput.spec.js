@@ -32,6 +32,7 @@ a Form component with a TextInput element
     should include a label if the label is set
     should include a placeholder if the placeholder is set
     should include the readonly flag when readonly is set
+    should not be visible when hidden is set
 */
 describe('a Form component with a TextInput element', () => {
 
