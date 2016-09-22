@@ -1744,3 +1744,9 @@ describe('when a TextInput with a calculated value is updated', () => {
         expect(parent.find('input').props().value).to.equal(newValue);
     });
 });
+
+/* *****************************************************************************
+when a TextInput with a parent component is hidden or shown
+    should hide the component when the hidden prop is changed to true
+    should show the component when the hidden prop is changed to false
+*/
