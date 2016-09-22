@@ -25,3 +25,7 @@ const debug = (component) => {
 a Form component containing a RadioButtonGroup
     should include a <Form.RadioButtonGroup> as a child
 */
+describe('a Form component containing a RadioButtonGroup', () => {
+
+    it('should include a <Form.RadioButtonGroup> as a child', () => {});
+});
