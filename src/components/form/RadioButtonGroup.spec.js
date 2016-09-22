@@ -95,4 +95,19 @@ describe('a Form component containing a RadioButtonGroup', () => {
         expect(component.find('div.radio label')).to.have.length(options.length);
     });
 
+    it('should include a span containing the option name for each option', () => {
+
+        const component = mount(
+            <Form>
+                <Form.RadioButtonGroup options={options} />
+            </Form>
+        );
+
+        expect(component.find('div.radio span')).to.have.length(options.length);
+        expect(component.find('div.radio span').at(0).text()).to.equal(options[0].name);
+        expect(component.find('div.radio span').at(1).text()).to.equal(options[1].name);
+        expect(component.find('div.radio span').at(2).text()).to.equal(options[2].name);
+    });
+
+
 });
