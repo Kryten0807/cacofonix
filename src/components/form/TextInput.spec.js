@@ -1444,7 +1444,8 @@ describe('when changing (and blurring) the value of a TextInput with parent comp
 
         component.find('input').simulate('blur');
 
-        expect(component.find('input').props().value).to.equal(formatCurrency(finalValue), 'input - final value');
+        expect(component.find('input').props().value)
+            .to.equal(formatCurrency(finalValue), 'input - final value');
 
         component.find('input').simulate('focus');
 
