@@ -22,10 +22,24 @@ const debug = (component) => {
 /* eslint-enable no-unused-vars */
 
 /* *****************************************************************************
-a Form component containing a RadioButtonGroup
-    should include a <Form.RadioButtonGroup> as a child
+a Form component containing a CheckboxGroup
+    should include a <Form.CheckboxGroup> as a child
 */
-describe('a Form component containing a RadioButtonGroup', () => {
+describe('a Form component containing a CheckboxGroup', () => {
 
-    it('should include a <Form.RadioButtonGroup> as a child', () => {});
+    const options = [
+        { value: '1', name: 'One' },
+        { value: '2', name: 'Two' },
+        { value: '3', name: 'Three' },
+    ];
+
+    it('should include a <Form.CheckboxGroup> as a child', () => {
+        const component = shallow(
+            <Form>
+                <Form.CheckboxGroup options={options} />
+            </Form>
+        );
+
+        expect(component.find(Form.CheckboxGroup)).to.have.length(1);
+    });
 });
