@@ -161,7 +161,23 @@ describe('a Form component containing a RadioButtonGroup', () => {
         expect(component.find('div.radio input[type="radio"]').at(2).props().checked).to.equal(false);
     });
 
-    // it('should select the appropriate item if the value prop is set to a valid value', () => {});
+    it('should select the appropriate item if the value prop is set to a valid value', () => {
+
+        const label = 'peter piper';
+
+        const value = 2;
+
+        const component = mount(
+            <Form>
+                <Form.RadioButtonGroup label={label} options={options} value={value} />
+            </Form>
+        );
+
+        expect(component.find('div.radio input[type="radio"]')).to.have.length(options.length);
+        expect(component.find('div.radio input[type="radio"]').at(0).props().checked).to.equal(false);
+        expect(component.find('div.radio input[type="radio"]').at(1).props().checked).to.equal(true);
+        expect(component.find('div.radio input[type="radio"]').at(2).props().checked).to.equal(false);
+    });
 
 
 });
