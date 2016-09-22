@@ -6,8 +6,12 @@ import uniqueId from 'lodash/uniqueId';
 
 const RadioButtonGroup = ({ label, options }) => (
     <div>
-        {options.map((opt) => <div key={uniqueId('form-radiobuttongroup-option-')} className="radio"></div>)}
         {label ? (<label className="radiobuttongroup">{label}</label>) : null}
+        {options.map((opt) => (
+            <div key={uniqueId('form-radiobuttongroup-option-')} className="radio">
+                <label />
+            </div>
+        ))}
     </div>
 );
 
