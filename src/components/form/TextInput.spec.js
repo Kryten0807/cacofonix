@@ -1793,9 +1793,38 @@ describe('when a TextInput with a parent component is hidden or shown', () => {
         onValidation: React.PropTypes.func,
     };
 
-    // it('should hide the component when the hidden prop is changed to true', () => {});
+    it('should hide the component when the hidden prop is changed to true', () => {
 
-    // it('should show the component when the hidden prop is changed to false', () => {});
+        const testValue = 'whatever';
+
+        const hidden = false;
+
+        const parent = mount(<TestParent testValue={testValue} hidden={hidden} />);
+
+        expect(parent.find('input')).to.have.length(1);
+
+        // change the state of the parent
+        //
+        parent.setState({ hidden: true });
+
+        expect(parent.find('input')).to.have.length(0);
+    });
+
+    it('should show the component when the hidden prop is changed to false', () => {
+
+        const testValue = 'whatever';
+
+        const hidden = true;
+
+        const parent = mount(<TestParent testValue={testValue} hidden={hidden} />);
+
+        expect(parent.find('input')).to.have.length(0);
+
+        // change the state of the parent
+        //
+        parent.setState({ hidden: false });
+
+        expect(parent.find('input')).to.have.length(1);
+    });
 
 });
-
