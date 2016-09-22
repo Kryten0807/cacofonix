@@ -6,7 +6,7 @@ import uniqueId from 'lodash/uniqueId';
 const CheckboxGroup = ({ label, options }) => (
     <div className="form-group">
         {label
-            ? <label>{label}</label>
+            ? <label className="checkboxgroup">{label}</label>
             : null
         }
     </div>
