@@ -33,11 +33,19 @@ class Dropdown extends React.Component {
         // value
         //
         if (this.props.onChange) {
-            this.props.onChange(
-                this.isValid(event.target.value)
-                    ? event.target.value
-                    : this.props.options[0].value
-            );
+            // figure out which value to use
+            //
+            let value = this.isValid(event.target.value)
+                ? event.target.value
+                : '';
+
+            if (this.props.options[0] && !value) {
+                value = this.props.options[0].value;
+            }
+
+            // call the onChange handler with the value
+            //
+            this.props.onChange(value);
         }
     }
 
