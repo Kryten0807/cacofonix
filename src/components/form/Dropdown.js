@@ -49,19 +49,34 @@ class Dropdown extends React.Component {
         }
     }
 
+    /**
+     * Determine if a value is valid
+     * @param  {String}  The value to check
+     * @return {Boolean} True if the value is valid (ie. found in the array of
+     *                   options); false otherwise
+     */
     isValid(value = this.props.value) {
         return this.props.options.findIndex((opt) => opt.value === value) !== -1;
     }
 
+    /**
+     * Render the component
+     * @return {React.Element} The React element describing the component
+     */
     render() {
-
+        // figure out what value to display
+        //
         let value = this.isValid() ? this.props.value : '';
         if (this.props.options[0] && !value) {
             value = this.props.options[0].value;
         }
 
+        // generate the label for the component
+        //
         const label = this.props.label ? <label htmlFor={this.id}>{this.props.label}</label> : null;
 
+        // generate the select element for the component
+        //
         const select = (
             <select
                 id={this.id}
@@ -77,12 +92,16 @@ class Dropdown extends React.Component {
             </select>
         );
 
+        // return the component
+        //
         return label
             ? <div className="form-group">{label}{select}</div>
             : select;
     }
 }
 
+// the prop types for the component
+//
 Dropdown.propTypes = {
     label:    React.PropTypes.string,
     value:    React.PropTypes.string,
@@ -90,4 +109,5 @@ Dropdown.propTypes = {
     onChange: React.PropTypes.func,
 };
 
+// export the component
 export default Dropdown;
