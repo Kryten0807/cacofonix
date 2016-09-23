@@ -7,6 +7,7 @@
 import React from 'react';
 import { shallow, render, mount } from 'enzyme';
 import chai from 'chai';
+import sinon from 'sinon';
 import Form from '../Form';
 
 const expect = chai.expect;
