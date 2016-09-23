@@ -13,6 +13,7 @@ import SubmitButton from './form/SubmitButton';
 import TextInput from './form/TextInput';
 
 // @TODO added labelColumns, inputColumns to Form
+// @TODO changing values of children via props should trigger re-validation
 
 /**
  * The Form component
