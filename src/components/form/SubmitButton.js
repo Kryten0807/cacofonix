@@ -24,7 +24,7 @@ const SubmitButton = ({ children, label, style, onClick }, { isValid }) => (
         disabled={!isValid}
         onClick={onClick}
     >
-        {label || 'Submit'}
+        {children || 'Submit'}
     </button>
 );
 
