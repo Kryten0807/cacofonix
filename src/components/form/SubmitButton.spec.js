@@ -86,6 +86,11 @@ describe('a Form component containing a SubmitButton', () => {
         expect(component.find('button.btn').text()).to.equal('Submit');
     });
 
+    // it('should have the text specified', () => {});
+
+    // it('should have the child elements specified', () => {});
+
+
     it('should be button.btn.btn-default when no style is provided', () => {
         const component = render(
             <Form>
