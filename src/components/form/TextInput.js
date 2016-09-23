@@ -10,6 +10,8 @@ import isFunction from 'lodash/isFunction';
 // @TODO add different validation error messages for failing different rules
 // @TODO horizontal form - label & input element widths
 // @TODO permitted characters regex
+// @TODO CurrencyInput - must clear non-numeric characters when reporting value
+// @TODO DateInput - must ensure date is formatted as M/D/YYYY when reporting value
 
 /**
  * The TextInput component
