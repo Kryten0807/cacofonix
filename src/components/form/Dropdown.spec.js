@@ -47,6 +47,7 @@ a Form component containing a Dropdown
     should include a <Form.Dropdown> as a child
     should be a select.form-control
     should have the options specified in the `options` prop
+    should have an empty set of options in options=[]
     should not include a label if none was specified
     should include a label if one was specified
     should select a specific value when value is set
