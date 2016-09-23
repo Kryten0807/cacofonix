@@ -3,17 +3,35 @@
 import React from 'react';
 import uniqueId from 'lodash/uniqueId';
 
+/**
+ * The Dropdown component
+ */
 class Dropdown extends React.Component {
+    /**
+     * Construct the component instance
+     * @param  {Object} props The component props
+     */
     constructor(props) {
         super(props);
 
+        // generate a unique ID for this instance
+        //
         this.id = uniqueId('form-dropdown-');
 
+        // bind `this` to the event handlers
+        //
         this.isValid = this.isValid.bind(this);
         this.onChange = this.onChange.bind(this);
     }
 
+    /**
+     * Handle the `onChange` event for the select element
+     * @param  {Object} event The event object
+     */
     onChange(event) {
+        // do we have an onChange handler? if so, call it with the appropriate
+        // value
+        //
         if (this.props.onChange) {
             this.props.onChange(
                 this.isValid(event.target.value)
