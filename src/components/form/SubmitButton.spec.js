@@ -89,9 +89,31 @@ describe('a Form component containing a SubmitButton', () => {
     */
 
 
-    // it('should have the text specified', () => {});
+    it('should have the text specified', () => {
 
-    // it('should have the child elements specified', () => {});
+        const buttonText = 'this is my button text';
+
+        const component = render(
+            <Form>
+                <Form.SubmitButton>{buttonText}</Form.SubmitButton>
+            </Form>
+        );
+
+        expect(component.find('button.btn').text()).to.equal(buttonText);
+    });
+
+    it('should have the child elements specified', () => {
+
+        const icon = <i className="fa fa-some-icon" />;
+
+        const component = render(
+            <Form>
+                <Form.SubmitButton>{icon}</Form.SubmitButton>
+            </Form>
+        );
+
+        expect(component.find('button.btn i.fa.fa-some-icon')).to.have.length(1);
+    });
 
 
     it('should be button.btn.btn-default when no style is provided', () => {
