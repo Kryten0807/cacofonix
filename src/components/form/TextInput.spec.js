@@ -1573,6 +1573,39 @@ describe('when the TextInput has a format prop', () => {
         expect(component.find('input').props().value).to.equal(expectedValue);
     });
 
+    it('the value returned by onChange is formatted after blur', () => {
+
+        const onChange = sinon.spy();
+
+        const required = true;
+        const format = (value) => `${value}-${value}`;
+        const initialValue = 'something';
+
+        const newValue = 'red';
+
+        const expectedValue = format(newValue);
+
+        const component = mount(
+            <Form.TextInput
+                required={required}
+                value={initialValue}
+                format={format}
+                onChange={onChange}
+            />
+        );
+
+        component.find('input').simulate('change', {
+            target: { value: newValue }
+        });
+
+        expect(onChange.callCount).to.equal(1);
+        expect(onChange.args[0][0]).to.equal(newValue, 'after change');
+
+        component.find('input').simulate('blur');
+
+        expect(onChange.callCount).to.equal(2);
+        expect(onChange.args[1][0]).to.equal(expectedValue, 'after blur');
+    });
 });
 
 /* *****************************************************************************
