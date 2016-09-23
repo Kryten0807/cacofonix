@@ -1373,14 +1373,16 @@ describe('when changing (and blurring) the value of a TextInput with parent comp
 
     it('should have the correct value in the input element throughout the editing process', () => {
 
+        const toFloat = (value) => parseFloat(`${value}`.replace(/[^\d.-]/g, ''));
+
         const formatCurrency = (value) => {
-            const val = parseFloat(`${value}`);
+            const val = toFloat(value);
 
             return Number.isNaN(val) ? '' : `$ ${val.toFixed(2)}`;
         };
 
         const parseCurrency = (value) => {
-            const val = parseFloat(`${value}`.replace(/[^\d.-]/g, ''));
+            const val = toFloat(value);
 
             return Number.isNaN(val) ? '' : `${val.toFixed(2)}`;
         };
