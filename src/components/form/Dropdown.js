@@ -29,6 +29,11 @@ class Dropdown extends React.Component {
 
     render() {
 
+        let value = this.isValid() ? this.props.value : '';
+        if (this.props.options[0] && !value) {
+            value = this.props.options[0].value;
+        }
+
         const label = this.props.label ? <label htmlFor={this.id}>{this.props.label}</label> : null;
 
         const select = (
