@@ -66,7 +66,7 @@ class Dropdown extends React.Component {
             <select
                 id={this.id}
                 className="form-control"
-                value={this.isValid() ? this.props.value : this.props.options[0].value}
+                value={value}
                 onChange={this.onChange}
             >
                 {this.props.options.map((opt) =>
