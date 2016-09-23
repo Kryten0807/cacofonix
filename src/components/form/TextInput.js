@@ -117,7 +117,7 @@ class TextInput extends React.Component {
         // call the `onChange` handler
         //
         if (this.props.onChange) {
-            this.props.onChange(value);
+            this.props.onChange(this.props.format ? this.props.format(value) : value);
         }
     }
 
