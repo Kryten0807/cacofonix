@@ -111,6 +111,19 @@ describe('a Form component containing a Dropdown', () => {
         });
     });
 
+    it('should have an empty set of options if options=[]', () => {
+
+        const options = [];
+
+        const component = render(
+            <Form>
+                <Form.Dropdown options={options} />
+            </Form>
+        );
+
+        expect(component.find('option')).to.have.length(options.length, 'options count');
+    });
+
     it('should not include a label if none was specified', () => {
         const options = [
             { value: '1', name: 'one' },
