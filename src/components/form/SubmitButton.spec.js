@@ -25,8 +25,13 @@ const debug = (component) => {
 a Form component containing a SubmitButton
     should include a <Form.SubmitButton> as a child
     should be a button.btn
+
     should have the label specified by the `label` property
     should have the default label if no `label` property specified
+
+    should have the text specified
+    should have the child elements specified
+
     should be button.btn.btn-default when no style is provided
     should be button.btn.btn-danger when style=danger
     should be button.btn.btn-danger when style=error
