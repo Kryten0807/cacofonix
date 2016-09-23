@@ -1475,6 +1475,7 @@ when the TextInput has a format prop
     the value is untouched after focus
     the value is untouched after change
     the value is formatted after blur
+    the value returned by onChange is formatted after blur
 */
 describe('when the TextInput has a format prop', () => {
 
