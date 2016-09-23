@@ -47,6 +47,7 @@ a Form component containing a Dropdown
     should include a <Form.Dropdown> as a child
     should be a select.form-control
     should have the options specified in the `options` prop
+    should have an empty set of options if options=[]
     should not include a label if none was specified
     should include a label if one was specified
     should select a specific value when value is set
@@ -108,6 +109,19 @@ describe('a Form component containing a Dropdown', () => {
                 .to.equal(opt.name, `name=${opt.name}`);
 
         });
+    });
+
+    it('should have an empty set of options if options=[]', () => {
+
+        const options = [];
+
+        const component = render(
+            <Form>
+                <Form.Dropdown options={options} />
+            </Form>
+        );
+
+        expect(component.find('option')).to.have.length(options.length, 'options count');
     });
 
     it('should not include a label if none was specified', () => {
