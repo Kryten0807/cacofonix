@@ -7,6 +7,7 @@
 import React from 'react';
 import { shallow, render, mount } from 'enzyme';
 import chai from 'chai';
+import sinon from 'sinon';
 import Form from '../Form';
 
 const expect = chai.expect;
@@ -1372,14 +1373,16 @@ describe('when changing (and blurring) the value of a TextInput with parent comp
 
     it('should have the correct value in the input element throughout the editing process', () => {
 
+        const toFloat = (value) => parseFloat(`${value}`.replace(/[^\d.-]/g, ''));
+
         const formatCurrency = (value) => {
-            const val = parseFloat(`${value}`);
+            const val = toFloat(value);
 
             return Number.isNaN(val) ? '' : `$ ${val.toFixed(2)}`;
         };
 
         const parseCurrency = (value) => {
-            const val = parseFloat(`${value}`.replace(/[^\d.-]/g, ''));
+            const val = toFloat(value);
 
             return Number.isNaN(val) ? '' : `${val.toFixed(2)}`;
         };
@@ -1472,6 +1475,7 @@ when the TextInput has a format prop
     the value is untouched after focus
     the value is untouched after change
     the value is formatted after blur
+    the value returned by onChange is formatted after blur
 */
 describe('when the TextInput has a format prop', () => {
 
@@ -1569,6 +1573,39 @@ describe('when the TextInput has a format prop', () => {
         expect(component.find('input').props().value).to.equal(expectedValue);
     });
 
+    it('the value returned by onChange is formatted after blur', () => {
+
+        const onChange = sinon.spy();
+
+        const required = true;
+        const format = (value) => `${value}-${value}`;
+        const initialValue = 'something';
+
+        const newValue = 'red';
+
+        const expectedValue = format(newValue);
+
+        const component = mount(
+            <Form.TextInput
+                required={required}
+                value={initialValue}
+                format={format}
+                onChange={onChange}
+            />
+        );
+
+        component.find('input').simulate('change', {
+            target: { value: newValue }
+        });
+
+        expect(onChange.callCount).to.equal(1);
+        expect(onChange.args[0][0]).to.equal(newValue, 'after change');
+
+        component.find('input').simulate('blur');
+
+        expect(onChange.callCount).to.equal(2);
+        expect(onChange.args[1][0]).to.equal(expectedValue, 'after blur');
+    });
 });
 
 /* *****************************************************************************

@@ -10,6 +10,8 @@ import isFunction from 'lodash/isFunction';
 // @TODO add different validation error messages for failing different rules
 // @TODO horizontal form - label & input element widths
 // @TODO permitted characters regex
+// @TODO CurrencyInput - must clear non-numeric characters when reporting value
+// @TODO DateInput - must ensure date is formatted as M/D/YYYY when reporting value
 
 /**
  * The TextInput component
@@ -117,7 +119,7 @@ class TextInput extends React.Component {
         // call the `onChange` handler
         //
         if (this.props.onChange) {
-            this.props.onChange(value);
+            this.props.onChange(this.props.format ? this.props.format(value) : value);
         }
     }
 
