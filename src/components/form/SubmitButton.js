@@ -31,7 +31,6 @@ const SubmitButton = ({ children, label, style, onClick }, { isValid }) => (
 // define the property types for the component
 //
 SubmitButton.propTypes = {
-    label:   React.PropTypes.string,
     style:   React.PropTypes.string,
     onClick: React.PropTypes.func,
 };
