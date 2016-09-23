@@ -25,8 +25,8 @@ const debug = (component) => {
 a Form component containing a SubmitButton
     should include a <Form.SubmitButton> as a child
     should be a button.btn
-    should have the label specified by the `label` property
-    should have the default label if no `label` property specified
+    should have the text specified
+    should have the child elements specified
     should be button.btn.btn-default when no style is provided
     should be button.btn.btn-danger when style=danger
     should be button.btn.btn-danger when style=error
@@ -59,27 +59,32 @@ describe('a Form component containing a SubmitButton', () => {
         expect(component.find('button.btn')).to.have.length(1, 'button.btn.btn-default');
     });
 
-    it('should have the label specified by the `label` property', () => {
-        const label = 'my label';
+    it('should have the text specified', () => {
+
+        const buttonText = 'this is my button text';
 
         const component = render(
             <Form>
-                <Form.SubmitButton label={label} />
+                <Form.SubmitButton>{buttonText}</Form.SubmitButton>
             </Form>
         );
 
-        expect(component.find('button.btn').text()).to.equal(label);
+        expect(component.find('button.btn').text()).to.equal(buttonText);
     });
 
-    it('should have the default label if no `label` property specified', () => {
+    it('should have the child elements specified', () => {
+
+        const icon = <i className="fa fa-some-icon" />;
+
         const component = render(
             <Form>
-                <Form.SubmitButton />
+                <Form.SubmitButton>{icon}</Form.SubmitButton>
             </Form>
         );
 
-        expect(component.find('button.btn').text()).to.equal('Submit');
+        expect(component.find('button.btn i.fa.fa-some-icon')).to.have.length(1);
     });
+
 
     it('should be button.btn.btn-default when no style is provided', () => {
         const component = render(
@@ -208,14 +213,12 @@ given a Form containing a required TextInput and a SubmitButton
 describe('given a Form containing a required TextInput and a SubmitButton', () => {
 
     it('after initialization with a valid value, the SubmitButton should be enabled', () => {
-        const label = 'my label';
-
         const value = 'a valid value';
 
         const component = mount(
             <Form>
                 <Form.TextInput required value={value} />
-                <Form.SubmitButton label={label} />
+                <Form.SubmitButton />
             </Form>
         );
 
@@ -223,8 +226,6 @@ describe('given a Form containing a required TextInput and a SubmitButton', () =
     });
 
     it('after initialization with several valid values, the SubmitButton should be enabled', () => {
-        const label = 'my label';
-
         const value = 'a valid value';
 
         const component = mount(
@@ -234,7 +235,7 @@ describe('given a Form containing a required TextInput and a SubmitButton', () =
                 <Form.TextInput required value={value} />
                 <Form.TextInput required value={value} />
                 <Form.TextInput required value={value} />
-                <Form.SubmitButton label={label} />
+                <Form.SubmitButton />
             </Form>
         );
 
@@ -243,8 +244,6 @@ describe('given a Form containing a required TextInput and a SubmitButton', () =
 
     it('after initialization with multiple invalid values, the SubmitButton ' +
         'should be disabled', () => {
-        const label = 'my label';
-
         const value = '';
 
         const component = mount(
@@ -252,7 +251,7 @@ describe('given a Form containing a required TextInput and a SubmitButton', () =
                 <Form.TextInput required value={value} />
                 <Form.TextInput required value={value} />
                 <Form.TextInput required value={value} />
-                <Form.SubmitButton label={label} />
+                <Form.SubmitButton />
             </Form>
         );
 
@@ -261,8 +260,6 @@ describe('given a Form containing a required TextInput and a SubmitButton', () =
 
     it('after initialization with a mix of valid & invalid values, the ' +
         'SubmitButton should be disabled', () => {
-        const label = 'my label';
-
         const invalid = '';
 
         const valid = 'triceratops';
@@ -272,7 +269,7 @@ describe('given a Form containing a required TextInput and a SubmitButton', () =
                 <Form.TextInput required value={invalid} />
                 <Form.TextInput required value={invalid} />
                 <Form.TextInput required value={valid} />
-                <Form.SubmitButton label={label} />
+                <Form.SubmitButton />
             </Form>
         );
 
@@ -280,8 +277,6 @@ describe('given a Form containing a required TextInput and a SubmitButton', () =
     });
 
     it('after changing from invalid to valid, the SubmitButton should be enabled', () => {
-        const label = 'my label';
-
         const initialValue = '';
 
         const finalValue = 'I wish I were an Oscar Meyer weiner';
@@ -289,7 +284,7 @@ describe('given a Form containing a required TextInput and a SubmitButton', () =
         const component = mount(
             <Form>
                 <Form.TextInput required value={initialValue} />
-                <Form.SubmitButton label={label} />
+                <Form.SubmitButton />
             </Form>
         );
 
@@ -305,8 +300,6 @@ describe('given a Form containing a required TextInput and a SubmitButton', () =
     });
 
     it('after changing from valid to invalid, the SubmitButton should be disabled', () => {
-        const label = 'my label';
-
         const initialValue = 'I wish I were an Oscar Meyer weiner';
 
         const finalValue = '';
@@ -314,7 +307,7 @@ describe('given a Form containing a required TextInput and a SubmitButton', () =
         const component = mount(
             <Form>
                 <Form.TextInput required value={initialValue} />
-                <Form.SubmitButton label={label} />
+                <Form.SubmitButton />
             </Form>
         );
 
@@ -341,11 +334,9 @@ describe('a SubmitButton', () => {
 
         const onClick = sinon.spy();
 
-        const label = 'my label';
-
         const component = mount(
             <Form>
-                <Form.SubmitButton label={label} onClick={onClick} />
+                <Form.SubmitButton onClick={onClick} />
             </Form>
         );
 

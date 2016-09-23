@@ -5,14 +5,14 @@ import classnames from 'classnames';
 
 /**
  * The SubmitButton component
- * @param  {String}   label   The label to display in the button
+ * @param  {String}   children   The label to display in the button
  * @param  {String}   style   The style with which to display the button
  * @param  {Function} onClick The `onClick` handler for the button
  * @param  {Boolean}  isValid A flag indicating whether the form to which this
  *                            button is attached is valid
  * @return {React.Element}    The React element describing this component
  */
-const SubmitButton = ({ label, style, onClick }, { isValid }) => (
+const SubmitButton = ({ children, style, onClick }, { isValid }) => (
     <button
         className={classnames('btn', {
             'btn-danger':  style === 'danger' || style === 'error',
@@ -24,14 +24,13 @@ const SubmitButton = ({ label, style, onClick }, { isValid }) => (
         disabled={!isValid}
         onClick={onClick}
     >
-        {label || 'Submit'}
+        {children || 'Submit'}
     </button>
 );
 
 // define the property types for the component
 //
 SubmitButton.propTypes = {
-    label:   React.PropTypes.string,
     style:   React.PropTypes.string,
     onClick: React.PropTypes.func,
 };
@@ -40,6 +39,10 @@ SubmitButton.propTypes = {
 //
 SubmitButton.contextTypes = {
     isValid: React.PropTypes.bool,
+    children:   React.PropTypes.oneOfType([
+        React.PropTypes.arrayOf(React.PropTypes.node),
+        React.PropTypes.node,
+    ]),
 };
 
 // export the component
