@@ -62,9 +62,9 @@ class CheckboxGroup extends React.Component {
 
         let delta = null;
         if (idx === -1) {
-            delta = { value: { $push: [value] } };
+            delta = { hasBeenClicked: { $set: true }, value: { $push: [value] } };
         } else {
-            delta = { value: { $splice: [[idx, 1]] } };
+            delta = { hasBeenClicked: { $set: true }, value: { $splice: [[idx, 1]] } };
         }
 
         this.setState((state) => update(state, delta), () => {
