@@ -21,7 +21,7 @@ class CheckboxGroup extends React.Component {
         // intialize the validation message for the component
         //
         this.validationMessage = this.props.validationMessage
-            || 'At least one item must be checked';
+            || `At least one item in ${this.props.description} must be selected`;
 
 
         this.state = {
