@@ -225,8 +225,80 @@ the CheckboxGroup component
 */
 describe('the CheckboxGroup component', () => {
 
-    // it('should call onChange with the correct value(s) when a new item is toggled on', () => {});
+    const options = [
+        { value: '1', name: 'One' },
+        { value: '2', name: 'Two' },
+        { value: '3', name: 'Three' },
+    ];
 
-    // it('should call onChange with the correct value(s) when a new item is toggled off', () => {});
+    it('should call onChange with the correct value(s) when a new item is toggled on', () => {
+
+        const onChange = sinon.spy();
+
+        const value = '2';
+
+        const component = mount(
+            <Form>
+                <Form.CheckboxGroup value={value} options={options} onChange={onChange} />
+            </Form>
+        );
+
+        expect(component.find('div.checkbox input[type="checkbox"]').at(0).props().checked)
+            .to.equal(false);
+        expect(component.find('div.checkbox input[type="checkbox"]').at(1).props().checked)
+            .to.equal(true);
+        expect(component.find('div.checkbox input[type="checkbox"]').at(2).props().checked)
+            .to.equal(false);
+
+        // click the first item
+        //
+        component.find('div.checkbox input[type="checkbox"]').at(0).simulate('click');
+
+        expect(component.find('div.checkbox input[type="checkbox"]').at(0).props().checked)
+            .to.equal(true);
+        expect(component.find('div.checkbox input[type="checkbox"]').at(1).props().checked)
+            .to.equal(true);
+        expect(component.find('div.checkbox input[type="checkbox"]').at(2).props().checked)
+            .to.equal(false);
+
+        expect(onChange.callCount).to.equal(1, 'callCount');
+        expect(onChange.calledWith(['2', '1'])).to.equal(true, 'args');
+
+    });
+
+    it('should call onChange with the correct value(s) when a new item is toggled off', () => {
+
+        const onChange = sinon.spy();
+
+        const value = ['1', '2'];
+
+        const component = mount(
+            <Form>
+                <Form.CheckboxGroup value={value} options={options} onChange={onChange} />
+            </Form>
+        );
+
+        expect(component.find('div.checkbox input[type="checkbox"]').at(0).props().checked)
+            .to.equal(true);
+        expect(component.find('div.checkbox input[type="checkbox"]').at(1).props().checked)
+            .to.equal(true);
+        expect(component.find('div.checkbox input[type="checkbox"]').at(2).props().checked)
+            .to.equal(false);
+
+        // click the first item
+        //
+        component.find('div.checkbox input[type="checkbox"]').at(0).simulate('click');
+
+        expect(component.find('div.checkbox input[type="checkbox"]').at(0).props().checked)
+            .to.equal(false);
+        expect(component.find('div.checkbox input[type="checkbox"]').at(1).props().checked)
+            .to.equal(true);
+        expect(component.find('div.checkbox input[type="checkbox"]').at(2).props().checked)
+            .to.equal(false);
+
+        expect(onChange.callCount).to.equal(1, 'callCount');
+        expect(onChange.calledWith(['2'])).to.equal(true, 'args');
+
+    });
 
 });
