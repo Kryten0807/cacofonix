@@ -3,6 +3,15 @@
 import React from 'react';
 import classnames from 'classnames';
 
+/**
+ * The Button component
+ * @param  {Object} children  The children of this component
+ * @param  {Boolean} disabled A flag to indicate whether the button should be
+ *                            rendered as disabled
+ * @param  {String} style     The style for the button
+ * @param  {Function} onClick The onClick handler for the button
+ * @return {React.Element}    The React element describing this component
+ */
 const Button = ({ children, disabled, style, onClick }) => (
     <button
         className={classnames('btn', {
@@ -19,6 +28,10 @@ const Button = ({ children, disabled, style, onClick }) => (
     </button>
 );
 
+/**
+ * The property types for the Button component
+ * @type {Object}
+ */
 Button.propTypes = {
     disabled: React.PropTypes.bool,
     style:    React.PropTypes.string,
@@ -29,4 +42,6 @@ Button.propTypes = {
     ]),
 };
 
+// export the component
+//
 export default Button;
