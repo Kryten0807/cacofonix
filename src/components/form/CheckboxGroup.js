@@ -45,7 +45,7 @@ class CheckboxGroup extends React.Component {
             this.context.onChildValidationEvent(
                 this.id,
                 false,
-                isValid ? null : 'At least one item must be checked'
+                isValid ? null : this.validationMessage
             );
         }
     }
@@ -71,7 +71,7 @@ class CheckboxGroup extends React.Component {
                 this.context.onChildValidationEvent(
                     this.id,
                     true,
-                    isValid ? null : 'At least one item must be checked'
+                    isValid ? null : this.validationMessage
                 );
             }
         });
@@ -84,7 +84,7 @@ class CheckboxGroup extends React.Component {
         });
 
         const helpBlock = this.props.required && this.state.hasBeenClicked && !this.state.value.length
-            ? <span className="help-block">At least one item must be checked</span>
+            ? <span className="help-block">{this.validationMessage}</span>
             : '';
 
         return (
