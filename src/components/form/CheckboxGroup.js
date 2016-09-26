@@ -84,6 +84,8 @@ class CheckboxGroup extends React.Component {
                                 type="checkbox"
                                 value={opt.value}
                                 checked={this.state.value.findIndex((val) => val === opt.value) !== -1}
+                                onChange={() => this.onClick(opt.value)}
+                                onClick={() => this.onClick(opt.value)}
                             />
                             <span>{opt.name}</span>
                         </label>
