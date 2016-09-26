@@ -247,6 +247,13 @@ class TextInput extends React.Component {
             onFocus={this.onFocus}
             onChange={this.onChange}
         />;
+
+        if (this.context.labelColumns) {
+            input = <div className={classnames('form-textinput-input-columns', `col-xs-${12 - this.context.labelColumns}`)}>
+                {input}
+            </div>;
+        }
+
         // return the rendered component
         //
         return (
