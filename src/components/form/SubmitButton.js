@@ -42,7 +42,7 @@ SubmitButton.propTypes = {
 // define the context types for values received from higher up the food chain
 //
 SubmitButton.contextTypes = {
-    isValid:  React.PropTypes.bool,
+    isValid: React.PropTypes.bool,
 };
 
 // export the component
