@@ -363,7 +363,6 @@ describe('the CheckboxGroup component', () => {
 
 });
 
-// @TODO write these specs
 /* *****************************************************************************
 on initialization, the CheckboxGroup component
     should not show the validation message when required=false and some items are checked
