@@ -704,6 +704,8 @@ describe('after the user clicks something, the CheckboxGroup component', () => {
 
 /* *****************************************************************************
 after the user clicks something, the parent Form component
+    should locally show the standard validation message when required=true and no items are checked
+    should globally show the standard validation message when required=true and no items are checked
 
     should locally show the custom validation message when a custom message is specified, required=true, and no items are checked
     should globally show the custom validation message when a custom message is specified, required=true, and no items are checked
