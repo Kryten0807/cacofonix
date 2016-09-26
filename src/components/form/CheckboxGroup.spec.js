@@ -217,6 +217,43 @@ describe('a Form component containing a CheckboxGroup', () => {
             .to.equal(false);
     });
 
+    it('should have the correct options checked when null value is provided', () => {
+
+        const value = null;
+
+        const component = mount(
+            <Form>
+                <Form.CheckboxGroup value={value} options={options} />
+            </Form>
+        );
+
+        expect(component.find('div.checkbox input[type="checkbox"]'))
+            .to.have.length(options.length);
+        expect(component.find('div.checkbox input[type="checkbox"]').at(0).props().checked)
+            .to.equal(false);
+        expect(component.find('div.checkbox input[type="checkbox"]').at(1).props().checked)
+            .to.equal(false);
+        expect(component.find('div.checkbox input[type="checkbox"]').at(2).props().checked)
+            .to.equal(false);
+    });
+
+    it('should have the correct options checked when no value is provided', () => {
+
+        const component = mount(
+            <Form>
+                <Form.CheckboxGroup options={options} />
+            </Form>
+        );
+
+        expect(component.find('div.checkbox input[type="checkbox"]'))
+            .to.have.length(options.length);
+        expect(component.find('div.checkbox input[type="checkbox"]').at(0).props().checked)
+            .to.equal(false);
+        expect(component.find('div.checkbox input[type="checkbox"]').at(1).props().checked)
+            .to.equal(false);
+        expect(component.find('div.checkbox input[type="checkbox"]').at(2).props().checked)
+            .to.equal(false);
+    });
 
 });
 
