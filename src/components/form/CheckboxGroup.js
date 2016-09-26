@@ -18,6 +18,12 @@ class CheckboxGroup extends React.Component {
 
         this.id = this.props.id || uniqueId('form-checkboxgroup-');
 
+        // intialize the validation message for the component
+        //
+        this.validationMessage = this.props.validationMessage
+            || 'At least one item must be checked';
+
+
         this.state = {
             value,
             hasBeenClicked: false,
