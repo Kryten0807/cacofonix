@@ -91,6 +91,16 @@ class CheckboxGroup extends React.Component {
             if (this.props.onChange) {
                 this.props.onChange(this.state.value);
             }
+
+            const isValid = !this.props.required || this.state.value.length;
+
+            if (this.context.onChildValidationEvent) {
+                this.context.onChildValidationEvent(
+                    this.id,
+                    true,
+                    isValid ? null : 'At least one item must be checked'
+                );
+            }
         });
     }
 
