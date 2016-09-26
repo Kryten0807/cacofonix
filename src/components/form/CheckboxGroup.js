@@ -75,6 +75,10 @@ class CheckboxGroup extends React.Component {
     }
 
     render() {
+
+        const classes = classnames('form-group', {
+            'has-error': this.props.required && this.state.hasBeenClicked && !this.state.value.length,
+        });
         return (
             <div className="form-group">
                 {this.props.label
