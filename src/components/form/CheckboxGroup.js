@@ -121,6 +121,30 @@ class CheckboxGroup extends React.Component {
     }
 }
 
+CheckboxGroup.propTypes = {
+    required:          React.PropTypes.bool,
+    id:                React.PropTypes.string,
+    label:             React.PropTypes.string,
+    description:       React.PropTypes.string,
+    validationMessage: React.PropTypes.string,
+    onChange:          React.PropTypes.func,
+    value:             React.PropTypes.oneOfType([
+        React.PropTypes.string,
+        React.PropTypes.number,
+    ]),
+    options:           React.PropTypes.oneOfType([
+        React.PropTypes.arrayOf(
+            React.PropTypes.oneOfType([
+                React.PropTypes.string,
+                React.PropTypes.number,
+            ])
+        ),
+        React.PropTypes.string,
+        React.PropTypes.number,
+    ]),
+
+};
+
 // set the context types for values received from higher up the food chain
 //
 CheckboxGroup.contextTypes = {
