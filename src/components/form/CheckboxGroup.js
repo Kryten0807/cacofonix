@@ -49,6 +49,8 @@ class CheckboxGroup extends React.Component {
             value = isArray(this.props.value) ? this.props.value : [this.props.value];
         }
 
+        this.id = this.props.id || uniqueId('form-checkboxgroup-');
+
         this.state = {
             value,
             hasBeenClicked: false,
