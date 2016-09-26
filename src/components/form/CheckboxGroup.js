@@ -146,7 +146,7 @@ class CheckboxGroup extends React.Component {
         return (
             <div className={classes}>
                 {this.props.label
-                    ? <label className="checkboxgroup">{this.props.label}</label>
+                    ? <label className="checkboxgroup pull-left">{this.props.label}</label>
                     : null
                 }
                 {this.props.options.map((opt) =>
