@@ -718,6 +718,64 @@ describe('after the user clicks something, the CheckboxGroup component', () => {
         { value: '3', name: 'Three' },
     ];
 
+    it('should locally show the standard validation message when required=true and no items are checked', () => {
+
+        const description = 'this component';
+
+        const expectedMessage = `At least one item in ${description} must be selected`;
+
+        const required = true;
+
+        const value = ['2'];
+
+        const component = mount(
+            <Form>
+                <Form.CheckboxGroup
+                    required={required}
+                    description={description}
+                    value={value}
+                    options={options}
+                />
+            </Form>
+        );
+
+        // click the first item
+        //
+        component.find('div.checkbox input[type="checkbox"]').at(1).simulate('click');
+
+        expect(component.find('span.help-block').text()).to.contain(expectedMessage, 'help-block');
+    });
+
+    it('should globally show the standard validation message when required=true and no items are checked', () => {
+
+        const description = 'this component';
+
+        const expectedMessage = `At least one item in ${description} must be selected`;
+
+        const required = true;
+
+        const value = ['2'];
+
+        const component = mount(
+            <Form>
+                <Form.CheckboxGroup
+                    required={required}
+                    description={description}
+                    value={value}
+                    options={options}
+                />
+            </Form>
+        );
+
+        // click the first item
+        //
+        component.find('div.checkbox input[type="checkbox"]').at(1).simulate('click');
+
+
+        expect(component.find('Alert')).to.have.length(1, 'alert');
+        expect(component.find('Alert').text()).to.contain(expectedMessage, 'contains message');
+    });
+
 
     it('should locally show the custom validation message when a custom message is specified, required=true, and no items are checked', () => {
 
