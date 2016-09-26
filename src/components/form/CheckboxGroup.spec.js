@@ -64,6 +64,8 @@ a Form component containing a CheckboxGroup
     should contain a label for each option
     should contain an input[type="checkbox"] for each option
     should contain a span with the option name for each option
+    should have the correct options checked when multiple values are provided
+    should have the correct options checked when a single value is provided
 */
 describe('a Form component containing a CheckboxGroup', () => {
 
