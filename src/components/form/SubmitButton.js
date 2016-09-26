@@ -39,7 +39,7 @@ SubmitButton.propTypes = {
 //
 SubmitButton.contextTypes = {
     isValid: React.PropTypes.bool,
-    children:   React.PropTypes.oneOfType([
+    children: React.PropTypes.oneOfType([
         React.PropTypes.arrayOf(React.PropTypes.node),
         React.PropTypes.node,
     ]),
