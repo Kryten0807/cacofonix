@@ -59,6 +59,24 @@ class CheckboxGroup extends React.Component {
         this.onClick = this.onClick.bind(this);
     }
 
+    componentWillMount() {
+        // determine if it's valid
+        //
+        const isValid = !this.props.required || this.state.value.length;
+
+        // call the `onChildValidationEvent` handler once with
+        // `hasValidated`=false, just to ensure that the parent knows about this
+        // child
+        //
+        if (this.context.onChildValidationEvent) {
+            this.context.onChildValidationEvent(
+                this.id,
+                false,
+                isValid ? null : 'At least one item must be checked'
+            );
+        }
+    }
+
     onClick(value) {
         const idx = this.state.value.findIndex((val) => val === value);
 
