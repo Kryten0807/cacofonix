@@ -3,8 +3,6 @@
 import React from 'react';
 import classnames from 'classnames';
 
-// @TODO allow children (ie. icons)
-
 /**
  * The SubmitButton component
  * @param  {String}   children   The label to display in the button
