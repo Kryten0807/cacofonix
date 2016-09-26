@@ -192,8 +192,6 @@ describe('a Form component containing a Dropdown', () => {
 
         expect(component.find('select').props().value).to.equal(options[0].value);
     });
-
-
 });
 
 /* *****************************************************************************
