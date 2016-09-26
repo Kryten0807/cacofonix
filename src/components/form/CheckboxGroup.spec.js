@@ -525,6 +525,9 @@ describe('on initialization, the parent Form component', () => {
 
 });
 
+
+
+/* *****************************************************************************
 after the user clicks something, the CheckboxGroup component
     should not show the validation message when required=false and some items are checked
     should not show the validation message when required=false and no items are checked
@@ -629,6 +632,108 @@ describe('after the user clicks something, the CheckboxGroup component', () => {
         expect(component.find('div.form-group').length).to.equal(1, 'form-group');
         expect(component.find('div.form-group.has-error').length).to.equal(1, 'has-error');
         expect(component.find('span.help-block').length).to.equal(1, 'help-block');
+    });
+
+});
+
+
+/* *****************************************************************************
+after the user clicks something, the parent Form component
+    should not show the validation message when required=false and some items are checked
+    should not show the validation message when required=false and no items are checked
+    should not show the validation message when required=true and some items are checked
+    should show the validation message when required=true and no items are checked
+*/
+describe('after the user clicks something, the CheckboxGroup component', () => {
+
+    const options = [
+        { value: '1', name: 'One' },
+        { value: '2', name: 'Two' },
+        { value: '3', name: 'Three' },
+    ];
+
+    it('should not show the validation message when required=false and some items are checked', () => {
+
+        const onChange = sinon.spy();
+
+        const required = false;
+
+        const value = [];
+
+        const component = mount(
+            <Form>
+                <Form.CheckboxGroup required={required} value={value} options={options} onChange={onChange} />
+            </Form>
+        );
+
+        // click the first item
+        //
+        component.find('div.checkbox input[type="checkbox"]').at(0).simulate('click');
+
+        expect(component.find('Alert')).to.have.length(0);
+    });
+
+    it('should not show the validation message when required=false and no items are checked', () => {
+
+        const onChange = sinon.spy();
+
+        const required = false;
+
+        const value = ['3'];
+
+        const component = mount(
+            <Form>
+                <Form.CheckboxGroup required={required} value={value} options={options} onChange={onChange} />
+            </Form>
+        );
+
+        // click the first item
+        //
+        component.find('div.checkbox input[type="checkbox"]').at(2).simulate('click');
+
+        expect(component.find('Alert')).to.have.length(0);
+    });
+
+    it('should not show the validation message when required=true and some items are checked', () => {
+
+        const onChange = sinon.spy();
+
+        const required = true;
+
+        const value = [];
+
+        const component = mount(
+            <Form>
+                <Form.CheckboxGroup required={required} value={value} options={options} onChange={onChange} />
+            </Form>
+        );
+
+        // click the first item
+        //
+        component.find('div.checkbox input[type="checkbox"]').at(0).simulate('click');
+
+        expect(component.find('Alert')).to.have.length(0);
+    });
+
+    it('should show the validation message when required=true and no items are checked', () => {
+
+        const onChange = sinon.spy();
+
+        const required = true;
+
+        const value = ['2'];
+
+        const component = mount(
+            <Form>
+                <Form.CheckboxGroup required={required} value={value} options={options} onChange={onChange} />
+            </Form>
+        );
+
+        // click the first item
+        //
+        component.find('div.checkbox input[type="checkbox"]').at(1).simulate('click');
+
+        expect(component.find('Alert')).to.have.length(1);
     });
 
 });
