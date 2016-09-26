@@ -6,6 +6,7 @@ import uniqueId from 'lodash/uniqueId';
 import classnames from 'classnames';
 
 import Alert from './Alert';
+import Button from './form/Button';
 import CheckboxGroup from './form/CheckboxGroup';
 import Dropdown from './form/Dropdown';
 import RadioButtonGroup from './form/RadioButtonGroup';
@@ -196,6 +197,7 @@ Form.childContextTypes = {
 // add the "sub-components" so that they can be imported as part of the same
 // package
 //
+Form.Button = Button;
 Form.CheckboxGroup = CheckboxGroup;
 Form.Dropdown = Dropdown;
 Form.RadioButtonGroup = RadioButtonGroup;
