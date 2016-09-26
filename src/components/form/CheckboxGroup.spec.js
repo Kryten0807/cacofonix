@@ -177,6 +177,26 @@ describe('a Form component containing a CheckboxGroup', () => {
 
     it('should have the correct options checked when multiple values are provided', () => {
 
+        const value = ['1', '2'];
+
+        const component = mount(
+            <Form>
+                <Form.CheckboxGroup value={value} options={options} />
+            </Form>
+        );
+
+        expect(component.find('div.checkbox input[type="checkbox"]'))
+            .to.have.length(options.length);
+        expect(component.find('div.checkbox input[type="checkbox"]').at(0).props().checked)
+            .to.equal(true);
+        expect(component.find('div.checkbox input[type="checkbox"]').at(1).props().checked)
+            .to.equal(true);
+        expect(component.find('div.checkbox input[type="checkbox"]').at(2).props().checked)
+            .to.equal(false);
+    });
+
+    it('should have the correct options checked when a single value is provided', () => {
+
         const value = '2';
 
         const component = mount(
@@ -194,6 +214,7 @@ describe('a Form component containing a CheckboxGroup', () => {
         expect(component.find('div.checkbox input[type="checkbox"]').at(2).props().checked)
             .to.equal(false);
     });
+
 
 });
 
