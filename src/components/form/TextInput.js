@@ -229,6 +229,7 @@ class TextInput extends React.Component {
                 {this.props.label}
             </label>
             : null;
+
         // determine the value to display, formatting it if necessary
         //
         const value = (this.props.format && !this.state.isEditing)
