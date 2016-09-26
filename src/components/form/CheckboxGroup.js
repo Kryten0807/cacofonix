@@ -80,10 +80,13 @@ class CheckboxGroup extends React.Component {
     render() {
 
         const classes = classnames('form-group', {
-            'has-error': this.props.required && this.state.hasBeenClicked && !this.state.value.length,
+            'has-error': this.props.required
+                && this.state.hasBeenClicked
+                && !this.state.value.length,
         });
 
-        const helpBlock = this.props.required && this.state.hasBeenClicked && !this.state.value.length
+        const helpBlock =
+            this.props.required && this.state.hasBeenClicked && !this.state.value.length
             ? <span className="help-block">{this.validationMessage}</span>
             : '';
 
@@ -94,12 +97,17 @@ class CheckboxGroup extends React.Component {
                     : null
                 }
                 {this.props.options.map((opt) =>
-                    <div key={uniqueId('form-checkboxgroup-option-')} className="checkbox pull-left">
+                    <div
+                        key={uniqueId('form-checkboxgroup-option-')}
+                        className="checkbox pull-left"
+                    >
                         <label>
                             <input
                                 type="checkbox"
                                 value={opt.value}
-                                checked={this.state.value.findIndex((val) => val === opt.value) !== -1}
+                                checked={
+                                    this.state.value.findIndex((val) => val === opt.value) !== -1
+                                }
                                 onChange={() => this.onClick(opt.value)}
                                 onClick={() => this.onClick(opt.value)}
                             />
