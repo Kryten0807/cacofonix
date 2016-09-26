@@ -381,7 +381,6 @@ describe('on initialization, the CheckboxGroup component', () => {
 
     it('should not show the validation message when required=false and some items are checked', () => {
 
-    // it('should not show the validation message when required=false and no items are checked', () => {});
         const required = false;
 
         const value = ['2'];
@@ -397,10 +396,56 @@ describe('on initialization, the CheckboxGroup component', () => {
         expect(component.find('span.help-block').length).to.equal(0, 'help-block');
     });
 
+    it('should not show the validation message when required=false and no items are checked', () => {
 
-    // it('should not show the validation message when required=true and some items are checked', () => {});
+        const required = false;
 
-    // it('should not show the validation message when required=true and no items are checked', () => {});
+        const value = [];
+
+        const component = mount(
+            <Form>
+                <Form.CheckboxGroup required={required} value={value} options={options} />
+            </Form>
+        );
+
+        expect(component.find('div.form-group').length).to.equal(1, 'form-group');
+        expect(component.find('div.form-group.has-error').length).to.equal(0, 'has-error');
+        expect(component.find('span.help-block').length).to.equal(0, 'help-block');
+    });
+
+    it('should not show the validation message when required=true and some items are checked', () => {
+
+        const required = true;
+
+        const value = ['1'];
+
+        const component = mount(
+            <Form>
+                <Form.CheckboxGroup required={required} value={value} options={options} />
+            </Form>
+        );
+
+        expect(component.find('div.form-group').length).to.equal(1, 'form-group');
+        expect(component.find('div.form-group.has-error').length).to.equal(0, 'has-error');
+        expect(component.find('span.help-block').length).to.equal(0, 'help-block');
+    });
+
+    it('should not show the validation message when required=true and no items are checked', () => {
+
+        const required = true;
+
+        const value = [];
+
+        const component = mount(
+            <Form>
+                <Form.CheckboxGroup required={required} value={value} options={options} />
+            </Form>
+        );
+
+        expect(component.find('div.form-group').length).to.equal(1, 'form-group');
+        expect(component.find('div.form-group.has-error').length).to.equal(0, 'has-error');
+        expect(component.find('span.help-block').length).to.equal(0, 'help-block');
+    });
 
 });
 
