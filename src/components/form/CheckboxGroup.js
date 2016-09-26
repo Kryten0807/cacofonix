@@ -191,16 +191,7 @@ CheckboxGroup.propTypes = {
         React.PropTypes.string,
         React.PropTypes.number,
     ]),
-    options:           React.PropTypes.oneOfType([
-        React.PropTypes.arrayOf(
-            React.PropTypes.oneOfType([
-                React.PropTypes.string,
-                React.PropTypes.number,
-            ])
-        ),
-        React.PropTypes.string,
-        React.PropTypes.number,
-    ]),
+    options:           React.PropTypes.arrayOf(React.PropTypes.object),
 
 };
 
