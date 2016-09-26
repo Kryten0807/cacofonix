@@ -104,6 +104,7 @@ class CheckboxGroup extends React.Component {
                         </label>
                     </div>
                 )}
+                {helpBlock}
             </div>
         );
     }
