@@ -125,7 +125,7 @@ describe('a Form component with a TextInput element', () => {
         );
 
         expect(component.find('div.form-horizontal')).to.have.length(1, 'form-horizontal');
-        expect(component.find('div.form-horizontal div.form-group label').props().classNames).to.contain('col-xs-3', 'col-xs-3');
+        expect(component.find('div.form-horizontal div.form-group label').props().className).to.contain('col-xs-3', 'col-xs-3');
     });
 
     // it('should have a div.col-xs-9 when form is horizontal and labelColumns=3', () => {});
