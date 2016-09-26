@@ -60,7 +60,11 @@ class CheckboxGroup extends React.Component {
                 {this.props.options.map((opt) =>
                     <div key={uniqueId('form-checkboxgroup-option-')} className="checkbox">
                         <label>
-                            <input type="checkbox" value={opt.value} />
+                            <input
+                                type="checkbox"
+                                value={opt.value}
+                                checked={this.state.value.findIndex((val) => val === opt.value) !== -1}
+                            />
                             <span>{opt.name}</span>
                         </label>
                     </div>
