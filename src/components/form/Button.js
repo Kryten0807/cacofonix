@@ -12,6 +12,7 @@ const Button = ({ children, disabled, style, onClick }) => (
             'btn-success': style === 'success' || style === 'ok',
             'btn-default': !style,
         })}
+        disabled={!!disabled}
         onClick={onClick}
     >
         {children || 'Submit'}
