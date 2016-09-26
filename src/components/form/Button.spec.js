@@ -35,6 +35,10 @@ a Form component containing a Button
     should be button.btn.btn-info when style=info
     should be button.btn.btn-success when style=success
     should be button.btn.btn-success when style=ok
+
+    should be disabled if disabled=true
+    should not be disabled if disabled=false
+    should not be disabled if disabled is not set
 */
 describe('a Form component containing a Button', () => {
 
