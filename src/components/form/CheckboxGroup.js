@@ -80,7 +80,7 @@ class CheckboxGroup extends React.Component {
             'has-error': this.props.required && this.state.hasBeenClicked && !this.state.value.length,
         });
         return (
-            <div className="form-group">
+            <div className={classes}>
                 {this.props.label
                     ? <label className="checkboxgroup">{this.props.label}</label>
                     : null
