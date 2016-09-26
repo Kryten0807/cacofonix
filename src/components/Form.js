@@ -57,6 +57,7 @@ class Form extends React.Component {
     getChildContext() {
         return {
             isValid:                this.isValid(),
+            labelColumns:           this.props.labelColumns,
             onChildValidationEvent: this.onChildValidationEvent,
         };
     }
@@ -192,6 +193,7 @@ Form.propTypes = {
 Form.childContextTypes = {
     isValid:                React.PropTypes.bool,
     onChildValidationEvent: React.PropTypes.func,
+    labelColumns:           React.PropTypes.number,
 };
 
 // register the "sub-components" so that they can be imported as part of the
