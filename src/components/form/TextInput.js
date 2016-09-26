@@ -259,6 +259,7 @@ class TextInput extends React.Component {
         return (
             <div className={classnames('form-group', { 'has-error': !this.state.isValid })}>
                 {label}
+                {input}
                 {!this.state.isValid
                     ? <span className="help-block">{this.validationMessage}</span>
                     : null
