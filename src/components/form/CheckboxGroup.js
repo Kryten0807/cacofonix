@@ -121,19 +121,28 @@ class CheckboxGroup extends React.Component {
         });
     }
 
+    /**
+     * Render the component
+     * @return {React.Element} The React element describing the component
+     */
     render() {
-
+        // build the list of classes for the outermost div
+        //
         const classes = classnames('form-group', {
             'has-error': this.props.required
                 && this.state.hasBeenClicked
                 && !this.state.value.length,
         });
 
+        // render the help block if the component has failed validation
+        //
         const helpBlock =
             this.props.required && this.state.hasBeenClicked && !this.state.value.length
             ? <span className="help-block">{this.validationMessage}</span>
             : '';
 
+        // render the component and return it
+        //
         return (
             <div className={classes}>
                 {this.props.label
@@ -165,6 +174,10 @@ class CheckboxGroup extends React.Component {
     }
 }
 
+/**
+ * The property types for the component
+ * @type {Object}
+ */
 CheckboxGroup.propTypes = {
     required:          React.PropTypes.bool,
     id:                React.PropTypes.string,
@@ -189,10 +202,14 @@ CheckboxGroup.propTypes = {
 
 };
 
-// set the context types for values received from higher up the food chain
-//
+/**
+ * The context types for the component
+ * @type {Object}
+ */
 CheckboxGroup.contextTypes = {
     onChildValidationEvent: React.PropTypes.func,
 };
 
+// export the component
+//
 export default CheckboxGroup;
