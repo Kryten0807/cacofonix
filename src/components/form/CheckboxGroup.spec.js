@@ -314,6 +314,7 @@ on initialization, the CheckboxGroup component
 
 
 
+// @TODO write these specs
 /* *****************************************************************************
 after the user clicks something, the CheckboxGroup component
     should not show the validation message when required=false and some items are checked
