@@ -140,4 +140,10 @@ class CheckboxGroup extends React.Component {
     }
 }
 
+// set the context types for values received from higher up the food chain
+//
+CheckboxGroup.contextTypes = {
+    onChildValidationEvent: React.PropTypes.func,
+};
+
 export default CheckboxGroup;
