@@ -240,8 +240,6 @@ describe('a Form component containing a Button', () => {
 
         expect(component.find('button').props().disabled).to.equal(false);
     });
-
-
 });
 
 /* *****************************************************************************
