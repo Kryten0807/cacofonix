@@ -345,7 +345,8 @@ describe('on initialization, the CheckboxGroup component', () => {
         { value: '3', name: 'Three' },
     ];
 
-    it('should not show the validation message when required=false and some items are checked', () => {
+    it('should not show the validation message when required=false and some ' +
+        'items are checked', () => {
 
         const required = false;
 
@@ -362,7 +363,8 @@ describe('on initialization, the CheckboxGroup component', () => {
         expect(component.find('span.help-block').length).to.equal(0, 'help-block');
     });
 
-    it('should not show the validation message when required=false and no items are checked', () => {
+    it('should not show the validation message when required=false and no ' +
+        'items are checked', () => {
 
         const required = false;
 
@@ -379,7 +381,8 @@ describe('on initialization, the CheckboxGroup component', () => {
         expect(component.find('span.help-block').length).to.equal(0, 'help-block');
     });
 
-    it('should not show the validation message when required=true and some items are checked', () => {
+    it('should not show the validation message when required=true and some ' +
+        'items are checked', () => {
 
         const required = true;
 
@@ -430,7 +433,8 @@ describe('on initialization, the parent Form component', () => {
         { value: '3', name: 'Three' },
     ];
 
-    it('should not show the validation message when required=false and some items are checked', () => {
+    it('should not show the validation message when required=false and some ' +
+        'items are checked', () => {
 
         const required = false;
 
@@ -445,7 +449,8 @@ describe('on initialization, the parent Form component', () => {
         expect(component.find('Alert')).to.have.length(0);
     });
 
-    it('should not show the validation message when required=false and no items are checked', () => {
+    it('should not show the validation message when required=false and no ' +
+        'items are checked', () => {
 
         const required = false;
 
@@ -460,7 +465,8 @@ describe('on initialization, the parent Form component', () => {
         expect(component.find('Alert')).to.have.length(0);
     });
 
-    it('should not show the validation message when required=true and some items are checked', () => {
+    it('should not show the validation message when required=true and some ' +
+        'items are checked', () => {
 
         const required = true;
 
@@ -507,7 +513,8 @@ describe('after the user clicks something, the CheckboxGroup component', () => {
         { value: '3', name: 'Three' },
     ];
 
-    it('should not show the validation message when required=false and some items are checked', () => {
+    it('should not show the validation message when required=false and some ' +
+        'items are checked', () => {
 
         const onChange = sinon.spy();
 
@@ -517,7 +524,12 @@ describe('after the user clicks something, the CheckboxGroup component', () => {
 
         const component = mount(
             <Form>
-                <Form.CheckboxGroup required={required} value={value} options={options} onChange={onChange} />
+                <Form.CheckboxGroup
+                    required={required}
+                    value={value}
+                    options={options}
+                    onChange={onChange}
+                />
             </Form>
         );
 
@@ -530,7 +542,8 @@ describe('after the user clicks something, the CheckboxGroup component', () => {
         expect(component.find('span.help-block').length).to.equal(0, 'help-block');
     });
 
-    it('should not show the validation message when required=false and no items are checked', () => {
+    it('should not show the validation message when required=false and no ' +
+        'items are checked', () => {
 
         const onChange = sinon.spy();
 
@@ -540,7 +553,12 @@ describe('after the user clicks something, the CheckboxGroup component', () => {
 
         const component = mount(
             <Form>
-                <Form.CheckboxGroup required={required} value={value} options={options} onChange={onChange} />
+                <Form.CheckboxGroup
+                    required={required}
+                    value={value}
+                    options={options}
+                    onChange={onChange}
+                />
             </Form>
         );
 
@@ -553,7 +571,8 @@ describe('after the user clicks something, the CheckboxGroup component', () => {
         expect(component.find('span.help-block').length).to.equal(0, 'help-block');
     });
 
-    it('should not show the validation message when required=true and some items are checked', () => {
+    it('should not show the validation message when required=true and some ' +
+        'items are checked', () => {
 
         const onChange = sinon.spy();
 
@@ -563,7 +582,12 @@ describe('after the user clicks something, the CheckboxGroup component', () => {
 
         const component = mount(
             <Form>
-                <Form.CheckboxGroup required={required} value={value} options={options} onChange={onChange} />
+                <Form.CheckboxGroup
+                    required={required}
+                    value={value}
+                    options={options}
+                    onChange={onChange}
+                />
             </Form>
         );
 
@@ -586,7 +610,12 @@ describe('after the user clicks something, the CheckboxGroup component', () => {
 
         const component = mount(
             <Form>
-                <Form.CheckboxGroup required={required} value={value} options={options} onChange={onChange} />
+                <Form.CheckboxGroup
+                    required={required}
+                    value={value}
+                    options={options}
+                    onChange={onChange}
+                />
             </Form>
         );
 
@@ -616,7 +645,8 @@ describe('after the user clicks something, the CheckboxGroup component', () => {
         { value: '3', name: 'Three' },
     ];
 
-    it('should not show the validation message when required=false and some items are checked', () => {
+    it('should not show the validation message when required=false and some ' +
+        'items are checked', () => {
 
         const onChange = sinon.spy();
 
@@ -626,7 +656,12 @@ describe('after the user clicks something, the CheckboxGroup component', () => {
 
         const component = mount(
             <Form>
-                <Form.CheckboxGroup required={required} value={value} options={options} onChange={onChange} />
+                <Form.CheckboxGroup
+                    required={required}
+                    value={value}
+                    options={options}
+                    onChange={onChange}
+                />
             </Form>
         );
 
@@ -637,7 +672,8 @@ describe('after the user clicks something, the CheckboxGroup component', () => {
         expect(component.find('Alert')).to.have.length(0);
     });
 
-    it('should not show the validation message when required=false and no items are checked', () => {
+    it('should not show the validation message when required=false and no ' +
+        'items are checked', () => {
 
         const onChange = sinon.spy();
 
@@ -647,7 +683,12 @@ describe('after the user clicks something, the CheckboxGroup component', () => {
 
         const component = mount(
             <Form>
-                <Form.CheckboxGroup required={required} value={value} options={options} onChange={onChange} />
+                <Form.CheckboxGroup
+                    required={required}
+                    value={value}
+                    options={options}
+                    onChange={onChange}
+                />
             </Form>
         );
 
@@ -658,7 +699,8 @@ describe('after the user clicks something, the CheckboxGroup component', () => {
         expect(component.find('Alert')).to.have.length(0);
     });
 
-    it('should not show the validation message when required=true and some items are checked', () => {
+    it('should not show the validation message when required=true and some ' +
+        'items are checked', () => {
 
         const onChange = sinon.spy();
 
@@ -668,7 +710,12 @@ describe('after the user clicks something, the CheckboxGroup component', () => {
 
         const component = mount(
             <Form>
-                <Form.CheckboxGroup required={required} value={value} options={options} onChange={onChange} />
+                <Form.CheckboxGroup
+                    required={required}
+                    value={value}
+                    options={options}
+                    onChange={onChange}
+                />
             </Form>
         );
 
@@ -689,7 +736,12 @@ describe('after the user clicks something, the CheckboxGroup component', () => {
 
         const component = mount(
             <Form>
-                <Form.CheckboxGroup required={required} value={value} options={options} onChange={onChange} />
+                <Form.CheckboxGroup
+                    required={required}
+                    value={value}
+                    options={options}
+                    onChange={onChange}
+                />
             </Form>
         );
 
@@ -707,8 +759,10 @@ after the user clicks something, the parent Form component
     should locally show the standard validation message when required=true and no items are checked
     should globally show the standard validation message when required=true and no items are checked
 
-    should locally show the custom validation message when a custom message is specified, required=true, and no items are checked
-    should globally show the custom validation message when a custom message is specified, required=true, and no items are checked
+    should locally show the custom validation message when a custom message is
+        specified, required=true, and no items are checked
+    should globally show the custom validation message when a custom message is
+        specified, required=true, and no items are checked
 */
 describe('after the user clicks something, the CheckboxGroup component', () => {
 
@@ -718,7 +772,8 @@ describe('after the user clicks something, the CheckboxGroup component', () => {
         { value: '3', name: 'Three' },
     ];
 
-    it('should locally show the standard validation message when required=true and no items are checked', () => {
+    it('should locally show the standard validation message when ' +
+        'required=true and no items are checked', () => {
 
         const description = 'this component';
 
@@ -746,7 +801,8 @@ describe('after the user clicks something, the CheckboxGroup component', () => {
         expect(component.find('span.help-block').text()).to.contain(expectedMessage, 'help-block');
     });
 
-    it('should globally show the standard validation message when required=true and no items are checked', () => {
+    it('should globally show the standard validation message when ' +
+        'required=true and no items are checked', () => {
 
         const description = 'this component';
 
@@ -777,7 +833,8 @@ describe('after the user clicks something, the CheckboxGroup component', () => {
     });
 
 
-    it('should locally show the custom validation message when a custom message is specified, required=true, and no items are checked', () => {
+    it('should locally show the custom validation message when a custom ' +
+        'message is specified, required=true, and no items are checked', () => {
 
         const message = 'some silly error message';
 
@@ -803,7 +860,8 @@ describe('after the user clicks something, the CheckboxGroup component', () => {
         expect(component.find('span.help-block').text()).to.contain(message, 'help-block');
     });
 
-    it('should globally show the custom validation message when a custom message is specified, required=true, and no items are checked', () => {
+    it('should globally show the custom validation message when a custom ' +
+        'message is specified, required=true, and no items are checked', () => {
 
         const message = 'some silly error message';
 
