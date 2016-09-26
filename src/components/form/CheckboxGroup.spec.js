@@ -449,6 +449,82 @@ describe('on initialization, the CheckboxGroup component', () => {
 });
 
 /* *****************************************************************************
+on initialization, the parent Form component
+    should not show the validation message when required=false and some items are checked
+    should not show the validation message when required=false and no items are checked
+    should not show the validation message when required=true and some items are checked
+    should not show the validation message when required=true and no items are checked
+*/
+describe('on initialization, the parent Form component', () => {
+
+    const options = [
+        { value: '1', name: 'One' },
+        { value: '2', name: 'Two' },
+        { value: '3', name: 'Three' },
+    ];
+
+    it('should not show the validation message when required=false and some items are checked', () => {
+
+        const required = false;
+
+        const value = ['2'];
+
+        const component = mount(
+            <Form>
+                <Form.CheckboxGroup required={required} value={value} options={options} />
+            </Form>
+        );
+
+        expect(component.find('Alert')).to.have.length(0);
+    });
+
+    it('should not show the validation message when required=false and no items are checked', () => {
+
+        const required = false;
+
+        const value = [];
+
+        const component = mount(
+            <Form>
+                <Form.CheckboxGroup required={required} value={value} options={options} />
+            </Form>
+        );
+
+        expect(component.find('Alert')).to.have.length(0);
+    });
+
+    it('should not show the validation message when required=true and some items are checked', () => {
+
+        const required = true;
+
+        const value = ['1'];
+
+        const component = mount(
+            <Form>
+                <Form.CheckboxGroup required={required} value={value} options={options} />
+            </Form>
+        );
+
+        expect(component.find('Alert')).to.have.length(0);
+    });
+
+    it('should not show the validation message when required=true and no items are checked', () => {
+
+        const required = true;
+
+        const value = [];
+
+        const component = mount(
+            <Form>
+                <Form.CheckboxGroup required={required} value={value} options={options} />
+            </Form>
+        );
+
+        expect(component.find('Alert')).to.have.length(0);
+    });
+
+});
+
 after the user clicks something, the CheckboxGroup component
     should not show the validation message when required=false and some items are checked
     should not show the validation message when required=false and no items are checked
