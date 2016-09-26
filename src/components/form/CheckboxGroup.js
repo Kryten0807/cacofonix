@@ -49,6 +49,25 @@ class CheckboxGroup extends React.Component {
         }
 
         this.state = { value };
+
+        this.onClick = this.onClick.bind(this);
+    }
+
+    onClick(value) {
+        const idx = this.state.value.findIndex((val) => val === value);
+
+        let delta = null;
+        if (idx === -1) {
+            delta = { value: { $push: [value] } };
+        } else {
+            delta = { value: { $splice: [[idx, 1]] } };
+        }
+
+        this.setState((state) => update(state, delta), () => {
+            if (this.props.onChange) {
+                this.props.onChange(this.state.value);
+            }
+        });
     }
 
     render() {
