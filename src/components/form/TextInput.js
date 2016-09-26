@@ -219,6 +219,16 @@ class TextInput extends React.Component {
             return null;
         }
 
+        const label = this.props.label
+            ? <label
+                htmlFor={this.id}
+                classNames={classnames('control-label', {
+                    [`col-xs-${this.context.labelColumns}`]: this.context.labelColumns,
+                })}
+            >
+                {this.props.label}
+            </label>
+            : null;
         // determine the value to display, formatting it if necessary
         //
         const value = (this.props.format && !this.state.isEditing)
@@ -229,7 +239,7 @@ class TextInput extends React.Component {
         //
         return (
             <div className={classnames('form-group', { 'has-error': !this.state.isValid })}>
-                {this.props.label ? <label htmlFor={this.id}>{this.props.label}</label> : ''}
+                {label}
                 <input
                     type="text"
                     readOnly={!!this.props.readOnly}
