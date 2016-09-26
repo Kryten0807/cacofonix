@@ -525,8 +525,6 @@ describe('on initialization, the parent Form component', () => {
 
 });
 
-
-
 /* *****************************************************************************
 after the user clicks something, the CheckboxGroup component
     should not show the validation message when required=false and some items are checked
@@ -635,7 +633,6 @@ describe('after the user clicks something, the CheckboxGroup component', () => {
     });
 
 });
-
 
 /* *****************************************************************************
 after the user clicks something, the parent Form component
