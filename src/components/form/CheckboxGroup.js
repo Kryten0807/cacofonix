@@ -6,16 +6,30 @@ import uniqueId from 'lodash/uniqueId';
 import isArray from 'lodash/isArray';
 import classnames from 'classnames';
 
+/**
+ * The CheckboxGroup component
+ */
 class CheckboxGroup extends React.Component {
+    /**
+     * Construct the component instance
+     * @param  {Object} props The component properties
+     */
     constructor(props) {
         super(props);
 
+        // declare a variable for the component value
+        //
         let value = [];
 
+        // do we have a value prop? if so, make sure it's either an array, or
+        // convert it to an array
+        //
         if (this.props.value) {
             value = isArray(this.props.value) ? this.props.value : [this.props.value];
         }
 
+        // calculate a unique ID for the component if one is not provided
+        //
         this.id = this.props.id || uniqueId('form-checkboxgroup-');
 
         // intialize the validation message for the component
@@ -24,11 +38,15 @@ class CheckboxGroup extends React.Component {
             || `At least one item in ${this.props.description} must be selected`;
 
 
+        // initialize the component state
+        //
         this.state = {
             value,
             hasBeenClicked: false,
         };
 
+        // bind `this` to the onClick handler
+        //
         this.onClick = this.onClick.bind(this);
     }
 
