@@ -41,7 +41,13 @@ class CheckboxGroup extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = { value: [] };
+        let value = [];
+
+        if (this.props.value) {
+            value = isArray(this.props.value) ? this.props.value : [this.props.value];
+        }
+
+        this.state = { value };
     }
 
     render() {
