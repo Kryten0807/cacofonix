@@ -192,7 +192,6 @@ CheckboxGroup.propTypes = {
         React.PropTypes.number,
     ]),
     options:           React.PropTypes.arrayOf(React.PropTypes.object),
-
 };
 
 /**
