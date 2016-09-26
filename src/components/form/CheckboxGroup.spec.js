@@ -310,3 +310,14 @@ after the user clicks something, the CheckboxGroup component
     should not show the validation message when required=true and some items are checked
     should show the validation message when required=true and no items are checked
 */
+describe('after the user clicks something, the CheckboxGroup component', () => {
+
+    // it('should not show the validation message when required=false and some items are checked', () => {});
+
+    // it('should not show the validation message when required=false and no items are checked', () => {});
+
+    // it('should not show the validation message when required=true and some items are checked', () => {});
+
+    // it('should show the validation message when required=true and no items are checked', () => {});
+
+});
