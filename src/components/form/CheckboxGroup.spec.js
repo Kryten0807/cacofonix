@@ -312,6 +312,12 @@ after the user clicks something, the CheckboxGroup component
 */
 describe('after the user clicks something, the CheckboxGroup component', () => {
 
+    const options = [
+        { value: '1', name: 'One' },
+        { value: '2', name: 'Two' },
+        { value: '3', name: 'Three' },
+    ];
+
     // it('should not show the validation message when required=false and some items are checked', () => {});
 
     // it('should not show the validation message when required=false and no items are checked', () => {});
