@@ -50,6 +50,9 @@ class CheckboxGroup extends React.Component {
         this.onClick = this.onClick.bind(this);
     }
 
+    /**
+     * Handle the "component is mounting" event
+     */
     componentWillMount() {
         // determine if it's valid
         //
@@ -68,23 +71,46 @@ class CheckboxGroup extends React.Component {
         }
     }
 
+    /**
+     * Handle a click or change event for one of the input elements
+     * @param  {String} value The value for the input element that was clicked
+     */
     onClick(value) {
+        // determine if the item clicked is currently in the list of checked
+        // items
+        //
         const idx = this.state.value.findIndex((val) => val === value);
 
+        // declare a variable to hold the update details
+        //
         let delta = null;
+
+        // do we have this item in the list of checked items already?
+        //
         if (idx === -1) {
+            // no. add the item to the array
+            //
             delta = { hasBeenClicked: { $set: true }, value: { $push: [value] } };
         } else {
+            // yes. remove the item from the array
+            //
             delta = { hasBeenClicked: { $set: true }, value: { $splice: [[idx, 1]] } };
         }
 
+        // update the state...
         this.setState((state) => update(state, delta), () => {
+            // then call the `onChange` handler (if any)
+            //
             if (this.props.onChange) {
                 this.props.onChange(this.state.value);
             }
 
+            // determine if the value is valid
+            //
             const isValid = !this.props.required || this.state.value.length;
 
+            // call the "child has validated" handler
+            //
             if (this.context.onChildValidationEvent) {
                 this.context.onChildValidationEvent(
                     this.id,
