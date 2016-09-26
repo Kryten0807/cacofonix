@@ -121,7 +121,7 @@ class CheckboxGroup extends React.Component {
                     : null
                 }
                 {this.props.options.map((opt) =>
-                    <div key={uniqueId('form-checkboxgroup-option-')} className="checkbox">
+                    <div key={uniqueId('form-checkboxgroup-option-')} className="checkbox pull-left">
                         <label>
                             <input
                                 type="checkbox"
