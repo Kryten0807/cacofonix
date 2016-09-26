@@ -702,4 +702,73 @@ describe('after the user clicks something, the CheckboxGroup component', () => {
 
 });
 
+/* *****************************************************************************
+after the user clicks something, the parent Form component
+    should locally show the custom validation message when required=true and no items are checked
+    should globally show the custom validation message when required=true and no items are checked
+*/
+describe('after the user clicks something, the CheckboxGroup component', () => {
+
+    const options = [
+        { value: '1', name: 'One' },
+        { value: '2', name: 'Two' },
+        { value: '3', name: 'Three' },
+    ];
+
+
+    it('should locally show the custom validation message when required=true and no items are checked', () => {
+
+        const message = 'some silly error message';
+
+        const required = true;
+
+        const value = ['2'];
+
+        const component = mount(
+            <Form>
+                <Form.CheckboxGroup
+                    required={required}
+                    validationMessage={message}
+                    value={value}
+                    options={options}
+                />
+            </Form>
+        );
+
+        // click the first item
+        //
+        component.find('div.checkbox input[type="checkbox"]').at(1).simulate('click');
+
+        expect(component.find('span.help-block').text()).to.contain(message, 'help-block');
+    });
+
+    it('should globally show the custom validation message when required=true and no items are checked', () => {
+
+        const message = 'some silly error message';
+
+        const required = true;
+
+        const value = ['2'];
+
+        const component = mount(
+            <Form>
+                <Form.CheckboxGroup
+                    required={required}
+                    validationMessage={message}
+                    value={value}
+                    options={options}
+                />
+            </Form>
+        );
+
+        // click the first item
+        //
+        component.find('div.checkbox input[type="checkbox"]').at(1).simulate('click');
+
+        expect(component.find('Alert')).to.have.length(1, 'alert');
+        expect(component.find('Alert').text()).to.contain(message, 'contains message');
+    });
+
+});
+
 // @TODO custom validation error message
