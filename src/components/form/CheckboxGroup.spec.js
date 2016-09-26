@@ -734,3 +734,5 @@ describe('after the user clicks something, the CheckboxGroup component', () => {
     });
 
 });
+
+// @TODO custom validation error message
