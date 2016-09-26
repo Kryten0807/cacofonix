@@ -68,6 +68,7 @@ a Form component containing a CheckboxGroup
     should have the correct options checked when a single value is provided
     should have the correct options checked when null value is provided
     should have the correct options checked when no value is provided
+    should have the correct options checked when empty array value is provided
 */
 describe('a Form component containing a CheckboxGroup', () => {
 
