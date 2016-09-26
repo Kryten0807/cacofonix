@@ -138,7 +138,7 @@ class CheckboxGroup extends React.Component {
         //
         const helpBlock =
             this.props.required && this.state.hasBeenClicked && !this.state.value.length
-            ? <span className="help-block">{this.validationMessage}</span>
+            ? <span className="help-block" style={{ clear: 'both' }}>{this.validationMessage}</span>
             : '';
 
         // render the component and return it
