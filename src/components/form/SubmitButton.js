@@ -31,18 +31,18 @@ const SubmitButton = ({ children, style, onClick }, { isValid }) => (
 // define the property types for the component
 //
 SubmitButton.propTypes = {
-    style:   React.PropTypes.string,
-    onClick: React.PropTypes.func,
+    style:    React.PropTypes.string,
+    onClick:  React.PropTypes.func,
+    children: React.PropTypes.oneOfType([
+        React.PropTypes.arrayOf(React.PropTypes.node),
+        React.PropTypes.node,
+    ]),
 };
 
 // define the context types for values received from higher up the food chain
 //
 SubmitButton.contextTypes = {
-    isValid: React.PropTypes.bool,
-    children: React.PropTypes.oneOfType([
-        React.PropTypes.arrayOf(React.PropTypes.node),
-        React.PropTypes.node,
-    ]),
+    isValid:  React.PropTypes.bool,
 };
 
 // export the component
