@@ -10,8 +10,9 @@ import classnames from 'classnames';
  * @param  {String}   children   The label to display in the button
  * @param  {String}   style   The style with which to display the button
  * @param  {Function} onClick The `onClick` handler for the button
- * @param  {Boolean}  isValid A flag indicating whether the form to which this
- *                            button is attached is valid
+ * @param  {Boolean}  isValid A flag (from the parent Form's context) indicating
+ *                            whether the form to which this button is attached
+ *                            is valid
  * @return {React.Element}    The React element describing this component
  */
 const SubmitButton = ({ children, style, onClick }, { isValid }) => (
