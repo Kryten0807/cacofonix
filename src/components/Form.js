@@ -194,8 +194,8 @@ Form.childContextTypes = {
     onChildValidationEvent: React.PropTypes.func,
 };
 
-// add the "sub-components" so that they can be imported as part of the same
-// package
+// register the "sub-components" so that they can be imported as part of the
+// same package
 //
 Form.Button = Button;
 Form.CheckboxGroup = CheckboxGroup;
