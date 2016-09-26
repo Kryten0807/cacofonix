@@ -186,6 +186,8 @@ CheckboxGroup.propTypes = {
     validationMessage: React.PropTypes.string,
     onChange:          React.PropTypes.func,
     value:             React.PropTypes.oneOfType([
+        React.PropTypes.arrayOf(React.PropTypes.string),
+        React.PropTypes.arrayOf(React.PropTypes.number),
         React.PropTypes.string,
         React.PropTypes.number,
     ]),
