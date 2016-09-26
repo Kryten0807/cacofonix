@@ -203,6 +203,45 @@ describe('a Form component containing a Button', () => {
         expect(component.find('button.btn.btn-success'))
             .to.have.length(1, 'button.btn.btn-success');
     });
+
+    it('should be disabled if disabled=true', () => {
+
+        const disabled = true;
+
+        const component = mount(
+            <Form>
+                <Form.Button disabled={disabled} />
+            </Form>
+        );
+
+        expect(component.find('button').props().disabled).to.equal(true);
+    });
+
+    it('should not be disabled if disabled=false', () => {
+
+        const disabled = false;
+
+        const component = mount(
+            <Form>
+                <Form.Button disabled={disabled} />
+            </Form>
+        );
+
+        expect(component.find('button').props().disabled).to.equal(false);
+    });
+
+    it('should not be disabled if disabled is not set', () => {
+
+        const component = mount(
+            <Form>
+                <Form.Button />
+            </Form>
+        );
+
+        expect(component.find('button').props().disabled).to.equal(false);
+    });
+
+
 });
 
 /* *****************************************************************************
