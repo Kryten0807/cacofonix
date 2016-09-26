@@ -174,3 +174,16 @@ describe('a Form component containing a CheckboxGroup', () => {
     });
 
 });
+
+/* *****************************************************************************
+the CheckboxGroup component
+    should call onChange with the correct value(s) when a new item is toggled on
+    should call onChange with the correct value(s) when a new item is toggled off
+*/
+describe('the CheckboxGroup component', () => {
+
+    // it('should call onChange with the correct value(s) when a new item is toggled on', () => {});
+
+    // it('should call onChange with the correct value(s) when a new item is toggled off', () => {});
+
+});
