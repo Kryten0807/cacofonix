@@ -236,22 +236,22 @@ class TextInput extends React.Component {
             ? this.props.format(this.state.value)
             : this.state.value;
 
+        let input = <input
+            type="text"
+            readOnly={!!this.props.readOnly}
+            id={this.id}
+            value={value}
+            placeholder={this.props.placeholder}
+            className="form-control"
+            onBlur={this.onBlur}
+            onFocus={this.onFocus}
+            onChange={this.onChange}
+        />;
         // return the rendered component
         //
         return (
             <div className={classnames('form-group', { 'has-error': !this.state.isValid })}>
                 {label}
-                <input
-                    type="text"
-                    readOnly={!!this.props.readOnly}
-                    id={this.id}
-                    value={value}
-                    placeholder={this.props.placeholder}
-                    className="form-control"
-                    onBlur={this.onBlur}
-                    onFocus={this.onFocus}
-                    onChange={this.onChange}
-                />
                 {!this.state.isValid
                     ? <span className="help-block">{this.validationMessage}</span>
                     : null
