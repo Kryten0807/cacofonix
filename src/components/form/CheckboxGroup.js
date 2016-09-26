@@ -37,21 +37,31 @@ import uniqueId from 'lodash/uniqueId';
 
 */
 
-const CheckboxGroup = ({ label, options }) => (
-    <div className="form-group">
-        {label
-            ? <label className="checkboxgroup">{label}</label>
-            : null
-        }
-        {options.map((opt) =>
-            <div key={uniqueId('form-checkboxgroup-option-')} className="checkbox">
-                <label>
-                    <input type="checkbox" value={opt.value} />
-                    <span>{opt.name}</span>
-                </label>
+class CheckboxGroup extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = { value: [] };
+    }
+
+    render() {
+        return (
+            <div className="form-group">
+                {this.props.label
+                    ? <label className="checkboxgroup">{this.props.label}</label>
+                    : null
+                }
+                {this.props.options.map((opt) =>
+                    <div key={uniqueId('form-checkboxgroup-option-')} className="checkbox">
+                        <label>
+                            <input type="checkbox" value={opt.value} />
+                            <span>{opt.name}</span>
+                        </label>
+                    </div>
+                )}
             </div>
-        )}
-    </div>
-);
+        );
+    }
+}
 
 export default CheckboxGroup;
