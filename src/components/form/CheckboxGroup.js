@@ -79,6 +79,11 @@ class CheckboxGroup extends React.Component {
         const classes = classnames('form-group', {
             'has-error': this.props.required && this.state.hasBeenClicked && !this.state.value.length,
         });
+
+        const helpBlock = this.props.required && this.state.hasBeenClicked && !this.state.value.length
+            ? <span className="help-block">At least one item must be checked</span>
+            : '';
+
         return (
             <div className={classes}>
                 {this.props.label
