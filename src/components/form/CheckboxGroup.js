@@ -149,25 +149,27 @@ class CheckboxGroup extends React.Component {
                     ? <label className="checkboxgroup pull-left">{this.props.label}</label>
                     : null
                 }
-                {this.props.options.map((opt) =>
-                    <div
-                        key={uniqueId('form-checkboxgroup-option-')}
-                        className="checkbox pull-left"
-                    >
-                        <label>
-                            <input
-                                type="checkbox"
-                                value={opt.value}
-                                checked={
-                                    this.state.value.findIndex((val) => val === opt.value) !== -1
-                                }
-                                onChange={() => this.onClick(opt.value)}
-                                onClick={() => this.onClick(opt.value)}
-                            />
-                            <span>{opt.name}</span>
-                        </label>
-                    </div>
-                )}
+                <div style={{ clear: 'both' }}>
+                    {this.props.options.map((opt) =>
+                        <div
+                            key={uniqueId('form-checkboxgroup-option-')}
+                            className="checkbox pull-left"
+                        >
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    value={opt.value}
+                                    checked={
+                                        this.state.value.findIndex((val) => val === opt.value) !== -1
+                                    }
+                                    onChange={() => this.onClick(opt.value)}
+                                    onClick={() => this.onClick(opt.value)}
+                                />
+                                <span>{opt.name}</span>
+                            </label>
+                        </div>
+                    )}
+                </div>
                 {helpBlock}
             </div>
         );
