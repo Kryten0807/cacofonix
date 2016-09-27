@@ -134,6 +134,15 @@ class CheckboxGroup extends React.Component {
                 && !this.state.value.length,
         });
 
+        const label = this.props.label
+            ? (
+                <label className={classnames('control-label', 'pull-left', {
+                    [`col-xs-${this.context.labelColumns}`]: this.context.labelColumns,
+                })}>
+                    {this.props.label}
+                </label>
+            )
+            : null;
         // render the help block if the component has failed validation
         //
         const helpBlock =
@@ -145,11 +154,9 @@ class CheckboxGroup extends React.Component {
         //
         return (
             <div className={classes}>
-                {this.props.label
-                    ? <label className="checkboxgroup pull-left">{this.props.label}</label>
-                    : null
-                }
                 <div style={{ clear: 'both' }}>
+                {label}
+
                     {this.props.options.map((opt) =>
                         <div
                             key={uniqueId('form-checkboxgroup-option-')}
