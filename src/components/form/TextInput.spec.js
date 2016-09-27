@@ -1339,6 +1339,7 @@ describe('when changing (and blurring) the value of a required TextInput ' +
 when changing (and blurring) the value of a TextInput with parent component
     should maintain the correct value in the input element
     should have the correct value in the input element throughout the editing process
+    should have the correct final value in the input element when the editing process ends
 */
 describe('when changing (and blurring) the value of a TextInput with parent component', () => {
 
