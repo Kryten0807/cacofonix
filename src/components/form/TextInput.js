@@ -236,7 +236,7 @@ class TextInput extends React.Component {
             ? this.props.format(this.state.value)
             : this.state.value;
 
-        let input = <input
+        let input = (<input
             type="text"
             readOnly={!!this.props.readOnly}
             id={this.id}
@@ -246,7 +246,7 @@ class TextInput extends React.Component {
             onBlur={this.onBlur}
             onFocus={this.onFocus}
             onChange={this.onChange}
-        />;
+        />);
 
         if (this.context.labelColumns) {
             input = <div className={classnames('form-textinput-input-columns', `col-xs-${12 - this.context.labelColumns}`)}>
