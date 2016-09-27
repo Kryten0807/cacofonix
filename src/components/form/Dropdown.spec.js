@@ -32,6 +32,8 @@ a Form component containing a Dropdown
     should select a specific value when value is set
     should select the first item when value is not set
     should select the first item when value is set to an invalid value
+    should have a label.col-xs-3 when form is horizontal and labelColumns=3
+    should have a div.col-xs-9 when form is horizontal and labelColumns=3
 */
 describe('a Form component containing a Dropdown', () => {
 
@@ -61,7 +63,6 @@ describe('a Form component containing a Dropdown', () => {
                 <Form.Dropdown options={options} />
             </Form>
         );
-
 
         expect(component.find('select.form-control')).to.have.length(1);
     });
@@ -115,7 +116,6 @@ describe('a Form component containing a Dropdown', () => {
             </Form>
         );
 
-
         expect(component.find('label')).to.have.length(0);
     });
 
@@ -132,7 +132,6 @@ describe('a Form component containing a Dropdown', () => {
                 <Form.Dropdown options={options} label={label} />
             </Form>
         );
-
 
         expect(component.find('label')).to.have.length(1);
         expect(component.find('label').text()).to.equal(label);
@@ -153,7 +152,6 @@ describe('a Form component containing a Dropdown', () => {
             </Form>
         );
 
-
         expect(component.find('select').props().value).to.equal(value);
     });
 
@@ -169,7 +167,6 @@ describe('a Form component containing a Dropdown', () => {
                 <Form.Dropdown options={options} />
             </Form>
         );
-
 
         expect(component.find('select').props().value).to.equal(options[0].value);
     });
@@ -189,8 +186,55 @@ describe('a Form component containing a Dropdown', () => {
             </Form>
         );
 
-
         expect(component.find('select').props().value).to.equal(options[0].value);
+    });
+
+    it('should have a label.col-xs-3 when form is horizontal and labelColumns=3', () => {
+
+        const options = [
+            { value: '1', name: 'one' },
+            { value: '2', name: 'two' },
+            { value: '3', name: 'three' },
+        ];
+
+        const label = 'peter piper';
+        const columns = 3;
+
+        const value = 2;
+
+        const component = mount(
+            <Form horizontal labelColumns={columns}>
+                <Form.Dropdown label={label} options={options} value={value} />
+            </Form>
+        );
+
+        expect(component.find('div.form-horizontal')).to.have.length(1, 'form-horizontal');
+        expect(component.find('label.control-label').props().className)
+            .to.contain('col-xs-3', 'col-xs-3');
+    });
+
+    it('should have a div.col-xs-9 when form is horizontal and labelColumns=3', () => {
+
+        const options = [
+            { value: '1', name: 'one' },
+            { value: '2', name: 'two' },
+            { value: '3', name: 'three' },
+        ];
+
+        const label = 'peter piper';
+        const columns = 3;
+
+        const value = 2;
+
+        const component = mount(
+            <Form horizontal labelColumns={columns}>
+                <Form.Dropdown label={label} options={options} value={value} />
+            </Form>
+        );
+
+        expect(component.find('div.form-horizontal')).to.have.length(1, 'form-horizontal');
+        expect(component.find('div.form-dropdown-columns').props().className)
+            .to.contain('col-xs-9', 'col-xs-9');
     });
 });
 

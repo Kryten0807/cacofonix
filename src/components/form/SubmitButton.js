@@ -3,8 +3,6 @@
 import React from 'react';
 import classnames from 'classnames';
 
-// @TODO a generic button which is not wired into the form `isValid` state
-
 /**
  * The SubmitButton component
  * @param  {String}   children   The label to display in the button

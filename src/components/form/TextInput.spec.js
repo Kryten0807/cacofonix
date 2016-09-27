@@ -34,6 +34,8 @@ a Form component with a TextInput element
     should include a placeholder if the placeholder is set
     should include the readonly flag when readonly is set
     should not be visible when hidden is set
+    should have a label.col-xs-3 when form is horizontal and labelColumns=3
+    should have a div.col-xs-9 when form is horizontal and labelColumns=3
 */
 describe('a Form component with a TextInput element', () => {
 
@@ -106,6 +108,40 @@ describe('a Form component with a TextInput element', () => {
         );
 
         expect(component.find('input')).to.have.length(0);
+    });
+
+    it('should have a label.col-xs-3 when form is horizontal and labelColumns=3', () => {
+
+        const columns = 3;
+
+        const label = 'something';
+
+        const component = mount(
+            <Form horizontal labelColumns={columns}>
+                <Form.TextInput label={label} />
+            </Form>
+        );
+
+        expect(component.find('div.form-horizontal')).to.have.length(1, 'form-horizontal');
+        expect(component.find('div.form-horizontal div.form-group label').props().className)
+            .to.contain('col-xs-3', 'col-xs-3');
+    });
+
+    it('should have a div.col-xs-9 when form is horizontal and labelColumns=3', () => {
+
+        const columns = 3;
+
+        const label = 'something';
+
+        const component = mount(
+            <Form horizontal labelColumns={columns}>
+                <Form.TextInput label={label} />
+            </Form>
+        );
+
+        expect(component.find('div.form-horizontal')).to.have.length(1, 'form-horizontal');
+        expect(component.find('div.form-textinput-input-columns').props().className)
+            .to.contain('col-xs-9', 'col-xs-9');
     });
 });
 
@@ -698,7 +734,6 @@ describe('when changing (and blurring) the value of a TextInput with a pattern r
     });
 
 });
-
 
 /* *****************************************************************************
 when changing (and blurring) the value of a TextInput

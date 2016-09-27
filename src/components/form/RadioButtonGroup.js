@@ -2,6 +2,7 @@
 //
 import React from 'react';
 import uniqueId from 'lodash/uniqueId';
+import classnames from 'classnames';
 
 /**
  * The RadioButtonGroup component
@@ -79,35 +80,68 @@ class RadioButtonGroup extends React.Component {
         //
         const { label, options } = this.props;
 
-        // render the component & return it
+        // render the label element for the component
+        //
+        const labelElement = label
+            ? (<label
+                htmlFor={this.id}
+                className={classnames('control-label', {
+                    [`col-xs-${this.context.labelColumns}`]: this.context.labelColumns,
+                })}
+            >{label}</label>)
+            : null;
+
+        // render the set of radio button elements for the component
+        //
+        let radios = options.map((opt) => (
+            <div key={uniqueId('form-radiobuttongroup-option-')} className="radio">
+                <label>
+                    <input
+                        type="radio"
+                        name={this.id}
+                        value={opt.value}
+                        checked={this.state.value === opt.value}
+                        onChange={this.onChange}
+                    />
+                    <span>{opt.name}</span>
+                </label>
+            </div>
+        ));
+
+        // do we have columns for this component? if so, wrap the radio buttons
+        // in a div to implement the columns
+        //
+        if (this.context.labelColumns) {
+            radios = (
+                <div
+                    className={classnames(
+                        'form-radiobuttongroup-input-columns',
+                        `col-xs-${12 - this.context.labelColumns}`
+                    )}
+                >
+                    {radios}
+                </div>
+            );
+        }
+
+        // render the whole component & return it
         //
         return (
-            <div>
-                {label
-                    ? (<label htmlFor={this.id} className="radiobuttongroup">{label}</label>)
-                    : null
-                }
-                {options.map((opt) => (
-                    <div key={uniqueId('form-radiobuttongroup-option-')} className="radio">
-                        <label>
-                            <input
-                                type="radio"
-                                name={this.id}
-                                value={opt.value}
-                                checked={this.state.value === opt.value}
-                                onChange={this.onChange}
-                            />
-                            <span>{opt.name}</span>
-                        </label>
-                    </div>
-                ))}
+            <div className="form-group">
+
+                {labelElement}
+
+                {radios}
+
             </div>
         );
     }
 }
 
-// define the property types for the component
-//
+/**
+ * The property types for the component
+ * @type {Object}
+ */
 RadioButtonGroup.propTypes = {
     label:    React.PropTypes.string,
     options:  React.PropTypes.array,
@@ -116,6 +150,14 @@ RadioButtonGroup.propTypes = {
         React.PropTypes.number,
     ]),
     onChange: React.PropTypes.func,
+};
+
+/**
+ * The context types for the component
+ * @type {Object}
+ */
+RadioButtonGroup.contextTypes = {
+    labelColumns:           React.PropTypes.number,
 };
 
 // export the component

@@ -98,6 +98,7 @@ class CheckboxGroup extends React.Component {
         }
 
         // update the state...
+        //
         this.setState((state) => update(state, delta), () => {
             // then call the `onChange` handler (if any)
             //
@@ -134,6 +135,20 @@ class CheckboxGroup extends React.Component {
                 && !this.state.value.length,
         });
 
+        // render a label for the component, if a label has been provided
+        //
+        const label = this.props.label
+            ? (
+            <label
+                className={classnames('control-label', 'pull-left', {
+                    [`col-xs-${this.context.labelColumns}`]: this.context.labelColumns,
+                })}
+            >
+                {this.props.label}
+            </label>
+            )
+            : null;
+
         // render the help block if the component has failed validation
         //
         const helpBlock =
@@ -141,38 +156,51 @@ class CheckboxGroup extends React.Component {
             ? <span className="help-block" style={{ clear: 'both' }}>{this.validationMessage}</span>
             : '';
 
-        // render the component and return it
+        // render the input elements for the component
+        //
+        const inputs = (
+            <div
+                className={classnames('form-checkboxgroup-inputs', {
+                    [`col-xs-${12 - this.context.labelColumns}`]: this.context.labelColumns,
+                })}
+            >
+                {this.props.options.map((opt) =>
+                    <div
+                        key={uniqueId('form-checkboxgroup-option-')}
+                        className="checkbox pull-left"
+                        style={{ marginRight: '2em' }}
+                    >
+                        <label>
+                            <input
+                                type="checkbox"
+                                value={opt.value}
+                                checked={
+                                    this.state.value.findIndex((val) =>
+                                        val === opt.value
+                                    ) !== -1
+                                }
+                                onChange={() => this.onClick(opt.value)}
+                                onClick={() => this.onClick(opt.value)}
+                            />
+                            <span>{opt.name}</span>
+                        </label>
+                    </div>
+                )}
+
+                {helpBlock}
+
+            </div>
+        );
+
+        // render the whole component and return it
         //
         return (
             <div className={classes}>
-                {this.props.label
-                    ? <label className="checkboxgroup pull-left">{this.props.label}</label>
-                    : null
-                }
-                <div style={{ clear: 'both' }}>
-                    {this.props.options.map((opt) =>
-                        <div
-                            key={uniqueId('form-checkboxgroup-option-')}
-                            className="checkbox pull-left"
-                        >
-                            <label>
-                                <input
-                                    type="checkbox"
-                                    value={opt.value}
-                                    checked={
-                                        this.state.value.findIndex((val) =>
-                                            val === opt.value
-                                        ) !== -1
-                                    }
-                                    onChange={() => this.onClick(opt.value)}
-                                    onClick={() => this.onClick(opt.value)}
-                                />
-                                <span>{opt.name}</span>
-                            </label>
-                        </div>
-                    )}
-                </div>
-                {helpBlock}
+
+                {label}
+
+                {inputs}
+
             </div>
         );
     }
@@ -204,6 +232,7 @@ CheckboxGroup.propTypes = {
  */
 CheckboxGroup.contextTypes = {
     onChildValidationEvent: React.PropTypes.func,
+    labelColumns:           React.PropTypes.number,
 };
 
 // export the component
