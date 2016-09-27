@@ -90,7 +90,30 @@ class RadioButtonGroup extends React.Component {
                 >{label}</label>)
             : null;
 
+        let radios = options.map((opt) => (
+            <div key={uniqueId('form-radiobuttongroup-option-')} className="radio">
+                <label>
+                    <input
+                        type="radio"
+                        name={this.id}
+                        value={opt.value}
+                        checked={this.state.value === opt.value}
+                        onChange={this.onChange}
+                    />
+                    <span>{opt.name}</span>
+                </label>
+            </div>
+        ));
 
+        if (this.context.labelColumns) {
+            radios = (
+                <div className={classnames('form-radiobuttongroup-input-columns', {
+                        [`col-xs-${12 - this.context.labelColumns}`]: this.context.labelColumns,
+                    })}>
+                    {radios}
+                </div>
+            );
+        }
         // render the component & return it
         //
         return (
@@ -98,20 +121,7 @@ class RadioButtonGroup extends React.Component {
 
                 {labelElement}
 
-                {options.map((opt) => (
-                    <div key={uniqueId('form-radiobuttongroup-option-')} className="radio">
-                        <label>
-                            <input
-                                type="radio"
-                                name={this.id}
-                                value={opt.value}
-                                checked={this.state.value === opt.value}
-                                onChange={this.onChange}
-                            />
-                            <span>{opt.name}</span>
-                        </label>
-                    </div>
-                ))}
+                {radios}
 
             </div>
         );
