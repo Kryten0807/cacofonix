@@ -109,6 +109,12 @@ Dropdown.propTypes = {
     onChange: React.PropTypes.func,
 };
 
+// set the context types for values received from higher up the food chain
+//
+Dropdown.contextTypes = {
+    labelColumns:           React.PropTypes.number,
+};
+
 // export the component
 //
 export default Dropdown;
