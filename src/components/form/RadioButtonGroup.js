@@ -80,14 +80,24 @@ class RadioButtonGroup extends React.Component {
         //
         const { label, options } = this.props;
 
+        const labelElement = label
+            ? (<label
+                    htmlFor={this.id}
+                    className="radiobuttongroup"
+                    className={classnames('radiobuttongroup', {
+                        [`col-xs-${this.context.labelColumns}`]: this.context.labelColumns,
+                    })}
+                >{label}</label>)
+            : null
+
+
         // render the component & return it
         //
         return (
-            <div>
-                {label
-                    ? (<label htmlFor={this.id} className="radiobuttongroup">{label}</label>)
-                    : null
-                }
+            <div className="form-group">
+
+                {labelElement}
+
                 {options.map((opt) => (
                     <div key={uniqueId('form-radiobuttongroup-option-')} className="radio">
                         <label>
@@ -102,6 +112,7 @@ class RadioButtonGroup extends React.Component {
                         </label>
                     </div>
                 ))}
+
             </div>
         );
     }
