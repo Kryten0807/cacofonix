@@ -194,6 +194,27 @@ describe('a Form component containing a RadioButtonGroup', () => {
         expect(component.find('div.radio input[type="radio"]').at(2).props().checked)
             .to.equal(false);
     });
+
+    it('should have a label.col-xs-3 when form is horizontal and labelColumns=3', () => {
+
+        const label = 'peter piper';
+        const columns = 3;
+
+        const value = 2;
+
+        const component = mount(
+            <Form horizontal labelColumns={columns}>
+                <Form.RadioButtonGroup label={label} options={options} value={value} />
+            </Form>
+        );
+
+        expect(component.find('div.form-horizontal')).to.have.length(1, 'form-horizontal');
+        expect(component.find('label.radiobuttongroup').props().className).to.contain('col-xs-3', 'col-xs-3');
+    });
+
+    // it('should have a div.col-xs-9 when form is horizontal and labelColumns=3', () => {});
+
+
 });
 
 /* *****************************************************************************
