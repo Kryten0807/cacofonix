@@ -224,6 +224,7 @@ CheckboxGroup.propTypes = {
  */
 CheckboxGroup.contextTypes = {
     onChildValidationEvent: React.PropTypes.func,
+    labelColumns:           React.PropTypes.number,
 };
 
 // export the component
