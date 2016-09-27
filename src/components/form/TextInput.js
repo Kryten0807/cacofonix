@@ -249,9 +249,16 @@ class TextInput extends React.Component {
         />);
 
         if (this.context.labelColumns) {
-            input = <div className={classnames('form-textinput-input-columns', `col-xs-${12 - this.context.labelColumns}`)}>
-                {input}
-            </div>;
+            input = (
+                <div
+                    className={classnames(
+                        'form-textinput-input-columns',
+                        `col-xs-${12 - this.context.labelColumns}`
+                    )}
+                >
+                    {input}
+                </div>
+            );
         }
 
         // return the rendered component
