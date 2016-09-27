@@ -130,6 +130,12 @@ RadioButtonGroup.propTypes = {
     onChange: React.PropTypes.func,
 };
 
+// set the context types for values received from higher up the food chain
+//
+RadioButtonGroup.contextTypes = {
+    labelColumns:           React.PropTypes.number,
+};
+
 // export the component
 //
 export default RadioButtonGroup;
