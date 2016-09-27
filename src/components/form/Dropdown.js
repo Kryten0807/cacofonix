@@ -89,7 +89,7 @@ class Dropdown extends React.Component {
 
         // generate the select element for the component
         //
-        const select = (
+        let select = (
             <select
                 id={this.id}
                 className="form-control"
@@ -104,6 +104,16 @@ class Dropdown extends React.Component {
             </select>
         );
 
+        if (this.context.labelColumns) {
+            select = (
+                <div className={classnames(
+                    'form-dropdown-columns',
+                    `col-xs-${12 - this.context.labelColumns}`
+                )}>
+                    {select}
+                </div>
+            );
+        }
         // return the component
         //
         return label
