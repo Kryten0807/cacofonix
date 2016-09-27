@@ -180,7 +180,6 @@ class CheckboxGroup extends React.Component {
                                     ) !== -1
                                 }
                                 onChange={() => this.onClick(opt.value)}
-                                onClick={() => this.onClick(opt.value)}
                             />
                             <span>{opt.name}</span>
                         </label>
