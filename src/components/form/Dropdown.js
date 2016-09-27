@@ -78,6 +78,9 @@ class Dropdown extends React.Component {
             ? (
                 <label
                     htmlFor={this.id}
+                    className={classnames('control-label', {
+                        [`col-xs-${this.context.labelColumns}`]: this.context.labelColumns,
+                    })}
                 >
                     {this.props.label}
                 </label>
