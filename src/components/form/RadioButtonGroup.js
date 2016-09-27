@@ -106,9 +106,12 @@ class RadioButtonGroup extends React.Component {
 
         if (this.context.labelColumns) {
             radios = (
-                <div className={classnames('form-radiobuttongroup-input-columns', {
-                        [`col-xs-${12 - this.context.labelColumns}`]: this.context.labelColumns,
-                    })}>
+                <div
+                    className={classnames(
+                        'form-radiobuttongroup-input-columns',
+                        `col-xs-${12 - this.context.labelColumns}`
+                    )}
+                >
                     {radios}
                 </div>
             );
