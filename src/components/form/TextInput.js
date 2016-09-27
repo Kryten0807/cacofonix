@@ -8,10 +8,7 @@ import isRegExp from 'lodash/isRegExp';
 import isFunction from 'lodash/isFunction';
 
 // @TODO add different validation error messages for failing different rules
-// @TODO horizontal form - label & input element widths
 // @TODO permitted characters regex
-// @TODO CurrencyInput - must clear non-numeric characters when reporting value
-// @TODO DateInput - must ensure date is formatted as M/D/YYYY when reporting value
 
 /**
  * The TextInput component
@@ -147,6 +144,7 @@ class TextInput extends React.Component {
         // get the value from the event object
         //
         const value = event.target.value;
+
         // update the component state
         //
         this.setState((state) => update(state, {
@@ -219,17 +217,40 @@ class TextInput extends React.Component {
             return null;
         }
 
+        // render the label for the component, if we have one
+        //
+        const label = this.props.label
+            ? <label
+                htmlFor={this.id}
+                className={classnames('control-label', {
+                    [`col-xs-${this.context.labelColumns}`]: this.context.labelColumns,
+                })}
+            >
+                {this.props.label}
+            </label>
+            : null;
+
         // determine the value to display, formatting it if necessary
         //
         const value = (this.props.format && !this.state.isEditing)
             ? this.props.format(this.state.value)
             : this.state.value;
 
-        // return the rendered component
+        // render the help block (validation error message) if appropriate
         //
-        return (
-            <div className={classnames('form-group', { 'has-error': !this.state.isValid })}>
-                {this.props.label ? <label htmlFor={this.id}>{this.props.label}</label> : ''}
+        const helpBlock = !this.state.isValid
+            ? <span className="help-block">{this.validationMessage}</span>
+            : null;
+
+        // render the input component
+        //
+        const input = (
+            <div
+                className={classnames(
+                    'form-textinput-input-columns',
+                    { [`col-xs-${12 - this.context.labelColumns}`]: this.context.labelColumns }
+                )}
+            >
                 <input
                     type="text"
                     readOnly={!!this.props.readOnly}
@@ -241,17 +262,29 @@ class TextInput extends React.Component {
                     onFocus={this.onFocus}
                     onChange={this.onChange}
                 />
-                {!this.state.isValid
-                    ? <span className="help-block">{this.validationMessage}</span>
-                    : null
-                }
+
+                {helpBlock}
+            </div>
+        );
+
+        // return the rendered component
+        //
+        return (
+            <div className={classnames('form-group', { 'has-error': !this.state.isValid })}>
+
+                {label}
+
+                {input}
+
             </div>
         );
     }
 }
 
-// set the property types for the component
-//
+/**
+ * The property types for the component
+ * @type {Object}
+ */
 TextInput.propTypes = {
     required:          React.PropTypes.bool,
     readOnly:          React.PropTypes.bool,
@@ -280,10 +313,13 @@ TextInput.propTypes = {
     validationKey:     React.PropTypes.string,
 };
 
-// set the context types for values received from higher up the food chain
-//
+/**
+ * The context types for the component
+ * @type {Object}
+ */
 TextInput.contextTypes = {
     onChildValidationEvent: React.PropTypes.func,
+    labelColumns:           React.PropTypes.number,
 };
 
 // export the component

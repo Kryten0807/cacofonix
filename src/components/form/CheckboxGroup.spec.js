@@ -36,6 +36,8 @@ a Form component containing a CheckboxGroup
     should have the correct options checked when null value is provided
     should have the correct options checked when no value is provided
     should have the correct options checked when empty array value is provided
+    should have a label.col-xs-3 when form is horizontal and labelColumns=3
+    should have a div.col-xs-9 when form is horizontal and labelColumns=3
 */
 describe('a Form component containing a CheckboxGroup', () => {
 
@@ -75,8 +77,8 @@ describe('a Form component containing a CheckboxGroup', () => {
             </Form>
         );
 
-        expect(component.find('label.checkboxgroup')).to.have.length(1);
-        expect(component.find('label.checkboxgroup').text()).to.equal(label);
+        expect(component.find('label.control-label')).to.have.length(1);
+        expect(component.find('label.control-label').text()).to.equal(label);
     });
 
     it('should not contain a label if the label prop is not set', () => {
@@ -87,7 +89,7 @@ describe('a Form component containing a CheckboxGroup', () => {
             </Form>
         );
 
-        expect(component.find('label.checkboxgroup')).to.have.length(0);
+        expect(component.find('label.control-label')).to.have.length(0);
     });
 
     it('should contain a div.checkbox for each option', () => {
@@ -241,6 +243,42 @@ describe('a Form component containing a CheckboxGroup', () => {
             .to.equal(false);
         expect(component.find('div.checkbox input[type="checkbox"]').at(2).props().checked)
             .to.equal(false);
+    });
+
+    it('should have a label.col-xs-3 when form is horizontal and labelColumns=3', () => {
+
+        const label = 'peter piper';
+        const columns = 3;
+
+        const value = 2;
+
+        const component = mount(
+            <Form horizontal labelColumns={columns}>
+                <Form.CheckboxGroup label={label} options={options} value={value} />
+            </Form>
+        );
+
+        expect(component.find('div.form-horizontal')).to.have.length(1, 'form-horizontal');
+        expect(component.find('label.control-label').props().className)
+            .to.contain('col-xs-3', 'col-xs-3');
+    });
+
+    it('should have a div.col-xs-9 when form is horizontal and labelColumns=3', () => {
+
+        const label = 'peter piper';
+        const columns = 3;
+
+        const value = 2;
+
+        const component = mount(
+            <Form horizontal labelColumns={columns}>
+                <Form.CheckboxGroup label={label} options={options} value={value} />
+            </Form>
+        );
+
+        expect(component.find('div.form-horizontal')).to.have.length(1, 'form-horizontal');
+        expect(component.find('div.form-checkboxgroup-inputs').props().className)
+            .to.contain('col-xs-9', 'col-xs-9');
     });
 
 });

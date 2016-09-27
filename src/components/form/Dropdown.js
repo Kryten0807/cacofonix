@@ -2,6 +2,7 @@
 //
 import React from 'react';
 import uniqueId from 'lodash/uniqueId';
+import classnames from 'classnames';
 
 /**
  * The Dropdown component
@@ -73,11 +74,22 @@ class Dropdown extends React.Component {
 
         // generate the label for the component
         //
-        const label = this.props.label ? <label htmlFor={this.id}>{this.props.label}</label> : null;
+        const label = this.props.label
+            ? (
+            <label
+                htmlFor={this.id}
+                className={classnames('control-label', {
+                    [`col-xs-${this.context.labelColumns}`]: this.context.labelColumns,
+                })}
+            >
+                {this.props.label}
+            </label>
+            )
+            : null;
 
         // generate the select element for the component
         //
-        const select = (
+        let select = (
             <select
                 id={this.id}
                 className="form-control"
@@ -92,6 +104,22 @@ class Dropdown extends React.Component {
             </select>
         );
 
+        // do we have columns for this component? if so, wrap the select element
+        // in a div to implement those columns
+        //
+        if (this.context.labelColumns) {
+            select = (
+                <div
+                    className={classnames(
+                        'form-dropdown-columns',
+                        `col-xs-${12 - this.context.labelColumns}`
+                    )}
+                >
+                    {select}
+                </div>
+            );
+        }
+
         // return the component
         //
         return label
@@ -100,13 +128,23 @@ class Dropdown extends React.Component {
     }
 }
 
-// the prop types for the component
-//
+/**
+ * The property types for the component
+ * @type {Object}
+ */
 Dropdown.propTypes = {
     label:    React.PropTypes.string,
     value:    React.PropTypes.string,
     options:  React.PropTypes.array.isRequired,
     onChange: React.PropTypes.func,
+};
+
+/**
+ * The context types for the component
+ * @type {Object}
+ */
+Dropdown.contextTypes = {
+    labelColumns: React.PropTypes.number,
 };
 
 // export the component

@@ -13,7 +13,7 @@ import RadioButtonGroup from './form/RadioButtonGroup';
 import SubmitButton from './form/SubmitButton';
 import TextInput from './form/TextInput';
 
-// @TODO added labelColumns, inputColumns to Form
+// @TODO add configurable columns
 // @TODO changing values of children via props should trigger re-validation
 
 /**
@@ -57,6 +57,7 @@ class Form extends React.Component {
     getChildContext() {
         return {
             isValid:                this.isValid(),
+            labelColumns:           this.props.labelColumns,
             onChildValidationEvent: this.onChildValidationEvent,
         };
     }
@@ -179,9 +180,10 @@ class Form extends React.Component {
 // set the property types for the component
 //
 Form.propTypes = {
-    inline:     React.PropTypes.bool,
-    horizontal: React.PropTypes.bool,
-    children:   React.PropTypes.oneOfType([
+    inline:       React.PropTypes.bool,
+    horizontal:   React.PropTypes.bool,
+    labelColumns: React.PropTypes.number,
+    children:     React.PropTypes.oneOfType([
         React.PropTypes.arrayOf(React.PropTypes.node),
         React.PropTypes.node,
     ]).isRequired,
@@ -192,6 +194,7 @@ Form.propTypes = {
 Form.childContextTypes = {
     isValid:                React.PropTypes.bool,
     onChildValidationEvent: React.PropTypes.func,
+    labelColumns:           React.PropTypes.number,
 };
 
 // register the "sub-components" so that they can be imported as part of the
