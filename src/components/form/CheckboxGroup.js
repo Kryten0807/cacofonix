@@ -179,6 +179,9 @@ class CheckboxGroup extends React.Component {
                         </label>
                     </div>
                 )}
+
+                {helpBlock}
+
             </div>
         );
 
@@ -190,8 +193,6 @@ class CheckboxGroup extends React.Component {
                 {label}
 
                 {inputs}
-
-                {helpBlock}
 
             </div>
         );
