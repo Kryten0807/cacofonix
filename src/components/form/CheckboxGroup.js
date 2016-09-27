@@ -149,7 +149,6 @@ class CheckboxGroup extends React.Component {
                 className={classnames('form-checkboxgroup-inputs', {
                     [`col-xs-${12 - this.context.labelColumns}`]: this.context.labelColumns,
                 })}
-                style={{ clear: 'both' }}
             >
                 {this.props.options.map((opt) =>
                     <div
