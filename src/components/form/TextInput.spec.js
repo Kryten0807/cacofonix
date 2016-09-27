@@ -145,7 +145,6 @@ describe('a Form component with a TextInput element', () => {
     });
 });
 
-
 /* *****************************************************************************
 when initializing a Form with a required TextInput
     the global validation message should not be displayed with a valid value
@@ -735,7 +734,6 @@ describe('when changing (and blurring) the value of a TextInput with a pattern r
     });
 
 });
-
 
 /* *****************************************************************************
 when changing (and blurring) the value of a TextInput
