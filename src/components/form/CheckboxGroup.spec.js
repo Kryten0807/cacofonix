@@ -36,10 +36,8 @@ a Form component containing a CheckboxGroup
     should have the correct options checked when null value is provided
     should have the correct options checked when no value is provided
     should have the correct options checked when empty array value is provided
-
     should have a label.col-xs-3 when form is horizontal and labelColumns=3
     should have a div.col-xs-9 when form is horizontal and labelColumns=3
-
 */
 describe('a Form component containing a CheckboxGroup', () => {
 
@@ -282,7 +280,6 @@ describe('a Form component containing a CheckboxGroup', () => {
         expect(component.find('div.form-checkboxgroup-inputs').props().className)
             .to.contain('col-xs-9', 'col-xs-9');
     });
-
 
 });
 
