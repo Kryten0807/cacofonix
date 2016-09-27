@@ -1518,7 +1518,6 @@ describe('when changing (and blurring) the value of a TextInput with parent comp
 
         expect(component.find('input').props().value).to.equal(finalValue, 'state - finalValue');
     });
-
 });
 
 /* *****************************************************************************
