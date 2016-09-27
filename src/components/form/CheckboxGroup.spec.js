@@ -981,9 +981,7 @@ describe('when the user clicks something, the parent component', () => {
 
     it('should receive the correct value from the onChange handler', () => {
 
-        const testValue = ['1']
-
-        const hidden = false;
+        const testValue = ['1'];
 
         const parent = mount(<TestParent testValue={testValue} />);
 
