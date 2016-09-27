@@ -229,7 +229,6 @@ describe('a Form component containing a RadioButtonGroup', () => {
             .to.contain('col-xs-9', 'col-xs-9');
     });
 
-
 });
 
 /* *****************************************************************************
