@@ -180,10 +180,10 @@ class Form extends React.Component {
 // set the property types for the component
 //
 Form.propTypes = {
-    inline:     React.PropTypes.bool,
-    horizontal: React.PropTypes.bool,
-    children:   React.PropTypes.oneOfType([
+    inline:       React.PropTypes.bool,
+    horizontal:   React.PropTypes.bool,
     labelColumns: React.PropTypes.number,
+    children:     React.PropTypes.oneOfType([
         React.PropTypes.arrayOf(React.PropTypes.node),
         React.PropTypes.node,
     ]).isRequired,
