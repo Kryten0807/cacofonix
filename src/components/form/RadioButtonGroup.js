@@ -82,12 +82,11 @@ class RadioButtonGroup extends React.Component {
 
         const labelElement = label
             ? (<label
-                    htmlFor={this.id}
-                    className="radiobuttongroup"
-                    className={classnames('radiobuttongroup', {
-                        [`col-xs-${this.context.labelColumns}`]: this.context.labelColumns,
-                    })}
-                >{label}</label>)
+                htmlFor={this.id}
+                className={classnames('control-label', {
+                    [`col-xs-${this.context.labelColumns}`]: this.context.labelColumns,
+                })}
+            >{label}</label>)
             : null;
 
         let radios = options.map((opt) => (
