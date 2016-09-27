@@ -247,6 +247,9 @@ class TextInput extends React.Component {
             onFocus={this.onFocus}
             onChange={this.onChange}
         />);
+        const helpBlock = !this.state.isValid
+            ? <span className="help-block">{this.validationMessage}</span>
+            : null;
 
         if (this.context.labelColumns) {
             input = (
@@ -267,10 +270,6 @@ class TextInput extends React.Component {
             <div className={classnames('form-group', { 'has-error': !this.state.isValid })}>
                 {label}
                 {input}
-                {!this.state.isValid
-                    ? <span className="help-block">{this.validationMessage}</span>
-                    : null
-                }
             </div>
         );
     }
