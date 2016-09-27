@@ -934,6 +934,12 @@ when the user clicks something, the parent component
 */
 describe('when the user clicks something, the parent component', () => {
 
+    const options = [
+        { value: '1', name: 'One' },
+        { value: '2', name: 'Two' },
+        { value: '3', name: 'Three' },
+    ];
+
     const required = true;
 
     const description = 'gibberish';
@@ -959,6 +965,7 @@ describe('when the user clicks something, the parent component', () => {
                     <Form.CheckboxGroup
                         required={required}
                         description={description}
+                        options={options}
                         value={this.state.testValue}
                         onChange={this.onChange}
                     />
@@ -968,9 +975,27 @@ describe('when the user clicks something, the parent component', () => {
     }
 
     TestParent.propTypes = {
-        testValue:    React.PropTypes.string,
+        testValue:    React.PropTypes.array,
         onChange:     React.PropTypes.func,
     };
 
-    it('should receive the correct value from the onChange handler', () => {});
+    it('should receive the correct value from the onChange handler', () => {
+
+        const testValue = ['1']
+
+        const hidden = false;
+
+        const parent = mount(<TestParent testValue={testValue} />);
+
+        // click an item
+        //
+        parent.find('div.checkbox input[type="checkbox"]').at(1).simulate('click');
+
+        // test the parent state to ensure the correct values are reflected
+        // there
+        //
+        expect(parent.state().testValue).to.have.length(2);
+        expect(parent.state().testValue[0]).to.equal('1', 'item 0');
+        expect(parent.state().testValue[1]).to.equal('2', 'item 1');
+    });
 });
