@@ -934,5 +934,43 @@ when the user clicks something, the parent component
 */
 describe('when the user clicks something, the parent component', () => {
 
+    const required = true;
+
+    const description = 'gibberish';
+
+    class TestParent extends React.Component {
+        constructor(props) {
+            super(props);
+
+            this.state = {
+                testValue: props.testValue || [],
+            };
+
+            this.onChange = this.onChange.bind(this);
+        }
+
+        onChange(testValue) {
+            this.setState({ testValue });
+        }
+
+        render() {
+            return (
+                <Form>
+                    <Form.CheckboxGroup
+                        required={required}
+                        description={description}
+                        value={this.state.testValue}
+                        onChange={this.onChange}
+                    />
+                </Form>
+            );
+        }
+    }
+
+    TestParent.propTypes = {
+        testValue:    React.PropTypes.string,
+        onChange:     React.PropTypes.func,
+    };
+
     it('should receive the correct value from the onChange handler', () => {});
 });
