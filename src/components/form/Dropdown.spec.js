@@ -32,6 +32,10 @@ a Form component containing a Dropdown
     should select a specific value when value is set
     should select the first item when value is not set
     should select the first item when value is set to an invalid value
+
+    should have a label.col-xs-3 when form is horizontal and labelColumns=3
+    should have a div.col-xs-9 when form is horizontal and labelColumns=3
+
 */
 describe('a Form component containing a Dropdown', () => {
 
