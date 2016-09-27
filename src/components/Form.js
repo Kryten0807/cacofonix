@@ -183,6 +183,7 @@ Form.propTypes = {
     inline:     React.PropTypes.bool,
     horizontal: React.PropTypes.bool,
     children:   React.PropTypes.oneOfType([
+    labelColumns: React.PropTypes.number,
         React.PropTypes.arrayOf(React.PropTypes.node),
         React.PropTypes.node,
     ]).isRequired,
