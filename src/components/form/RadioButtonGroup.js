@@ -88,7 +88,7 @@ class RadioButtonGroup extends React.Component {
                         [`col-xs-${this.context.labelColumns}`]: this.context.labelColumns,
                     })}
                 >{label}</label>)
-            : null
+            : null;
 
 
         // render the component & return it
