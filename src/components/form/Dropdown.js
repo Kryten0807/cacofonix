@@ -75,9 +75,13 @@ class Dropdown extends React.Component {
         // generate the label for the component
         //
         const label = this.props.label
-            ? (<label htmlFor={this.id}>
-                {this.props.label}
-            </label>)
+            ? (
+                <label
+                    htmlFor={this.id}
+                >
+                    {this.props.label}
+                </label>
+            )
             : null;
 
         // generate the select element for the component
