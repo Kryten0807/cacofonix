@@ -64,7 +64,6 @@ describe('a Form component containing a Dropdown', () => {
             </Form>
         );
 
-
         expect(component.find('select.form-control')).to.have.length(1);
     });
 
@@ -117,7 +116,6 @@ describe('a Form component containing a Dropdown', () => {
             </Form>
         );
 
-
         expect(component.find('label')).to.have.length(0);
     });
 
@@ -134,7 +132,6 @@ describe('a Form component containing a Dropdown', () => {
                 <Form.Dropdown options={options} label={label} />
             </Form>
         );
-
 
         expect(component.find('label')).to.have.length(1);
         expect(component.find('label').text()).to.equal(label);
@@ -155,7 +152,6 @@ describe('a Form component containing a Dropdown', () => {
             </Form>
         );
 
-
         expect(component.find('select').props().value).to.equal(value);
     });
 
@@ -171,7 +167,6 @@ describe('a Form component containing a Dropdown', () => {
                 <Form.Dropdown options={options} />
             </Form>
         );
-
 
         expect(component.find('select').props().value).to.equal(options[0].value);
     });
@@ -190,7 +185,6 @@ describe('a Form component containing a Dropdown', () => {
                 <Form.Dropdown options={options} value={value} />
             </Form>
         );
-
 
         expect(component.find('select').props().value).to.equal(options[0].value);
     });
