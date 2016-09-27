@@ -139,11 +139,13 @@ class CheckboxGroup extends React.Component {
         //
         const label = this.props.label
             ? (
-                <label className={classnames('control-label', 'pull-left', {
+            <label
+                className={classnames('control-label', 'pull-left', {
                     [`col-xs-${this.context.labelColumns}`]: this.context.labelColumns,
-                })}>
-                    {this.props.label}
-                </label>
+                })}
+            >
+                {this.props.label}
+            </label>
             )
             : null;
 
