@@ -144,6 +144,7 @@ class TextInput extends React.Component {
         // get the value from the event object
         //
         const value = event.target.value;
+
         // update the component state
         //
         this.setState((state) => update(state, {
