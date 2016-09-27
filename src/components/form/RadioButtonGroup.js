@@ -80,6 +80,8 @@ class RadioButtonGroup extends React.Component {
         //
         const { label, options } = this.props;
 
+        // render the label element for the component
+        //
         const labelElement = label
             ? (<label
                 htmlFor={this.id}
@@ -89,6 +91,8 @@ class RadioButtonGroup extends React.Component {
             >{label}</label>)
             : null;
 
+        // render the set of radio button elements for the component
+        //
         let radios = options.map((opt) => (
             <div key={uniqueId('form-radiobuttongroup-option-')} className="radio">
                 <label>
@@ -104,6 +108,9 @@ class RadioButtonGroup extends React.Component {
             </div>
         ));
 
+        // do we have columns for this component? if so, wrap the radio buttons
+        // in a div to implement the columns
+        //
         if (this.context.labelColumns) {
             radios = (
                 <div
@@ -116,7 +123,8 @@ class RadioButtonGroup extends React.Component {
                 </div>
             );
         }
-        // render the component & return it
+
+        // render the whole component & return it
         //
         return (
             <div className="form-group">
@@ -130,8 +138,10 @@ class RadioButtonGroup extends React.Component {
     }
 }
 
-// define the property types for the component
-//
+/**
+ * The property types for the component
+ * @type {Object}
+ */
 RadioButtonGroup.propTypes = {
     label:    React.PropTypes.string,
     options:  React.PropTypes.array,
@@ -142,8 +152,10 @@ RadioButtonGroup.propTypes = {
     onChange: React.PropTypes.func,
 };
 
-// set the context types for values received from higher up the food chain
-//
+/**
+ * The context types for the component
+ * @type {Object}
+ */
 RadioButtonGroup.contextTypes = {
     labelColumns:           React.PropTypes.number,
 };
