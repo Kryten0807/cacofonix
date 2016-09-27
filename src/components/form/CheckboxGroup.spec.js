@@ -317,7 +317,7 @@ describe('the CheckboxGroup component', () => {
 
         // click the first item
         //
-        component.find('div.checkbox input[type="checkbox"]').at(0).simulate('click');
+        component.find('div.checkbox input[type="checkbox"]').at(0).simulate('change');
 
         expect(component.find('div.checkbox input[type="checkbox"]').at(0).props().checked)
             .to.equal(true);
@@ -352,7 +352,7 @@ describe('the CheckboxGroup component', () => {
 
         // click the first item
         //
-        component.find('div.checkbox input[type="checkbox"]').at(0).simulate('click');
+        component.find('div.checkbox input[type="checkbox"]').at(0).simulate('change');
 
         expect(component.find('div.checkbox input[type="checkbox"]').at(0).props().checked)
             .to.equal(false);
@@ -573,7 +573,7 @@ describe('after the user clicks something, the CheckboxGroup component', () => {
 
         // click the first item
         //
-        component.find('div.checkbox input[type="checkbox"]').at(0).simulate('click');
+        component.find('div.checkbox input[type="checkbox"]').at(0).simulate('change');
 
         expect(component.find('div.form-group').length).to.equal(1, 'form-group');
         expect(component.find('div.form-group.has-error').length).to.equal(0, 'has-error');
@@ -602,7 +602,7 @@ describe('after the user clicks something, the CheckboxGroup component', () => {
 
         // click the first item
         //
-        component.find('div.checkbox input[type="checkbox"]').at(2).simulate('click');
+        component.find('div.checkbox input[type="checkbox"]').at(2).simulate('change');
 
         expect(component.find('div.form-group').length).to.equal(1, 'form-group');
         expect(component.find('div.form-group.has-error').length).to.equal(0, 'has-error');
@@ -631,7 +631,7 @@ describe('after the user clicks something, the CheckboxGroup component', () => {
 
         // click the first item
         //
-        component.find('div.checkbox input[type="checkbox"]').at(0).simulate('click');
+        component.find('div.checkbox input[type="checkbox"]').at(0).simulate('change');
 
         expect(component.find('div.form-group').length).to.equal(1, 'form-group');
         expect(component.find('div.form-group.has-error').length).to.equal(0, 'has-error');
@@ -659,7 +659,7 @@ describe('after the user clicks something, the CheckboxGroup component', () => {
 
         // click the first item
         //
-        component.find('div.checkbox input[type="checkbox"]').at(1).simulate('click');
+        component.find('div.checkbox input[type="checkbox"]').at(1).simulate('change');
 
         expect(component.find('div.form-group').length).to.equal(1, 'form-group');
         expect(component.find('div.form-group.has-error').length).to.equal(1, 'has-error');
@@ -705,7 +705,7 @@ describe('after the user clicks something, the CheckboxGroup component', () => {
 
         // click the first item
         //
-        component.find('div.checkbox input[type="checkbox"]').at(0).simulate('click');
+        component.find('div.checkbox input[type="checkbox"]').at(0).simulate('change');
 
         expect(component.find('Alert')).to.have.length(0);
     });
@@ -732,7 +732,7 @@ describe('after the user clicks something, the CheckboxGroup component', () => {
 
         // click the first item
         //
-        component.find('div.checkbox input[type="checkbox"]').at(2).simulate('click');
+        component.find('div.checkbox input[type="checkbox"]').at(2).simulate('change');
 
         expect(component.find('Alert')).to.have.length(0);
     });
@@ -759,7 +759,7 @@ describe('after the user clicks something, the CheckboxGroup component', () => {
 
         // click the first item
         //
-        component.find('div.checkbox input[type="checkbox"]').at(0).simulate('click');
+        component.find('div.checkbox input[type="checkbox"]').at(0).simulate('change');
 
         expect(component.find('Alert')).to.have.length(0);
     });
@@ -785,7 +785,7 @@ describe('after the user clicks something, the CheckboxGroup component', () => {
 
         // click the first item
         //
-        component.find('div.checkbox input[type="checkbox"]').at(1).simulate('click');
+        component.find('div.checkbox input[type="checkbox"]').at(1).simulate('change');
 
         expect(component.find('Alert')).to.have.length(1);
     });
@@ -834,7 +834,7 @@ describe('after the user clicks something, the CheckboxGroup component', () => {
 
         // click the first item
         //
-        component.find('div.checkbox input[type="checkbox"]').at(1).simulate('click');
+        component.find('div.checkbox input[type="checkbox"]').at(1).simulate('change');
 
         expect(component.find('span.help-block').text()).to.contain(expectedMessage, 'help-block');
     });
@@ -863,7 +863,7 @@ describe('after the user clicks something, the CheckboxGroup component', () => {
 
         // click the first item
         //
-        component.find('div.checkbox input[type="checkbox"]').at(1).simulate('click');
+        component.find('div.checkbox input[type="checkbox"]').at(1).simulate('change');
 
 
         expect(component.find('Alert')).to.have.length(1, 'alert');
@@ -893,7 +893,7 @@ describe('after the user clicks something, the CheckboxGroup component', () => {
 
         // click the first item
         //
-        component.find('div.checkbox input[type="checkbox"]').at(1).simulate('click');
+        component.find('div.checkbox input[type="checkbox"]').at(1).simulate('change');
 
         expect(component.find('span.help-block').text()).to.contain(message, 'help-block');
     });
@@ -920,7 +920,7 @@ describe('after the user clicks something, the CheckboxGroup component', () => {
 
         // click the first item
         //
-        component.find('div.checkbox input[type="checkbox"]').at(1).simulate('click');
+        component.find('div.checkbox input[type="checkbox"]').at(1).simulate('change');
 
         expect(component.find('Alert')).to.have.length(1, 'alert');
         expect(component.find('Alert').text()).to.contain(message, 'contains message');
@@ -989,7 +989,7 @@ describe('when the user clicks something, the parent component', () => {
 
         // click an item
         //
-        parent.find('div.checkbox input[type="checkbox"]').at(1).simulate('click');
+        parent.find('div.checkbox input[type="checkbox"]').at(1).simulate('change');
 
         // test the parent state to ensure the correct values are reflected
         // there
