@@ -209,7 +209,8 @@ describe('a Form component containing a RadioButtonGroup', () => {
         );
 
         expect(component.find('div.form-horizontal')).to.have.length(1, 'form-horizontal');
-        expect(component.find('label.radiobuttongroup').props().className).to.contain('col-xs-3', 'col-xs-3');
+        expect(component.find('label.radiobuttongroup').props().className)
+            .to.contain('col-xs-3', 'col-xs-3');
     });
 
     it('should have a div.col-xs-9 when form is horizontal and labelColumns=3', () => {
@@ -226,7 +227,8 @@ describe('a Form component containing a RadioButtonGroup', () => {
         );
 
         expect(component.find('div.form-horizontal')).to.have.length(1, 'form-horizontal');
-        expect(component.find('div.form-radiobuttongroup-input-columns').props().className).to.contain('col-xs-9', 'col-xs-9');
+        expect(component.find('div.form-radiobuttongroup-input-columns').props().className)
+            .to.contain('col-xs-9', 'col-xs-9');
     });
 
 
