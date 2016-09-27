@@ -34,10 +34,8 @@ a Form component with a TextInput element
     should include a placeholder if the placeholder is set
     should include the readonly flag when readonly is set
     should not be visible when hidden is set
-
     should have a label.col-xs-3 when form is horizontal and labelColumns=3
     should have a div.col-xs-9 when form is horizontal and labelColumns=3
-
 */
 describe('a Form component with a TextInput element', () => {
 
