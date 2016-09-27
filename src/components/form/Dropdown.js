@@ -106,10 +106,12 @@ class Dropdown extends React.Component {
 
         if (this.context.labelColumns) {
             select = (
-                <div className={classnames(
-                    'form-dropdown-columns',
-                    `col-xs-${12 - this.context.labelColumns}`
-                )}>
+                <div
+                    className={classnames(
+                        'form-dropdown-columns',
+                        `col-xs-${12 - this.context.labelColumns}`
+                    )}
+                >
                     {select}
                 </div>
             );
