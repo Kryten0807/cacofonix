@@ -154,6 +154,7 @@ class CheckboxGroup extends React.Component {
                     <div
                         key={uniqueId('form-checkboxgroup-option-')}
                         className="checkbox pull-left"
+                        style={{ marginRight: '2em' }}
                     >
                         <label>
                             <input
