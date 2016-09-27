@@ -144,6 +144,13 @@ class CheckboxGroup extends React.Component {
             )
             : null;
 
+        // render the help block if the component has failed validation
+        //
+        const helpBlock =
+            this.props.required && this.state.hasBeenClicked && !this.state.value.length
+            ? <span className="help-block" style={{ clear: 'both' }}>{this.validationMessage}</span>
+            : '';
+
         const inputs = (
             <div
                 className={classnames('form-checkboxgroup-inputs', {
@@ -174,13 +181,6 @@ class CheckboxGroup extends React.Component {
                 )}
             </div>
         );
-
-        // render the help block if the component has failed validation
-        //
-        const helpBlock =
-            this.props.required && this.state.hasBeenClicked && !this.state.value.length
-            ? <span className="help-block" style={{ clear: 'both' }}>{this.validationMessage}</span>
-            : '';
 
         // render the component and return it
         //
