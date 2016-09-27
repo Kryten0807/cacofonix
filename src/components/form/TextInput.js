@@ -267,8 +267,11 @@ class TextInput extends React.Component {
         //
         return (
             <div className={classnames('form-group', { 'has-error': !this.state.isValid })}>
+
                 {label}
+
                 {input}
+
             </div>
         );
     }
