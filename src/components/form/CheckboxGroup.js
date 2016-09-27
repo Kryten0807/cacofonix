@@ -98,6 +98,7 @@ class CheckboxGroup extends React.Component {
         }
 
         // update the state...
+        //
         this.setState((state) => update(state, delta), () => {
             // then call the `onChange` handler (if any)
             //
@@ -134,6 +135,8 @@ class CheckboxGroup extends React.Component {
                 && !this.state.value.length,
         });
 
+        // render a label for the component, if a label has been provided
+        //
         const label = this.props.label
             ? (
                 <label className={classnames('control-label', 'pull-left', {
@@ -151,6 +154,8 @@ class CheckboxGroup extends React.Component {
             ? <span className="help-block" style={{ clear: 'both' }}>{this.validationMessage}</span>
             : '';
 
+        // render the input elements for the component
+        //
         const inputs = (
             <div
                 className={classnames('form-checkboxgroup-inputs', {
@@ -185,7 +190,7 @@ class CheckboxGroup extends React.Component {
             </div>
         );
 
-        // render the component and return it
+        // render the whole component and return it
         //
         return (
             <div className={classes}>
