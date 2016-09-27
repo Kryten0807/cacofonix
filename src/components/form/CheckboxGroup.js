@@ -143,6 +143,38 @@ class CheckboxGroup extends React.Component {
                 </label>
             )
             : null;
+
+        const inputs = (
+            <div
+                className={classnames('form-checkboxgroup-inputs', {
+                    [`col-xs-${12 - this.context.labelColumns}`]: this.context.labelColumns,
+                })}
+                style={{ clear: 'both' }}
+            >
+                {this.props.options.map((opt) =>
+                    <div
+                        key={uniqueId('form-checkboxgroup-option-')}
+                        className="checkbox pull-left"
+                    >
+                        <label>
+                            <input
+                                type="checkbox"
+                                value={opt.value}
+                                checked={
+                                    this.state.value.findIndex((val) =>
+                                        val === opt.value
+                                    ) !== -1
+                                }
+                                onChange={() => this.onClick(opt.value)}
+                                onClick={() => this.onClick(opt.value)}
+                            />
+                            <span>{opt.name}</span>
+                        </label>
+                    </div>
+                )}
+            </div>
+        );
+
         // render the help block if the component has failed validation
         //
         const helpBlock =
@@ -154,32 +186,13 @@ class CheckboxGroup extends React.Component {
         //
         return (
             <div className={classes}>
-                <div style={{ clear: 'both' }}>
+
                 {label}
 
-                    {this.props.options.map((opt) =>
-                        <div
-                            key={uniqueId('form-checkboxgroup-option-')}
-                            className="checkbox pull-left"
-                        >
-                            <label>
-                                <input
-                                    type="checkbox"
-                                    value={opt.value}
-                                    checked={
-                                        this.state.value.findIndex((val) =>
-                                            val === opt.value
-                                        ) !== -1
-                                    }
-                                    onChange={() => this.onClick(opt.value)}
-                                    onClick={() => this.onClick(opt.value)}
-                                />
-                                <span>{opt.name}</span>
-                            </label>
-                        </div>
-                    )}
-                </div>
+                {inputs}
+
                 {helpBlock}
+
             </div>
         );
     }
