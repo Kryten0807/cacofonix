@@ -13,7 +13,7 @@ import RadioButtonGroup from './form/RadioButtonGroup';
 import SubmitButton from './form/SubmitButton';
 import TextInput from './form/TextInput';
 
-// @TODO added configurable columns
+// @TODO add configurable columns
 // @TODO changing values of children via props should trigger re-validation
 
 /**
