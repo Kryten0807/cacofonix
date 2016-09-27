@@ -104,6 +104,9 @@ class Dropdown extends React.Component {
             </select>
         );
 
+        // do we have columns for this component? if so, wrap the select element
+        // in a div to implement those columns
+        //
         if (this.context.labelColumns) {
             select = (
                 <div
@@ -116,6 +119,7 @@ class Dropdown extends React.Component {
                 </div>
             );
         }
+
         // return the component
         //
         return label
@@ -124,8 +128,10 @@ class Dropdown extends React.Component {
     }
 }
 
-// the prop types for the component
-//
+/**
+ * The property types for the component
+ * @type {Object}
+ */
 Dropdown.propTypes = {
     label:    React.PropTypes.string,
     value:    React.PropTypes.string,
@@ -133,8 +139,10 @@ Dropdown.propTypes = {
     onChange: React.PropTypes.func,
 };
 
-// set the context types for values received from higher up the food chain
-//
+/**
+ * The context types for the component
+ * @type {Object}
+ */
 Dropdown.contextTypes = {
     labelColumns: React.PropTypes.number,
 };
