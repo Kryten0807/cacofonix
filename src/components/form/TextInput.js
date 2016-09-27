@@ -216,6 +216,8 @@ class TextInput extends React.Component {
             return null;
         }
 
+        // render the label for the component, if we have one
+        //
         const label = this.props.label
             ? <label
                 htmlFor={this.id}
@@ -233,10 +235,14 @@ class TextInput extends React.Component {
             ? this.props.format(this.state.value)
             : this.state.value;
 
+        // render the help block (validation error message) if appropriate
+        //
         const helpBlock = !this.state.isValid
             ? <span className="help-block">{this.validationMessage}</span>
             : null;
 
+        // render the input component
+        //
         const input = (
             <div
                 className={classnames(
@@ -274,8 +280,10 @@ class TextInput extends React.Component {
     }
 }
 
-// set the property types for the component
-//
+/**
+ * The property types for the component
+ * @type {Object}
+ */
 TextInput.propTypes = {
     required:          React.PropTypes.bool,
     readOnly:          React.PropTypes.bool,
@@ -304,8 +312,10 @@ TextInput.propTypes = {
     validationKey:     React.PropTypes.string,
 };
 
-// set the context types for values received from higher up the food chain
-//
+/**
+ * The context types for the component
+ * @type {Object}
+ */
 TextInput.contextTypes = {
     onChildValidationEvent: React.PropTypes.func,
     labelColumns:           React.PropTypes.number,
