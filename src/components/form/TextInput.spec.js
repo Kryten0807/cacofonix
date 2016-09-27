@@ -26,6 +26,34 @@ const dump = (value, title = null) => {
 };
 /* eslint-enable no-unused-vars */
 
+const toFloat = (value) => parseFloat(`${value}`.replace(/[^\d.-]/g, ''));
+
+const parseCurrency = (value) => {
+    // strip the value of all non-numeric characters & attempt to parse it as a
+    // number
+    //
+    const val = toFloat(value);
+
+    console.log(`---- parseCurrency '${value}' = '${val}'`);
+
+    // if it's not a number, return an empty string; otherwise return a numeric
+    // string
+    //
+    return Number.isNaN(val) ? '' : `${val.toFixed(2)}`;
+};
+
+const formatCurrency = (value) => {
+    // attempt to parse the value as a floating point number
+    //
+    const val = toFloat(value);
+
+    console.log(`---- formatCurrency '${value}' = '${val}'`);
+
+    // if it's not a number, return the empty string; otherwise format it
+    //
+    return Number.isNaN(val) ? '' : `$ ${val.toFixed(2)}`;
+};
+
 /* *****************************************************************************
 a Form component with a TextInput element
     should include a <Form.TextInput> as a child
@@ -1410,18 +1438,6 @@ describe('when changing (and blurring) the value of a TextInput with parent comp
     it('should have the correct value in the input element throughout the editing process', () => {
 
         const toFloat = (value) => parseFloat(`${value}`.replace(/[^\d.-]/g, ''));
-
-        const formatCurrency = (value) => {
-            const val = toFloat(value);
-
-            return Number.isNaN(val) ? '' : `$ ${val.toFixed(2)}`;
-        };
-
-        const parseCurrency = (value) => {
-            const val = toFloat(value);
-
-            return Number.isNaN(val) ? '' : `${val.toFixed(2)}`;
-        };
 
         const required = true;
         const description = 'mumble mumble';
