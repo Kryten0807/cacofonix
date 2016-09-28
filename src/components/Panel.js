@@ -47,8 +47,8 @@ Panel.propTypes = {
     style:    React.PropTypes.string,
     header:   React.PropTypes.string,
     children: React.PropTypes.oneOfType([
-        React.PropTypes.element,
-        React.PropTypes.arrayOf(React.PropTypes.element),
+        React.PropTypes.arrayOf(React.PropTypes.node),
+        React.PropTypes.node,
     ]),
 };
 
