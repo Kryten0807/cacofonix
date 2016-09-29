@@ -283,6 +283,8 @@ class TextInput extends React.Component {
 
                 {input}
 
+                {this.props.inline ? helpBlock : null}
+
             </div>
         );
     }
