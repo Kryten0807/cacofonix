@@ -200,6 +200,25 @@ describe('a Form component with a TextInput element', () => {
 
         expect(component.find('input').props().style.width).to.equal(width);
     });
+
+    it('should not have a column specified when form is horizontal and inline is true', () => {
+
+        const columns = 3;
+
+        const label = 'something';
+
+        const width = "6em";
+
+        const component = mount(
+            <Form horizontal labelColumns={columns}>
+                <Form.TextInput inline inlineWidth={width} label={label} />
+            </Form>
+        );
+
+        expect(component.find('div.form-inline')).to.have.length(1, 'form-group');
+        expect(component.find('div.form-group')).to.have.length(1, 'form-group');
+        expect(component.find('label').props().className).to.not.contain(`col-xs-${columns}`);
+    });
 });
 
 /* *****************************************************************************
