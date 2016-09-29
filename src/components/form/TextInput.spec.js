@@ -62,6 +62,7 @@ a Form component with a TextInput element
     should have a div.col-xs-9 when form is horizontal and labelColumns=3
 
     should have the correct markup when the inline prop is set
+    should have the correct markup when inline=true and inlineWidth is set
 */
 describe('a Form component with a TextInput element', () => {
 
