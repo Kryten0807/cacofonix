@@ -245,28 +245,34 @@ class TextInput extends React.Component {
 
         // render the input component
         //
-        const input = (
-            <div
-                className={classnames(
-                    'form-textinput-input-columns',
-                    { [`col-xs-${12 - this.context.labelColumns}`]: this.context.labelColumns }
-                )}
-            >
-                <input
-                    type="text"
-                    readOnly={!!this.props.readOnly}
-                    id={this.id}
-                    value={value}
-                    placeholder={this.props.placeholder}
-                    className="form-control"
-                    onBlur={this.onBlur}
-                    onFocus={this.onFocus}
-                    onChange={this.onChange}
-                />
-
-                {helpBlock}
-            </div>
+        let input = (
+            <input
+                type="text"
+                readOnly={!!this.props.readOnly}
+                id={this.id}
+                value={value}
+                placeholder={this.props.placeholder}
+                className="form-control"
+                onBlur={this.onBlur}
+                onFocus={this.onFocus}
+                onChange={this.onChange}
+            />
         );
+
+        if (!this.props.inline) {
+            input = (
+                <div
+                    className={classnames(
+                        'form-textinput-input-columns',
+                        { [`col-xs-${12 - this.context.labelColumns}`]: this.context.labelColumns }
+                    )}
+                >
+                    {input}
+
+                    {helpBlock}
+                </div>
+            );
+        }
 
         // return the rendered component
         //
