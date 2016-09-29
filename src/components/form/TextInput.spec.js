@@ -60,6 +60,8 @@ a Form component with a TextInput element
     should not be visible when hidden is set
     should have a label.col-xs-3 when form is horizontal and labelColumns=3
     should have a div.col-xs-9 when form is horizontal and labelColumns=3
+
+    should have the correct markup when the inline prop is set
 */
 describe('a Form component with a TextInput element', () => {
 
