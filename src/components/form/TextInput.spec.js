@@ -577,6 +577,28 @@ describe('when changing (and blurring) the value of a required TextInput', () =>
         expect(component.find('.has-error')).to.have.length(1, 'has-error');
         expect(component.find('.help-block')).to.have.length(1, 'help-block');
     });
+
+    it('the component validation message SHOULD be displayed with an invalid value and an inline TextInput', () => {
+        const initialValue = 'something';
+        const finalValue = '';
+
+        const component = mount(
+            <Form>
+                <Form.TextInput inline required={required} value={initialValue} />
+            </Form>
+        );
+
+        component.find('input').simulate('change', {
+            target: { value: finalValue }
+        });
+
+        component.find('input').simulate('blur', {
+            target: { value: finalValue }
+        });
+
+        expect(component.find('.has-error')).to.have.length(1, 'has-error');
+        expect(component.find('.help-block')).to.have.length(1, 'help-block');
+    });
 });
 
 /* *****************************************************************************
