@@ -219,6 +219,8 @@ class TextInput extends React.Component {
 
         // render the label for the component, if we have one
         //
+        const labelStyles = this.props.inline ? { marginRight: '1em' } : {};
+
         const label = this.props.label
             ? <label
                 htmlFor={this.id}
@@ -226,6 +228,7 @@ class TextInput extends React.Component {
                     'control-label':                         !this.props.inline,
                     [`col-xs-${this.context.labelColumns}`]: this.context.labelColumns,
                 })}
+                style={labelStyles}
             >
                 {this.props.label}
             </label>
@@ -283,7 +286,10 @@ class TextInput extends React.Component {
         //
         return this.props.inline
             ? (
-            <div className="form-inline">
+            <div className="form-inline" style={{
+                    display: 'inline-block',
+                    marginRight: '1em',
+                }}>
                 <div className={classnames('form-group', { 'has-error': !this.state.isValid })}>
 
                     {label}
