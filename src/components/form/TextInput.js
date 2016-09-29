@@ -243,6 +243,10 @@ class TextInput extends React.Component {
             ? <span className="help-block">{this.validationMessage}</span>
             : null;
 
+        const inputStyles = this.props.inline && this.props.inlineWidth
+            ? { width: this.props.inlineWidth }
+            : {};
+
         // render the input component
         //
         let input = (
@@ -253,6 +257,7 @@ class TextInput extends React.Component {
                 value={value}
                 placeholder={this.props.placeholder}
                 className="form-control"
+                style={inputStyles}
                 onBlur={this.onBlur}
                 onFocus={this.onFocus}
                 onChange={this.onChange}
