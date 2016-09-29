@@ -219,12 +219,19 @@ class TextInput extends React.Component {
 
         // render the label for the component, if we have one
         //
+        const labelStyles = this.props.inline ? { marginRight: '1em' } : {};
+
+        // instantiate the label element
+        //
         const label = this.props.label
             ? <label
                 htmlFor={this.id}
-                className={classnames('control-label', {
-                    [`col-xs-${this.context.labelColumns}`]: this.context.labelColumns,
+                className={classnames({
+                    'control-label':                         !this.props.inline,
+                    [`col-xs-${this.context.labelColumns}`]: !this.props.inline
+                        && this.context.labelColumns,
                 })}
+                style={labelStyles}
             >
                 {this.props.label}
             </label>
@@ -242,34 +249,69 @@ class TextInput extends React.Component {
             ? <span className="help-block">{this.validationMessage}</span>
             : null;
 
+        // initialize the styles for the input element
+        //
+        const inputStyles = this.props.inline && this.props.inlineWidth
+            ? { width: this.props.inlineWidth }
+            : {};
+
         // render the input component
         //
-        const input = (
-            <div
-                className={classnames(
-                    'form-textinput-input-columns',
-                    { [`col-xs-${12 - this.context.labelColumns}`]: this.context.labelColumns }
-                )}
-            >
-                <input
-                    type="text"
-                    readOnly={!!this.props.readOnly}
-                    id={this.id}
-                    value={value}
-                    placeholder={this.props.placeholder}
-                    className="form-control"
-                    onBlur={this.onBlur}
-                    onFocus={this.onFocus}
-                    onChange={this.onChange}
-                />
-
-                {helpBlock}
-            </div>
+        let input = (
+            <input
+                type="text"
+                readOnly={!!this.props.readOnly}
+                id={this.id}
+                value={value}
+                placeholder={this.props.placeholder}
+                className="form-control"
+                style={inputStyles}
+                onBlur={this.onBlur}
+                onFocus={this.onFocus}
+                onChange={this.onChange}
+            />
         );
+
+        // is this an inline text input? if not, wrap it in a div
+        //
+        if (!this.props.inline) {
+            input = (
+                <div
+                    className={classnames(
+                        'form-textinput-input-columns',
+                        { [`col-xs-${12 - this.context.labelColumns}`]: this.context.labelColumns }
+                    )}
+                >
+                    {input}
+
+                    {helpBlock}
+                </div>
+            );
+        }
 
         // return the rendered component
         //
-        return (
+        return this.props.inline
+            ? (
+            <div
+                className="form-inline"
+                style={{
+                    display:     'inline-block',
+                    marginRight: '1em',
+                }}
+            >
+                <div className={classnames('form-group', { 'has-error': !this.state.isValid })}>
+
+                    {label}
+
+                    {input}
+
+                    {helpBlock}
+
+                </div>
+            </div>
+            )
+            : (
             <div className={classnames('form-group', { 'has-error': !this.state.isValid })}>
 
                 {label}
@@ -277,7 +319,7 @@ class TextInput extends React.Component {
                 {input}
 
             </div>
-        );
+            );
     }
 }
 
@@ -289,6 +331,8 @@ TextInput.propTypes = {
     required:          React.PropTypes.bool,
     readOnly:          React.PropTypes.bool,
     hidden:            React.PropTypes.bool,
+    inline:            React.PropTypes.bool,
+    inlineWidth:       React.PropTypes.number,
     id:                React.PropTypes.string,
     value:             React.PropTypes.oneOfType([
         React.PropTypes.string,

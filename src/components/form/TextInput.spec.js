@@ -60,6 +60,9 @@ a Form component with a TextInput element
     should not be visible when hidden is set
     should have a label.col-xs-3 when form is horizontal and labelColumns=3
     should have a div.col-xs-9 when form is horizontal and labelColumns=3
+    should have the correct markup when the inline prop is set
+    should have the correct markup when inline=true and inlineWidth is set
+    should not have a column specified when form is horizontal and inline is true
 */
 describe('a Form component with a TextInput element', () => {
 
@@ -166,6 +169,55 @@ describe('a Form component with a TextInput element', () => {
         expect(component.find('div.form-horizontal')).to.have.length(1, 'form-horizontal');
         expect(component.find('div.form-textinput-input-columns').props().className)
             .to.contain('col-xs-9', 'col-xs-9');
+    });
+    it('should have the correct markup when the inline prop is set', () => {
+
+        const label = 'something';
+
+        const component = mount(
+            <Form>
+                <Form.TextInput inline label={label} />
+            </Form>
+        );
+
+        expect(component.find('div.form-inline')).to.have.length(1, 'form-group');
+        expect(component.find('div.form-group')).to.have.length(1, 'form-group');
+        expect(component.find('label').props().className).to.equal('');
+        expect(component.find('div.form-textinput-input-columns')).to.have.length(0);
+    });
+
+    it('should have the correct markup when inline=true and inlineWidth is set', () => {
+
+        const label = 'something';
+
+        const width = '6em';
+
+        const component = mount(
+            <Form>
+                <Form.TextInput inline inlineWidth={width} label={label} />
+            </Form>
+        );
+
+        expect(component.find('input').props().style.width).to.equal(width);
+    });
+
+    it('should not have a column specified when form is horizontal and inline is true', () => {
+
+        const columns = 3;
+
+        const label = 'something';
+
+        const width = '6em';
+
+        const component = mount(
+            <Form horizontal labelColumns={columns}>
+                <Form.TextInput inline inlineWidth={width} label={label} />
+            </Form>
+        );
+
+        expect(component.find('div.form-inline')).to.have.length(1, 'form-group');
+        expect(component.find('div.form-group')).to.have.length(1, 'form-group');
+        expect(component.find('label').props().className).to.not.contain(`col-xs-${columns}`);
     });
 });
 
@@ -467,6 +519,8 @@ when changing (and blurring) the value of a required TextInput
     the component validation message should not be displayed with a valid value
     the global validation message SHOULD be displayed with an invalid value
     the component validation message SHOULD be displayed with an invalid value
+    the component validation message SHOULD be displayed with an invalid value
+        and an inline TextInput
 */
 describe('when changing (and blurring) the value of a required TextInput', () => {
 
@@ -543,6 +597,29 @@ describe('when changing (and blurring) the value of a required TextInput', () =>
         const component = mount(
             <Form>
                 <Form.TextInput required={required} value={initialValue} />
+            </Form>
+        );
+
+        component.find('input').simulate('change', {
+            target: { value: finalValue }
+        });
+
+        component.find('input').simulate('blur', {
+            target: { value: finalValue }
+        });
+
+        expect(component.find('.has-error')).to.have.length(1, 'has-error');
+        expect(component.find('.help-block')).to.have.length(1, 'help-block');
+    });
+
+    it('the component validation message SHOULD be displayed with an invalid ' +
+        'value and an inline TextInput', () => {
+        const initialValue = 'something';
+        const finalValue = '';
+
+        const component = mount(
+            <Form>
+                <Form.TextInput inline required={required} value={initialValue} />
             </Form>
         );
 
