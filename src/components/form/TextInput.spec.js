@@ -180,8 +180,8 @@ describe('a Form component with a TextInput element', () => {
         );
 
         expect(component.find('div.form-group')).to.have.length(1, 'form-group');
-        expect(component.find('label'.props().className).to.equal(undefined);
-        expect(component.find('div.form-textinput-input-columns').to.have.length(0);
+        expect(component.find('label').props().className).to.equal('');
+        expect(component.find('div.form-textinput-input-columns')).to.have.length(0);
     });
 
 });
