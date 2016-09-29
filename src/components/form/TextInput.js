@@ -289,6 +289,7 @@ TextInput.propTypes = {
     required:          React.PropTypes.bool,
     readOnly:          React.PropTypes.bool,
     hidden:            React.PropTypes.bool,
+    inline:            React.PropTypes.bool,
     id:                React.PropTypes.string,
     value:             React.PropTypes.oneOfType([
         React.PropTypes.string,
