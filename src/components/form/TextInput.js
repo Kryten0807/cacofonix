@@ -226,7 +226,7 @@ class TextInput extends React.Component {
                 htmlFor={this.id}
                 className={classnames({
                     'control-label':                         !this.props.inline,
-                    [`col-xs-${this.context.labelColumns}`]: this.context.labelColumns,
+                    [`col-xs-${this.context.labelColumns}`]: !this.props.inline && this.context.labelColumns,
                 })}
                 style={labelStyles}
             >
