@@ -169,6 +169,21 @@ describe('a Form component with a TextInput element', () => {
         expect(component.find('div.form-textinput-input-columns').props().className)
             .to.contain('col-xs-9', 'col-xs-9');
     });
+    it('should have the correct markup when the inline prop is set', () => {
+
+        const label = 'something';
+
+        const component = mount(
+            <Form>
+                <Form.TextInput inline label={label} />
+            </Form>
+        );
+
+        expect(component.find('div.form-group')).to.have.length(1, 'form-group');
+        expect(component.find('label'.props().className).to.equal(undefined);
+        expect(component.find('div.form-textinput-input-columns').to.have.length(0);
+    });
+
 });
 
 /* *****************************************************************************
