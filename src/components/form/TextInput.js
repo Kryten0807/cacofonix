@@ -221,6 +221,8 @@ class TextInput extends React.Component {
         //
         const labelStyles = this.props.inline ? { marginRight: '1em' } : {};
 
+        // instantiate the label element
+        //
         const label = this.props.label
             ? <label
                 htmlFor={this.id}
@@ -247,6 +249,8 @@ class TextInput extends React.Component {
             ? <span className="help-block">{this.validationMessage}</span>
             : null;
 
+        // initialize the styles for the input element
+        //
         const inputStyles = this.props.inline && this.props.inlineWidth
             ? { width: this.props.inlineWidth }
             : {};
@@ -268,6 +272,8 @@ class TextInput extends React.Component {
             />
         );
 
+        // is this an inline text input? if not, wrap it in a div
+        //
         if (!this.props.inline) {
             input = (
                 <div
