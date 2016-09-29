@@ -222,7 +222,8 @@ class TextInput extends React.Component {
         const label = this.props.label
             ? <label
                 htmlFor={this.id}
-                className={classnames('control-label', {
+                className={classnames({
+                    'control-label':                         !this.props.inline,
                     [`col-xs-${this.context.labelColumns}`]: this.context.labelColumns,
                 })}
             >
