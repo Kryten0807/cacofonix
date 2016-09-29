@@ -276,17 +276,29 @@ class TextInput extends React.Component {
 
         // return the rendered component
         //
-        return (
+        return this.props.inline
+            ? (
+            <div className="form-inline">
+                <div className={classnames('form-group', { 'has-error': !this.state.isValid })}>
+
+                    {label}
+
+                    {input}
+
+                    {helpBlock}
+
+                </div>
+            </div>
+            )
+            : (
             <div className={classnames('form-group', { 'has-error': !this.state.isValid })}>
 
                 {label}
 
                 {input}
 
-                {this.props.inline ? helpBlock : null}
-
             </div>
-        );
+            );
     }
 }
 
