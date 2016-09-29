@@ -190,7 +190,7 @@ describe('a Form component with a TextInput element', () => {
 
         const label = 'something';
 
-        const width = "6em";
+        const width = '6em';
 
         const component = mount(
             <Form>
@@ -207,7 +207,7 @@ describe('a Form component with a TextInput element', () => {
 
         const label = 'something';
 
-        const width = "6em";
+        const width = '6em';
 
         const component = mount(
             <Form horizontal labelColumns={columns}>
@@ -519,9 +519,8 @@ when changing (and blurring) the value of a required TextInput
     the component validation message should not be displayed with a valid value
     the global validation message SHOULD be displayed with an invalid value
     the component validation message SHOULD be displayed with an invalid value
-
-    the component validation message SHOULD be displayed with an invalid value and an inline TextInput
-
+    the component validation message SHOULD be displayed with an invalid value
+        and an inline TextInput
 */
 describe('when changing (and blurring) the value of a required TextInput', () => {
 
@@ -613,7 +612,8 @@ describe('when changing (and blurring) the value of a required TextInput', () =>
         expect(component.find('.help-block')).to.have.length(1, 'help-block');
     });
 
-    it('the component validation message SHOULD be displayed with an invalid value and an inline TextInput', () => {
+    it('the component validation message SHOULD be displayed with an invalid ' +
+        'value and an inline TextInput', () => {
         const initialValue = 'something';
         const finalValue = '';
 
