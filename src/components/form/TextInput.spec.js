@@ -186,6 +186,20 @@ describe('a Form component with a TextInput element', () => {
         expect(component.find('div.form-textinput-input-columns')).to.have.length(0);
     });
 
+    it('should have the correct markup when inline=true and inlineWidth is set', () => {
+
+        const label = 'something';
+
+        const width = "6em";
+
+        const component = mount(
+            <Form>
+                <Form.TextInput inline inlineWidth={width} label={label} />
+            </Form>
+        );
+
+        expect(component.find('input').props().style.width).to.equal(width);
+    });
 });
 
 /* *****************************************************************************
