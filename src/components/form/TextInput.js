@@ -323,6 +323,8 @@ class TextInput extends React.Component {
     }
 }
 
+// @TODO update inlineWidth proptype to accept string or number
+
 /**
  * The property types for the component
  * @type {Object}
