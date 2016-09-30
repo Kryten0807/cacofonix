@@ -5,6 +5,10 @@ Cacofonix
 
 This is a set of Bootstrap-themed React components.
 
+# IMPORTANT! This package is under heavy development and could undergo breaking changes at any time!
+
+I'm developing this package to use in a couple of my personal projects. Eventually, I will settle on a final design for these components and, at that point, this will probably be a usefull open source package. Until then, **use this package at your own risk!**
+
 ## Completed
 
 1. **Alert** - a Bootstrap alert, complete with button for dismissal
