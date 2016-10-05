@@ -161,8 +161,14 @@ class Dropdown extends React.Component {
  */
 Dropdown.propTypes = {
     label:    React.PropTypes.string,
-    value:    React.PropTypes.string,
-    options:  React.PropTypes.array.isRequired,
+    value:    React.PropTypes.oneOfType([
+        React.PropTypes.string,
+        React.PropTypes.number,
+    ]),
+    options:  React.PropTypes.oneOfType([
+        React.PropTypes.array,
+        React.PropTypes.object,
+    ]).isRequired,
     onChange: React.PropTypes.func,
 };
 
