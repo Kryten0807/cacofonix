@@ -88,6 +88,16 @@ class Dropdown extends React.Component {
             )
             : null;
 
+        // build the options
+        //
+        let options = null;
+        if (isArray(this.props.options)) {
+            options = this.props.options.map((opt) =>
+                (<option key={uniqueId('form-dropdown-option-')} value={opt.value}>
+                    {opt.name}
+                </option>)
+            );
+        }
         // generate the select element for the component
         //
         let select = (
@@ -97,11 +107,7 @@ class Dropdown extends React.Component {
                 value={value}
                 onChange={this.onChange}
             >
-                {this.props.options.map((opt) =>
-                    <option key={uniqueId('form-dropdown-option-')} value={opt.value}>
-                        {opt.name}
-                    </option>
-                )}
+                {options}
             </select>
         );
 
