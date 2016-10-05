@@ -336,4 +336,35 @@ describe('the Dropdown element', () => {
         expect(onChange.args[0][0]).to.equal(options[0].value);
     });
 
+    it('should call onChange with the correct value on value change to a valid value from an optgroup', () => {
+
+        const onChange = sinon.spy();
+
+        const options = {
+            'Group 1': [
+                { value: '1', name: 'one' },
+                { value: '2', name: 'two' },
+            ],
+            'Group 2': [
+                { value: '3', name: 'three' },
+            ],
+        };
+
+        const initialValue = '2';
+
+        const finalValue = '3';
+
+        const component = mount(
+            <Form>
+                <Form.Dropdown options={options} value={initialValue} onChange={onChange} />
+            </Form>
+        );
+
+        component.find('select').simulate('change', {
+            target: { value: finalValue }
+        });
+
+        expect(onChange.callCount).to.equal(1);
+        expect(onChange.args[0][0]).to.equal(options['Group 2'][0].value);
+    });
 });
