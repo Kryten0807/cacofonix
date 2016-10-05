@@ -27,11 +27,6 @@ class Dropdown extends React.Component {
         this.onChange = this.onChange.bind(this);
     }
 
-    getOptionsList() {
-        return isArray(this.props.options)
-            ? this.props.options
-            : flatMap(this.props.options, (opt) => opt);
-    }
     /**
      * Handle the `onChange` event for the select element
      * @param  {Object} event The event object
@@ -58,6 +53,11 @@ class Dropdown extends React.Component {
     }
 
     /**
+    getOptionsList() {
+        return isArray(this.props.options)
+            ? this.props.options
+            : flatMap(this.props.options, (opt) => opt);
+    }
      * Determine if a value is valid
      * @param  {String}  The value to check
      * @return {Boolean} True if the value is valid (ie. found in the array of
