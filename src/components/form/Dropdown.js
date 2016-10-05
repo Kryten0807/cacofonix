@@ -1,6 +1,7 @@
 // dependencies
 //
 import React from 'react';
+import isArray from 'lodash/isArray';
 import uniqueId from 'lodash/uniqueId';
 import classnames from 'classnames';
 
