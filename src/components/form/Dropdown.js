@@ -21,6 +21,10 @@ class Dropdown extends React.Component {
         //
         this.id = uniqueId('form-dropdown-');
 
+        this.options = isArray(this.props.options)
+            ? this.props.options
+            : flatMap(this.props.options, (opt) => opt);
+
         // bind `this` to the event handlers
         //
         this.isValid = this.isValid.bind(this);
