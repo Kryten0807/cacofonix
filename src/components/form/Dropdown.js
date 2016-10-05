@@ -2,6 +2,7 @@
 //
 import React from 'react';
 import isArray from 'lodash/isArray';
+import flatMap from 'lodash/flatMap';
 import uniqueId from 'lodash/uniqueId';
 import classnames from 'classnames';
 
