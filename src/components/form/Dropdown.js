@@ -65,7 +65,7 @@ class Dropdown extends React.Component {
     }
 
     /**
-     * Determine if a value is valid
+     * Determine if a value is valid (ie. in the list of options)
      * @param  {String}  The value to check
      * @return {Boolean} True if the value is valid (ie. found in the array of
      *                   options); false otherwise
@@ -104,13 +104,21 @@ class Dropdown extends React.Component {
         // build the options
         //
         let options = null;
+
+        // is the list of options an array or an object?
+        //
         if (isArray(this.props.options)) {
+            // it's an array - simply map it to a list of <option> elements
+            //
             options = this.props.options.map((opt) =>
                 (<option key={uniqueId('form-dropdown-option-')} value={opt.value}>
                     {opt.name}
                 </option>)
             );
         } else {
+            // it's an object - build a list of options, separated into
+            // optgroups by key
+            //
             options = [];
 
             Object.keys(this.props.options).forEach((key) => {
