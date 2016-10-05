@@ -34,7 +34,6 @@ a Form component containing a Dropdown
     should select the first item when value is set to an invalid value
     should have a label.col-xs-3 when form is horizontal and labelColumns=3
     should have a div.col-xs-9 when form is horizontal and labelColumns=3
-
     should have the appropriate optgroups when options is an object
 */
 describe('a Form component containing a Dropdown', () => {
