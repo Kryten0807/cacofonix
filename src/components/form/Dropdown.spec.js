@@ -242,11 +242,11 @@ describe('a Form component containing a Dropdown', () => {
     it('should have the appropriate optgroups when options is an object', () => {
 
         const options = {
-            ['Group 1']: [
+            'Group 1': [
                 { value: '1', name: 'one' },
                 { value: '2', name: 'two' },
             ],
-            ['Group 2']: [
+            'Group 2': [
                 { value: '3', name: 'three' },
             ],
         };
@@ -261,10 +261,14 @@ describe('a Form component containing a Dropdown', () => {
         );
 
         expect(component.find('select optgroup')).to.have.length(2, 'optgroup');
-        expect(component.find('select optgroup').at(0).text()).to.equal('Group 1', 'optgroup 1 text');
-        expect(component.find('select optgroup').at(1).text()).to.equal('Group 2', 'optgroup 2 text');
-        expect(component.find('select optgroup').at(0).find('option')).to.have.length(2, 'optgroup 1 options');
-        expect(component.find('select optgroup').at(1).find('option')).to.have.length(1, 'optgroup 1 options');
+        expect(component.find('select optgroup').at(0).props().label)
+            .to.equal('Group 1', 'optgroup 1 text');
+        expect(component.find('select optgroup').at(1).props().label)
+            .to.equal('Group 2', 'optgroup 2 text');
+        expect(component.find('select optgroup').at(0).find('option'))
+            .to.have.length(2, 'optgroup 1 options');
+        expect(component.find('select optgroup').at(1).find('option'))
+            .to.have.length(1, 'optgroup 1 options');
     });
 });
 
