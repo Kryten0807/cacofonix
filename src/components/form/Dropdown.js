@@ -102,7 +102,22 @@ class Dropdown extends React.Component {
                     {opt.name}
                 </option>)
             );
+        } else {
+            options = [];
+
+            Object.keys(this.props.options).forEach((key) => {
+                options.push(
+                    <optgroup key={uniqueId('form-dropdown-optgroup-')} label={key}>
+                        {this.props.options[key].map((opt) => (
+                            <option key={uniqueId('form-dropdown-option-')} value={opt.value}>
+                                {opt.name}
+                            </option>))
+                        }
+                    </optgroup>
+                );
+            });
         }
+
         // generate the select element for the component
         //
         let select = (
