@@ -53,11 +53,18 @@ class Dropdown extends React.Component {
     }
 
     /**
+     * Get the list of options as a flat array
+     * @return {Array} The list of options
+     */
     getOptionsList() {
+        // is it an array? if so, return it; otherwise, map it to a flat array
+        //
         return isArray(this.props.options)
             ? this.props.options
             : flatMap(this.props.options, (opt) => opt);
     }
+
+    /**
      * Determine if a value is valid
      * @param  {String}  The value to check
      * @return {Boolean} True if the value is valid (ie. found in the array of
