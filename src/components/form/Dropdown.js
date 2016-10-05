@@ -1,6 +1,8 @@
 // dependencies
 //
 import React from 'react';
+import isArray from 'lodash/isArray';
+import flatMap from 'lodash/flatMap';
 import uniqueId from 'lodash/uniqueId';
 import classnames from 'classnames';
 
@@ -51,13 +53,25 @@ class Dropdown extends React.Component {
     }
 
     /**
-     * Determine if a value is valid
+     * Get the list of options as a flat array
+     * @return {Array} The list of options
+     */
+    getOptionsList() {
+        // is it an array? if so, return it; otherwise, map it to a flat array
+        //
+        return isArray(this.props.options)
+            ? this.props.options
+            : flatMap(this.props.options, (opt) => opt);
+    }
+
+    /**
+     * Determine if a value is valid (ie. in the list of options)
      * @param  {String}  The value to check
      * @return {Boolean} True if the value is valid (ie. found in the array of
      *                   options); false otherwise
      */
     isValid(value = this.props.value) {
-        return this.props.options.findIndex((opt) => opt.value === value) !== -1;
+        return this.getOptionsList().findIndex((opt) => `${opt.value}` === `${value}`) !== -1;
     }
 
     /**
@@ -87,6 +101,39 @@ class Dropdown extends React.Component {
             )
             : null;
 
+        // build the options
+        //
+        let options = null;
+
+        // is the list of options an array or an object?
+        //
+        if (isArray(this.props.options)) {
+            // it's an array - simply map it to a list of <option> elements
+            //
+            options = this.props.options.map((opt) =>
+                (<option key={uniqueId('form-dropdown-option-')} value={opt.value}>
+                    {opt.name}
+                </option>)
+            );
+        } else {
+            // it's an object - build a list of options, separated into
+            // optgroups by key
+            //
+            options = [];
+
+            Object.keys(this.props.options).forEach((key) => {
+                options.push(
+                    <optgroup key={uniqueId('form-dropdown-optgroup-')} label={key}>
+                        {this.props.options[key].map((opt) => (
+                            <option key={uniqueId('form-dropdown-option-')} value={opt.value}>
+                                {opt.name}
+                            </option>))
+                        }
+                    </optgroup>
+                );
+            });
+        }
+
         // generate the select element for the component
         //
         let select = (
@@ -96,11 +143,7 @@ class Dropdown extends React.Component {
                 value={value}
                 onChange={this.onChange}
             >
-                {this.props.options.map((opt) =>
-                    <option key={uniqueId('form-dropdown-option-')} value={opt.value}>
-                        {opt.name}
-                    </option>
-                )}
+                {options}
             </select>
         );
 
@@ -134,8 +177,14 @@ class Dropdown extends React.Component {
  */
 Dropdown.propTypes = {
     label:    React.PropTypes.string,
-    value:    React.PropTypes.string,
-    options:  React.PropTypes.array.isRequired,
+    value:    React.PropTypes.oneOfType([
+        React.PropTypes.string,
+        React.PropTypes.number,
+    ]),
+    options:  React.PropTypes.oneOfType([
+        React.PropTypes.array,
+        React.PropTypes.object,
+    ]).isRequired,
     onChange: React.PropTypes.func,
 };
 
