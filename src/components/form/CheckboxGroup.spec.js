@@ -38,6 +38,8 @@ a Form component containing a CheckboxGroup
     should have the correct options checked when empty array value is provided
     should have a label.col-xs-3 when form is horizontal and labelColumns=3
     should have a div.col-xs-9 when form is horizontal and labelColumns=3
+
+    should include appropriate components in place of <label> when label=components
 */
 describe('a Form component containing a CheckboxGroup', () => {
 
