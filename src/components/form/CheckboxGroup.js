@@ -4,6 +4,7 @@ import React from 'react';
 import update from 'react-addons-update';
 import uniqueId from 'lodash/uniqueId';
 import isArray from 'lodash/isArray';
+import isEqual from 'lodash/isEqual';
 import classnames from 'classnames';
 
 /**
