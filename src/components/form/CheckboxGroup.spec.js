@@ -8,6 +8,7 @@ import React from 'react';
 import { shallow, mount } from 'enzyme';
 import chai from 'chai';
 import sinon from 'sinon';
+import isEqual from 'lodash/isEqual';
 
 import Form from '../Form';
 
