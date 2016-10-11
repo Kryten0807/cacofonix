@@ -38,6 +38,8 @@ a Form component containing a CheckboxGroup
     should have the correct options checked when empty array value is provided
     should have a label.col-xs-3 when form is horizontal and labelColumns=3
     should have a div.col-xs-9 when form is horizontal and labelColumns=3
+
+    should include appropriate components in place of <label> when label=components
 */
 describe('a Form component containing a CheckboxGroup', () => {
 
@@ -279,6 +281,59 @@ describe('a Form component containing a CheckboxGroup', () => {
         expect(component.find('div.form-horizontal')).to.have.length(1, 'form-horizontal');
         expect(component.find('div.form-checkboxgroup-inputs').props().className)
             .to.contain('col-xs-9', 'col-xs-9');
+    });
+
+    it('should include appropriate components in place of <label> when label=components', () => {
+
+        const labelOptions = [
+            {
+                value: '1',
+                name: (
+                    <div>
+                        <div className="label-div option-1">a component</div>
+                        <div className="label-div option-1a">as a label</div>
+                    </div>
+                ),
+            },
+            {
+                value: '2',
+                name: (
+                    <div>
+                        <div className="label-div option-2">a component</div>
+                        <div className="label-div option-2a">as a label</div>
+                    </div>
+                ),
+            },
+            {
+                value: '3',
+                name: (
+                    <div>
+                        <div className="label-div option-3">a component</div>
+                        <div className="label-div option-3a">as a label</div>
+                    </div>
+                ),
+            },
+        ];
+
+        const label = 'my component label';
+
+        const value = 2;
+
+        const component = mount(
+            <Form horizontal>
+                <Form.CheckboxGroup label={label} options={labelOptions} value={value} />
+            </Form>
+        );
+
+        expect(component.find('label')).to.have.length(4, 'label');
+        expect(component.find(`div.label-div`)).to.have.length(6, 'label div');
+        expect(component.find('div.option-1')).to.have.length(1, 'option-1');
+        expect(component.find('div.option-1a')).to.have.length(1, 'option-1a');
+        expect(component.find('div.option-2')).to.have.length(1, 'option-2');
+        expect(component.find('div.option-2a')).to.have.length(1, 'option-2a');
+        expect(component.find('div.option-3')).to.have.length(1, 'option-3');
+        expect(component.find('div.option-3a')).to.have.length(1, 'option-3a');
+
     });
 
 });
