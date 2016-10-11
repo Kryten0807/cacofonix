@@ -288,7 +288,7 @@ describe('a Form component containing a CheckboxGroup', () => {
         const labelOptions = [
             {
                 value: '1',
-                name: (
+                name:  (
                     <div>
                         <div className="label-div option-1">a component</div>
                         <div className="label-div option-1a">as a label</div>
@@ -297,7 +297,7 @@ describe('a Form component containing a CheckboxGroup', () => {
             },
             {
                 value: '2',
-                name: (
+                name:  (
                     <div>
                         <div className="label-div option-2">a component</div>
                         <div className="label-div option-2a">as a label</div>
@@ -306,7 +306,7 @@ describe('a Form component containing a CheckboxGroup', () => {
             },
             {
                 value: '3',
-                name: (
+                name:  (
                     <div>
                         <div className="label-div option-3">a component</div>
                         <div className="label-div option-3a">as a label</div>
