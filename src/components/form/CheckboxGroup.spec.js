@@ -989,52 +989,52 @@ when the user clicks something, the parent component
 */
 describe('when the user clicks something, the parent component', () => {
 
-    const options = [
-        { value: '1', name: 'One' },
-        { value: '2', name: 'Two' },
-        { value: '3', name: 'Three' },
-    ];
-
-    const required = true;
-
-    const description = 'gibberish';
-
-    class TestParent extends React.Component {
-        constructor(props) {
-            super(props);
-
-            this.state = {
-                testValue: props.testValue || [],
-            };
-
-            this.onChange = this.onChange.bind(this);
-        }
-
-        onChange(testValue) {
-            this.setState({ testValue });
-        }
-
-        render() {
-            return (
-                <Form>
-                    <Form.CheckboxGroup
-                        required={required}
-                        description={description}
-                        options={options}
-                        value={this.state.testValue}
-                        onChange={this.onChange}
-                    />
-                </Form>
-            );
-        }
-    }
-
-    TestParent.propTypes = {
-        testValue:    React.PropTypes.array,
-        onChange:     React.PropTypes.func,
-    };
-
     it('should receive the correct value from the onChange handler', () => {
+
+        const options = [
+            { value: '1', name: 'One' },
+            { value: '2', name: 'Two' },
+            { value: '3', name: 'Three' },
+        ];
+
+        const required = true;
+
+        const description = 'gibberish';
+
+        class TestParent extends React.Component {
+            constructor(props) {
+                super(props);
+
+                this.state = {
+                    testValue: props.testValue || [],
+                };
+
+                this.onChange = this.onChange.bind(this);
+            }
+
+            onChange(testValue) {
+                this.setState({ testValue });
+            }
+
+            render() {
+                return (
+                    <Form>
+                        <Form.CheckboxGroup
+                            required={required}
+                            description={description}
+                            options={options}
+                            value={this.state.testValue}
+                            onChange={this.onChange}
+                        />
+                    </Form>
+                );
+            }
+        }
+
+        TestParent.propTypes = {
+            testValue:    React.PropTypes.array,
+            onChange:     React.PropTypes.func,
+        };
 
         const testValue = ['1'];
 
