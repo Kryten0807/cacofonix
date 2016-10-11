@@ -73,6 +73,21 @@ class CheckboxGroup extends React.Component {
     }
 
     componentWillReceiveProps(newProps) {
+        const initialValue = this.state.value;
+
+        // remove any items from the value that do not appear in the newProps.options
+        //
+        this.setState((state) => update(state, {
+            value: {
+                $set: state.value.filter((val) =>
+                    newProps.options.findIndex((opt) => opt.value === `${val}`) !== -1
+                )
+            }
+        }), () => {
+            if (!isEqual(this.state.value, initialValue) && this.props.onChange) {
+                this.props.onChange(this.state.value);
+            }
+        });
     }
 
     /**
