@@ -8,6 +8,7 @@ import React from 'react';
 import { shallow, mount } from 'enzyme';
 import chai from 'chai';
 import sinon from 'sinon';
+import isEqual from 'lodash/isEqual';
 
 import Form from '../Form';
 
@@ -38,6 +39,8 @@ a Form component containing a CheckboxGroup
     should have the correct options checked when empty array value is provided
     should have a label.col-xs-3 when form is horizontal and labelColumns=3
     should have a div.col-xs-9 when form is horizontal and labelColumns=3
+
+    should include appropriate components in place of <label> when label=components
 */
 describe('a Form component containing a CheckboxGroup', () => {
 
@@ -279,6 +282,59 @@ describe('a Form component containing a CheckboxGroup', () => {
         expect(component.find('div.form-horizontal')).to.have.length(1, 'form-horizontal');
         expect(component.find('div.form-checkboxgroup-inputs').props().className)
             .to.contain('col-xs-9', 'col-xs-9');
+    });
+
+    it('should include appropriate components in place of <label> when label=components', () => {
+
+        const labelOptions = [
+            {
+                value: '1',
+                name:  (
+                    <div>
+                        <div className="label-div option-1">a component</div>
+                        <div className="label-div option-1a">as a label</div>
+                    </div>
+                ),
+            },
+            {
+                value: '2',
+                name:  (
+                    <div>
+                        <div className="label-div option-2">a component</div>
+                        <div className="label-div option-2a">as a label</div>
+                    </div>
+                ),
+            },
+            {
+                value: '3',
+                name:  (
+                    <div>
+                        <div className="label-div option-3">a component</div>
+                        <div className="label-div option-3a">as a label</div>
+                    </div>
+                ),
+            },
+        ];
+
+        const label = 'my component label';
+
+        const value = 2;
+
+        const component = mount(
+            <Form horizontal>
+                <Form.CheckboxGroup label={label} options={labelOptions} value={value} />
+            </Form>
+        );
+
+        expect(component.find('label')).to.have.length(4, 'label');
+        expect(component.find('div.label-div')).to.have.length(6, 'label div');
+        expect(component.find('div.option-1')).to.have.length(1, 'option-1');
+        expect(component.find('div.option-1a')).to.have.length(1, 'option-1a');
+        expect(component.find('div.option-2')).to.have.length(1, 'option-2');
+        expect(component.find('div.option-2a')).to.have.length(1, 'option-2a');
+        expect(component.find('div.option-3')).to.have.length(1, 'option-3');
+        expect(component.find('div.option-3a')).to.have.length(1, 'option-3a');
+
     });
 
 });
@@ -931,55 +987,56 @@ describe('after the user clicks something, the CheckboxGroup component', () => {
 /* *****************************************************************************
 when the user clicks something, the parent component
     should receive the correct value from the onChange handler
+    should revise the list of values when the options change
 */
 describe('when the user clicks something, the parent component', () => {
 
-    const options = [
-        { value: '1', name: 'One' },
-        { value: '2', name: 'Two' },
-        { value: '3', name: 'Three' },
-    ];
-
-    const required = true;
-
-    const description = 'gibberish';
-
-    class TestParent extends React.Component {
-        constructor(props) {
-            super(props);
-
-            this.state = {
-                testValue: props.testValue || [],
-            };
-
-            this.onChange = this.onChange.bind(this);
-        }
-
-        onChange(testValue) {
-            this.setState({ testValue });
-        }
-
-        render() {
-            return (
-                <Form>
-                    <Form.CheckboxGroup
-                        required={required}
-                        description={description}
-                        options={options}
-                        value={this.state.testValue}
-                        onChange={this.onChange}
-                    />
-                </Form>
-            );
-        }
-    }
-
-    TestParent.propTypes = {
-        testValue:    React.PropTypes.array,
-        onChange:     React.PropTypes.func,
-    };
-
     it('should receive the correct value from the onChange handler', () => {
+
+        const options = [
+            { value: '1', name: 'One' },
+            { value: '2', name: 'Two' },
+            { value: '3', name: 'Three' },
+        ];
+
+        const required = true;
+
+        const description = 'gibberish';
+
+        class TestParent extends React.Component {
+            constructor(props) {
+                super(props);
+
+                this.state = {
+                    testValue: props.testValue || [],
+                };
+
+                this.onChange = this.onChange.bind(this);
+            }
+
+            onChange(testValue) {
+                this.setState({ testValue });
+            }
+
+            render() {
+                return (
+                    <Form>
+                        <Form.CheckboxGroup
+                            required={required}
+                            description={description}
+                            options={options}
+                            value={this.state.testValue}
+                            onChange={this.onChange}
+                        />
+                    </Form>
+                );
+            }
+        }
+
+        TestParent.propTypes = {
+            testValue:    React.PropTypes.array,
+            onChange:     React.PropTypes.func,
+        };
 
         const testValue = ['1'];
 
@@ -995,5 +1052,87 @@ describe('when the user clicks something, the parent component', () => {
         expect(parent.state().testValue).to.have.length(2);
         expect(parent.state().testValue[0]).to.equal('1', 'item 0');
         expect(parent.state().testValue[1]).to.equal('2', 'item 1');
+    });
+
+    it('should revise the list of values when the options change', () => {
+
+        const initialOptions = [
+            { value: '1', name: 'One' },
+            { value: '2', name: 'Two' },
+            { value: '3', name: 'Three' },
+        ];
+
+        const newOptions = [
+            { value: '2', name: 'Two' },
+            { value: '3', name: 'Three' },
+            { value: '4', name: 'Four' },
+        ];
+
+        const required = true;
+
+        const description = 'gibberish';
+
+        class TestParent extends React.Component {
+            constructor(props) {
+                super(props);
+
+                this.state = {
+                    testValue:   props.testValue || [],
+                    testOptions: props.testOptions || [],
+                };
+
+                this.onChange = this.onChange.bind(this);
+            }
+
+            onChange(testValue) {
+                this.setState({ testValue });
+            }
+
+            render() {
+                return (
+                    <Form>
+                        <Form.CheckboxGroup
+                            required={required}
+                            description={description}
+                            options={this.state.testOptions}
+                            value={this.state.testValue}
+                            onChange={this.onChange}
+                        />
+                    </Form>
+                );
+            }
+        }
+
+        TestParent.propTypes = {
+            testValue:   React.PropTypes.array,
+            testOptions: React.PropTypes.array,
+            onChange:    React.PropTypes.func,
+        };
+
+        // the initial value for the parent
+        //
+        const initialValue = ['1', '2'];
+
+        // the new value for the parent - after we update the options & remove
+        // the '1' option, the value should be truncated
+        //
+        const newValue = ['2'];
+
+        // create the components
+        //
+        const parent = mount(<TestParent testValue={initialValue} testOptions={initialOptions} />);
+
+        // check the TestParent value
+        //
+        expect(parent.state().testValue).to.equal(initialValue);
+
+        // adjust the options
+        //
+        parent.setState({ testValue: parent.state().testValue, testOptions: newOptions });
+
+        // check the TestParent value
+        //
+        expect(isEqual(parent.state().testValue, newValue)).to.equal(true);
+
     });
 });

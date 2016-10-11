@@ -1,9 +1,10 @@
-// dependencies
+// npm dependencies
 //
 import React from 'react';
 import update from 'react-addons-update';
 import uniqueId from 'lodash/uniqueId';
 import isArray from 'lodash/isArray';
+import isEqual from 'lodash/isEqual';
 import classnames from 'classnames';
 
 /**
@@ -69,6 +70,33 @@ class CheckboxGroup extends React.Component {
                 isValid ? null : this.validationMessage
             );
         }
+    }
+
+    /**
+     * Handle the receipt of new properties
+     * @param  {Object} newProps The new properties for the component
+     */
+    componentWillReceiveProps(newProps) {
+        // save the initial value, so we can check for changes later
+        //
+        const initialValue = this.state.value;
+
+        // remove any items from the value that do not appear in the new options
+        //
+        this.setState((state) => update(state, {
+            value: {
+                $set: state.value.filter((val) =>
+                    newProps.options.findIndex((opt) => opt.value === `${val}`) !== -1
+                )
+            }
+        }), () => {
+            // then check to see if the value has changed and, if so, call the
+            // `onChange` handler with the new values
+            //
+            if (!isEqual(this.state.value, initialValue) && this.props.onChange) {
+                this.props.onChange(this.state.value);
+            }
+        });
     }
 
     /**
