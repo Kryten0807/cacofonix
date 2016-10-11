@@ -986,6 +986,7 @@ describe('after the user clicks something, the CheckboxGroup component', () => {
 /* *****************************************************************************
 when the user clicks something, the parent component
     should receive the correct value from the onChange handler
+    should revise the list of values when the options change
 */
 describe('when the user clicks something, the parent component', () => {
 
