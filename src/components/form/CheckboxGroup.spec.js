@@ -326,7 +326,7 @@ describe('a Form component containing a CheckboxGroup', () => {
         );
 
         expect(component.find('label')).to.have.length(4, 'label');
-        expect(component.find(`div.label-div`)).to.have.length(6, 'label div');
+        expect(component.find('div.label-div')).to.have.length(6, 'label div');
         expect(component.find('div.option-1')).to.have.length(1, 'option-1');
         expect(component.find('div.option-1a')).to.have.length(1, 'option-1a');
         expect(component.find('div.option-2')).to.have.length(1, 'option-2');
