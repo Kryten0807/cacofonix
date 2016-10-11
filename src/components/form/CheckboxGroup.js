@@ -71,6 +71,9 @@ class CheckboxGroup extends React.Component {
         }
     }
 
+    componentWillReceiveProps(newProps) {
+    }
+
     /**
      * Handle a click or change event for one of the input elements
      * @param  {String} value The value for the input element that was clicked
