@@ -1,4 +1,4 @@
-// dependencies
+// npm dependencies
 //
 import React from 'react';
 import update from 'react-addons-update';
@@ -72,10 +72,16 @@ class CheckboxGroup extends React.Component {
         }
     }
 
+    /**
+     * Handle the receipt of new properties
+     * @param  {Object} newProps The new properties for the component
+     */
     componentWillReceiveProps(newProps) {
+        // save the initial value, so we can check for changes later
+        //
         const initialValue = this.state.value;
 
-        // remove any items from the value that do not appear in the newProps.options
+        // remove any items from the value that do not appear in the new options
         //
         this.setState((state) => update(state, {
             value: {
@@ -84,6 +90,9 @@ class CheckboxGroup extends React.Component {
                 )
             }
         }), () => {
+            // then check to see if the value has changed and, if so, call the
+            // `onChange` handler with the new values
+            //
             if (!isEqual(this.state.value, initialValue) && this.props.onChange) {
                 this.props.onChange(this.state.value);
             }
