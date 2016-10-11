@@ -34,6 +34,7 @@ a Form component containing a Dropdown
     should select the first item when value is set to an invalid value
     should have a label.col-xs-3 when form is horizontal and labelColumns=3
     should have a div.col-xs-9 when form is horizontal and labelColumns=3
+    should have the appropriate optgroups when options is an object
 */
 describe('a Form component containing a Dropdown', () => {
 
@@ -236,12 +237,46 @@ describe('a Form component containing a Dropdown', () => {
         expect(component.find('div.form-dropdown-columns').props().className)
             .to.contain('col-xs-9', 'col-xs-9');
     });
+
+    it('should have the appropriate optgroups when options is an object', () => {
+
+        const options = {
+            'Group 1': [
+                { value: '1', name: 'one' },
+                { value: '2', name: 'two' },
+            ],
+            'Group 2': [
+                { value: '3', name: 'three' },
+            ],
+        };
+
+        const label = 'peter piper';
+        const value = 2;
+
+        const component = mount(
+            <Form>
+                <Form.Dropdown label={label} options={options} value={value} />
+            </Form>
+        );
+
+        expect(component.find('select optgroup')).to.have.length(2, 'optgroup');
+        expect(component.find('select optgroup').at(0).props().label)
+            .to.equal('Group 1', 'optgroup 1 text');
+        expect(component.find('select optgroup').at(1).props().label)
+            .to.equal('Group 2', 'optgroup 2 text');
+        expect(component.find('select optgroup').at(0).find('option'))
+            .to.have.length(2, 'optgroup 1 options');
+        expect(component.find('select optgroup').at(1).find('option'))
+            .to.have.length(1, 'optgroup 1 options');
+    });
 });
 
 /* *****************************************************************************
 the Dropdown element
     should call onChange with the correct value on value change to a valid value
     should call onChange with the first option on value change to a invalid value
+
+    should call onChange with the correct value on value change to a valid value from an optgroup
 */
 describe('the Dropdown element', () => {
 
@@ -301,4 +336,36 @@ describe('the Dropdown element', () => {
         expect(onChange.args[0][0]).to.equal(options[0].value);
     });
 
+    it('should call onChange with the correct value on value change to a ' +
+        'valid value from an optgroup', () => {
+
+        const onChange = sinon.spy();
+
+        const options = {
+            'Group 1': [
+                { value: '1', name: 'one' },
+                { value: '2', name: 'two' },
+            ],
+            'Group 2': [
+                { value: '3', name: 'three' },
+            ],
+        };
+
+        const initialValue = '2';
+
+        const finalValue = '3';
+
+        const component = mount(
+            <Form>
+                <Form.Dropdown options={options} value={initialValue} onChange={onChange} />
+            </Form>
+        );
+
+        component.find('select').simulate('change', {
+            target: { value: finalValue }
+        });
+
+        expect(onChange.callCount).to.equal(1);
+        expect(onChange.args[0][0]).to.equal(options['Group 2'][0].value);
+    });
 });
