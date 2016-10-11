@@ -1053,4 +1053,86 @@ describe('when the user clicks something, the parent component', () => {
         expect(parent.state().testValue[0]).to.equal('1', 'item 0');
         expect(parent.state().testValue[1]).to.equal('2', 'item 1');
     });
+
+    it('should revise the list of values when the options change', () => {
+
+        const initialOptions = [
+            { value: '1', name: 'One' },
+            { value: '2', name: 'Two' },
+            { value: '3', name: 'Three' },
+        ];
+
+        const newOptions = [
+            { value: '2', name: 'Two' },
+            { value: '3', name: 'Three' },
+            { value: '4', name: 'Four' },
+        ];
+
+        const required = true;
+
+        const description = 'gibberish';
+
+        class TestParent extends React.Component {
+            constructor(props) {
+                super(props);
+
+                this.state = {
+                    testValue:   props.testValue || [],
+                    testOptions: props.testOptions || [],
+                };
+
+                this.onChange = this.onChange.bind(this);
+            }
+
+            onChange(testValue) {
+                this.setState({ testValue });
+            }
+
+            render() {
+                return (
+                    <Form>
+                        <Form.CheckboxGroup
+                            required={required}
+                            description={description}
+                            options={this.state.testOptions}
+                            value={this.state.testValue}
+                            onChange={this.onChange}
+                        />
+                    </Form>
+                );
+            }
+        }
+
+        TestParent.propTypes = {
+            testValue:   React.PropTypes.array,
+            testOptions: React.PropTypes.array,
+            onChange:    React.PropTypes.func,
+        };
+
+        // the initial value for the parent
+        //
+        const initialValue = ['1', '2'];
+
+        // the new value for the parent - after we update the options & remove
+        // the '1' option, the value should be truncated
+        //
+        const newValue = ['2'];
+
+        // create the components
+        //
+        const parent = mount(<TestParent testValue={initialValue} testOptions={initialOptions} />);
+
+        // check the TestParent value
+        //
+        expect(parent.state().testValue).to.equal(initialValue);
+
+        // adjust the options
+        //
+        parent.setState({ testValue: parent.state().testValue, testOptions: newOptions });
+
+        // check the TestParent value
+        //
+        expect(isEqual(parent.state().testValue, newValue)).to.equal(true);
+
+    });
 });
