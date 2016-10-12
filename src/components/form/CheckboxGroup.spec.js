@@ -40,6 +40,8 @@ a Form component containing a CheckboxGroup
     should have a label.col-xs-3 when form is horizontal and labelColumns=3
     should have a div.col-xs-9 when form is horizontal and labelColumns=3
     should include appropriate components in place of <label> when label=components
+
+    should include an asterisk in the label when the required flag is set
 */
 describe('a Form component containing a CheckboxGroup', () => {
 
