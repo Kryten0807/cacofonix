@@ -63,6 +63,9 @@ a Form component with a TextInput element
     should have the correct markup when the inline prop is set
     should have the correct markup when inline=true and inlineWidth is set
     should not have a column specified when form is horizontal and inline is true
+
+    should include an asterisk in the label when the required flag is set
+    should not include an asterisk in the label when the required flag is not set
 */
 describe('a Form component with a TextInput element', () => {
 
@@ -218,6 +221,38 @@ describe('a Form component with a TextInput element', () => {
         expect(component.find('div.form-inline')).to.have.length(1, 'form-group');
         expect(component.find('div.form-group')).to.have.length(1, 'form-group');
         expect(component.find('label').props().className).to.not.contain(`col-xs-${columns}`);
+    });
+
+    it('should include an asterisk in the label when the required flag is set', () => {
+
+        const label = 'spongebob';
+
+        const required = true;
+
+        const component = mount(
+            <Form>
+                <Form.TextInput required={required} label={label} />
+            </Form>
+        );
+
+        expect(component.find('label')).to.have.length(1);
+        expect(component.find('label').find('i.fa.fa-star')).to.have.length(1);
+    });
+
+    it('should not include an asterisk in the label when the required flag is not set', () => {
+
+        const label = 'squarepants';
+
+        const required = false;
+
+        const component = mount(
+            <Form>
+                <Form.TextInput required={required} label={label} />
+            </Form>
+        );
+
+        expect(component.find('label')).to.have.length(1);
+        expect(component.find('label').find('i.fa.fa-star')).to.have.length(0);
     });
 });
 
