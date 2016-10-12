@@ -63,6 +63,9 @@ a Form component with a TextInput element
     should have the correct markup when the inline prop is set
     should have the correct markup when inline=true and inlineWidth is set
     should not have a column specified when form is horizontal and inline is true
+
+    should include an asterisk in the label when the required flag is set
+    should not include an asterisk in the label when the required flag is not set
 */
 describe('a Form component with a TextInput element', () => {
 
