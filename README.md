@@ -1,77 +1,81 @@
 Cacofonix
 =========
 
-(Develop ![Dev Build](https://travis-ci.org/Kryten0807/cacofonix.svg?branch=develop), Master ![Dev Build](https://travis-ci.org/Kryten0807/cacofonix.svg?branch=master)
+Develop ![Dev Build](https://travis-ci.org/Kryten0807/cacofonix.svg?branch=develop)
+Master ![Dev Build](https://travis-ci.org/Kryten0807/cacofonix.svg?branch=master)
 
-This is a set of Bootstrap-themed React components.
+This is a set of Bootstrap-themed React components, centered primarily around a `Form` element that provides support for client-side form validation.
 
 # IMPORTANT! This package is under heavy development and could undergo breaking changes at any time!
 
-I'm developing this package to use in a couple of my personal projects. Eventually, I will settle on a final design for these components and, at that point, this will probably be a usefull open source package. Until then, **use this package at your own risk!**
+I'm developing this package to use in a couple of my personal projects. Eventually, I will settle on a final design for these components and, at that point, this will probably be a useful open source package. Until then, **use this package at your own risk!**
 
-## Completed
+# Dependencies
 
-1. **Alert** - a Bootstrap alert, complete with button for dismissal
-1. **Label** - a label for a form element. This is generally intended for use as part of another form component.
-1. **Panel** - a Bootstrap panel element
-1. **TextInput** - a text input element
-    1. add a custom error message to the `TextInput` component
-    1. add `componentWillReceiveProps` testing for `TextInput`
-1. **Dropdown** - a dropdown element
-    1. add `componentWillReceiveProps` testing for `Dropdown`
-1. **NumericInput** - a text input which requires input to be numeric, with configurable decimal places and an optional dollar sign/currency formatting when blurred
-1. **DateInput** - a text input which accepts a date value
-    1. allow 2-digit year
-    1. if no year entered, assume the current year
+These components are styled as [Bootstrap](http://getbootstrap.com) elements, so you will need to ensure that Bootstrap **styles** are included, either via a CDN or by building your own CSS file & including it.
 
-## In Progress
+The components also make use of [Font Awesome](http://fontawesome.io/) icons, so again you will need to either include it via a CDN or serve the CSS & font files from your own server. I *could* make this an optional dependency (see the [To Do Section](#todo)] below), but I prefer Font Awesome, so this is not a high priority.
 
-## To Do
+# Components
 
-### Components
+## <Alert>
 
-1. **CheckboxGroup** - a group of checkboxes, optionally requiring at least one to be checked
-1. **EmailInput** - a text input which requires input to be a valid email address (or blank if not required)
-1. **FieldSet** - a form fieldset
-1. **PhoneInput** - a text input which requires input to be numeric, and which formats the value as a phone number when blurred
-1. **RadioButtonGroup** - a group of radio buttons
-1. **ZipCodeInput** - a text input element which requires input to be numeric (for US zip codes) or alphanumeric (for Canadian postal codes) and formats the value appropriately on blur
+The basic Bootstrap [Alert](http://getbootstrap.com/components/#alerts), adapted for use as a React component.
 
-### Sundry Improvements
+### Properties
 
-1. tests for Alert `dismissible` property (it doesn't work in the browser)
-1. add `autoFocus` property to input components to focus as soon as component mounts
-1. add `onEnterKeyPressed` event to capture enter key & allow parent to submit/save/whatever when enter key is pressed
++ `style` (string) - The style of the alert. See the [Styles](#styles) section below
++ `dismissible` (bool) - Is the Alert dismissible? (Note: this does not currently work)
++ `children` (element or array of elements) -
 
-## Validation
+## <Panel>
 
-All of the form elements can be configured to validate their input. As part of this, each form element has two event handlers: `onChange` and `onValidation`.
+A Bootstrap [Panel](http://getbootstrap.com/components/#panels).
 
-+ `onChange` is called whenever the value changes and has one argument: `value`. This is the current value of the element
-+ `onValidation` is called whenever the value is validated (regardless of whether it passes or fails). It is called with three arguments:
-    1. `hasValidated` - a boolean value which is `true` if the element has validated in response to the user changing the value or `false` if the element is just validating the value (ie. when the component is first instantiated)
-    1. `isValid` - a boolean value. `true` if the value is valid, `false` otherwise.
-    1. `validationMessage` - a string describing the validation error or `null` if the value is valid.
+### Properties
 
-The `hasValidated` flag is used to indicate whether the validation error message is (or should be) displayed. The idea is that when the component is initialized with an invalid value, it will not display the validation error message. Later on, after the user has changed the value, the `hasValidated` flag will be set to `true`, and any validation errors will be displayed. This value is passed along via the `onValidation` handler to allow the parent component to manage it's own `hasValidated` state.
++ `style` (string) - The style of the panel. See the [Styles](#styles) section below
++ `header` (string) - The (optional) header for the panel
++ `children` (node or array of nodes) - The content for the panel
 
-The behaviour of the component looks like this:
+## <Form>
 
-+ when the component is initialized, no validation error message is displayed (`hasValidated` = false, `isValid` = true or false, depending)
-+ when the user first starts editing, no validation error message is displayed, even if the user enters an invalid value (`hasValidated` = false, `isValid` = true or false, depending)
-+ when the user tabs or clicks out of the control for the first time, the validation error message is displayed if the value is invalid (`hasValidated` = true, `isValid` = true or false, depending)
-+ after that first tab/click out, any editing of the value will display the error message if the value is invalid (`hasValidated` = true, `isValid` = true or false, depending)
+## <Form.Button>
 
-## Testing
+## <Form.CheckboxGroup>
 
-In order to test these components, I want to write tests that hit all of the major "external" behaviours of the component. That means:
+## <Form.Dropdown>
 
-1. basic markup (ie. what the thing looks like)
-1. validation error markup - what is displayed when a validation error occurs
-    + this should include the testing of a custom validation error message
-1. `onValidation` handler - what is passed out of the component when a validation error occurs
-    + this includes calling the `onValidation` handler when the component is initialized, in order to pass the initial validation state to the parent
-1. `onChange` handler - what is passed out of the component when a change occurs
-1. what happens `onFocus` - the components will not have explicit `onFocus` handlers, but may call `onValidation` or `onChange` when this event fires
-1. what happens `onBlur` - the components will not have explicit `onBlur` handlers, but may call `onValidation` or `onChange` when this event fires
-1. what happens when the parent passes new props to the component via `componentWillReceiveProps`
+## <Form.RadioButtonGroup>
+
+## <Form.SubmitButton>
+
+## <Form.TextInput>
+
+
+# Validation
+
+
+# Styles
+
+Bootstrap provides a number of [standard styles used in coloring elements](http://getbootstrap.com/components/#alerts-examples). I have found the names of some of these styles to be kind of counterintuitive, so I've defined a few synonyms. You can, of course, use the original Bootstrap name if you wish. Note that all names are case-sensitive.
+
++---------------+----------+
+| Boostrap Name | Synonyms |
++---------------+----------+
+| success       | ok       |
+| info          |          |
+| warning       | warn     |
+| danger        | error    |
+| primary       |          |
+| default       |          |
++---------------+----------+
+
+The last two, `primary` and `default` are not used for `Alert` components - these are mapped to 'info' for alerts.
+
+# To Do
+
+1. map `primary` and `default` styles to `info` for `Alert` components
+1. correct the `Alert` `dismissible` property
+1. revise the prop types of the `Alert` component `children` property to handle text or React elements
+1. make the use of icon fonts (Font Awesome vs. Glyphicons) conditional
