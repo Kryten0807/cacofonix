@@ -353,6 +353,22 @@ describe('a Form component containing a CheckboxGroup', () => {
         expect(component.find('label.control-label')).to.have.length(1);
         expect(component.find('label.control-label').find('i.fa.fa-star')).to.have.length(1);
     });
+
+    it('should not include an asterisk in the label when the required flag is not set', () => {
+
+        const label = 'humpty dumpty';
+
+        const required = false;
+
+        const component = mount(
+            <Form>
+                <Form.CheckboxGroup required={required} label={label} options={options} />
+            </Form>
+        );
+
+        expect(component.find('label.control-label')).to.have.length(1);
+        expect(component.find('label.control-label').find('i.fa.fa-star')).to.have.length(0);
+    });
 });
 
 /* *****************************************************************************
