@@ -173,6 +173,10 @@ class CheckboxGroup extends React.Component {
                 })}
             >
                 {this.props.label}
+                {this.props.required
+                    ? <sup>&nbsp;<i className="required fa fa-star" /></sup>
+                    : ''
+                }
             </label>
             )
             : null;
