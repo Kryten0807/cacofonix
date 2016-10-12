@@ -234,6 +234,10 @@ class TextInput extends React.Component {
                 style={labelStyles}
             >
                 {this.props.label}
+                {this.props.required
+                    ? <sup>&nbsp;<i className="required fa fa-star" /></sup>
+                    : ''
+                }
             </label>
             : null;
 
