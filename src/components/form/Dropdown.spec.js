@@ -370,7 +370,7 @@ describe('the Dropdown element', () => {
         expect(onChange.args[0][0]).to.equal(options['Group 2'][0].value);
     });
 
-    it('should call onChange ON INITIALIZATION with the first option when value is undefined', () => {
+    it('should call onChange ON INITIALIZATION with the first option (options=array) when value is undefined', () => {
 
         const onChange = sinon.spy();
 
