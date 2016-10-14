@@ -1972,13 +1972,13 @@ describe('when a TextInput with a calculated value is updated', () => {
 
         const parent = mount(<TestParent testValue={initialValue} />);
 
-        expect(parent.find('input').props().value).to.equal(initialValue);
+        expect(parent.find('input').props().value).to.equal(initialValue, 'initial value');
 
         // change the state of the parent
         //
         parent.setState({ testValue: newValue });
 
-        expect(parent.find('input').props().value).to.equal(newValue);
+        expect(parent.find('input').props().value).to.equal(newValue, 'new value');
     });
 });
 
