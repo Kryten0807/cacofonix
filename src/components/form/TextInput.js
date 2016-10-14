@@ -108,9 +108,13 @@ class TextInput extends React.Component {
         //
         const value = this.state.value;
 
+        // get the formatted value
+        //
+        const formattedValue = this.props.format ? this.props.format(value) : value;
+
         // determine if it's valid
         //
-        const isValid = this.validate(value);
+        const isValid = this.validate(formattedValue);
 
         // set the `isValid` state
         //
