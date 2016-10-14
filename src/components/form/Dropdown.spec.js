@@ -276,6 +276,8 @@ the Dropdown element
     should call onChange with the correct value on value change to a valid value
     should call onChange with the first option on value change to a invalid value
     should call onChange with the correct value on value change to a valid value from an optgroup
+
+    should call onChange ON INITIALIZATION with the first option when value is undefined
 */
 describe('the Dropdown element', () => {
 
