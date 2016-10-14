@@ -258,12 +258,6 @@ class TextInput extends React.Component {
             </label>
             : null;
 
-        // determine the value to display, formatting it if necessary
-        //
-        const value = (this.props.format && !this.state.isEditing)
-            ? this.props.format(this.state.value)
-            : this.state.value;
-
         // render the help block (validation error message) if appropriate
         //
         const helpBlock = !this.state.isValid
@@ -283,7 +277,7 @@ class TextInput extends React.Component {
                 type="text"
                 readOnly={!!this.props.readOnly}
                 id={this.id}
-                value={value}
+                value={this.state.value}
                 placeholder={this.props.placeholder}
                 className="form-control"
                 style={inputStyles}
