@@ -415,7 +415,7 @@ describe('the Dropdown element', () => {
         );
 
         expect(onChange.callCount).to.equal(1);
-        expect(onChange.args[0][0]).to.equal(options[0].value);
+        expect(onChange.args[0][0]).to.equal(options['Group 1'][0].value);
     });
 
 });
