@@ -1,6 +1,8 @@
 Cacofonix
 =========
 
+![Cacofonix](http://static.comicvine.com/uploads/scale_small/0/77/289381-110152-troubadix.png)
+
 Develop ![Dev Build](https://travis-ci.org/Kryten0807/cacofonix.svg?branch=develop)
 Master ![Dev Build](https://travis-ci.org/Kryten0807/cacofonix.svg?branch=master)
 
