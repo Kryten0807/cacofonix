@@ -1769,7 +1769,8 @@ describe('when the TextInput has a format prop', () => {
         expect(onChange.args[1][0]).to.equal(expectedValue, 'after blur');
     });
 
-    it('the TextInput should validate correctly when an invalid value can be formatted to a valid value', () => {
+    it('the TextInput should validate correctly when an invalid value can be ' +
+        'formatted to a valid value', () => {
 
         const required = true;
 
