@@ -21,6 +21,23 @@ class Dropdown extends React.Component {
         //
         this.id = uniqueId('form-dropdown-');
 
+        // do we have a value? if not, then we need call onChange (if it exists)
+        // with the first option to ensure that the value is set
+        //
+        if (!props.value && props.onChange) {
+            // is the list of options an array?
+            //
+            if (isArray(props.options)) {
+                // yes - return the value of the first item
+                //
+                props.onChange(props.options[0].value);
+            } else {
+                // no - return the value of the first item in the first property
+                //
+                props.onChange(props.options[Object.keys(props.options)[0]][0].value);
+            }
+        }
+
         // bind `this` to the event handlers
         //
         this.isValid = this.isValid.bind(this);
