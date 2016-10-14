@@ -25,7 +25,17 @@ class Dropdown extends React.Component {
         // with the first option to ensure that the value is set
         //
         if (!props.value && props.onChange) {
-            props.onChange(props.options[0].value);
+            // is the list of options an array?
+            //
+            if (isArray(props.options)) {
+                // yes - return the value of the first item
+                //
+                props.onChange(props.options[0].value);
+            } else {
+                // no - return the value of the first item in the first property
+                //
+                props.onChange(props.options[Object.keys(props.options)[0]][0].value);
+            }
         }
 
         // bind `this` to the event handlers
