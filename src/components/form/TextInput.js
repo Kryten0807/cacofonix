@@ -118,7 +118,7 @@ class TextInput extends React.Component {
 
         // set the `isValid` state
         //
-        this.setState(() => ({ value, isValid, isEditing: false }));
+        this.setState(() => ({ value: formattedValue, isValid, isEditing: false }));
 
         // call the `onChildValidationEvent` handler
         //
@@ -133,7 +133,7 @@ class TextInput extends React.Component {
         // call the `onChange` handler
         //
         if (this.props.onChange) {
-            this.props.onChange(this.props.format ? this.props.format(value) : value);
+            this.props.onChange(formattedValue);
         }
     }
 
