@@ -1768,6 +1768,44 @@ describe('when the TextInput has a format prop', () => {
         expect(onChange.callCount).to.equal(2);
         expect(onChange.args[1][0]).to.equal(expectedValue, 'after blur');
     });
+
+    it('the TextInput should validate correctly when an invalid value can be formatted to a valid value', () => {
+
+        const required = true;
+
+        // a pattern for validation - one digit, hyphen, one digit
+        const pattern = /^[0-9]-[0-9]$/;
+
+        // the format function - takes a two digit string & converts it to "#-#"
+        const format = (value) => {
+            const val = value.replace(/[^\d]/g, '');
+            return `${val[0]}-${val[1]}`;
+        };
+
+        const initialValue = '1-1';
+
+        const newValue = '2 2';
+
+        const expectedValue = format(newValue);
+
+        const component = mount(
+            <Form.TextInput
+                required={required}
+                value={initialValue}
+                pattern={pattern}
+                format={format}
+            />
+        );
+
+        component.find('input').simulate('change', {
+            target: { value: newValue }
+        });
+
+        component.find('input').simulate('blur');
+
+        expect(component.state().isValid).to.equal(true, 'isValid');
+        expect(component.state().value).to.equal(expectedValue, 'expected value');
+    });
 });
 
 /* *****************************************************************************
