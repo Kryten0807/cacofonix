@@ -275,7 +275,6 @@ describe('a Form component containing a Dropdown', () => {
 the Dropdown element
     should call onChange with the correct value on value change to a valid value
     should call onChange with the first option on value change to a invalid value
-
     should call onChange with the correct value on value change to a valid value from an optgroup
 */
 describe('the Dropdown element', () => {
