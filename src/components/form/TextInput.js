@@ -81,9 +81,22 @@ class TextInput extends React.Component {
         //
         const value = newProps.value;
 
-        // update the component state
+        // figure out the formatted value
         //
-        this.setState((state) => update(state, { value: { $set: value } }));
+        const formattedValue = this.props.format ? this.props.format(value) : value;
+
+        // update the component state if
+        // a) we're currently editing and the value is subject to formatting, or
+        // b) we have a brand new value
+        //
+        if (
+            (value !== formattedValue && this.state.isEditing)
+            || formattedValue !== this.state.value
+        ) {
+            this.setState((state) => update(state, {
+                value: { $set: value }
+            }));
+        }
     }
 
     /**
