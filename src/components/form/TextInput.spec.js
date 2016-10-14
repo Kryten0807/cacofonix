@@ -1659,8 +1659,11 @@ describe('when the TextInput has a format prop', () => {
     });
 
     it('the value is untouched after focus', () => {
+
         const required = true;
+
         const format = (value) => `${value}-${value}`;
+
         const initialValue = 'something';
 
         const expectedValue = format(initialValue);
@@ -1677,7 +1680,7 @@ describe('when the TextInput has a format prop', () => {
 
         component.find('input').simulate('focus');
 
-        expect(component.find('input').props().value).to.equal(expectedValue);
+        expect(component.find('input').props().value).to.equal(expectedValue, 'after focus');
     });
 
     it('the value is untouched after change', () => {
