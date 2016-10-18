@@ -41,7 +41,7 @@ class TextInput extends React.Component {
 
         // intialize the validation message for the component
         //
-        let required= `${this.props.description} is required`;
+        let required = `${this.props.description} is required`;
         if (props.validationMessage) {
             required = `${props.validationMessage.required || props.validationMessage}`;
         }
@@ -68,7 +68,7 @@ class TextInput extends React.Component {
         //
         const { validationError } = this.validate(this.state.value);
 
-        this.setState(update(this.state, { validationError: { $set: validationError }}));
+        this.setState(update(this.state, { validationError: { $set: validationError } }));
 
         // call the `onChildValidationEvent` handler once with
         // `hasValidated`=false, just to ensure that the parent knows about this
