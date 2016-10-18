@@ -1371,6 +1371,8 @@ when changing (and blurring) the value of a required TextInput with an invalid v
 describe('when changing (and blurring) the value of a required TextInput ' +
     'with an invalid value', () => {
 
+    // @TODO revise these tests to permit multiple distinct validation messages
+
     const required = true;
     const description = 'My awesome component';
 
