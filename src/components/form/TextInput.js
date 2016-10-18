@@ -271,7 +271,7 @@ class TextInput extends React.Component {
         // render the help block (validation error message) if appropriate
         //
         const helpBlock = !this.state.isValid
-            ? <span className="help-block">{this.validationMessage}</span>
+            ? <span className="help-block">{this.state.validationError}</span>
             : null;
 
         // initialize the styles for the input element
