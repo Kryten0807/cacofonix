@@ -275,9 +275,12 @@ describe('a Form component containing a Dropdown', () => {
 the Dropdown element
     should call onChange with the correct value on value change to a valid value
     should call onChange with the first option on value change to a invalid value
-    should call onChange with the correct value on value change to a valid value from an optgroup
-    should call onChange ON INITIALIZATION with the first option (options=array) when value is undefined
-    should call onChange ON INITIALIZATION with the first option (options=object) when value is undefined
+    should call onChange with the correct value on value change to a valid value
+        from an optgroup
+    should call onChange ON INITIALIZATION with the first option (options=array)
+        when value is undefined
+    should call onChange ON INITIALIZATION with the first option
+        (options=object) when value is undefined
 */
 describe('the Dropdown element', () => {
 
@@ -370,7 +373,8 @@ describe('the Dropdown element', () => {
         expect(onChange.args[0][0]).to.equal(options['Group 2'][0].value);
     });
 
-    it('should call onChange ON INITIALIZATION with the first option (options=array) when value is undefined', () => {
+    it('should call onChange ON INITIALIZATION with the first option ' +
+        '(options=array) when value is undefined', () => {
 
         const onChange = sinon.spy();
 
@@ -380,9 +384,7 @@ describe('the Dropdown element', () => {
             { value: '3', name: 'three' },
         ];
 
-        const expectedValue = '1';
-
-        const component = mount(
+        mount(
             <Form>
                 <Form.Dropdown options={options} onChange={onChange} />
             </Form>
@@ -392,7 +394,8 @@ describe('the Dropdown element', () => {
         expect(onChange.args[0][0]).to.equal(options[0].value);
     });
 
-    it('should call onChange ON INITIALIZATION with the first option (options=object) when value is undefined', () => {
+    it('should call onChange ON INITIALIZATION with the first option ' +
+        '(options=object) when value is undefined', () => {
 
         const onChange = sinon.spy();
 
@@ -406,9 +409,7 @@ describe('the Dropdown element', () => {
             ],
         };
 
-        const expectedValue = '1';
-
-        const component = mount(
+        mount(
             <Form>
                 <Form.Dropdown options={options} onChange={onChange} />
             </Form>
