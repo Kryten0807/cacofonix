@@ -7,7 +7,6 @@ import uniqueId from 'lodash/uniqueId';
 import isRegExp from 'lodash/isRegExp';
 import isFunction from 'lodash/isFunction';
 
-// @TODO add different validation error messages for failing different rules
 // @TODO permitted characters regex
 
 /**
