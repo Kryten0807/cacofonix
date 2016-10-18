@@ -603,7 +603,7 @@ describe('when changing (and blurring) the value of a required TextInput', () =>
         expect(component.find('.help-block')).to.have.length(0);
     });
 
-    it('the global validation message SHOULD be displayed with an invalid value', () => {
+    it('the global validation message SHOULD be displayed with an empty value', () => {
         const initialValue = 'something';
         const finalValue = '';
 
@@ -624,7 +624,7 @@ describe('when changing (and blurring) the value of a required TextInput', () =>
         expect(component.find('Alert')).to.have.length(1, 'Alert');
     });
 
-    it('the component validation message SHOULD be displayed with an invalid value', () => {
+    it('the component validation message SHOULD be displayed with an empty value', () => {
         const initialValue = 'something';
         const finalValue = '';
 
@@ -646,7 +646,7 @@ describe('when changing (and blurring) the value of a required TextInput', () =>
         expect(component.find('.help-block')).to.have.length(1, 'help-block');
     });
 
-    it('the component validation message SHOULD be displayed with an invalid ' +
+    it('the component validation message SHOULD be displayed with an empty ' +
         'value and an inline TextInput', () => {
         const initialValue = 'something';
         const finalValue = '';
