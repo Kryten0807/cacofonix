@@ -124,7 +124,7 @@ class TextInput extends React.Component {
         // set the `isValid` state
         //
         this.setState(() => ({
-            value: formattedValue,
+            value:     formattedValue,
             isValid,
             validationError,
             isEditing: false
