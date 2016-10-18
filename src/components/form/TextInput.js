@@ -42,8 +42,10 @@ class TextInput extends React.Component {
 
         // intialize the validation message for the component
         //
-        this.validationMessage = props.validationMessage
-            || `${this.props.description} is required`;
+        this.validationMessage = {
+            required: props.validationMessage || `${this.props.description} is required`,
+            valid:    props.validationMessage || `${this.props.description} is not valid`,
+        };
 
         // bind `this` to the component event handlers
         //
