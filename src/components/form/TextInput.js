@@ -189,6 +189,8 @@ class TextInput extends React.Component {
         //
         let isValid = true;
 
+        let validationError = null;
+
         // do we have a value?
         //
         if (!value) {
@@ -196,6 +198,8 @@ class TextInput extends React.Component {
             // is determined solely by whether a valid is required or not
             //
             isValid = !this.props.required;
+
+            validationError = isValid ? null : this.validationMessage.required;
         } else {
             // we do have a value. Do we have a pattern prop?
             //
@@ -207,10 +211,12 @@ class TextInput extends React.Component {
                     // the pattern is a regex. Test the value against it
                     //
                     isValid = this.props.pattern.test(`${value}`);
+                    validationError = isValid ? null : this.validationMessage.valid;
                 } else if (isFunction(this.props.pattern)) {
                     // the pattern is a function. Pass the value to the function
                     //
                     isValid = this.props.pattern(value);
+                    validationError = isValid ? null : this.validationMessage.valid;
                 }
             } else {
                 // we don't have a pattern prop. That means if we get here that
@@ -218,12 +224,13 @@ class TextInput extends React.Component {
                 // or not because we have a value
                 //
                 isValid = true;
+                validationError = null;
             }
         }
 
         // return the results of the validation
         //
-        return isValid;
+        return { isValid, validationError };
     }
 
     /**
