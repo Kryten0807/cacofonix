@@ -1360,7 +1360,7 @@ when changing (and blurring) the value of a required TextInput with an empty val
 
 */
 describe('when changing (and blurring) the value of a required TextInput ' +
-    'with an invalid value', () => {
+    'with an empty value', () => {
 
     // @TODO revise these tests to permit multiple distinct validation messages
 
@@ -1372,7 +1372,7 @@ describe('when changing (and blurring) the value of a required TextInput ' +
     const expectedMessage = `${description} is required`;
 
     it('the error message displayed in the form should be the default value ' +
-        'when validationMessage is not set (new value = empty)', () => {
+        'when validationMessage is not set', () => {
         const initialValue = 'something';
         const finalValue = '';
 
@@ -1398,7 +1398,7 @@ describe('when changing (and blurring) the value of a required TextInput ' +
     });
 
     it('the error message displayed in the form should be the custom value ' +
-        'when validationMessage is set (new value = empty)', () => {
+        'when validationMessage is set', () => {
         const initialValue = 'something';
         const finalValue = '';
 
@@ -1424,7 +1424,7 @@ describe('when changing (and blurring) the value of a required TextInput ' +
     });
 
     it('the error message displayed in the component should be the default ' +
-        'value when validationMessage is not set (new value = empty)', () => {
+        'value when validationMessage is not set', () => {
         const initialValue = 'something';
         const finalValue = '';
 
@@ -1450,7 +1450,7 @@ describe('when changing (and blurring) the value of a required TextInput ' +
     });
 
     it('the error message displayed in the component should be the custom ' +
-        'value when validationMessage is set (new value = empty)', () => {
+        'value when validationMessage is set', () => {
         const initialValue = 'something';
         const finalValue = '';
 
