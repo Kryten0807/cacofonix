@@ -1539,9 +1539,38 @@ describe('when changing (and blurring) the value of a required TextInput ' +
         expect(component.find('Alert ul li').text()).to.contain(expectedMessage);
     });
 
-    /*
     it('the error message displayed in the form should be the custom value ' +
-        'when validationMessage is set', () => {
+        'when validationMessage is set (distinct messages)', () => {
+        const initialValue = '123';
+        const finalValue = 'dsss';
+
+        const component = mount(
+            <Form>
+                <Form.TextInput
+                    required={required}
+                    pattern={pattern}
+                    value={initialValue}
+                    validationMessage={{
+                        required: 'something else',
+                        valid:    customMessage
+                    }}
+                />
+            </Form>
+        );
+
+        component.find('input').simulate('change', {
+            target: { value: finalValue }
+        });
+
+        component.find('input').simulate('blur', {
+            target: { value: finalValue }
+        });
+
+        expect(component.find('Alert ul li').text()).to.contain(customMessage);
+    });
+
+    it('the error message displayed in the form should be the custom value ' +
+        'when validationMessage is set (single message)', () => {
         const initialValue = '123';
         const finalValue = 'dsss';
 
@@ -1566,7 +1595,6 @@ describe('when changing (and blurring) the value of a required TextInput ' +
 
         expect(component.find('Alert ul li').text()).to.contain(customMessage);
     });
-    */
 
     it('the error message displayed in the component should be the default ' +
         'value when validationMessage is not set', () => {
@@ -1595,9 +1623,8 @@ describe('when changing (and blurring) the value of a required TextInput ' +
         expect(component.find('.help-block').text()).to.contain(expectedMessage);
     });
 
-    /*
     it('the error message displayed in the component should be the custom ' +
-        'value when validationMessage is set', () => {
+        'value when validationMessage is set (single message)', () => {
         const initialValue = 'something';
         const finalValue = '';
 
@@ -1621,7 +1648,35 @@ describe('when changing (and blurring) the value of a required TextInput ' +
 
         expect(component.find('.help-block').text()).to.contain(customMessage);
     });
-    */
+
+    it('the error message displayed in the component should be the custom ' +
+        'value when validationMessage is set (distinct messages)', () => {
+        const initialValue = 'something';
+        const finalValue = '';
+
+        const component = mount(
+            <Form>
+                <Form.TextInput
+                    required={required}
+                    value={initialValue}
+                    validationMessage={{
+                        required: customMessage,
+                        valid:    'something',
+                    }}
+                />
+            </Form>
+        );
+
+        component.find('input').simulate('change', {
+            target: { value: finalValue }
+        });
+
+        component.find('input').simulate('blur', {
+            target: { value: finalValue }
+        });
+
+        expect(component.find('.help-block').text()).to.contain(customMessage);
+    });
 });
 
 
