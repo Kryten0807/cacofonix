@@ -72,7 +72,7 @@ class TextInput extends React.Component {
             this.context.onChildValidationEvent(
                 this.id,
                 false,
-                this.state.validationError
+                validationError
             );
         }
     }
