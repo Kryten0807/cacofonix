@@ -7,7 +7,6 @@ import uniqueId from 'lodash/uniqueId';
 import isRegExp from 'lodash/isRegExp';
 import isFunction from 'lodash/isFunction';
 
-// @TODO add different validation error messages for failing different rules
 // @TODO permitted characters regex
 
 /**
@@ -30,8 +29,9 @@ class TextInput extends React.Component {
         //
         this.state = {
             value,
-            isValid:   true,
-            isEditing: false,
+            isValid:         true,
+            validationError: null,
+            isEditing:       false,
         };
 
         // generate a unique ID for this component instance if an ID prop has
@@ -41,8 +41,17 @@ class TextInput extends React.Component {
 
         // intialize the validation message for the component
         //
-        this.validationMessage = props.validationMessage
-            || `${this.props.description} is required`;
+        let required = `${this.props.description} is required`;
+        if (props.validationMessage) {
+            required = `${props.validationMessage.required || props.validationMessage}`;
+        }
+
+        let valid = `${this.props.description} is not valid`;
+        if (props.validationMessage) {
+            valid = `${props.validationMessage.valid || props.validationMessage}`;
+        }
+
+        this.validationMessage = { required, valid };
 
         // bind `this` to the component event handlers
         //
@@ -57,7 +66,9 @@ class TextInput extends React.Component {
     componentWillMount() {
         // determine if it's valid
         //
-        const isValid = this.validate(this.state.value);
+        const { validationError } = this.validate(this.state.value);
+
+        this.setState(update(this.state, { validationError: { $set: validationError } }));
 
         // call the `onChildValidationEvent` handler once with
         // `hasValidated`=false, just to ensure that the parent knows about this
@@ -67,7 +78,7 @@ class TextInput extends React.Component {
             this.context.onChildValidationEvent(
                 this.id,
                 false,
-                isValid ? null : this.validationMessage
+                validationError
             );
         }
     }
@@ -114,11 +125,16 @@ class TextInput extends React.Component {
 
         // determine if it's valid
         //
-        const isValid = this.validate(formattedValue);
+        const { isValid, validationError } = this.validate(formattedValue);
 
         // set the `isValid` state
         //
-        this.setState(() => ({ value: formattedValue, isValid, isEditing: false }));
+        this.setState(() => ({
+            value:     formattedValue,
+            isValid,
+            validationError,
+            isEditing: false
+        }));
 
         // call the `onChildValidationEvent` handler
         //
@@ -126,7 +142,7 @@ class TextInput extends React.Component {
             this.context.onChildValidationEvent(
                 this.id,
                 true,
-                isValid ? null : this.validationMessage
+                validationError
             );
         }
 
@@ -186,6 +202,8 @@ class TextInput extends React.Component {
         //
         let isValid = true;
 
+        let validationError = null;
+
         // do we have a value?
         //
         if (!value) {
@@ -193,6 +211,8 @@ class TextInput extends React.Component {
             // is determined solely by whether a valid is required or not
             //
             isValid = !this.props.required;
+
+            validationError = isValid ? null : this.validationMessage.required;
         } else {
             // we do have a value. Do we have a pattern prop?
             //
@@ -204,10 +224,12 @@ class TextInput extends React.Component {
                     // the pattern is a regex. Test the value against it
                     //
                     isValid = this.props.pattern.test(`${value}`);
+                    validationError = isValid ? null : this.validationMessage.valid;
                 } else if (isFunction(this.props.pattern)) {
                     // the pattern is a function. Pass the value to the function
                     //
                     isValid = this.props.pattern(value);
+                    validationError = isValid ? null : this.validationMessage.valid;
                 }
             } else {
                 // we don't have a pattern prop. That means if we get here that
@@ -215,12 +237,13 @@ class TextInput extends React.Component {
                 // or not because we have a value
                 //
                 isValid = true;
+                validationError = null;
             }
         }
 
         // return the results of the validation
         //
-        return isValid;
+        return { isValid, validationError };
     }
 
     /**
@@ -261,7 +284,7 @@ class TextInput extends React.Component {
         // render the help block (validation error message) if appropriate
         //
         const helpBlock = !this.state.isValid
-            ? <span className="help-block">{this.validationMessage}</span>
+            ? <span className="help-block">{this.state.validationError}</span>
             : null;
 
         // initialize the styles for the input element
@@ -356,7 +379,10 @@ TextInput.propTypes = {
     label:             React.PropTypes.string,
     placeholder:       React.PropTypes.string,
     description:       React.PropTypes.string,
-    validationMessage: React.PropTypes.string,
+    validationMessage: React.PropTypes.oneOfType([
+        React.PropTypes.string,
+        React.PropTypes.object,
+    ]),
     pattern:           (props, propName, componentName) => {
         if (props.pattern && !isRegExp(props.pattern) && !isFunction(props.pattern)) {
             return new Error(
