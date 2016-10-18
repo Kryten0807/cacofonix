@@ -1477,11 +1477,6 @@ describe('when changing (and blurring) the value of a required TextInput ' +
 
 });
 
-
-
-
-
-
 /* *****************************************************************************
 when changing (and blurring) the value of a required TextInput with an invalid value
 
@@ -1678,11 +1673,6 @@ describe('when changing (and blurring) the value of a required TextInput ' +
         expect(component.find('.help-block').text()).to.contain(customMessage);
     });
 });
-
-
-
-
-
 
 /* *****************************************************************************
 when changing (and blurring) the value of a TextInput with parent component
