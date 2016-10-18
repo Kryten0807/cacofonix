@@ -380,7 +380,10 @@ TextInput.propTypes = {
     label:             React.PropTypes.string,
     placeholder:       React.PropTypes.string,
     description:       React.PropTypes.string,
-    validationMessage: React.PropTypes.string,
+    validationMessage: React.PropTypes.oneOfType([
+        React.PropTypes.string,
+        React.PropTypes.object,
+    ]),
     pattern:           (props, propName, componentName) => {
         if (props.pattern && !isRegExp(props.pattern) && !isFunction(props.pattern)) {
             return new Error(
