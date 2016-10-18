@@ -1344,19 +1344,19 @@ describe('when changing (and blurring) the value of a TextInput', () => {
 });
 
 /* *****************************************************************************
-when changing (and blurring) the value of a required TextInput with an invalid value
+when changing (and blurring) the value of a required TextInput with an empty value
 
     the error message displayed in the form should be the default value when
-        validationMessage is not set (new value = empty)
+        validationMessage is not set
 
     the error message displayed in the form should be the custom value when
-        validationMessage is set (new value = empty)
+        validationMessage is set
 
     the error message displayed in the component should be the default value
-        when validationMessage is not set (new value = empty)
+        when validationMessage is not set
 
     the error message displayed in the component should be the custom value when
-        validationMessage is set (new value = empty)
+        validationMessage is set
 
 */
 describe('when changing (and blurring) the value of a required TextInput ' +
