@@ -621,6 +621,8 @@ describe('when changing (and blurring) the value of a required TextInput', () =>
             target: { value: finalValue }
         });
 
+        // @TODO test validation message content
+
         expect(component.find('Alert')).to.have.length(1, 'Alert');
     });
 
@@ -641,6 +643,8 @@ describe('when changing (and blurring) the value of a required TextInput', () =>
         component.find('input').simulate('blur', {
             target: { value: finalValue }
         });
+
+        // @TODO test validation message content
 
         expect(component.find('.has-error')).to.have.length(1, 'has-error');
         expect(component.find('.help-block')).to.have.length(1, 'help-block');
@@ -664,6 +668,8 @@ describe('when changing (and blurring) the value of a required TextInput', () =>
         component.find('input').simulate('blur', {
             target: { value: finalValue }
         });
+
+        // @TODO test validation message content
 
         expect(component.find('.has-error')).to.have.length(1, 'has-error');
         expect(component.find('.help-block')).to.have.length(1, 'help-block');
