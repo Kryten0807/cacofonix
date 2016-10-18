@@ -60,7 +60,9 @@ class TextInput extends React.Component {
     componentWillMount() {
         // determine if it's valid
         //
-        const isValid = this.validate(this.state.value);
+        const { validationError } = this.validate(this.state.value);
+
+        this.setState(update(this.state, { validationError: { $set: validationError }}));
 
         // call the `onChildValidationEvent` handler once with
         // `hasValidated`=false, just to ensure that the parent knows about this
