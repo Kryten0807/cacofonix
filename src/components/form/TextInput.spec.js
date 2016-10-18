@@ -551,9 +551,9 @@ describe('when changing the value of a non-required TextInput (but not blurring)
 when changing (and blurring) the value of a required TextInput
     the global validation message should not be displayed with a valid value
     the component validation message should not be displayed with a valid value
-    the global validation message SHOULD be displayed with an invalid value
-    the component validation message SHOULD be displayed with an invalid value
-    the component validation message SHOULD be displayed with an invalid value
+    the global validation message SHOULD be displayed with an empty value
+    the component validation message SHOULD be displayed with an empty value
+    the component validation message SHOULD be displayed with an empty value
         and an inline TextInput
 */
 describe('when changing (and blurring) the value of a required TextInput', () => {
