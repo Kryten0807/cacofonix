@@ -1379,7 +1379,7 @@ describe('when changing (and blurring) the value of a required TextInput ' +
     const expectedMessage = `${description} is required`;
 
     it('the error message displayed in the form should be the default value ' +
-        'when validationMessage is not set', () => {
+        'when validationMessage is not set (new value = empty)', () => {
         const initialValue = 'something';
         const finalValue = '';
 
@@ -1405,7 +1405,7 @@ describe('when changing (and blurring) the value of a required TextInput ' +
     });
 
     it('the error message displayed in the form should be the custom value ' +
-        'when validationMessage is set', () => {
+        'when validationMessage is set (new value = empty)', () => {
         const initialValue = 'something';
         const finalValue = '';
 
@@ -1431,7 +1431,7 @@ describe('when changing (and blurring) the value of a required TextInput ' +
     });
 
     it('the error message displayed in the component should be the default ' +
-        'value when validationMessage is not set', () => {
+        'value when validationMessage is not set (new value = empty)', () => {
         const initialValue = 'something';
         const finalValue = '';
 
@@ -1457,7 +1457,7 @@ describe('when changing (and blurring) the value of a required TextInput ' +
     });
 
     it('the error message displayed in the component should be the custom ' +
-        'value when validationMessage is set', () => {
+        'value when validationMessage is set (new value = empty)', () => {
         const initialValue = 'something';
         const finalValue = '';
 
