@@ -193,6 +193,7 @@ class Dropdown extends React.Component {
  * @type {Object}
  */
 Dropdown.propTypes = {
+    disabled: React.PropTypes.bool,
     label:    React.PropTypes.string,
     value:    React.PropTypes.oneOfType([
         React.PropTypes.string,
