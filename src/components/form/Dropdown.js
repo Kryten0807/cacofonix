@@ -156,6 +156,7 @@ class Dropdown extends React.Component {
         let select = (
             <select
                 id={this.id}
+                disabled={!!this.props.disabled}
                 className="form-control"
                 value={value}
                 onChange={this.onChange}
