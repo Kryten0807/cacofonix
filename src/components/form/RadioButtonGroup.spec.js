@@ -35,6 +35,8 @@ a Form component containing a RadioButtonGroup
     should select the appropriate item if the value prop is set to a valid value
     should have a label.col-xs-3 when form is horizontal and labelColumns=3
     should have a div.col-xs-9 when form is horizontal and labelColumns=3
+    should include the disabled flag on input elements when disabled is set
+    should not include the disabled flag on input elements when disabled is not set
 */
 describe('a Form component containing a RadioButtonGroup', () => {
 
@@ -228,6 +230,63 @@ describe('a Form component containing a RadioButtonGroup', () => {
         expect(component.find('div.form-radiobuttongroup-input-columns').props().className)
             .to.contain('col-xs-9', 'col-xs-9');
     });
+
+    it('should include the disabled flag on input elements when disabled is set', () => {
+
+        const disabled = true;
+
+        const label = 'peter piper';
+
+        const value = 2;
+
+        const component = mount(
+            <Form>
+                <Form.RadioButtonGroup
+                    disabled={disabled}
+                    label={label}
+                    options={options}
+                    value={value}
+                />
+            </Form>
+        );
+
+        expect(component.find('div.radio input[type="radio"]')).to.have.length(options.length);
+        expect(component.find('div.radio input[type="radio"]').at(0).props().disabled)
+            .to.equal(disabled);
+        expect(component.find('div.radio input[type="radio"]').at(1).props().disabled)
+            .to.equal(disabled);
+        expect(component.find('div.radio input[type="radio"]').at(2).props().disabled)
+            .to.equal(disabled);
+    });
+
+    it('should not include the disabled flag on input elements when disabled is not set', () => {
+
+        const disabled = false;
+
+        const label = 'peter piper';
+
+        const value = 2;
+
+        const component = mount(
+            <Form>
+                <Form.RadioButtonGroup
+                    disabled={disabled}
+                    label={label}
+                    options={options}
+                    value={value}
+                />
+            </Form>
+        );
+
+        expect(component.find('div.radio input[type="radio"]')).to.have.length(options.length);
+        expect(component.find('div.radio input[type="radio"]').at(0).props().disabled)
+            .to.equal(disabled);
+        expect(component.find('div.radio input[type="radio"]').at(1).props().disabled)
+            .to.equal(disabled);
+        expect(component.find('div.radio input[type="radio"]').at(2).props().disabled)
+            .to.equal(disabled);
+    });
+
 
 });
 
