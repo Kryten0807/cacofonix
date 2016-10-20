@@ -144,6 +144,7 @@ class RadioButtonGroup extends React.Component {
  */
 RadioButtonGroup.propTypes = {
     label:    React.PropTypes.string,
+    disabled: React.PropTypes.bool,
     options:  React.PropTypes.array,
     value:    React.PropTypes.oneOfType([
         React.PropTypes.string,
