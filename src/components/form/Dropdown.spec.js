@@ -35,6 +35,8 @@ a Form component containing a Dropdown
     should have a label.col-xs-3 when form is horizontal and labelColumns=3
     should have a div.col-xs-9 when form is horizontal and labelColumns=3
     should have the appropriate optgroups when options is an object
+    should be disabled when disabled flag set
+    should not be disabled when disabled flag no set
 */
 describe('a Form component containing a Dropdown', () => {
 
@@ -268,6 +270,54 @@ describe('a Form component containing a Dropdown', () => {
             .to.have.length(2, 'optgroup 1 options');
         expect(component.find('select optgroup').at(1).find('option'))
             .to.have.length(1, 'optgroup 1 options');
+    });
+
+    it('should be disabled when disabled flag set', () => {
+
+        const disabled = true;
+
+        const options = [
+            { value: '1', name: 'one' },
+            { value: '2', name: 'two' },
+            { value: '3', name: 'three' },
+        ];
+
+        const label = 'peter piper';
+        const columns = 3;
+
+        const value = 2;
+
+        const component = mount(
+            <Form horizontal labelColumns={columns}>
+                <Form.Dropdown disabled={disabled} label={label} options={options} value={value} />
+            </Form>
+        );
+
+        expect(component.find('select').props().disabled).to.equal(true);
+    });
+
+    it('should not be disabled when disabled flag not set', () => {
+
+        const disabled = false;
+
+        const options = [
+            { value: '1', name: 'one' },
+            { value: '2', name: 'two' },
+            { value: '3', name: 'three' },
+        ];
+
+        const label = 'peter piper';
+        const columns = 3;
+
+        const value = 2;
+
+        const component = mount(
+            <Form horizontal labelColumns={columns}>
+                <Form.Dropdown disabled={disabled} label={label} options={options} value={value} />
+            </Form>
+        );
+
+        expect(component.find('select').props().disabled).to.equal(false);
     });
 });
 

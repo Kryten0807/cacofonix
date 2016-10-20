@@ -81,3 +81,4 @@ The last two, `primary` and `default` are not used for `Alert` components - thes
 1. correct the `Alert` `dismissible` property
 1. revise the prop types of the `Alert` component `children` property to handle text or React elements
 1. make the use of icon fonts (Font Awesome vs. Glyphicons) conditional
+1. in TextInput - if it's readonly, then format the value whenever the props change
