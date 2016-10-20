@@ -35,6 +35,8 @@ a Form component containing a RadioButtonGroup
     should select the appropriate item if the value prop is set to a valid value
     should have a label.col-xs-3 when form is horizontal and labelColumns=3
     should have a div.col-xs-9 when form is horizontal and labelColumns=3
+    should include the disabled flag on input elements when disabled is set
+    should not include the disabled flag on input elements when disabled is not set
 */
 describe('a Form component containing a RadioButtonGroup', () => {
 
