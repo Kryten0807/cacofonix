@@ -35,6 +35,8 @@ a Form component containing a Dropdown
     should have a label.col-xs-3 when form is horizontal and labelColumns=3
     should have a div.col-xs-9 when form is horizontal and labelColumns=3
     should have the appropriate optgroups when options is an object
+    should be disabled when disabled flag set
+    should not be disabled when disabled flag no set
 */
 describe('a Form component containing a Dropdown', () => {
 
