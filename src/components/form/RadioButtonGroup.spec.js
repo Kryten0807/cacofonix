@@ -241,7 +241,12 @@ describe('a Form component containing a RadioButtonGroup', () => {
 
         const component = mount(
             <Form>
-                <Form.RadioButtonGroup disabled={disabled} label={label} options={options} value={value} />
+                <Form.RadioButtonGroup
+                    disabled={disabled}
+                    label={label}
+                    options={options}
+                    value={value}
+                />
             </Form>
         );
 
@@ -264,7 +269,12 @@ describe('a Form component containing a RadioButtonGroup', () => {
 
         const component = mount(
             <Form>
-                <Form.RadioButtonGroup disabled={disabled} label={label} options={options} value={value} />
+                <Form.RadioButtonGroup
+                    disabled={disabled}
+                    label={label}
+                    options={options}
+                    value={value}
+                />
             </Form>
         );
 
