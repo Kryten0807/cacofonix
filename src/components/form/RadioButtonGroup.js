@@ -98,6 +98,7 @@ class RadioButtonGroup extends React.Component {
                 <label>
                     <input
                         type="radio"
+                        disabled={!!this.props.disabled}
                         name={this.id}
                         value={opt.value}
                         checked={this.state.value === opt.value}
@@ -144,6 +145,7 @@ class RadioButtonGroup extends React.Component {
  */
 RadioButtonGroup.propTypes = {
     label:    React.PropTypes.string,
+    disabled: React.PropTypes.bool,
     options:  React.PropTypes.array,
     value:    React.PropTypes.oneOfType([
         React.PropTypes.string,
