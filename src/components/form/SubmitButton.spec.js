@@ -35,6 +35,8 @@ a Form component containing a SubmitButton
     should be button.btn.btn-info when style=info
     should be button.btn.btn-success when style=success
     should be button.btn.btn-success when style=ok
+    should not have a name if the name prop is not set
+    should have the appropriate name if the name prop is set
 */
 describe('a Form component containing a SubmitButton', () => {
 
