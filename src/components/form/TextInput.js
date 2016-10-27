@@ -74,11 +74,7 @@ class TextInput extends React.Component {
         // child
         //
         if (this.context.onChildValidationEvent) {
-            this.context.onChildValidationEvent(
-                this.id,
-                false,
-                validationError
-            );
+            this.context.onChildValidationEvent(this.id, false, validationError);
         }
     }
 
