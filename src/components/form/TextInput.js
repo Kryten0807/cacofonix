@@ -34,10 +34,9 @@ class TextInput extends React.Component {
             isEditing:       false,
         };
 
-        // generate a unique ID for this component instance if an ID prop has
-        // not been provided
+        // generate a unique ID for this component instance
         //
-        this.id = this.props.id || uniqueId('form-textinput-');
+        this.id = uniqueId('form-textinput-');
 
         // intialize the validation message for the component
         //
@@ -75,11 +74,7 @@ class TextInput extends React.Component {
         // child
         //
         if (this.context.onChildValidationEvent) {
-            this.context.onChildValidationEvent(
-                this.id,
-                false,
-                validationError
-            );
+            this.context.onChildValidationEvent(this.id, false, validationError);
         }
     }
 
@@ -300,6 +295,7 @@ class TextInput extends React.Component {
                 type="text"
                 readOnly={!!this.props.readOnly}
                 id={this.id}
+                name={this.props.name}
                 value={this.state.value}
                 placeholder={this.props.placeholder}
                 className="form-control"
@@ -366,12 +362,12 @@ class TextInput extends React.Component {
  * @type {Object}
  */
 TextInput.propTypes = {
+    name:              React.PropTypes.string,
     required:          React.PropTypes.bool,
     readOnly:          React.PropTypes.bool,
     hidden:            React.PropTypes.bool,
     inline:            React.PropTypes.bool,
     inlineWidth:       React.PropTypes.string,
-    id:                React.PropTypes.string,
     value:             React.PropTypes.oneOfType([
         React.PropTypes.string,
         React.PropTypes.number,

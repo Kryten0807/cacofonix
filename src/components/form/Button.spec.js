@@ -35,10 +35,11 @@ a Form component containing a Button
     should be button.btn.btn-info when style=info
     should be button.btn.btn-success when style=success
     should be button.btn.btn-success when style=ok
-
     should be disabled if disabled=true
     should not be disabled if disabled=false
     should not be disabled if disabled is not set
+    should not have a name if the name prop is not set
+    should have the appropriate name if the name prop is set
 */
 describe('a Form component containing a Button', () => {
 
@@ -240,6 +241,31 @@ describe('a Form component containing a Button', () => {
 
         expect(component.find('button').props().disabled).to.equal(false);
     });
+
+    it('should not have a name if the name prop is not set', () => {
+
+        const component = mount(
+            <Form>
+                <Form.Button />
+            </Form>
+        );
+
+        expect(component.find('button').props().name).to.equal(undefined);
+    });
+
+    it('should have the appropriate name if the name prop is set', () => {
+
+        const name = 'something';
+
+        const component = mount(
+            <Form>
+                <Form.Button name={name} />
+            </Form>
+        );
+
+        expect(component.find('button').props().name).to.equal(name);
+    });
+
 });
 
 /* *****************************************************************************

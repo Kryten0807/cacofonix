@@ -12,7 +12,7 @@ import classnames from 'classnames';
  * @param  {Function} onClick The onClick handler for the button
  * @return {React.Element}    The React element describing this component
  */
-const Button = ({ children, disabled, style, onClick }) => (
+const Button = ({ children, disabled, name, style, onClick }) => (
     <button
         className={classnames('btn', {
             'btn-danger':  style === 'danger' || style === 'error',
@@ -23,6 +23,7 @@ const Button = ({ children, disabled, style, onClick }) => (
         })}
         disabled={!!disabled}
         onClick={onClick}
+        name={name}
     >
         {children || 'Submit'}
     </button>
@@ -34,6 +35,7 @@ const Button = ({ children, disabled, style, onClick }) => (
  */
 Button.propTypes = {
     disabled: React.PropTypes.bool,
+    name:     React.PropTypes.string,
     style:    React.PropTypes.string,
     onClick:  React.PropTypes.func,
     children: React.PropTypes.oneOfType([

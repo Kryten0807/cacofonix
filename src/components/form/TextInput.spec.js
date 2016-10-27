@@ -65,6 +65,8 @@ a Form component with a TextInput element
     should not have a column specified when form is horizontal and inline is true
     should include an asterisk in the label when the required flag is set
     should not include an asterisk in the label when the required flag is not set
+    should not have a name if the name prop is not set
+    should have the appropriate name if the name prop is set
 */
 describe('a Form component with a TextInput element', () => {
 
@@ -253,6 +255,31 @@ describe('a Form component with a TextInput element', () => {
         expect(component.find('label')).to.have.length(1);
         expect(component.find('label').find('i.fa.fa-star')).to.have.length(0);
     });
+
+    it('should not have a name if the name prop is not set', () => {
+
+        const component = mount(
+            <Form>
+                <Form.TextInput />
+            </Form>
+        );
+
+        expect(component.find('input').props().name).to.equal(undefined);
+    });
+
+    it('should have the appropriate name if the name prop is set', () => {
+
+        const name = 'meatball';
+
+        const component = mount(
+            <Form>
+                <Form.TextInput name={name} />
+            </Form>
+        );
+
+        expect(component.find('input').props().name).to.equal(name);
+    });
+
 });
 
 /* *****************************************************************************

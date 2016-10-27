@@ -6,6 +6,7 @@ import classnames from 'classnames';
 /**
  * The SubmitButton component
  * @param  {String}   children   The label to display in the button
+ * @param  {String}   name    The name for the component
  * @param  {String}   style   The style with which to display the button
  * @param  {Function} onClick The `onClick` handler for the button
  * @param  {Boolean}  isValid A flag (from the parent Form's context) indicating
@@ -13,8 +14,9 @@ import classnames from 'classnames';
  *                            is valid
  * @return {React.Element}    The React element describing this component
  */
-const SubmitButton = ({ children, style, onClick }, { isValid }) => (
+const SubmitButton = ({ children, name, style, onClick }, { isValid }) => (
     <button
+        name={name}
         className={classnames('btn', {
             'btn-danger':  style === 'danger' || style === 'error',
             'btn-warning': style === 'warning' || style === 'warn',
@@ -32,6 +34,7 @@ const SubmitButton = ({ children, style, onClick }, { isValid }) => (
 // define the property types for the component
 //
 SubmitButton.propTypes = {
+    name:     React.PropTypes.string,
     style:    React.PropTypes.string,
     onClick:  React.PropTypes.func,
     children: React.PropTypes.oneOfType([
