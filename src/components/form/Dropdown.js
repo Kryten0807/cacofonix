@@ -156,6 +156,7 @@ class Dropdown extends React.Component {
         let select = (
             <select
                 id={this.id}
+                name={this.props.name}
                 disabled={!!this.props.disabled}
                 className="form-control"
                 value={value}
@@ -196,6 +197,7 @@ class Dropdown extends React.Component {
 Dropdown.propTypes = {
     disabled: React.PropTypes.bool,
     label:    React.PropTypes.string,
+    name:     React.PropTypes.string,
     value:    React.PropTypes.oneOfType([
         React.PropTypes.string,
         React.PropTypes.number,
