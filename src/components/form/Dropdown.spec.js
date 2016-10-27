@@ -37,6 +37,8 @@ a Form component containing a Dropdown
     should have the appropriate optgroups when options is an object
     should be disabled when disabled flag set
     should not be disabled when disabled flag no set
+    should not have a name if the name prop is not set
+    should have the appropriate name if the name prop is set
 */
 describe('a Form component containing a Dropdown', () => {
 
