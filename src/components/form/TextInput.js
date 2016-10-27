@@ -362,13 +362,12 @@ class TextInput extends React.Component {
  * @type {Object}
  */
 TextInput.propTypes = {
+    name:              React.PropTypes.string,
     required:          React.PropTypes.bool,
     readOnly:          React.PropTypes.bool,
     hidden:            React.PropTypes.bool,
     inline:            React.PropTypes.bool,
     inlineWidth:       React.PropTypes.string,
-    id:                React.PropTypes.string,
-    name:              React.PropTypes.string,
     value:             React.PropTypes.oneOfType([
         React.PropTypes.string,
         React.PropTypes.number,
