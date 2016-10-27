@@ -201,6 +201,30 @@ describe('a Form component containing a SubmitButton', () => {
         expect(component.find('button.btn.btn-success'))
             .to.have.length(1, 'button.btn.btn-success');
     });
+
+    it('should not have a name if the name prop is not set', () => {
+        const component = mount(
+            <Form>
+                <Form.SubmitButton />
+            </Form>
+        );
+
+        expect(component.find('button').props().name).to.equal(undefined);
+    });
+
+    it('should have the appropriate name if the name prop is set', () => {
+
+        const name = 'argle bargle';
+
+        const component = mount(
+            <Form>
+                <Form.SubmitButton name={name} />
+            </Form>
+        );
+
+        expect(component.find('button').props().name).to.equal(name);
+    });
+
 });
 
 /* *****************************************************************************
