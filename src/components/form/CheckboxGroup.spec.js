@@ -42,8 +42,6 @@ a Form component containing a CheckboxGroup
     should include appropriate components in place of <label> when label=components
     should include an asterisk in the label when the required flag is set
     should not include an asterisk in the label when the required flag is not set
-    should not have a name if the name prop is not set
-    should have the appropriate name if the name prop is set
 */
 describe('a Form component containing a CheckboxGroup', () => {
 
