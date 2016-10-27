@@ -300,6 +300,7 @@ class TextInput extends React.Component {
                 type="text"
                 readOnly={!!this.props.readOnly}
                 id={this.id}
+                name={this.props.name}
                 value={this.state.value}
                 placeholder={this.props.placeholder}
                 className="form-control"
@@ -372,6 +373,7 @@ TextInput.propTypes = {
     inline:            React.PropTypes.bool,
     inlineWidth:       React.PropTypes.string,
     id:                React.PropTypes.string,
+    name:              React.PropTypes.string,
     value:             React.PropTypes.oneOfType([
         React.PropTypes.string,
         React.PropTypes.number,
