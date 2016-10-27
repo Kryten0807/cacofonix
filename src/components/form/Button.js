@@ -34,6 +34,7 @@ const Button = ({ children, disabled, style, onClick }) => (
  */
 Button.propTypes = {
     disabled: React.PropTypes.bool,
+    name:     React.PropTypes.string,
     style:    React.PropTypes.string,
     onClick:  React.PropTypes.func,
     children: React.PropTypes.oneOfType([
