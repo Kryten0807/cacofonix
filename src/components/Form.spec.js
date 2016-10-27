@@ -177,20 +177,20 @@ describe('the Form component', () => {
 
         const component = mount(
             <Form>
-                <Form.TextInput required id="1" description={descriptionForValid} value={valid} />
-                <Form.TextInput required id="2" description={descriptionForInvalid} value={valid} />
-                <Form.TextInput required id="3" description={descriptionForValid} value={invalid} />
+                <Form.TextInput required name="textinput-1" description={descriptionForValid} value={valid} />
+                <Form.TextInput required name="textinput-2" description={descriptionForInvalid} value={valid} />
+                <Form.TextInput required name="textinput-3" description={descriptionForValid} value={invalid} />
                 <Form.SubmitButton label={label} />
             </Form>
         );
 
         expect(component.find('Alert')).to.have.length(0);
 
-        component.find('input[id="2"]').simulate('change', {
+        component.find('input[name="textinput-2"]').simulate('change', {
             target: { value: newValue }
         });
 
-        component.find('input[id="2"]').simulate('blur');
+        component.find('input[name="textinput-2"]').simulate('blur');
 
         expect(component.find('Alert')).to.have.length(1);
         expect(component.find('Alert').text()).to.not.contain(descriptionForValid);
