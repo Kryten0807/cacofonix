@@ -177,9 +177,28 @@ describe('the Form component', () => {
 
         const component = mount(
             <Form>
-                <Form.TextInput required name="textinput-1" description={descriptionForValid} value={valid} />
-                <Form.TextInput required name="textinput-2" description={descriptionForInvalid} value={valid} />
-                <Form.TextInput required name="textinput-3" description={descriptionForValid} value={invalid} />
+
+                <Form.TextInput
+                    required
+                    name="textinput-1"
+                    description={descriptionForValid}
+                    value={valid}
+                />
+
+                <Form.TextInput
+                    required
+                    name="textinput-2"
+                    description={descriptionForInvalid}
+                    value={valid}
+                />
+
+                <Form.TextInput
+                    required
+                    name="textinput-3"
+                    description={descriptionForValid}
+                    value={invalid}
+                />
+
                 <Form.SubmitButton label={label} />
             </Form>
         );
