@@ -321,6 +321,40 @@ describe('a Form component containing a Dropdown', () => {
 
         expect(component.find('select').props().disabled).to.equal(false);
     });
+
+    it('should not have a name if the name prop is not set', () => {
+        const options = [
+            { value: '1', name: 'one' },
+            { value: '2', name: 'two' },
+        ];
+
+        const component = mount(
+            <Form>
+                <Form.Dropdown options={options} />
+            </Form>
+        );
+
+        expect(component.find('select').props().name).to.equal(undefined);
+    });
+
+    it('should have the appropriate name if the name prop is set', () => {
+
+        const name = 'blah';
+
+        const options = [
+            { value: '1', name: 'one' },
+            { value: '2', name: 'two' },
+        ];
+
+        const component = mount(
+            <Form>
+                <Form.Dropdown name={name} options={options} />
+            </Form>
+        );
+
+        expect(component.find('select').props().name).to.equal(name);
+    });
+
 });
 
 /* *****************************************************************************
