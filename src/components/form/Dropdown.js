@@ -35,8 +35,13 @@ class Dropdown extends React.Component {
                 }
             } else {
                 // no - return the value of the first item in the first property
+                // (if there is one)
                 //
-                props.onChange(props.options[Object.keys(props.options)[0]][0].value);
+                const keys = Object.keys(props.options);
+
+                if (keys.length > 0) {
+                    props.onChange(props.options[keys[0]][0].value);
+                }
             }
         }
 
