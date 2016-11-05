@@ -373,6 +373,21 @@ describe('a Form component containing a Dropdown', () => {
         expect(component.find('option')).to.have.length(options.length, 'options count');
     });
 
+    it('should have no options when the options is an empty object', () => {
+
+        const onChange = (arg) => arg;
+
+        const options = {};
+
+        const component = render(
+            <Form>
+                <Form.Dropdown options={options} onChange={onChange} />
+            </Form>
+        );
+
+        expect(component.find('option')).to.have.length(0);
+    });
+
 });
 
 /* *****************************************************************************
