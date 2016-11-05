@@ -39,6 +39,9 @@ a Form component containing a Dropdown
     should not be disabled when disabled flag no set
     should not have a name if the name prop is not set
     should have the appropriate name if the name prop is set
+
+    should have no options when the options is an empty array
+    should have no options when the options is an empty object
 */
 describe('a Form component containing a Dropdown', () => {
 
