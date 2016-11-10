@@ -292,7 +292,7 @@ class TextInput extends React.Component {
         //
         let input = (
             <input
-                type="text"
+                type={this.props.password ? 'password' : 'text'}
                 readOnly={!!this.props.readOnly}
                 id={this.id}
                 name={this.props.name}
