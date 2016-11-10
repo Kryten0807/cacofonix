@@ -293,7 +293,16 @@ describe('a Form component with a TextInput element', () => {
         expect(component.find('input').props().type).to.equal('text');
     });
 
-    // it('should have type=password when password=true', () => {});
+    it('should have type=password when password=true', () => {
+
+        const component = mount(
+            <Form>
+                <Form.TextInput password />
+            </Form>
+        );
+
+        expect(component.find('input').props().type).to.equal('password');
+    });
 
 
 });
