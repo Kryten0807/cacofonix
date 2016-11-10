@@ -67,6 +67,8 @@ a Form component with a TextInput element
     should not include an asterisk in the label when the required flag is not set
     should not have a name if the name prop is not set
     should have the appropriate name if the name prop is set
+    should have type=text when password=false
+    should have type=password when password=true
 */
 describe('a Form component with a TextInput element', () => {
 
@@ -279,6 +281,29 @@ describe('a Form component with a TextInput element', () => {
 
         expect(component.find('input').props().name).to.equal(name);
     });
+
+    it('should have type=text when password=false', () => {
+
+        const component = mount(
+            <Form>
+                <Form.TextInput />
+            </Form>
+        );
+
+        expect(component.find('input').props().type).to.equal('text');
+    });
+
+    it('should have type=password when password=true', () => {
+
+        const component = mount(
+            <Form>
+                <Form.TextInput password />
+            </Form>
+        );
+
+        expect(component.find('input').props().type).to.equal('password');
+    });
+
 
 });
 
