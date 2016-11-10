@@ -363,6 +363,7 @@ class TextInput extends React.Component {
  */
 TextInput.propTypes = {
     name:              React.PropTypes.string,
+    password:          React.PropTypes.bool,
     required:          React.PropTypes.bool,
     readOnly:          React.PropTypes.bool,
     hidden:            React.PropTypes.bool,
