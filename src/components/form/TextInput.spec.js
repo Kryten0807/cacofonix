@@ -67,6 +67,8 @@ a Form component with a TextInput element
     should not include an asterisk in the label when the required flag is not set
     should not have a name if the name prop is not set
     should have the appropriate name if the name prop is set
+    should have type=text when password=false
+    should have type=password when password=true
 */
 describe('a Form component with a TextInput element', () => {
 
