@@ -39,6 +39,9 @@ a Form component containing a Dropdown
     should not be disabled when disabled flag no set
     should not have a name if the name prop is not set
     should have the appropriate name if the name prop is set
+
+    should have no options when the options is an empty array
+    should have no options when the options is an empty object
 */
 describe('a Form component containing a Dropdown', () => {
 
@@ -353,6 +356,36 @@ describe('a Form component containing a Dropdown', () => {
         );
 
         expect(component.find('select').props().name).to.equal(name);
+    });
+
+    it('should have no options when the options is an empty array', () => {
+
+        const onChange = (arg) => arg;
+
+        const options = [];
+
+        const component = render(
+            <Form>
+                <Form.Dropdown options={options} onChange={onChange} />
+            </Form>
+        );
+
+        expect(component.find('option')).to.have.length(options.length, 'options count');
+    });
+
+    it('should have no options when the options is an empty object', () => {
+
+        const onChange = (arg) => arg;
+
+        const options = {};
+
+        const component = render(
+            <Form>
+                <Form.Dropdown options={options} onChange={onChange} />
+            </Form>
+        );
+
+        expect(component.find('option')).to.have.length(0);
     });
 
 });

@@ -292,7 +292,7 @@ class TextInput extends React.Component {
         //
         let input = (
             <input
-                type="text"
+                type={this.props.password ? 'password' : 'text'}
                 readOnly={!!this.props.readOnly}
                 id={this.id}
                 name={this.props.name}
@@ -363,6 +363,7 @@ class TextInput extends React.Component {
  */
 TextInput.propTypes = {
     name:              React.PropTypes.string,
+    password:          React.PropTypes.bool,
     required:          React.PropTypes.bool,
     readOnly:          React.PropTypes.bool,
     hidden:            React.PropTypes.bool,
