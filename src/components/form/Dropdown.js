@@ -19,7 +19,7 @@ class Dropdown extends React.Component {
 
         // generate a unique ID for this instance
         //
-        this.id = uniqueId('form-dropdown-');
+        this.id = props.id || uniqueId('form-dropdown-');
 
         // do we have a value? if not, then we need call onChange (if it exists)
         // with the first option to ensure that the value is set
@@ -203,6 +203,7 @@ class Dropdown extends React.Component {
  */
 Dropdown.propTypes = {
     disabled: React.PropTypes.bool,
+    id:       React.PropTypes.string,
     label:    React.PropTypes.string,
     name:     React.PropTypes.string,
     value:    React.PropTypes.oneOfType([
