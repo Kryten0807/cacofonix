@@ -1,11 +1,12 @@
 const mocha = require('gulp-mocha');
 
-require('babel-register');
+module.exports = (gulp) => {
+    require('babel-register'); // eslint-disable-line global-require
 
-module.exports = (gulp) =>
-    gulp.src((process.env.TEST_SUITE || './src/**/*.spec.js'), { read: false })
+    return gulp.src((process.env.TEST_SUITE || './src/**/*.spec.js'), { read: false })
         .pipe(mocha({
             require:  ['./test/setup.js'],
             // reporter: 'progress',
             // an alternate reporter is 'dot',
         }));
+};
