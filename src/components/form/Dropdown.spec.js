@@ -388,6 +388,39 @@ describe('a Form component containing a Dropdown', () => {
         expect(component.find('option')).to.have.length(0);
     });
 
+    it('should have an ID value if provided', () => {
+
+        const id = 'something';
+
+        const options = [
+            { value: '1', name: 'one' },
+            { value: '2', name: 'two' },
+        ];
+
+        const component = mount(
+            <Form>
+                <Form.Dropdown id={id} options={options} />
+            </Form>
+        );
+
+        expect(component.find('select').props().id).to.equal(id);
+    });
+
+    it('should have a random ID value if not provided', () => {
+
+        const options = [
+            { value: '1', name: 'one' },
+            { value: '2', name: 'two' },
+        ];
+
+        const component = mount(
+            <Form>
+                <Form.Dropdown options={options} />
+            </Form>
+        );
+
+        expect(component.find('select').props().id).to.match(/^form-dropdown-[0-9]+$/);
+    });
 });
 
 /* *****************************************************************************
