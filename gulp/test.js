@@ -1,6 +1,7 @@
 // gulp plugins/other support packages
 //
 const mocha = require('gulp-mocha');
+const yargs = require('yargs');
 
 // import the paths
 //
@@ -13,7 +14,9 @@ module.exports = (gulp) => {
     //
     require('babel-register'); // eslint-disable-line global-require
 
-    return gulp.src((process.env.TEST_SUITE || paths.specs), { read: false })
+    const testSuite = yargs.argv.suite || yargs.argv.s || paths.specs;
+
+    return gulp.src(testSuite, { read: false })
         .pipe(mocha({
             require:  [paths.testconfig],
             // reporter: 'progress',
