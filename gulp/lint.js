@@ -4,6 +4,8 @@ const eslint = require('gulp-eslint');
 const gulpIf = require('gulp-if');
 const yargs = require('yargs');
 
+// import the paths
+//
 const paths = require('./paths.json');
 
 /**
@@ -27,11 +29,14 @@ const lintAndFix = (gulp, list) => {
 };
 
 module.exports = (gulp) => {
-
+    // is the `--fix` flag set? if so, execute a "lint and fix"
+    //
     if (yargs.argv.fix) {
         return lintAndFix(gulp, paths.lint);
     }
 
+    // otherwise, just lint the files
+    //
     return gulp.src(paths.lint)
         .pipe(eslint())
         .pipe(eslint.format())
