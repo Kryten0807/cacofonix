@@ -304,6 +304,30 @@ describe('a Form component with a TextInput element', () => {
         expect(component.find('input').props().type).to.equal('password');
     });
 
+    it('should have an ID value when one is provided', () => {
+
+        const id = 'some-id-value';
+
+        const component = mount(
+            <Form>
+                <Form.TextInput id={id} />
+            </Form>
+        );
+
+        expect(component.find('input').props().id).to.equal(id);
+    });
+
+    it('should have a random ID value when one is not provided', () => {
+
+        const component = mount(
+            <Form>
+                <Form.TextInput />
+            </Form>
+        );
+
+        expect(component.find('input').props().id).to.match(/^form-textinput-[0-9]+$/);
+    });
+
 
 });
 
