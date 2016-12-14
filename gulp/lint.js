@@ -4,6 +4,8 @@ const eslint = require('gulp-eslint');
 const gulpIf = require('gulp-if');
 const yargs = require('yargs');
 
+const paths = require('./paths.json');
+
 /**
  * A helper function to lint **and fix** a set of paths
  * @param  {Object} gulp The gulp instance
@@ -24,15 +26,13 @@ const lintAndFix = (gulp, list) => {
         .pipe(eslint.failAfterError());
 };
 
-const pathsToLint = ['./src/**/*.js', './test/**/*.js', './gulpfile.js'];
-
 module.exports = (gulp) => {
 
     if (yargs.argv.fix) {
-        return lintAndFix(gulp, pathsToLint);
+        return lintAndFix(gulp, paths.lint);
     }
 
-    return gulp.src(pathsToLint)
+    return gulp.src(paths.lint)
         .pipe(eslint())
         .pipe(eslint.format())
         .pipe(eslint.failAfterError());
