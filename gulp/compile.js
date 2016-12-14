@@ -1,5 +1,9 @@
+// gulp plugins/other support packages
+//
 const babel = require('gulp-babel');
 
+// import the paths
+//
 const paths = require('./paths.json');
 
 // -----------------------------------------------------------------------------
