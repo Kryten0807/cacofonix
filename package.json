@@ -41,9 +41,12 @@
     "gulp-eslint": "^3.0.1",
     "gulp-if": "^2.0.1",
     "gulp-mocha": "^3.0.1",
+    "gulp-require-tasks": "^1.0.5",
+    "gulp-sequence": "^0.4.6",
     "gulp-shell": "^0.5.2",
     "jsdom": "^9.5.0",
     "react-addons-test-utils": "^15.3.1",
-    "sinon": "^1.17.5"
+    "sinon": "^1.17.5",
+    "yargs": "^6.5.0"
   }
 }
