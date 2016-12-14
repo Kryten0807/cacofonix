@@ -1,7 +1,8 @@
-const pathsToLint = ['./src/**/*.js', './test/**/*.js', './gulpfile.js'];
+
+const paths = require('./paths.json');
 
 // -----------------------------------------------------------------------------
 // watch the files that need linting
 //
 module.exports = (gulp) =>
-    gulp.watch(pathsToLint, ['lint']);
+    gulp.watch(paths.lint, ['lint']);
