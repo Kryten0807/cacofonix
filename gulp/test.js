@@ -14,6 +14,8 @@ module.exports = (gulp) => {
     //
     require('babel-register'); // eslint-disable-line global-require
 
+    // get the test suite (or paths) to use
+    //
     const testSuite = yargs.argv.suite || yargs.argv.s || paths.specs;
 
     return gulp.src(testSuite, { read: false })
