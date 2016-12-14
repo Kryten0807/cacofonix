@@ -1,4 +1,9 @@
+// gulp plugins/other support packages
+//
 const eslint = require('gulp-eslint');
+const gulpIf = require('gulp-if');
+const yargs = require('yargs');
+
 /**
  * A helper function to lint **and fix** a set of paths
  * @param  {Object} gulp The gulp instance
