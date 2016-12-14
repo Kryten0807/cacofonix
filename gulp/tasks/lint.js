@@ -26,8 +26,15 @@ const lintAndFix = (gulp, list) => {
 
 const pathsToLint = ['./src/**/*.js', './test/**/*.js', './gulpfile.js'];
 
-module.exports = (gulp) =>
-    gulp.src(pathsToLint)
+module.exports = (gulp) => {
+
+    if (yargs.argv.fix) {
+        return lintAndFix(gulp, pathsToLint);
+    }
+
+    return gulp.src(pathsToLint)
         .pipe(eslint())
         .pipe(eslint.format())
         .pipe(eslint.failAfterError());
+
+};
