@@ -1,9 +1,11 @@
 const babel = require('gulp-babel');
 
+const paths = require('./paths.json');
+
 // -----------------------------------------------------------------------------
 // build the project
 //
 module.exports = (gulp) =>
-    gulp.src(['./src/**/*.js', '!./src/**/*.spec.js'])
+    gulp.src(paths.source)
         .pipe(babel())
-        .pipe(gulp.dest('./dist'));
+        .pipe(gulp.dest(paths.dist));
