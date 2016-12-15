@@ -13,6 +13,12 @@ const paths = require('./paths.json');
  * @return {Stream} The stream
  */
 const plugin = function plugin(options = {}) {
+    // implement the default options
+    //
+    const opts = Object.assign({
+        name: 'react-docgen.json',
+    }, options);
+
     // declare a variable to hold the list of files
     //
     const fileList = [];
