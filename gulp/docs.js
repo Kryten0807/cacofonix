@@ -12,7 +12,7 @@ const paths = require('./paths.json');
  * The quick-and-dirty react-docgen plugin
  * @return {Stream} The stream
  */
-const plugin = function plugin(options = {}) {
+const docGen = function docGen(options = {}) {
     // implement the default options
     //
     const opts = Object.assign({
@@ -25,6 +25,7 @@ const plugin = function plugin(options = {}) {
 
     return through.obj(
 
+        // eslint-disable-next-line prefer-arrow-callback
         function write(file, encoding, callback) {
             // is the file null? if so, just carry on
             //
@@ -38,7 +39,7 @@ const plugin = function plugin(options = {}) {
 
             // carry on...
             //
-            callback();
+            return callback();
         },
 
         function end(callback) {
