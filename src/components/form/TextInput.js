@@ -363,7 +363,7 @@ class TextInput extends React.Component {
  */
 TextInput.propTypes = {
     /** The name for the component */
-    name:     React.PropTypes.string,
+    name:              React.PropTypes.string,
     /** The ID for the component */
     id:                React.PropTypes.string,
     /** A flag to indicate whether this is a password input component */
