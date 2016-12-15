@@ -76,7 +76,7 @@ const plugin = function plugin(options = {}) {
             this.push(new File({
                 contents: new Buffer(JSON.stringify(result, null, '  ')),
                 base:     '/tmp',
-                path:     '/tmp/test2.json',
+                path:     `/tmp/${opts.name}`,
             }));
 
             // carry on...
