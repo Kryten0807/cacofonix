@@ -2,6 +2,7 @@
 //
 const File = require('vinyl');
 const through = require('through2');
+const path = require('path');
 
 /**
  * Copyright (c) 2015, Facebook, Inc.
@@ -20,8 +21,10 @@ const stringOfLength = (string, length) => {
     return newString;
 };
 
-const generateTitle = (name) => {
-    const title = `\`${name}\` (component)`;
+const generateTitle = (filepath) => {
+    const componentName = path.basename(filepath, '.js');
+
+    const title = `\`${componentName}\` Component (${filepath})`;
     return `${title}\n${stringOfLength('=', title.length)}\n`;
 };
 
@@ -60,10 +63,10 @@ const generateProps = (props) => {
     return `Props\n-----\n\n${description}`;
 };
 
-const generateMarkdown = function generateMarkdown(name, reactAPI) {
+const generateMarkdown = function generateMarkdown(filepath, reactAPI) {
 
     const markdownString =
-        `${generateTitle(name)}\n`
+        `${generateTitle(filepath)}\n`
         + `${generateDescription(reactAPI.description)}\n`
         + `${generateProps(reactAPI.props)}`;
 
