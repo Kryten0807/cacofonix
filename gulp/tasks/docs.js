@@ -6,7 +6,7 @@ const through = require('through2');
 const File = require('vinyl');
 const docgen = require('react-docgen');
 
-const paths = require('./paths.json');
+const paths = require('../paths.json');
 
 /**
  * The quick-and-dirty react-docgen plugin
