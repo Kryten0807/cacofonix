@@ -46,7 +46,9 @@ const Alert = ({ style, dismissible, children }) => {
 // set the property types for the Alert component
 //
 Alert.propTypes = {
-    style:       React.PropTypes.string,
+    style:       React.PropTypes.oneOf(
+        ['danger', 'error', 'warning', 'warn', 'info', 'success', 'ok']
+    ),
     dismissible: React.PropTypes.bool,
     children:    React.PropTypes.oneOfType([
         React.PropTypes.element,
