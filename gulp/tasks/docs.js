@@ -1,8 +1,8 @@
-
+// gulp plugins/other support packages
+//
 const docgen = require('../plugins/docgen');
 const markdown = require('../plugins/markdown');
 const paths = require('../paths.json');
-
 
 module.exports = (gulp) =>
     gulp.src(paths.source)
