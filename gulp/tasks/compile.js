@@ -4,7 +4,7 @@ const babel = require('gulp-babel');
 
 // import the paths
 //
-const paths = require('./paths.json');
+const paths = require('../paths.json');
 
 // -----------------------------------------------------------------------------
 // build the project
