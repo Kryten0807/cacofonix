@@ -1,3 +1,5 @@
+/* eslint-disable no-var */
+
 // npm dependencies
 //
 const through = require('through2');
@@ -46,13 +48,13 @@ const docGen = function docGen(options) {
             // iterate over the list of files
             //
             fileList.forEach((file) => {
+                // declare a variable to hold the results
+                //
+                var doc = null;
+
                 // get the file contents
                 //
                 const content = file.contents.toString();
-
-                // declare a variable to hold the results
-                //
-                let doc = null;
 
                 // attempt to parse the content
                 //
