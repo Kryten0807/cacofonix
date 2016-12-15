@@ -3,6 +3,8 @@
 const eslint = require('gulp-eslint');
 const yargs = require('yargs');
 
+// local dependencies
+//
 const lintAndFix = require('../helpers/lintandfix');
 
 // import the paths
