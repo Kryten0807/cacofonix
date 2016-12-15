@@ -5,7 +5,7 @@ const yargs = require('yargs');
 
 // import the paths
 //
-const paths = require('./paths.json');
+const paths = require('../paths.json');
 
 module.exports = (gulp) => {
     // the test files are written in ES6. Import the babel-register package to
