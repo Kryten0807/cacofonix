@@ -1,4 +1,4 @@
-// dependencies
+// npm dependencies
 //
 import React from 'react';
 import update from 'react-addons-update';
