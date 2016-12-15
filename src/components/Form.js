@@ -1,10 +1,12 @@
-// dependencies
+// npm dependencies
 //
 import React from 'react';
 import update from 'react-addons-update';
 import uniqueId from 'lodash/uniqueId';
 import classnames from 'classnames';
 
+// local dependencies
+//
 import Alert from './Alert';
 import Button from './form/Button';
 import CheckboxGroup from './form/CheckboxGroup';
