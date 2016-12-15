@@ -1,4 +1,4 @@
-// dependencies
+// npm dependencies
 //
 import React from 'react';
 import isArray from 'lodash/isArray';
@@ -202,18 +202,25 @@ class Dropdown extends React.Component {
  * @type {Object}
  */
 Dropdown.propTypes = {
+    /** A flag to indicated whether this component is disabled */
     disabled: React.PropTypes.bool,
+    /** The ID for the component */
     id:       React.PropTypes.string,
+    /** The label for the checkbox group */
     label:    React.PropTypes.string,
+    /** The name for the select element */
     name:     React.PropTypes.string,
+    /** The selected value */
     value:    React.PropTypes.oneOfType([
         React.PropTypes.string,
         React.PropTypes.number,
     ]),
+    /** The options for the dropdown */
     options:  React.PropTypes.oneOfType([
         React.PropTypes.array,
         React.PropTypes.object,
     ]).isRequired,
+    /** The 'onChange' handler for the component */
     onChange: React.PropTypes.func,
 };
 

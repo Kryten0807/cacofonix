@@ -1,0 +1,8 @@
+{
+    "dist":       "./dist",
+    "src":        "./src",
+    "source":     ["./src/**/*.js", "!./src/**/*.spec.js"],
+    "lint":       ["./src/**/*.js", "./test/**/*.js", "./gulp/**/*.js", "./gulpfile.js"],
+    "specs":      "./src/**/*.spec.js",
+    "testconfig": "./test/setup.js"
+}

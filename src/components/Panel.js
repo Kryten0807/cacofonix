@@ -1,4 +1,4 @@
-// dependencies
+// npm dependencies
 //
 import React from 'react';
 import classnames from 'classnames';
@@ -44,8 +44,13 @@ const Panel = ({ style, header, children }) => {
 // set the property types for the Panel component
 //
 Panel.propTypes = {
-    style:    React.PropTypes.string,
+    /** The style of the panel */
+    style:       React.PropTypes.oneOf(
+        ['danger', 'error', 'warning', 'warn', 'info', 'success', 'ok']
+    ),
+    /** The header (title) for the panel */
     header:   React.PropTypes.string,
+    /** The child(ren) of this panel */
     children: React.PropTypes.oneOfType([
         React.PropTypes.arrayOf(React.PropTypes.node),
         React.PropTypes.node,

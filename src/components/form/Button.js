@@ -1,4 +1,4 @@
-// dependencies
+// npm dependencies
 //
 import React from 'react';
 import classnames from 'classnames';
@@ -34,10 +34,17 @@ const Button = ({ children, disabled, name, style, onClick }) => (
  * @type {Object}
  */
 Button.propTypes = {
+    /** A flag to indicated whether this component is disabled */
     disabled: React.PropTypes.bool,
+    /** The button component name */
     name:     React.PropTypes.string,
-    style:    React.PropTypes.string,
+    /** The button style */
+    style:       React.PropTypes.oneOf(
+        ['danger', 'error', 'warning', 'warn', 'info', 'success', 'ok']
+    ),
+    /** The `onClick` handler for the button */
     onClick:  React.PropTypes.func,
+    /** The child(ren) of the button */
     children: React.PropTypes.oneOfType([
         React.PropTypes.arrayOf(React.PropTypes.node),
         React.PropTypes.node,

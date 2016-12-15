@@ -1,4 +1,4 @@
-// dependencies
+// npm dependencies
 //
 import React from 'react';
 import classnames from 'classnames';
@@ -34,9 +34,15 @@ const SubmitButton = ({ children, name, style, onClick }, { isValid }) => (
 // define the property types for the component
 //
 SubmitButton.propTypes = {
+    /** The name for the component */
     name:     React.PropTypes.string,
-    style:    React.PropTypes.string,
+    /** The style with which to display the button */
+    style:       React.PropTypes.oneOf(
+        ['danger', 'error', 'warning', 'warn', 'info', 'success', 'ok']
+    ),
+    /** The `onClick` handler for the button */
     onClick:  React.PropTypes.func,
+    /** The child(ren) of this component */
     children: React.PropTypes.oneOfType([
         React.PropTypes.arrayOf(React.PropTypes.node),
         React.PropTypes.node,

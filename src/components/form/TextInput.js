@@ -1,4 +1,4 @@
-// dependencies
+// npm dependencies
 //
 import React from 'react';
 import update from 'react-addons-update';
@@ -362,25 +362,39 @@ class TextInput extends React.Component {
  * @type {Object}
  */
 TextInput.propTypes = {
+    /** The name for the component */
     name:              React.PropTypes.string,
+    /** The ID for the component */
     id:                React.PropTypes.string,
+    /** A flag to indicate whether this is a password input component */
     password:          React.PropTypes.bool,
+    /** A flag to indicate whether this component is required */
     required:          React.PropTypes.bool,
+    /** A flag to indicate whether this component is read only */
     readOnly:          React.PropTypes.bool,
+    /** A flag to indicate whether this component is hidden */
     hidden:            React.PropTypes.bool,
+    /** A flag to indicate whether this component is to be rendered inline */
     inline:            React.PropTypes.bool,
+    /** The width of the component if rendering inline */
     inlineWidth:       React.PropTypes.string,
+    /** The value of the text input component */
     value:             React.PropTypes.oneOfType([
         React.PropTypes.string,
         React.PropTypes.number,
     ]),
+    /** The label for the component */
     label:             React.PropTypes.string,
+    /** The placeholder for the component */
     placeholder:       React.PropTypes.string,
+    /** The description for the component (used in validation error messages) */
     description:       React.PropTypes.string,
+    /** A custom validation message, or set of messages */
     validationMessage: React.PropTypes.oneOfType([
         React.PropTypes.string,
         React.PropTypes.object,
     ]),
+    /** A regex used to validate values */
     pattern:           (props, propName, componentName) => {
         if (props.pattern && !isRegExp(props.pattern) && !isFunction(props.pattern)) {
             return new Error(
@@ -390,9 +404,19 @@ TextInput.propTypes = {
         }
         return null;
     },
+    /** A function used to format the value */
     format:            React.PropTypes.func,
+    /**
+     * A function used to parse the value which has been formatted by the
+     * `format` function
+     */
     parse:             React.PropTypes.func,
+    /** The `onChange` handler for the component */
     onChange:          React.PropTypes.func,
+    /**
+     * The key used to identify this component by the parent Form component for
+     * tracking validation errors in Form children
+     */
     validationKey:     React.PropTypes.string,
 };
 

@@ -1,10 +1,12 @@
-// dependencies
+// npm dependencies
 //
 import React from 'react';
 import update from 'react-addons-update';
 import uniqueId from 'lodash/uniqueId';
 import classnames from 'classnames';
 
+// local dependencies
+//
 import Alert from './Alert';
 import Button from './form/Button';
 import CheckboxGroup from './form/CheckboxGroup';
@@ -66,7 +68,7 @@ class Form extends React.Component {
      * Handle a validation event from one of the children of this Form
      * @param  {String} validationKey     A unique key identifying the child
      *                                    component
-     * @param  {[type]} childHasValidated A flag to indicate whether the
+     * @param  {Boolean} childHasValidated A flag to indicate whether the
      *                                    component has validated in response to
      *                                    user input
      * @param  {String|null} message      The validation error message, or null
@@ -180,9 +182,19 @@ class Form extends React.Component {
 // set the property types for the component
 //
 Form.propTypes = {
+    /**
+     * A flag to indicate whether the components in this form should be rendered
+     * inline
+     */
     inline:       React.PropTypes.bool,
+    /**
+     * A flag to indicate whether the components in this form should be rendered
+     * horizontally
+     */
     horizontal:   React.PropTypes.bool,
+    /** The width (in columns) of the component labels */
     labelColumns: React.PropTypes.number,
+    /** The child(ren) of this form */
     children:     React.PropTypes.oneOfType([
         React.PropTypes.arrayOf(React.PropTypes.node),
         React.PropTypes.node,
