@@ -242,18 +242,32 @@ class CheckboxGroup extends React.Component {
  * @type {Object}
  */
 CheckboxGroup.propTypes = {
+    /**
+     * A flag to indicated whether this component is required (ie. at least one
+     * checkbox must be checked)
+     */
     required:          React.PropTypes.bool,
+    /** The ID for the component */
     id:                React.PropTypes.string,
+    /** The label for the checkbox group */
     label:             React.PropTypes.string,
+    /**
+     * The description of the component for use in validation error messages
+     * (ie., "at least one item in <description> must be checked")
+     */
     description:       React.PropTypes.string,
+    /** A custom validation error message for the component */
     validationMessage: React.PropTypes.string,
+    /** The `onChange` handler for the component */
     onChange:          React.PropTypes.func,
+    /** The value of the component */
     value:             React.PropTypes.oneOfType([
         React.PropTypes.arrayOf(React.PropTypes.string),
         React.PropTypes.arrayOf(React.PropTypes.number),
         React.PropTypes.string,
         React.PropTypes.number,
     ]),
+    /** The options for the checkbox group */
     options:           React.PropTypes.arrayOf(React.PropTypes.object),
 };
 

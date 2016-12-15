@@ -144,13 +144,18 @@ class RadioButtonGroup extends React.Component {
  * @type {Object}
  */
 RadioButtonGroup.propTypes = {
+    /** The label for the checkbox group */
     label:    React.PropTypes.string,
+    /** A flag to indicated whether this component is disabled */
     disabled: React.PropTypes.bool,
+    /** The options for the radio button group */
     options:  React.PropTypes.array,
+    /** The selected value in the radio button group */
     value:    React.PropTypes.oneOfType([
         React.PropTypes.string,
         React.PropTypes.number,
     ]),
+    /** The `onChange` handler for the component */
     onChange: React.PropTypes.func,
 };
 

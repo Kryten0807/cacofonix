@@ -46,8 +46,16 @@ const Alert = ({ style, dismissible, children }) => {
 // set the property types for the Alert component
 //
 Alert.propTypes = {
-    style:       React.PropTypes.string,
+    /** The style of the Alert */
+    style:       React.PropTypes.oneOf(
+        ['danger', 'error', 'warning', 'warn', 'info', 'success', 'ok']
+    ),
+    /**
+     * A flag to indicate whether this alert can be dismissed by the user (not
+     * currently implementd)
+     */
     dismissible: React.PropTypes.bool,
+    /** The child(ren) to display in this component */
     children:    React.PropTypes.oneOfType([
         React.PropTypes.element,
         React.PropTypes.arrayOf(React.PropTypes.element),
