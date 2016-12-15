@@ -8,12 +8,12 @@ const File = require('vinyl');
  * The quick-and-dirty react-docgen plugin
  * @return {Stream} The stream
  */
-const docGen = function docGen(options = {}) {
+const docGen = function docGen(options) {
     // implement the default options
     //
     const opts = Object.assign({
         name: 'react-docgen.json',
-    }, options);
+    }, options || {});
 
     // declare a variable to hold the list of files
     //
