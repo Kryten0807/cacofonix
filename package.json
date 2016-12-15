@@ -46,7 +46,10 @@
     "gulp-shell": "^0.5.2",
     "jsdom": "^9.5.0",
     "react-addons-test-utils": "^15.3.1",
+    "react-docgen": "^2.12.1",
     "sinon": "^1.17.5",
+    "through2": "^2.0.3",
+    "vinyl": "^2.0.1",
     "yargs": "^6.5.0"
   }
 }

@@ -1,12 +1,7 @@
-// gulp plugins/other support packages
+// npm dependencies
 //
 const eslint = require('gulp-eslint');
 const gulpIf = require('gulp-if');
-const yargs = require('yargs');
-
-// import the paths
-//
-const paths = require('./paths.json');
 
 /**
  * A helper function to lint **and fix** a set of paths
@@ -28,17 +23,4 @@ const lintAndFix = (gulp, list) => {
         .pipe(eslint.failAfterError());
 };
 
-module.exports = (gulp) => {
-    // is the `--fix` flag set? if so, execute a "lint and fix"
-    //
-    if (yargs.argv.fix) {
-        return lintAndFix(gulp, paths.lint);
-    }
-
-    // otherwise, just lint the files
-    //
-    return gulp.src(paths.lint)
-        .pipe(eslint())
-        .pipe(eslint.format())
-        .pipe(eslint.failAfterError());
-};
+module.exports = lintAndFix;

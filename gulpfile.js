@@ -8,4 +8,4 @@ const requireTasks = require('gulp-require-tasks');
 
 // initialize the task import
 //
-requireTasks({ path: `${__dirname}/gulp` });
+requireTasks({ path: `${__dirname}/gulp/tasks` });

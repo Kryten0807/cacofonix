@@ -4,7 +4,7 @@ const shell = require('gulp-shell');
 
 // import the paths
 //
-const paths = require('./paths.json');
+const paths = require('../paths.json');
 
 module.exports = (gulp) =>
     gulp.src(`${paths.dist}/**/*.js`, { read: false })
