@@ -12,7 +12,7 @@ const paths = require('./paths.json');
  * The quick-and-dirty react-docgen plugin
  * @return {Stream} The stream
  */
-const plugin = function plugin() {
+const plugin = function plugin(options = {}) {
     // declare a variable to hold the list of files
     //
     const fileList = [];
