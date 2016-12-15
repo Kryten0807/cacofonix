@@ -1,3 +1,5 @@
+/* eslint-disable no-var */
+
 // npm dependencies
 //
 const File = require('vinyl');
@@ -14,8 +16,8 @@ const path = require('path');
  */
 
 const stringOfLength = (string, length) => {
-    let newString = '';
-    for (let i = 0; i < length; i++) { // eslint-disable-line id-length
+    var newString = '';
+    for (var i = 0; i < length; i++) { // eslint-disable-line id-length,vars-on-top
         newString += string;
     }
     return newString;
@@ -31,7 +33,7 @@ const generateTitle = (filepath) => {
 const generateDescription = (description) => `${description}\n`;
 
 const generatePropType = (type) => {
-    let values;
+    var values;
     if (Array.isArray(type.value)) {
         values = `(${type.value.map((typeValue) => typeValue.name || typeValue.value).join('|')})`;
     } else {
@@ -82,13 +84,13 @@ const toMarkdown = function toMarkdown(options) {
     }, options || {});
 
     return through.obj(function write(file, encoding, callback) {
+        var markdown = '';
+
         if (file.isNull()) {
             return callback(null, file);
         }
 
         const reactAPI = JSON.parse(file.contents.toString());
-
-        let markdown = '';
 
         Object.keys(reactAPI).forEach((filename) => {
             markdown += generateMarkdown(filename, reactAPI[filename]);
