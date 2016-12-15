@@ -5,6 +5,7 @@ Cacofonix
 
 Develop ![Dev Build](https://travis-ci.org/Kryten0807/cacofonix.svg?branch=develop)
 Master ![Dev Build](https://travis-ci.org/Kryten0807/cacofonix.svg?branch=master)
+[History](https://travis-ci.org/Kryten0807/cacofonix/builds)
 
 This is a set of Bootstrap-themed React components, centered primarily around a `Form` element that provides support for client-side form validation.
 
