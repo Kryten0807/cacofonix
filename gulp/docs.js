@@ -193,5 +193,6 @@ const toMarkdown = function toMarkdown(options = {}) {
 
 module.exports = (gulp) =>
     gulp.src(paths.source)
-        .pipe(plugin())
+        .pipe(docGen())
+        .pipe(toMarkdown({ name: 'REACT.md' }))
         .pipe(gulp.dest('./'));
