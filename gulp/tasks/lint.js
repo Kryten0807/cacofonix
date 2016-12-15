@@ -6,7 +6,7 @@ const yargs = require('yargs');
 
 // import the paths
 //
-const paths = require('./paths.json');
+const paths = require('../paths.json');
 
 /**
  * A helper function to lint **and fix** a set of paths
