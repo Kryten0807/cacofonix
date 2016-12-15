@@ -74,12 +74,12 @@ const generateMarkdown = function generateMarkdown(filepath, reactAPI) {
 };
 
 
-const toMarkdown = function toMarkdown(options = {}) {
+const toMarkdown = function toMarkdown(options) {
     // implement the default options
     //
     const opts = Object.assign({
         name: 'react-docgen.md',
-    }, options);
+    }, options || {});
 
     return through.obj(function write(file, encoding, callback) {
         if (file.isNull()) {
