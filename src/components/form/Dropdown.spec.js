@@ -99,6 +99,27 @@ describe('a Form component containing a Dropdown', () => {
         });
     });
 
+    it('should accept a list of strings as options', () => {
+
+        const options = ['one', 'two'];
+
+        const component = render(
+            <Form>
+                <Form.Dropdown options={options} />
+            </Form>
+        );
+
+        expect(component.find('option')).to.have.length(options.length, 'options count');
+
+        options.forEach((opt) => {
+            expect(component.find(`option[value="${opt}"]`))
+                .to.have.length(1, `value=${opt}`);
+            expect(component.find(`option[value="${opt}"]`).text())
+                .to.equal(opt, `name=${opt}`);
+
+        });
+    });
+
     it('should have an empty set of options if options=[]', () => {
 
         const options = [];
