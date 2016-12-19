@@ -218,7 +218,14 @@ Dropdown.propTypes = {
         React.PropTypes.string,
         React.PropTypes.number,
     ]),
-    /** The options for the dropdown */
+    /**
+     * The options for the dropdown, in one of three possible forms:
+     * + An array of strings - the string is used as both the value & name for
+     *   the option
+     * + An array of objects of the form  { value: 'x', name: 'y' }
+     * + An object where the key is the option group name and each value is
+     *   either an array of strings or an array of objects as described above
+     */
     options:  React.PropTypes.oneOfType([
         React.PropTypes.array,
         React.PropTypes.object,
