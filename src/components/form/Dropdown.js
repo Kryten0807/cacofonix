@@ -151,10 +151,11 @@ class Dropdown extends React.Component {
                 options.push(
                     <optgroup key={uniqueId('form-dropdown-optgroup-')} label={key}>
                         {this.props.options[key].map((opt) => (
-                            <option key={uniqueId('form-dropdown-option-')} value={opt.value || opt}>
-                                {opt.name || opt}
-                            </option>))
-                        }
+                            <option
+                                key={uniqueId('form-dropdown-option-')}
+                                value={opt.value || opt}
+                            >{opt.name || opt}</option>)
+                        )}
                     </optgroup>
                 );
             });
