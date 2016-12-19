@@ -298,6 +298,66 @@ describe('a Form component containing a Dropdown', () => {
         expect(component.find('select optgroup').at(0).find('option'))
             .to.have.length(2, 'optgroup 1 options');
 
+        expect(
+            component.find('select optgroup')
+                .at(0)
+                .find('option')
+                .at(0)
+                .props()
+                .value
+        )
+            .to.equal('1');
+        expect(
+            component.find('select optgroup')
+                .at(0)
+                .find('option')
+                .at(0)
+                .text()
+        )
+            .to.equal('one');
+        expect(
+            component.find('select optgroup')
+                .at(0)
+                .find('option')
+                .at(1)
+                .props()
+                .value
+        )
+            .to.equal('2');
+        expect(
+            component.find('select optgroup')
+                .at(0)
+                .find('option')
+                .at(1)
+                .text()
+        )
+            .to.equal('two');
+
+
+        // optgroup[1]
+        expect(component.find('select optgroup').at(1).find('option'))
+            .to.have.length(1, 'optgroup 1 options');
+
+        expect(
+            component.find('select optgroup')
+                .at(1)
+                .find('option')
+                .at(0)
+                .props()
+                .value
+        )
+            .to.equal('3');
+        expect(
+            component.find('select optgroup')
+                .at(1)
+                .find('option')
+                .at(0)
+                .text()
+        )
+            .to.equal('three');
+
+
+    });
         // optgroup[0]
         expect(component.find('select optgroup').at(1).find('option'))
             .to.have.length(1, 'optgroup 1 options');
