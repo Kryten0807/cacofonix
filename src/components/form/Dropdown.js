@@ -7,6 +7,17 @@ import uniqueId from 'lodash/uniqueId';
 import classnames from 'classnames';
 
 /**
+ * Build a list of <option> elements from a list of options
+ * @param  {Array} opts The options for which to build the list of elements
+ * @return {Array}      An array of <option> elements
+ */
+const optionsList = (opts) => opts.map((opt) =>
+    <option key={uniqueId('form-dropdown-option-')} value={opt.value || opt}>
+        {opt.name || opt}
+    </option>
+);
+
+/**
  * The Dropdown component
  */
 class Dropdown extends React.Component {
