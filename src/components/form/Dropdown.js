@@ -135,9 +135,13 @@ class Dropdown extends React.Component {
             // it's an array - simply map it to a list of <option> elements
             //
             options = this.props.options.map((opt) => {
-                return (<option key={uniqueId('form-dropdown-option-')} value={opt.value}>
-                    {opt.name}
-                </option>);
+                let optionValue = opt.value || opt;
+                let optionName = opt.name || opt;
+                return (
+                    <option key={uniqueId('form-dropdown-option-')} value={optionValue}>
+                        {optionName}
+                    </option>
+                );
             });
         } else {
             // it's an object - build a list of options, separated into
