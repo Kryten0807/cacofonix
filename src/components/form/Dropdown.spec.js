@@ -287,13 +287,18 @@ describe('a Form component containing a Dropdown', () => {
             </Form>
         );
 
+        // correct number of optgroups
         expect(component.find('select optgroup')).to.have.length(2, 'optgroup');
+
+        // optgroup[0]
         expect(component.find('select optgroup').at(0).props().label)
             .to.equal('Group 1', 'optgroup 1 text');
         expect(component.find('select optgroup').at(1).props().label)
             .to.equal('Group 2', 'optgroup 2 text');
         expect(component.find('select optgroup').at(0).find('option'))
             .to.have.length(2, 'optgroup 1 options');
+
+        // optgroup[0]
         expect(component.find('select optgroup').at(1).find('option'))
             .to.have.length(1, 'optgroup 1 options');
     });
