@@ -101,7 +101,7 @@ type: `string`
 
 The style of the panel
 
-type: `enum('danger'|'error'|'warning'|'warn'|'info'|'success'|'ok')`
+type: `enum('danger'|'error'|'warning'|'warn'|'primary'|'info'|'success'|'ok')`
 
 `Button` Component (components/form/Button.js)
 ==============================================
@@ -380,6 +380,11 @@ type: `string`
 ### format
 
 A function used to format the value
+
+Note that if you are using a `format` function, the value should be
+formatted **before** passing it as a property; if you fail to do this,
+then the user will initially see an unformatted value which will be
+formatted after the first edit.
 
 type: `func`
 
