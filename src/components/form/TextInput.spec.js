@@ -14,15 +14,15 @@ const expect = chai.expect;
 
 /* eslint-disable no-unused-vars */
 const debug = (component) => {
-    console.info('------------------------------------------------------------');
+    console.info('-----------------------------------------------------------');
     console.info(component.debug());
-    console.info('------------------------------------------------------------');
+    console.info('-----------------------------------------------------------');
 };
 
-const dump = (value, title = null) => {
-    console.info(`---${title || ''}---------------------------------------------------------`);
+const dump = (value, title = '') => {
+    console.info(`---${title}------------------------------------------------`);
     console.info(value);
-    console.info('------------------------------------------------------------');
+    console.info(`---${title}------------------------------------------------`);
 };
 /* eslint-enable no-unused-vars */
 
@@ -50,26 +50,6 @@ const formatCurrency = (value) => {
     return Number.isNaN(val) ? '' : `$ ${val.toFixed(2)}`;
 };
 
-/* *****************************************************************************
-a Form component with a TextInput element
-    should include a <Form.TextInput> as a child
-    should not include a label if label is omitted
-    should include a label if the label is set
-    should include a placeholder if the placeholder is set
-    should include the readonly flag when readonly is set
-    should not be visible when hidden is set
-    should have a label.col-xs-3 when form is horizontal and labelColumns=3
-    should have a div.col-xs-9 when form is horizontal and labelColumns=3
-    should have the correct markup when the inline prop is set
-    should have the correct markup when inline=true and inlineWidth is set
-    should not have a column specified when form is horizontal and inline is true
-    should include an asterisk in the label when the required flag is set
-    should not include an asterisk in the label when the required flag is not set
-    should not have a name if the name prop is not set
-    should have the appropriate name if the name prop is set
-    should have type=text when password=false
-    should have type=password when password=true
-*/
 describe('a Form component with a TextInput element', () => {
 
     it('should include a <Form.TextInput> as a child', () => {
@@ -331,13 +311,6 @@ describe('a Form component with a TextInput element', () => {
 
 });
 
-/* *****************************************************************************
-when initializing a Form with a required TextInput
-    the global validation message should not be displayed with a valid value
-    the component validation message should not be displayed with a valid value
-    the global validation message should not be displayed with an invalid value
-    the component validation message should not be displayed with an invalid value
-*/
 describe('when initializing a Form with a required TextInput', () => {
 
     const required = true;
@@ -394,13 +367,6 @@ describe('when initializing a Form with a required TextInput', () => {
 
 });
 
-/* *****************************************************************************
-when initializing a Form with a non-required TextInput
-    the global validation message should not be displayed with a valid value
-    the component validation message should not be displayed with a valid value
-    the global validation message should not be displayed with an invalid value
-    the component validation message should not be displayed with an invalid value
-*/
 describe('when initializing a Form with a non-required TextInput', () => {
 
     const required = false;
@@ -457,13 +423,6 @@ describe('when initializing a Form with a non-required TextInput', () => {
 
 });
 
-/* *****************************************************************************
-when changing the value of a required TextInput (but not blurring)
-    the global validation message should not be displayed with a valid value
-    the component validation message should not be displayed with a valid value
-    the global validation message should not be displayed with an invalid value
-    the component validation message should not be displayed with an invalid value
-*/
 describe('when changing the value of a required TextInput (but not blurring)', () => {
 
     const required = true;
@@ -540,13 +499,6 @@ describe('when changing the value of a required TextInput (but not blurring)', (
 
 });
 
-/* *****************************************************************************
-when changing the value of a non-required TextInput (but not blurring)
-    the global validation message should not be displayed with a valid value
-    the component validation message should not be displayed with a valid value
-    the global validation message should not be displayed with an invalid value
-    the component validation message should not be displayed with an invalid value
-*/
 describe('when changing the value of a non-required TextInput (but not blurring)', () => {
 
     const required = false;
@@ -623,15 +575,6 @@ describe('when changing the value of a non-required TextInput (but not blurring)
 
 });
 
-/* *****************************************************************************
-when changing (and blurring) the value of a required TextInput
-    the global validation message should not be displayed with a valid value
-    the component validation message should not be displayed with a valid value
-    the global validation message SHOULD be displayed with an empty value
-    the component validation message SHOULD be displayed with an empty value
-    the component validation message SHOULD be displayed with an empty value
-        and an inline TextInput
-*/
 describe('when changing (and blurring) the value of a required TextInput', () => {
 
     const required = true;
@@ -680,14 +623,35 @@ describe('when changing (and blurring) the value of a required TextInput', () =>
     });
 
     it('the global validation message SHOULD be displayed with an empty value', () => {
+
         const initialValue = 'something';
         const finalValue = '';
 
-        const component = mount(
-            <Form>
-                <Form.TextInput required={required} value={initialValue} />
-            </Form>
-        );
+        class TstComp extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = { value: initialValue };
+                this.onChange = this.onChange.bind(this);
+            }
+
+            onChange(value) {
+                this.setState({ value });
+            }
+
+            render() {
+                return (
+                    <Form>
+                        <Form.TextInput
+                            onChange={this.onChange}
+                            value={this.state.value}
+                            required={required}
+                        />
+                    </Form>
+                );
+            }
+        }
+
+        const component = mount(<TstComp />);
 
         component.find('input').simulate('change', {
             target: { value: finalValue }
@@ -698,17 +662,39 @@ describe('when changing (and blurring) the value of a required TextInput', () =>
         });
 
         expect(component.find('Alert')).to.have.length(1, 'Alert');
+
     });
 
     it('the component validation message SHOULD be displayed with an empty value', () => {
+
         const initialValue = 'something';
         const finalValue = '';
 
-        const component = mount(
-            <Form>
-                <Form.TextInput required={required} value={initialValue} />
-            </Form>
-        );
+        class TstComp extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = { value: initialValue };
+                this.onChange = this.onChange.bind(this);
+            }
+
+            onChange(value) {
+                this.setState({ value });
+            }
+
+            render() {
+                return (
+                    <Form>
+                        <Form.TextInput
+                            onChange={this.onChange}
+                            value={this.state.value}
+                            required={required}
+                        />
+                    </Form>
+                );
+            }
+        }
+
+        const component = mount(<TstComp />);
 
         component.find('input').simulate('change', {
             target: { value: finalValue }
@@ -720,18 +706,41 @@ describe('when changing (and blurring) the value of a required TextInput', () =>
 
         expect(component.find('.has-error')).to.have.length(1, 'has-error');
         expect(component.find('.help-block')).to.have.length(1, 'help-block');
+
     });
 
     it('the component validation message SHOULD be displayed with an empty ' +
         'value and an inline TextInput', () => {
+
         const initialValue = 'something';
         const finalValue = '';
 
-        const component = mount(
-            <Form>
-                <Form.TextInput inline required={required} value={initialValue} />
-            </Form>
-        );
+        class TstComp extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = { value: initialValue };
+                this.onChange = this.onChange.bind(this);
+            }
+
+            onChange(value) {
+                this.setState({ value });
+            }
+
+            render() {
+                return (
+                    <Form>
+                        <Form.TextInput
+                            inline
+                            onChange={this.onChange}
+                            value={this.state.value}
+                            required={required}
+                        />
+                    </Form>
+                );
+            }
+        }
+
+        const component = mount(<TstComp />);
 
         component.find('input').simulate('change', {
             target: { value: finalValue }
@@ -743,16 +752,10 @@ describe('when changing (and blurring) the value of a required TextInput', () =>
 
         expect(component.find('.has-error')).to.have.length(1, 'has-error');
         expect(component.find('.help-block')).to.have.length(1, 'help-block');
+
     });
 });
 
-/* *****************************************************************************
-when changing (and blurring) the value of a TextInput with a pattern function
-    the global validation message should not be displayed with a valid value
-    the component validation message should not be displayed with a valid value
-    the global validation message SHOULD be displayed with an invalid value
-    the component validation message SHOULD be displayed with an invalid value
-*/
 describe('when changing (and blurring) the value of a TextInput with a pattern function', () => {
 
     const pattern = (value) => value === 'the only valid value';
@@ -801,14 +804,35 @@ describe('when changing (and blurring) the value of a TextInput with a pattern f
     });
 
     it('the global validation message SHOULD be displayed with an invalid value', () => {
+
         const initialValue = 'the only valid value';
         const finalValue = 'this does not match';
 
-        const component = mount(
-            <Form>
-                <Form.TextInput pattern={pattern} value={initialValue} />
-            </Form>
-        );
+        class TstComp extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = { value: initialValue };
+                this.onChange = this.onChange.bind(this);
+            }
+
+            onChange(value) {
+                this.setState({ value });
+            }
+
+            render() {
+                return (
+                    <Form>
+                        <Form.TextInput
+                            onChange={this.onChange}
+                            value={this.state.value}
+                            pattern={pattern}
+                        />
+                    </Form>
+                );
+            }
+        }
+
+        const component = mount(<TstComp />);
 
         component.find('input').simulate('change', {
             target: { value: finalValue }
@@ -819,17 +843,39 @@ describe('when changing (and blurring) the value of a TextInput with a pattern f
         });
 
         expect(component.find('Alert')).to.have.length(1, 'Alert');
+
     });
 
     it('the component validation message SHOULD be displayed with an invalid value', () => {
+
         const initialValue = 'the only valid value';
         const finalValue = 'not the right value';
 
-        const component = mount(
-            <Form>
-                <Form.TextInput pattern={pattern} value={initialValue} />
-            </Form>
-        );
+        class TstComp extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = { value: initialValue };
+                this.onChange = this.onChange.bind(this);
+            }
+
+            onChange(value) {
+                this.setState({ value });
+            }
+
+            render() {
+                return (
+                    <Form>
+                        <Form.TextInput
+                            onChange={this.onChange}
+                            value={this.state.value}
+                            pattern={pattern}
+                        />
+                    </Form>
+                );
+            }
+        }
+
+        const component = mount(<TstComp />);
 
         component.find('input').simulate('change', {
             target: { value: finalValue }
@@ -841,17 +887,11 @@ describe('when changing (and blurring) the value of a TextInput with a pattern f
 
         expect(component.find('.has-error')).to.have.length(1, 'has-error');
         expect(component.find('.help-block')).to.have.length(1, 'help-block');
+
     });
 
 });
 
-/* *****************************************************************************
-when changing (and blurring) the value of a TextInput with a pattern regex
-    the global validation message should not be displayed with a valid value
-    the component validation message should not be displayed with a valid value
-    the global validation message SHOULD be displayed with an invalid value
-    the component validation message SHOULD be displayed with an invalid value
-*/
 describe('when changing (and blurring) the value of a TextInput with a pattern regex', () => {
 
     // a simple zip code pattern
@@ -902,14 +942,35 @@ describe('when changing (and blurring) the value of a TextInput with a pattern r
     });
 
     it('the global validation message SHOULD be displayed with an invalid value', () => {
+
         const initialValue = '12345';
         const finalValue = '999';
 
-        const component = mount(
-            <Form>
-                <Form.TextInput pattern={pattern} value={initialValue} />
-            </Form>
-        );
+        class TstComp extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = { value: initialValue };
+                this.onChange = this.onChange.bind(this);
+            }
+
+            onChange(value) {
+                this.setState({ value });
+            }
+
+            render() {
+                return (
+                    <Form>
+                        <Form.TextInput
+                            onChange={this.onChange}
+                            value={this.state.value}
+                            pattern={pattern}
+                        />
+                    </Form>
+                );
+            }
+        }
+
+        const component = mount(<TstComp />);
 
         component.find('input').simulate('change', {
             target: { value: finalValue }
@@ -920,17 +981,39 @@ describe('when changing (and blurring) the value of a TextInput with a pattern r
         });
 
         expect(component.find('Alert')).to.have.length(1, 'Alert');
+
     });
 
     it('the component validation message SHOULD be displayed with an invalid value', () => {
+
         const initialValue = '12345';
         const finalValue = '999';
 
-        const component = mount(
-            <Form>
-                <Form.TextInput pattern={pattern} value={initialValue} />
-            </Form>
-        );
+        class TstComp extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = { value: initialValue };
+                this.onChange = this.onChange.bind(this);
+            }
+
+            onChange(value) {
+                this.setState({ value });
+            }
+
+            render() {
+                return (
+                    <Form>
+                        <Form.TextInput
+                            onChange={this.onChange}
+                            value={this.state.value}
+                            pattern={pattern}
+                        />
+                    </Form>
+                );
+            }
+        }
+
+        const component = mount(<TstComp />);
 
         component.find('input').simulate('change', {
             target: { value: finalValue }
@@ -942,46 +1025,44 @@ describe('when changing (and blurring) the value of a TextInput with a pattern r
 
         expect(component.find('.has-error')).to.have.length(1, 'has-error');
         expect(component.find('.help-block')).to.have.length(1, 'help-block');
+
     });
 
 });
 
-/* *****************************************************************************
-when changing (and blurring) the value of a TextInput
-    should display validation error when required=true and value=blank
-    should not display validation error when required=true and value=something
-    should not display validation error when required=false and value=blank
-    should not display validation error when required=false and value=something
-
-    should display validation error when required=true, pattern=regex, and value=blank
-    should display validation error when required=true, pattern=regex, and value=non-match
-    should not display validation error when required=true, pattern=regex, and value=match
-    should not display validation error when required=false, pattern=regex, and value=blank
-    should display validation error when required=false, pattern=regex, and value=non-match
-    should not display validation error when required=false, pattern=regex, and value=match
-
-    should display validation error when required=true, pattern=function, and value=blank
-    should display validation error when required=true, pattern=function, and value=non-match
-    should not display validation error when required=true, pattern=function, and value=match
-    should not display validation error when required=false, pattern=function, and value=blank
-    should display validation error when required=false, pattern=function, and value=non-match
-    should not display validation error when required=false, pattern=function, and value=match
-*/
 describe('when changing (and blurring) the value of a TextInput', () => {
 
     it('should display validation error when required=true and value=blank', () => {
+
         const required = true;
         const initialValue = 'something';
         const finalValue = '';
 
-        const component = mount(
-            <Form>
-                <Form.TextInput
-                    required={required}
-                    value={initialValue}
-                />
-            </Form>
-        );
+        class TstComp extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = { value: initialValue };
+                this.onChange = this.onChange.bind(this);
+            }
+
+            onChange(value) {
+                this.setState({ value });
+            }
+
+            render() {
+                return (
+                    <Form>
+                        <Form.TextInput
+                            onChange={this.onChange}
+                            value={this.state.value}
+                            required={required}
+                        />
+                    </Form>
+                );
+            }
+        }
+
+        const component = mount(<TstComp />);
 
         component.find('input').simulate('change', {
             target: { value: finalValue }
@@ -992,6 +1073,7 @@ describe('when changing (and blurring) the value of a TextInput', () => {
         });
 
         expect(component.find('Alert')).to.have.length(1);
+
     });
 
     it('should not display validation error when required=true and value=something', () => {
@@ -1071,21 +1153,39 @@ describe('when changing (and blurring) the value of a TextInput', () => {
 
     it('should display validation error when required=true, pattern=regex, ' +
         'and value=blank', () => {
+
         const required = true;
         const pattern = /^[0-9]{3}$/;
 
         const initialValue = '123';
         const finalValue = '';
 
-        const component = mount(
-            <Form>
-                <Form.TextInput
-                    required={required}
-                    pattern={pattern}
-                    value={initialValue}
-                />
-            </Form>
-        );
+        class TstComp extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = { value: initialValue };
+                this.onChange = this.onChange.bind(this);
+            }
+
+            onChange(value) {
+                this.setState({ value });
+            }
+
+            render() {
+                return (
+                    <Form>
+                        <Form.TextInput
+                            onChange={this.onChange}
+                            value={this.state.value}
+                            required={required}
+                            pattern={pattern}
+                        />
+                    </Form>
+                );
+            }
+        }
+
+        const component = mount(<TstComp />);
 
         component.find('input').simulate('change', {
             target: { value: finalValue }
@@ -1096,25 +1196,44 @@ describe('when changing (and blurring) the value of a TextInput', () => {
         });
 
         expect(component.find('Alert')).to.have.length(1);
+
     });
 
     it('should display validation error when required=true, pattern=regex, ' +
         'and value=non-match', () => {
+
         const required = true;
         const pattern = /^[0-9]{3}$/;
 
         const initialValue = '123';
         const finalValue = 'does not match';
 
-        const component = mount(
-            <Form>
-                <Form.TextInput
-                    required={required}
-                    pattern={pattern}
-                    value={initialValue}
-                />
-            </Form>
-        );
+        class TstComp extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = { value: initialValue };
+                this.onChange = this.onChange.bind(this);
+            }
+
+            onChange(value) {
+                this.setState({ value });
+            }
+
+            render() {
+                return (
+                    <Form>
+                        <Form.TextInput
+                            onChange={this.onChange}
+                            value={this.state.value}
+                            required={required}
+                            pattern={pattern}
+                        />
+                    </Form>
+                );
+            }
+        }
+
+        const component = mount(<TstComp />);
 
         component.find('input').simulate('change', {
             target: { value: finalValue }
@@ -1125,6 +1244,7 @@ describe('when changing (and blurring) the value of a TextInput', () => {
         });
 
         expect(component.find('Alert')).to.have.length(1);
+
     });
 
     it('should not display validation error when required=true, ' +
@@ -1187,21 +1307,39 @@ describe('when changing (and blurring) the value of a TextInput', () => {
 
     it('should display validation error when required=false, pattern=regex, ' +
         'and value=non-match', () => {
+
         const required = false;
         const pattern = /^[0-9]{3}$/;
 
         const initialValue = '123';
         const finalValue = 'woooo';
 
-        const component = mount(
-            <Form>
-                <Form.TextInput
-                    required={required}
-                    pattern={pattern}
-                    value={initialValue}
-                />
-            </Form>
-        );
+        class TstComp extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = { value: initialValue };
+                this.onChange = this.onChange.bind(this);
+            }
+
+            onChange(value) {
+                this.setState({ value });
+            }
+
+            render() {
+                return (
+                    <Form>
+                        <Form.TextInput
+                            onChange={this.onChange}
+                            value={this.state.value}
+                            required={required}
+                            pattern={pattern}
+                        />
+                    </Form>
+                );
+            }
+        }
+
+        const component = mount(<TstComp />);
 
         component.find('input').simulate('change', {
             target: { value: finalValue }
@@ -1212,6 +1350,7 @@ describe('when changing (and blurring) the value of a TextInput', () => {
         });
 
         expect(component.find('Alert')).to.have.length(1);
+
     });
 
     it('should not display validation error when required=false, ' +
@@ -1303,21 +1442,39 @@ describe('when changing (and blurring) the value of a TextInput', () => {
 
     it('should not display validation error when required=true, ' +
         'pattern=function, and value=match', () => {
-        const required = true;
+
+        const required = false;
         const pattern = (val) => val === 'xyz';
 
         const initialValue = '123';
         const finalValue = 'xyz';
 
-        const component = mount(
-            <Form>
-                <Form.TextInput
-                    required={required}
-                    pattern={pattern}
-                    value={initialValue}
-                />
-            </Form>
-        );
+        class TstComp extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = { value: initialValue };
+                this.onChange = this.onChange.bind(this);
+            }
+
+            onChange(value) {
+                this.setState({ value });
+            }
+
+            render() {
+                return (
+                    <Form>
+                        <Form.TextInput
+                            onChange={this.onChange}
+                            value={this.state.value}
+                            required={required}
+                            pattern={pattern}
+                        />
+                    </Form>
+                );
+            }
+        }
+
+        const component = mount(<TstComp />);
 
         component.find('input').simulate('change', {
             target: { value: finalValue }
@@ -1328,25 +1485,44 @@ describe('when changing (and blurring) the value of a TextInput', () => {
         });
 
         expect(component.find('Alert')).to.have.length(0);
+
     });
 
     it('should not display validation error when required=false, ' +
         'pattern=function, and value=blank', () => {
+
         const required = false;
         const pattern = (val) => val === 'xyz';
 
         const initialValue = '123';
         const finalValue = '';
 
-        const component = mount(
-            <Form>
-                <Form.TextInput
-                    required={required}
-                    pattern={pattern}
-                    value={initialValue}
-                />
-            </Form>
-        );
+        class TstComp extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = { value: initialValue };
+                this.onChange = this.onChange.bind(this);
+            }
+
+            onChange(value) {
+                this.setState({ value });
+            }
+
+            render() {
+                return (
+                    <Form>
+                        <Form.TextInput
+                            onChange={this.onChange}
+                            value={this.state.value}
+                            required={required}
+                            pattern={pattern}
+                        />
+                    </Form>
+                );
+            }
+        }
+
+        const component = mount(<TstComp />);
 
         component.find('input').simulate('change', {
             target: { value: finalValue }
@@ -1357,6 +1533,7 @@ describe('when changing (and blurring) the value of a TextInput', () => {
         });
 
         expect(component.find('Alert')).to.have.length(0);
+
     });
 
     it('should display validation error when required=false, ' +
@@ -1390,21 +1567,39 @@ describe('when changing (and blurring) the value of a TextInput', () => {
 
     it('should not display validation error when required=false, ' +
         'pattern=function, and value=match', () => {
+
         const required = false;
         const pattern = (val) => val === 'xyz';
 
         const initialValue = '123';
         const finalValue = 'xyz';
 
-        const component = mount(
-            <Form>
-                <Form.TextInput
-                    required={required}
-                    pattern={pattern}
-                    value={initialValue}
-                />
-            </Form>
-        );
+        class TstComp extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = { value: initialValue };
+                this.onChange = this.onChange.bind(this);
+            }
+
+            onChange(value) {
+                this.setState({ value });
+            }
+
+            render() {
+                return (
+                    <Form>
+                        <Form.TextInput
+                            onChange={this.onChange}
+                            value={this.state.value}
+                            required={required}
+                            pattern={pattern}
+                        />
+                    </Form>
+                );
+            }
+        }
+
+        const component = mount(<TstComp />);
 
         component.find('input').simulate('change', {
             target: { value: finalValue }
@@ -1415,26 +1610,11 @@ describe('when changing (and blurring) the value of a TextInput', () => {
         });
 
         expect(component.find('Alert')).to.have.length(0);
+
     });
 
 });
 
-/* *****************************************************************************
-when changing (and blurring) the value of a required TextInput with an empty value
-
-    the error message displayed in the form should be the default value when
-        validationMessage is not set
-
-    the error message displayed in the form should be the custom value when
-        validationMessage is set
-
-    the error message displayed in the component should be the default value
-        when validationMessage is not set
-
-    the error message displayed in the component should be the custom value when
-        validationMessage is set
-
-*/
 describe('when changing (and blurring) the value of a required TextInput ' +
     'with an empty value', () => {
 
@@ -1447,18 +1627,36 @@ describe('when changing (and blurring) the value of a required TextInput ' +
 
     it('the error message displayed in the form should be the default value ' +
         'when validationMessage is not set', () => {
+
         const initialValue = 'something';
         const finalValue = '';
 
-        const component = mount(
-            <Form>
-                <Form.TextInput
-                    required={required}
-                    value={initialValue}
-                    description={description}
-                />
-            </Form>
-        );
+        class TstComp extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = { value: initialValue };
+                this.onChange = this.onChange.bind(this);
+            }
+
+            onChange(value) {
+                this.setState({ value });
+            }
+
+            render() {
+                return (
+                    <Form>
+                        <Form.TextInput
+                            onChange={this.onChange}
+                            value={this.state.value}
+                            required={required}
+                            description={description}
+                        />
+                    </Form>
+                );
+            }
+        }
+
+        const component = mount(<TstComp />);
 
         component.find('input').simulate('change', {
             target: { value: finalValue }
@@ -1469,22 +1667,41 @@ describe('when changing (and blurring) the value of a required TextInput ' +
         });
 
         expect(component.find('Alert ul li').text()).to.contain(expectedMessage);
+
     });
 
     it('the error message displayed in the form should be the custom value ' +
         'when validationMessage is set', () => {
+
         const initialValue = 'something';
         const finalValue = '';
 
-        const component = mount(
-            <Form>
-                <Form.TextInput
-                    required={required}
-                    value={initialValue}
-                    validationMessage={customMessage}
-                />
-            </Form>
-        );
+        class TstComp extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = { value: initialValue };
+                this.onChange = this.onChange.bind(this);
+            }
+
+            onChange(value) {
+                this.setState({ value });
+            }
+
+            render() {
+                return (
+                    <Form>
+                        <Form.TextInput
+                            onChange={this.onChange}
+                            value={this.state.value}
+                            required={required}
+                            validationMessage={customMessage}
+                        />
+                    </Form>
+                );
+            }
+        }
+
+        const component = mount(<TstComp />);
 
         component.find('input').simulate('change', {
             target: { value: finalValue }
@@ -1495,22 +1712,41 @@ describe('when changing (and blurring) the value of a required TextInput ' +
         });
 
         expect(component.find('Alert ul li').text()).to.contain(customMessage);
+
     });
 
     it('the error message displayed in the component should be the default ' +
         'value when validationMessage is not set', () => {
+
         const initialValue = 'something';
         const finalValue = '';
 
-        const component = mount(
-            <Form>
-                <Form.TextInput
-                    required={required}
-                    value={initialValue}
-                    description={description}
-                />
-            </Form>
-        );
+        class TstComp extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = { value: initialValue };
+                this.onChange = this.onChange.bind(this);
+            }
+
+            onChange(value) {
+                this.setState({ value });
+            }
+
+            render() {
+                return (
+                    <Form>
+                        <Form.TextInput
+                            required={required}
+                            value={this.state.value}
+                            description={description}
+                            onChange={this.onChange}
+                        />
+                    </Form>
+                );
+            }
+        }
+
+        const component = mount(<TstComp />);
 
         component.find('input').simulate('change', {
             target: { value: finalValue }
@@ -1521,22 +1757,41 @@ describe('when changing (and blurring) the value of a required TextInput ' +
         });
 
         expect(component.find('.help-block').text()).to.contain(expectedMessage);
+
     });
 
     it('the error message displayed in the component should be the custom ' +
         'value when validationMessage is set', () => {
+
         const initialValue = 'something';
         const finalValue = '';
 
-        const component = mount(
-            <Form>
-                <Form.TextInput
-                    required={required}
-                    value={initialValue}
-                    validationMessage={customMessage}
-                />
-            </Form>
-        );
+        class TstComp extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = { value: initialValue };
+                this.onChange = this.onChange.bind(this);
+            }
+
+            onChange(value) {
+                this.setState({ value });
+            }
+
+            render() {
+                return (
+                    <Form>
+                        <Form.TextInput
+                            onChange={this.onChange}
+                            value={this.state.value}
+                            required={required}
+                            validationMessage={customMessage}
+                        />
+                    </Form>
+                );
+            }
+        }
+
+        const component = mount(<TstComp />);
 
         component.find('input').simulate('change', {
             target: { value: finalValue }
@@ -1547,26 +1802,11 @@ describe('when changing (and blurring) the value of a required TextInput ' +
         });
 
         expect(component.find('.help-block').text()).to.contain(customMessage);
+
     });
 
 });
 
-/* *****************************************************************************
-when changing (and blurring) the value of a required TextInput with an invalid value
-
-    the error message displayed in the form should be the default value when
-        validationMessage is not set
-
-    the error message displayed in the form should be the custom value when
-        validationMessage is set
-
-    the error message displayed in the component should be the default value
-        when validationMessage is not set
-
-    the error message displayed in the component should be the custom value when
-        validationMessage is set
-
-*/
 describe('when changing (and blurring) the value of a required TextInput ' +
     'with an INVALID value', () => {
 
@@ -1581,19 +1821,37 @@ describe('when changing (and blurring) the value of a required TextInput ' +
 
     it('the error message displayed in the form should be the default value ' +
         'when validationMessage is not set', () => {
+
         const initialValue = '123';
         const finalValue = 'abc';
 
-        const component = mount(
-            <Form>
-                <Form.TextInput
-                    required={required}
-                    pattern={pattern}
-                    value={initialValue}
-                    description={description}
-                />
-            </Form>
-        );
+        class TstComp extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = { value: initialValue };
+                this.onChange = this.onChange.bind(this);
+            }
+
+            onChange(value) {
+                this.setState({ value });
+            }
+
+            render() {
+                return (
+                    <Form>
+                        <Form.TextInput
+                            onChange={this.onChange}
+                            value={this.state.value}
+                            required={required}
+                            pattern={pattern}
+                            description={description}
+                        />
+                    </Form>
+                );
+            }
+        }
+
+        const component = mount(<TstComp />);
 
         component.find('input').simulate('change', {
             target: { value: finalValue }
@@ -1604,26 +1862,45 @@ describe('when changing (and blurring) the value of a required TextInput ' +
         });
 
         expect(component.find('Alert ul li').text()).to.contain(expectedMessage);
+
     });
 
     it('the error message displayed in the form should be the custom value ' +
         'when validationMessage is set (distinct messages)', () => {
+
         const initialValue = '123';
         const finalValue = 'dsss';
 
-        const component = mount(
-            <Form>
-                <Form.TextInput
-                    required={required}
-                    pattern={pattern}
-                    value={initialValue}
-                    validationMessage={{
-                        required: 'something else',
-                        valid:    customMessage
-                    }}
-                />
-            </Form>
-        );
+        class TstComp extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = { value: initialValue };
+                this.onChange = this.onChange.bind(this);
+            }
+
+            onChange(value) {
+                this.setState({ value });
+            }
+
+            render() {
+                return (
+                    <Form>
+                        <Form.TextInput
+                            onChange={this.onChange}
+                            value={this.state.value}
+                            required={required}
+                            pattern={pattern}
+                            validationMessage={{
+                                required: 'something else',
+                                valid:    customMessage
+                            }}
+                        />
+                    </Form>
+                );
+            }
+        }
+
+        const component = mount(<TstComp />);
 
         component.find('input').simulate('change', {
             target: { value: finalValue }
@@ -1638,72 +1915,38 @@ describe('when changing (and blurring) the value of a required TextInput ' +
 
     it('the error message displayed in the form should be the custom value ' +
         'when validationMessage is set (single message)', () => {
+
         const initialValue = '123';
         const finalValue = 'dsss';
 
-        const component = mount(
-            <Form>
-                <Form.TextInput
-                    required={required}
-                    pattern={pattern}
-                    value={initialValue}
-                    validationMessage={customMessage}
-                />
-            </Form>
-        );
+        class TstComp extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = { value: initialValue };
+                this.onChange = this.onChange.bind(this);
+            }
 
-        component.find('input').simulate('change', {
-            target: { value: finalValue }
-        });
+            onChange(value) {
+                this.setState({ value });
+            }
 
-        component.find('input').simulate('blur', {
-            target: { value: finalValue }
-        });
+            render() {
+                return (
+                    <Form>
+                        <Form.TextInput
+                            required={required}
+                            pattern={pattern}
+                            value={this.state.value}
+                            validationMessage={customMessage}
+                            onChange={this.onChange}
+                        />
+                    </Form>
+                );
+            }
+        }
 
-        expect(component.find('Alert ul li').text()).to.contain(customMessage);
-    });
 
-    it('the error message displayed in the component should be the default ' +
-        'value when validationMessage is not set', () => {
-        const initialValue = '123';
-        const finalValue = 'xyz';
-
-        const component = mount(
-            <Form>
-                <Form.TextInput
-                    required={required}
-                    pattern={pattern}
-                    value={initialValue}
-                    description={description}
-                />
-            </Form>
-        );
-
-        component.find('input').simulate('change', {
-            target: { value: finalValue }
-        });
-
-        component.find('input').simulate('blur', {
-            target: { value: finalValue }
-        });
-
-        expect(component.find('.help-block').text()).to.contain(expectedMessage);
-    });
-
-    it('the error message displayed in the component should be the custom ' +
-        'value when validationMessage is set (single message)', () => {
-        const initialValue = 'something';
-        const finalValue = '';
-
-        const component = mount(
-            <Form>
-                <Form.TextInput
-                    required={required}
-                    value={initialValue}
-                    validationMessage={customMessage}
-                />
-            </Form>
-        );
+        const component = mount(<TstComp />);
 
         component.find('input').simulate('change', {
             target: { value: finalValue }
@@ -1716,23 +1959,132 @@ describe('when changing (and blurring) the value of a required TextInput ' +
         expect(component.find('.help-block').text()).to.contain(customMessage);
     });
 
+    it('the error message displayed in the component should be the default ' +
+        'value when validationMessage is not set', () => {
+
+        const initialValue = '123';
+        const finalValue = 'xyz';
+
+        class TstComp extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = { value: initialValue };
+                this.onChange = this.onChange.bind(this);
+            }
+
+            onChange(value) {
+                this.setState({ value });
+            }
+
+            render() {
+                return (
+                    <Form>
+                        <Form.TextInput
+                            required={required}
+                            pattern={pattern}
+                            value={this.state.value}
+                            validationMessage={customMessage}
+                            onChange={this.onChange}
+                        />
+                    </Form>
+                );
+            }
+        }
+
+
+        const component = mount(<TstComp />);
+
+        component.find('input').simulate('change', {
+            target: { value: finalValue }
+        });
+
+        component.find('input').simulate('blur', {
+            target: { value: finalValue }
+        });
+
+        expect(component.find('.help-block').text()).to.contain(customMessage);
+
+    });
+
     it('the error message displayed in the component should be the custom ' +
-        'value when validationMessage is set (distinct messages)', () => {
+        'value when validationMessage is set (single message)', () => {
+
         const initialValue = 'something';
         const finalValue = '';
 
-        const component = mount(
-            <Form>
-                <Form.TextInput
-                    required={required}
-                    value={initialValue}
-                    validationMessage={{
-                        required: customMessage,
-                        valid:    'something',
-                    }}
-                />
-            </Form>
-        );
+        class TstComp extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = { value: initialValue };
+                this.onChange = this.onChange.bind(this);
+            }
+
+            onChange(value) {
+                this.setState({ value });
+            }
+
+            render() {
+                return (
+                    <Form>
+                        <Form.TextInput
+                            required={required}
+                            value={this.state.value}
+                            validationMessage={customMessage}
+                            onChange={this.onChange}
+                        />
+                    </Form>
+                );
+            }
+        }
+
+        const component = mount(<TstComp />);
+
+        component.find('input').simulate('change', {
+            target: { value: finalValue }
+        });
+
+        component.find('input').simulate('blur', {
+            target: { value: finalValue }
+        });
+
+        expect(component.find('.help-block').text()).to.contain(customMessage);
+
+    });
+
+    it('the error message displayed in the component should be the custom ' +
+        'value when validationMessage is set (distinct messages)', () => {
+
+        const initialValue = 'something';
+        const finalValue = '';
+
+        class TstComp extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = { value: initialValue };
+                this.onChange = this.onChange.bind(this);
+            }
+
+            onChange(value) { this.setState({ value }); }
+
+            render() {
+                return (
+                    <Form>
+                        <Form.TextInput
+                            required={required}
+                            value={this.state.value}
+                            validationMessage={{
+                                required: customMessage,
+                                valid:    'something',
+                            }}
+                            onChange={this.onChange}
+                        />
+                    </Form>
+                );
+            }
+        }
+
+
+        const component = mount(<TstComp />);
 
         component.find('input').simulate('change', {
             target: { value: finalValue }
@@ -1746,12 +2098,6 @@ describe('when changing (and blurring) the value of a required TextInput ' +
     });
 });
 
-/* *****************************************************************************
-when changing (and blurring) the value of a TextInput with parent component
-    should maintain the correct value in the input element
-    should have the correct value in the input element throughout the editing process
-    should have the correct final value in the input element when the editing process ends
-*/
 describe('when changing (and blurring) the value of a TextInput with parent component', () => {
 
     it('should maintain the correct value in the input element', () => {
@@ -1828,7 +2174,7 @@ describe('when changing (and blurring) the value of a TextInput with parent comp
                 super(props);
 
                 this.state = {
-                    testValue: props.testValue || '',
+                    testValue: formatCurrency(props.testValue || ''),
                 };
 
                 this.onChange = this.onChange.bind(this);
@@ -1901,15 +2247,6 @@ describe('when changing (and blurring) the value of a TextInput with parent comp
     });
 });
 
-/* *****************************************************************************
-when the TextInput has a format prop
-    the value is formatted on initialization
-    the value is untouched after focus
-    the value is untouched after change
-    the value is formatted after blur
-    the value returned by onChange is formatted after blur
-    the TextInput should validate correctly when an invalid value can be formatted to a valid value
-*/
 describe('when the TextInput has a format prop', () => {
 
     it('the value is formatted on initialization', () => {
@@ -1919,15 +2256,29 @@ describe('when the TextInput has a format prop', () => {
 
         const expectedValue = format(initialValue);
 
-        const component = mount(
-            <Form>
-                <Form.TextInput
-                    required={required}
-                    value={initialValue}
-                    format={format}
-                />
-            </Form>
-        );
+        class TstCmp extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = { value: format(initialValue) };
+            }
+
+            onChange(value) { this.setState({ value }); }
+
+            render() {
+                return (
+                    <Form>
+                        <Form.TextInput
+                            required={required}
+                            value={this.state.value}
+                            format={format}
+                            onChange={(val) => this.onChange(val)}
+                        />
+                    </Form>
+                );
+            }
+        }
+
+        const component = mount(<TstCmp />);
 
         expect(component.find('input').props().value).to.equal(expectedValue);
     });
@@ -1935,22 +2286,33 @@ describe('when the TextInput has a format prop', () => {
     it('the value is untouched after focus', () => {
 
         const required = true;
-
         const format = (value) => `${value}-${value}`;
-
         const initialValue = 'something';
-
         const expectedValue = format(initialValue);
 
-        const component = mount(
-            <Form>
-                <Form.TextInput
-                    required={required}
-                    value={initialValue}
-                    format={format}
-                />
-            </Form>
-        );
+        class TstCmp extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = { value: format(initialValue) };
+            }
+
+            onChange(value) { this.setState({ value }); }
+
+            render() {
+                return (
+                    <Form>
+                        <Form.TextInput
+                            required={required}
+                            value={this.state.value}
+                            format={format}
+                            onChange={(val) => this.onChange(val)}
+                        />
+                    </Form>
+                );
+            }
+        }
+
+        const component = mount(<TstCmp />);
 
         component.find('input').simulate('focus');
 
@@ -2011,7 +2373,7 @@ describe('when the TextInput has a format prop', () => {
 
     it('the value returned by onChange is formatted after blur', () => {
 
-        const onChange = sinon.spy();
+        const onChangeSpy = sinon.spy();
 
         const required = true;
         const format = (value) => `${value}-${value}`;
@@ -2021,26 +2383,46 @@ describe('when the TextInput has a format prop', () => {
 
         const expectedValue = format(newValue);
 
-        const component = mount(
-            <Form.TextInput
-                required={required}
-                value={initialValue}
-                format={format}
-                onChange={onChange}
-            />
-        );
+        class TstComp extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = { value: initialValue };
+                this.onChange = this.onChange.bind(this);
+            }
+
+            onChange(value) {
+                this.setState(
+                    { value },
+                    () => onChangeSpy(this.state.value)
+                );
+            }
+
+            render() {
+                return (
+                    <Form>
+                        <Form.TextInput
+                            required={required}
+                            value={this.state.value}
+                            format={format}
+                            onChange={this.onChange}
+                        />
+                    </Form>
+                );
+            }
+        }
+
+        const component = mount(<TstComp />);
 
         component.find('input').simulate('change', {
             target: { value: newValue }
         });
-
-        expect(onChange.callCount).to.equal(1);
-        expect(onChange.args[0][0]).to.equal(newValue, 'after change');
+        expect(onChangeSpy.callCount).to.equal(1);
+        expect(onChangeSpy.args[0][0]).to.equal(newValue, 'after change');
 
         component.find('input').simulate('blur');
 
-        expect(onChange.callCount).to.equal(2);
-        expect(onChange.args[1][0]).to.equal(expectedValue, 'after blur');
+        expect(onChangeSpy.callCount).to.equal(2);
+        expect(onChangeSpy.args[1][0]).to.equal(expectedValue, 'after blur');
     });
 
     it('the TextInput should validate correctly when an invalid value can be ' +
@@ -2083,13 +2465,6 @@ describe('when the TextInput has a format prop', () => {
     });
 });
 
-/* *****************************************************************************
-when the TextInput has a parse prop
-    should not parse the value on initialization
-    should parse the value after focus
-    should not parse the value after change
-    should not parse the value after blur
-*/
 describe('when the TextInput has a parse prop', () => {
 
     it('should not parse the value on initialization', () => {
@@ -2196,10 +2571,6 @@ describe('when the TextInput has a parse prop', () => {
 
 });
 
-/* *****************************************************************************
-when a TextInput with a calculated value is updated
-    the value in the input element should change
-*/
 describe('when a TextInput with a calculated value is updated', () => {
 
     const required = false;
@@ -2257,11 +2628,6 @@ describe('when a TextInput with a calculated value is updated', () => {
     });
 });
 
-/* *****************************************************************************
-when a TextInput with a parent component is hidden or shown
-    should hide the component when the hidden prop is changed to true
-    should show the component when the hidden prop is changed to false
-*/
 describe('when a TextInput with a parent component is hidden or shown', () => {
 
     const required = false;

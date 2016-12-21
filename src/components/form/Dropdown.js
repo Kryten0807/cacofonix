@@ -7,6 +7,17 @@ import uniqueId from 'lodash/uniqueId';
 import classnames from 'classnames';
 
 /**
+ * Build a list of <option> elements from a list of options
+ * @param  {Array} opts The options for which to build the list of elements
+ * @return {Array}      An array of <option> elements
+ */
+const optionsList = (opts) => opts.map((opt) =>
+    <option key={uniqueId('form-dropdown-option-')} value={opt.value || opt}>
+        {opt.name || opt}
+    </option>
+);
+
+/**
  * The Dropdown component
  */
 class Dropdown extends React.Component {
@@ -134,11 +145,7 @@ class Dropdown extends React.Component {
         if (isArray(this.props.options)) {
             // it's an array - simply map it to a list of <option> elements
             //
-            options = this.props.options.map((opt) =>
-                (<option key={uniqueId('form-dropdown-option-')} value={opt.value}>
-                    {opt.name}
-                </option>)
-            );
+            options = optionsList(this.props.options);
         } else {
             // it's an object - build a list of options, separated into
             // optgroups by key
@@ -148,11 +155,7 @@ class Dropdown extends React.Component {
             Object.keys(this.props.options).forEach((key) => {
                 options.push(
                     <optgroup key={uniqueId('form-dropdown-optgroup-')} label={key}>
-                        {this.props.options[key].map((opt) => (
-                            <option key={uniqueId('form-dropdown-option-')} value={opt.value}>
-                                {opt.name}
-                            </option>))
-                        }
+                        {optionsList(this.props.options[key])}
                     </optgroup>
                 );
             });
@@ -215,7 +218,14 @@ Dropdown.propTypes = {
         React.PropTypes.string,
         React.PropTypes.number,
     ]),
-    /** The options for the dropdown */
+    /**
+     * The options for the dropdown, in one of three possible forms:
+     * + An array of strings - the string is used as both the value & name for
+     *   the option
+     * + An array of objects of the form  { value: 'x', name: 'y' }
+     * + An object where the key is the option group name and each value is
+     *   either an array of strings or an array of objects as described above
+     */
     options:  React.PropTypes.oneOfType([
         React.PropTypes.array,
         React.PropTypes.object,

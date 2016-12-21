@@ -11,6 +11,8 @@ import classnames from 'classnames';
  * @return {React.Element}             The React element describing this component
  */
 const Panel = ({ style, header, children }) => {
+    // generate the classes for the component
+    //
     const classes = classnames(
         'panel',
         {
@@ -45,9 +47,9 @@ const Panel = ({ style, header, children }) => {
 //
 Panel.propTypes = {
     /** The style of the panel */
-    style:       React.PropTypes.oneOf(
-        ['danger', 'error', 'warning', 'warn', 'info', 'success', 'ok']
-    ),
+    style:       React.PropTypes.oneOf([
+        'danger', 'error', 'warning', 'warn', 'primary', 'info', 'success', 'ok'
+    ]),
     /** The header (title) for the panel */
     header:   React.PropTypes.string,
     /** The child(ren) of this panel */

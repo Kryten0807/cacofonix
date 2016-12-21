@@ -99,6 +99,27 @@ describe('a Form component containing a Dropdown', () => {
         });
     });
 
+    it('should accept a list of strings as options', () => {
+
+        const options = ['one', 'two'];
+
+        const component = render(
+            <Form>
+                <Form.Dropdown options={options} />
+            </Form>
+        );
+
+        expect(component.find('option')).to.have.length(options.length, 'options count');
+
+        options.forEach((opt) => {
+            expect(component.find(`option[value="${opt}"]`))
+                .to.have.length(1, `value=${opt}`);
+            expect(component.find(`option[value="${opt}"]`).text())
+                .to.equal(opt, `name=${opt}`);
+
+        });
+    });
+
     it('should have an empty set of options if options=[]', () => {
 
         const options = [];
@@ -266,15 +287,160 @@ describe('a Form component containing a Dropdown', () => {
             </Form>
         );
 
+        // correct number of optgroups
         expect(component.find('select optgroup')).to.have.length(2, 'optgroup');
+
+        // optgroup[0]
         expect(component.find('select optgroup').at(0).props().label)
             .to.equal('Group 1', 'optgroup 1 text');
         expect(component.find('select optgroup').at(1).props().label)
             .to.equal('Group 2', 'optgroup 2 text');
         expect(component.find('select optgroup').at(0).find('option'))
             .to.have.length(2, 'optgroup 1 options');
+
+        expect(
+            component.find('select optgroup')
+                .at(0)
+                .find('option')
+                .at(0)
+                .props()
+                .value
+        )
+            .to.equal('1');
+        expect(
+            component.find('select optgroup')
+                .at(0)
+                .find('option')
+                .at(0)
+                .text()
+        )
+            .to.equal('one');
+        expect(
+            component.find('select optgroup')
+                .at(0)
+                .find('option')
+                .at(1)
+                .props()
+                .value
+        )
+            .to.equal('2');
+        expect(
+            component.find('select optgroup')
+                .at(0)
+                .find('option')
+                .at(1)
+                .text()
+        )
+            .to.equal('two');
+
+
+        // optgroup[1]
         expect(component.find('select optgroup').at(1).find('option'))
             .to.have.length(1, 'optgroup 1 options');
+
+        expect(
+            component.find('select optgroup')
+                .at(1)
+                .find('option')
+                .at(0)
+                .props()
+                .value
+        )
+            .to.equal('3');
+        expect(
+            component.find('select optgroup')
+                .at(1)
+                .find('option')
+                .at(0)
+                .text()
+        )
+            .to.equal('three');
+
+
+    });
+
+    it('should have the appropriate optgroups when options is an object ' +
+        '(simple array of strings)', () => {
+
+        const options = {
+            'Group 1': ['one', 'two'],
+            'Group 2': ['three'],
+        };
+
+        const label = 'peter piper';
+        const value = 2;
+
+        const component = mount(
+            <Form>
+                <Form.Dropdown label={label} options={options} value={value} />
+            </Form>
+        );
+
+        // correct number of optgroups?
+        expect(component.find('select optgroup')).to.have.length(2, 'optgroup');
+
+        // optgroup[0]
+        expect(component.find('select optgroup').at(0).props().label)
+            .to.equal('Group 1', 'optgroup 1 text');
+        expect(component.find('select optgroup').at(0).find('option'))
+            .to.have.length(2, 'optgroup 1 options');
+        expect(
+            component.find('select optgroup')
+                .at(0)
+                .find('option')
+                .at(0)
+                .props()
+                .value
+        )
+            .to.equal('one');
+        expect(
+            component.find('select optgroup')
+                .at(0)
+                .find('option')
+                .at(0)
+                .text()
+        )
+            .to.equal('one');
+        expect(
+            component.find('select optgroup')
+                .at(0)
+                .find('option')
+                .at(1)
+                .props()
+                .value
+        )
+            .to.equal('two');
+        expect(
+            component.find('select optgroup')
+                .at(0)
+                .find('option')
+                .at(1)
+                .text()
+        )
+            .to.equal('two');
+
+        // optgroup[1]
+        expect(component.find('select optgroup').at(1).props().label)
+            .to.equal('Group 2', 'optgroup 2 text');
+        expect(component.find('select optgroup').at(1).find('option'))
+            .to.have.length(1, 'optgroup 1 options');
+        expect(
+            component.find('select optgroup')
+                .at(1)
+                .find('option')
+                .at(0)
+                .props()
+                .value
+        )
+            .to.equal('three');
+        expect(
+            component.find('select optgroup')
+                .at(1)
+                .find('option')
+                .at(0)
+                .text()
+        )
+            .to.equal('three');
     });
 
     it('should be disabled when disabled flag set', () => {

@@ -14,30 +14,13 @@ import Form from '../Form';
 const expect = chai.expect;
 
 /* eslint-disable no-unused-vars */
-const debug = (component) => {
-    console.info('------------------------------------------------------------');
+const debug = (component, identifier = '') => {
+    console.info(`-----${identifier}-----------------------------------------`);
     console.info(component.debug());
-    console.info('------------------------------------------------------------');
+    console.info(`-----${identifier}-----------------------------------------`);
 };
 /* eslint-enable no-unused-vars */
 
-/* *****************************************************************************
-a Form component containing a SubmitButton
-    should include a <Form.SubmitButton> as a child
-    should be a button.btn
-    should have the text specified
-    should have the child elements specified
-    should be button.btn.btn-default when no style is provided
-    should be button.btn.btn-danger when style=danger
-    should be button.btn.btn-danger when style=error
-    should be button.btn.btn-warning when style=warning
-    should be button.btn.btn-warning when style=warn
-    should be button.btn.btn-info when style=info
-    should be button.btn.btn-success when style=success
-    should be button.btn.btn-success when style=ok
-    should not have a name if the name prop is not set
-    should have the appropriate name if the name prop is set
-*/
 describe('a Form component containing a SubmitButton', () => {
 
     it('should include a <Form.SubmitButton> as a child', () => {
@@ -227,15 +210,6 @@ describe('a Form component containing a SubmitButton', () => {
 
 });
 
-/* *****************************************************************************
-given a Form containing a required TextInput and a SubmitButton
-    after initialization with a valid value, the SubmitButton should be enabled
-    after initialization with several valid values, the SubmitButton should be enabled
-    after initialization with multiple invalid values, the SubmitButton should be disabled
-    after initialization with a mix of valid & invalid values, the SubmitButton should be disabled
-    after changing from invalid to valid, the SubmitButton should be enabled
-    after changing from valid to invalid, the SubmitButton should be disabled
-*/
 describe('given a Form containing a required TextInput and a SubmitButton', () => {
 
     it('after initialization with a valid value, the SubmitButton should be enabled', () => {
@@ -303,16 +277,35 @@ describe('given a Form containing a required TextInput and a SubmitButton', () =
     });
 
     it('after changing from invalid to valid, the SubmitButton should be enabled', () => {
-        const initialValue = '';
 
+        const required = true;
+        const initialValue = '';
         const finalValue = 'I wish I were an Oscar Meyer weiner';
 
-        const component = mount(
-            <Form>
-                <Form.TextInput required value={initialValue} />
-                <Form.SubmitButton />
-            </Form>
-        );
+        class TstComp extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = { value: initialValue };
+                this.onChange = this.onChange.bind(this);
+            }
+
+            onChange(value) { this.setState({ value }); }
+
+            render() {
+                return (
+                    <Form>
+                        <Form.TextInput
+                            onChange={this.onChange}
+                            value={this.state.value}
+                            required={required}
+                        />
+                        <Form.SubmitButton />
+                    </Form>
+                );
+            }
+        }
+
+        const component = mount(<TstComp />);
 
         expect(component.find('button.btn').props().disabled).to.equal(true);
 
@@ -323,19 +316,41 @@ describe('given a Form containing a required TextInput and a SubmitButton', () =
         component.find('input').simulate('blur');
 
         expect(component.find('button.btn').props().disabled).to.equal(false);
+
     });
 
     it('after changing from valid to invalid, the SubmitButton should be disabled', () => {
-        const initialValue = 'I wish I were an Oscar Meyer weiner';
 
+        const required = true;
+        const initialValue = 'I wish I were an Oscar Meyer weiner';
         const finalValue = '';
 
-        const component = mount(
-            <Form>
-                <Form.TextInput required value={initialValue} />
-                <Form.SubmitButton />
-            </Form>
-        );
+        class TstComp extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = { value: initialValue };
+                this.onChange = this.onChange.bind(this);
+            }
+
+            onChange(value) {
+                this.setState({ value });
+            }
+
+            render() {
+                return (
+                    <Form>
+                        <Form.TextInput
+                            onChange={this.onChange}
+                            value={this.state.value}
+                            required={required}
+                        />
+                        <Form.SubmitButton />
+                    </Form>
+                );
+            }
+        }
+
+        const component = mount(<TstComp />);
 
         expect(component.find('button.btn').props().disabled).to.equal(false);
 
@@ -350,10 +365,6 @@ describe('given a Form containing a required TextInput and a SubmitButton', () =
 
 });
 
-/* *****************************************************************************
-a SubmitButton
-    should call onClick when the button in a form is clicked
-*/
 describe('a SubmitButton', () => {
 
     it('should call onClick when the button in a form is clicked', () => {
