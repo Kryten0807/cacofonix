@@ -50,6 +50,8 @@ class TextInput extends React.Component {
             valid = `${props.validationMessage.valid || props.validationMessage}`;
         }
 
+        // initialize the validation messages for the component
+        //
         this.validationMessage = { required, valid };
 
         // bind `this` to the component event handlers
@@ -67,6 +69,8 @@ class TextInput extends React.Component {
         //
         const { validationError } = this.validate(this.state.value);
 
+        // set the new validationError state
+        //
         this.setState(update(this.state, { validationError: { $set: validationError } }));
 
         // call the `onChildValidationEvent` handler once with
@@ -83,26 +87,48 @@ class TextInput extends React.Component {
      * @param  {Object} newProps The new properties for the component
      */
     componentWillReceiveProps(newProps) {
-        // get the value from the event object
+        // update the new required prop (if it's changing)
         //
-        const value = newProps.value;
+        this.setState((state) => update(state, {
+            required: { $set: newProps.required }
+        }), () => {
+            // get the value from the new props
+            //
+            const value = newProps.value;
 
-        // figure out the formatted value
-        //
-        const formattedValue = this.props.format ? this.props.format(value) : value;
+            // figure out the formatted value
+            //
+            const formattedValue = this.props.format ? this.props.format(value) : value;
 
-        // update the component state if
-        // a) we're currently editing and the value is subject to formatting, or
-        // b) we have a brand new value
-        //
-        if (
-            (value !== formattedValue && this.state.isEditing)
-            || formattedValue !== this.state.value
-        ) {
-            this.setState((state) => update(state, {
-                value: { $set: value }
-            }));
-        }
+            const oldValue = this.state.value;
+            const oldValidationError = this.state.validationError;
+
+            // determine if it's valid
+            //
+            const { isValid, validationError } = this.validate(formattedValue);
+
+            // update the component state if
+            // a) we're currently editing and the value is subject to formatting, or
+            // b) we have a brand new value
+            //
+            if (oldValidationError !== validationError || oldValue !== value) {
+                this.setState((state) => update(state, {
+                    value:           { $set: value },
+                    isValid:         { $set: isValid },
+                    validationError: { $set: validationError },
+                }), () => {
+                    // call the `onChildValidationEvent` handler
+                    //
+                    if (this.context.onChildValidationEvent) {
+                        this.context.onChildValidationEvent(
+                            this.id,
+                            true,
+                            validationError
+                        );
+                    }
+                });
+            }
+        });
     }
 
     /**
@@ -404,7 +430,14 @@ TextInput.propTypes = {
         }
         return null;
     },
-    /** A function used to format the value */
+    /**
+     * A function used to format the value
+     *
+     * Note that if you are using a `format` function, the value should be
+     * formatted **before** passing it as a property; if you fail to do this,
+     * then the user will initially see an unformatted value which will be
+     * formatted after the first edit.
+    */
     format:            React.PropTypes.func,
     /**
      * A function used to parse the value which has been formatted by the

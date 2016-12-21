@@ -12,19 +12,13 @@ import Form from './Form';
 const expect = chai.expect;
 
 /* eslint-disable no-unused-vars */
-const debug = (component) => {
-    console.info('------------------------------------------------------------');
+const debug = (component, identifier = '') => {
+    console.info(`-----${identifier}--------------------------------------------`);
     console.info(component.debug());
-    console.info('------------------------------------------------------------');
+    console.info(`-----${identifier}--------------------------------------------`);
 };
 /* eslint-enable no-unused-vars */
 
-/* *****************************************************************************
-the Form component
-    should be a form element
-    should be a form.form-inline element when inline=true
-    should be a form.form-horizontal element when horizontal=true
-*/
 describe('the Form component', () => {
 
     it('should be a form element', () => {
@@ -51,14 +45,6 @@ describe('the Form component', () => {
 
 });
 
-/* *****************************************************************************
-the Form component
-    should not show the alert message if initialized with a mix of valid & invalid values
-    should not show the alert message if initialized with all valid values
-    should not show the alert message if initialized with all invalid values
-    should show an alert with a single error message when one child is blurred (1 invalid child)
-    should show an alert with a single error message when one child is blurred (2 invalid children)
-*/
 describe('the Form component', () => {
 
     it('should not show the alert message if initialized with a mix of valid ' +
@@ -117,6 +103,7 @@ describe('the Form component', () => {
 
     it('should show an alert with a single error message when one child is ' +
         'blurred (1 invalid child)', () => {
+
         const label = 'my label';
 
         const descriptionForValid = 'this should not appear';
@@ -126,29 +113,57 @@ describe('the Form component', () => {
 
         const newValue = '';
 
-        const component = mount(
-            <Form>
-                <Form.TextInput
-                    required
-                    name="textinput-1"
-                    description={descriptionForValid}
-                    value={initialValue}
-                />
-                <Form.TextInput
-                    required
-                    name="textinput-2"
-                    description={descriptionForInvalid}
-                    value={initialValue}
-                />
-                <Form.TextInput
-                    required
-                    name="textinput-3"
-                    description={descriptionForValid}
-                    value={initialValue}
-                />
-                <Form.SubmitButton label={label} />
-            </Form>
-        );
+        class TestComponent extends React.Component {
+            constructor(props) {
+                super(props);
+
+                this.state = {
+                    values: [initialValue, initialValue, initialValue],
+                };
+
+                this.onChange = this.onChange.bind(this);
+            }
+
+            onChange(idx, val) {
+                const newState = {
+                    values: [this.state.values[0], this.state.values[1], this.state.values[2]],
+                };
+                newState.values[idx] = val;
+                this.setState(newState);
+            }
+
+            render() {
+                return (
+                    <Form>
+                        <Form.TextInput
+                            required
+                            name="textinput-1"
+                            description={descriptionForValid}
+                            value={this.state.values[0]}
+                            onChange={(val) => this.onChange(0, val)}
+                        />
+                        <Form.TextInput
+                            required
+                            name="textinput-2"
+                            description={descriptionForInvalid}
+                            value={this.state.values[1]}
+                            onChange={(val) => this.onChange(1, val)}
+                        />
+                        <Form.TextInput
+                            required
+                            name="textinput-3"
+                            description={descriptionForValid}
+                            value={this.state.values[2]}
+                            onChange={(val) => this.onChange(2, val)}
+                        />
+                        <Form.SubmitButton label={label} />
+                    </Form>
+                );
+            }
+        }
+
+        const component = mount(<TestComponent />);
+
 
         expect(component.find('Alert')).to.have.length(0);
 
@@ -158,52 +173,76 @@ describe('the Form component', () => {
 
         component.find('input[name="textinput-2"]').simulate('blur');
 
+
         expect(component.find('Alert')).to.have.length(1);
         expect(component.find('Alert').text()).to.not.contain(descriptionForValid);
         expect(component.find('Alert').text()).to.contain(descriptionForInvalid);
+
     });
 
     it('should show an alert with a single error message when one child is ' +
-        'blurred (2 invalid children)', () => {
+    'blurred (2 invalid children)', () => {
+
         const label = 'my label';
 
         const descriptionForValid = 'this should not appear';
         const descriptionForInvalid = 'should see this';
 
-        const valid = 'this is valid';
-        const invalid = '';
+        const initialValue = 'this is valid';
+        const invalidValue = '';
 
         const newValue = '';
 
-        const component = mount(
-            <Form>
+        class TestComponent extends React.Component {
+            constructor(props) {
+                super(props);
 
-                <Form.TextInput
-                    required
-                    name="textinput-1"
-                    description={descriptionForValid}
-                    value={valid}
-                />
+                this.state = {
+                    values: [initialValue, initialValue, invalidValue],
+                };
 
-                <Form.TextInput
-                    required
-                    name="textinput-2"
-                    description={descriptionForInvalid}
-                    value={valid}
-                />
+                this.onChange = this.onChange.bind(this);
+            }
 
-                <Form.TextInput
-                    required
-                    name="textinput-3"
-                    description={descriptionForValid}
-                    value={invalid}
-                />
+            onChange(idx, val) {
+                const newState = {
+                    values: [this.state.values[0], this.state.values[1], this.state.values[2]],
+                };
+                newState.values[idx] = val;
+                this.setState(newState);
+            }
 
-                <Form.SubmitButton label={label} />
-            </Form>
-        );
+            render() {
+                return (
+                    <Form>
+                        <Form.TextInput
+                            required
+                            name="textinput-1"
+                            description={descriptionForValid}
+                            value={this.state.values[0]}
+                            onChange={(val) => this.onChange(0, val)}
+                        />
+                        <Form.TextInput
+                            required
+                            name="textinput-2"
+                            description={descriptionForInvalid}
+                            value={this.state.values[1]}
+                            onChange={(val) => this.onChange(1, val)}
+                        />
+                        <Form.TextInput
+                            required
+                            name="textinput-3"
+                            description={descriptionForValid}
+                            value={this.state.values[2]}
+                            onChange={(val) => this.onChange(2, val)}
+                        />
+                        <Form.SubmitButton label={label} />
+                    </Form>
+                );
+            }
+        }
 
-        expect(component.find('Alert')).to.have.length(0);
+        const component = mount(<TestComponent />);
 
         component.find('input[name="textinput-2"]').simulate('change', {
             target: { value: newValue }
@@ -214,6 +253,52 @@ describe('the Form component', () => {
         expect(component.find('Alert')).to.have.length(1);
         expect(component.find('Alert').text()).to.not.contain(descriptionForValid);
         expect(component.find('Alert').text()).to.contain(descriptionForInvalid);
+
+    });
+
+    it('should update the validation alert if a TextInput changes to not required', () => {
+
+        const initialValue = 'something';
+
+        class TestComponent extends React.Component {
+            constructor(props) {
+                super(props);
+
+                this.state = {
+                    required: true,
+                    value:    initialValue,
+                };
+            }
+
+            render() {
+                return (
+                    <Form>
+                        <Form.TextInput
+                            description="hello"
+                            name="textinput"
+                            required={this.state.required}
+                            label="hello"
+                            value={this.state.value}
+                        />
+                    </Form>
+                );
+            }
+        }
+
+        const component = mount(<TestComponent />);
+
+
+        // initial state - no Alert
+        expect(component.find('Alert')).to.have.length(0);
+
+        // change the value - should see Alert
+        component.setState({ required: true, value: '' });
+        expect(component.find('Alert')).to.have.length(1);
+
+        // now change the "required" state - should no longer see Alert
+        component.setState({ required: false, value: '' });
+        expect(component.find('Alert')).to.have.length(0);
+
     });
 
 });
