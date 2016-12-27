@@ -579,6 +579,49 @@ describe('when changing (and blurring) the value of a required TextInput', () =>
 
     const required = true;
 
+    it('should set the correct value in the parent state', () => {
+
+        const initialValue = 'something';
+        const finalValue = 'some other thing';
+
+        class TstComp extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = { value: initialValue };
+                this.onChange = this.onChange.bind(this);
+            }
+
+            onChange(value) {
+                this.setState({ value });
+            }
+
+            render() {
+                return (
+                    <Form>
+                        <Form.TextInput
+                            onChange={this.onChange}
+                            value={this.state.value}
+                            required={required}
+                        />
+                    </Form>
+                );
+            }
+        }
+
+        const component = mount(<TstComp />);
+
+        component.find('input').simulate('change', {
+            target: { value: finalValue }
+        });
+
+        component.find('input').simulate('blur', {
+            target: { value: finalValue }
+        });
+
+        expect(component.state().value).to.equal(finalValue);
+        expect(component.find('Alert')).to.have.length(0);
+    });
+
     it('the global validation message should not be displayed with a valid value', () => {
         const initialValue = 'something';
         const finalValue = 'valid';
