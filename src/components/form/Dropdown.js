@@ -69,7 +69,13 @@ class Dropdown extends React.Component {
         this.onChange = this.onChange.bind(this);
     }
 
+    /**
+     * Handle the "component just mounted" event
+     */
     componentDidMount() {
+        // does the value in the props equal the value in the state? if not, and
+        // if we have an `onChange` handler, then call the `onChange` handler
+        //
         if (this.props.value !== this.state.value && this.props.onChange) {
             this.props.onChange(this.state.value);
         }
