@@ -47,12 +47,20 @@ class Dropdown extends React.Component {
         //
         // I'm going to try number 2.
 
+        // build the list of options for the component
+        //
         this.optionsList = this.getOptionsList();
 
+        // get the first value from the list of options (if it exists)
+        //
         this.firstValue = this.optionsList[0] ? this.optionsList[0].value : '';
 
+        // validate & save the value
+        //
         const value = (props.value && this.isValid(props.value)) ? props.value : this.firstValue;
 
+        // initialize the component state
+        //
         this.state = { value };
 
         // bind `this` to the event handlers
