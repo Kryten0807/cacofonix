@@ -103,9 +103,9 @@ class Dropdown extends React.Component {
 
     /**
      * Determine if a value is valid (ie. in the list of options)
-     * @param  {String}  The value to check
-     * @return {Boolean} True if the value is valid (ie. found in the array of
-     *                   options); false otherwise
+     * @param  {String}  value The value to check
+     * @return {Boolean}       `true` if the value is valid (ie. found in the
+     *                         array of options); `false` otherwise
      */
     isValid(value = this.props.value) {
         return this.getOptionsList().findIndex((opt) => `${opt.value}` === `${value}`) !== -1;
