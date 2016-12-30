@@ -56,7 +56,7 @@ class Dropdown extends React.Component {
 
         // build the list of options for the component
         //
-        this.optionsList = this.getOptionsList();
+        this.optionsList = flattenOptionsList(props.options || []);
 
         // get the first value from the list of options (if it exists)
         //
