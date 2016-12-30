@@ -36,20 +36,6 @@ class Dropdown extends React.Component {
         // not provided a value, so the value *ought* to be the first item in
         // the Dropdown.
         //
-        if (!props.value && props.onChange) {
-            // is the list of options an array?
-            //
-            if (isArray(props.options)) {
-                // yes - return the value of the first item (if we have one)
-                //
-                if (props.options.length > 0) {
-                    props.onChange(props.options[0].value);
-                }
-            } else {
-                // no - return the value of the first item in the first property
-                // (if there is one)
-                //
-                const keys = Object.keys(props.options);
         // I attempted to fix this by "pushing" the updated value to the state
         // via the `onChange` handler, but that's a no-no in React.
         //
@@ -61,11 +47,13 @@ class Dropdown extends React.Component {
         //
         // I'm going to try number 2.
 
-                if (keys.length > 0) {
-                    props.onChange(props.options[keys[0]][0].value);
-                }
-            }
-        }
+        this.optionsList = this.getOptionsList();
+
+        this.firstValue = this.optionsList[0] ? this.optionsList[0].value : '';
+
+        const value = (props.value && this.isValid(props.value)) ? props.value : this.firstValue;
+
+        this.state = { value };
 
         // bind `this` to the event handlers
         //
