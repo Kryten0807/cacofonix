@@ -131,7 +131,7 @@ class Dropdown extends React.Component {
      *                         array of options); `false` otherwise
      */
     isValid(value) {
-        return this.getOptionsList().findIndex((opt) => `${opt.value}` === `${value}`) !== -1;
+        return this.optionsList.findIndex((opt) => `${opt.value}` === `${value}`) !== -1;
     }
 
     /**
