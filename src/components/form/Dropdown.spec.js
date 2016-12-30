@@ -4,11 +4,18 @@
 //
 /* eslint-disable no-unused-expressions */
 
+// npm dependencies
+//
 import React from 'react';
+
+// testing dependencies
+//
 import { shallow, render, mount } from 'enzyme';
 import chai from 'chai';
 import sinon from 'sinon';
 
+// the system under test
+//
 import Form from '../Form';
 
 const expect = chai.expect;
@@ -21,28 +28,6 @@ const debug = (component) => {
 };
 /* eslint-enable no-unused-vars */
 
-/* *****************************************************************************
-a Form component containing a Dropdown
-    should include a <Form.Dropdown> as a child
-    should be a select.form-control
-    should have the options specified in the `options` prop
-    should have an empty set of options if options=[]
-    should not include a label if none was specified
-    should include a label if one was specified
-    should select a specific value when value is set
-    should select the first item when value is not set
-    should select the first item when value is set to an invalid value
-    should have a label.col-xs-3 when form is horizontal and labelColumns=3
-    should have a div.col-xs-9 when form is horizontal and labelColumns=3
-    should have the appropriate optgroups when options is an object
-    should be disabled when disabled flag set
-    should not be disabled when disabled flag no set
-    should not have a name if the name prop is not set
-    should have the appropriate name if the name prop is set
-
-    should have no options when the options is an empty array
-    should have no options when the options is an empty object
-*/
 describe('a Form component containing a Dropdown', () => {
 
     it('should include a <Form.Dropdown> as a child', () => {
@@ -589,17 +574,6 @@ describe('a Form component containing a Dropdown', () => {
     });
 });
 
-/* *****************************************************************************
-the Dropdown element
-    should call onChange with the correct value on value change to a valid value
-    should call onChange with the first option on value change to a invalid value
-    should call onChange with the correct value on value change to a valid value
-        from an optgroup
-    should call onChange ON INITIALIZATION with the first option (options=array)
-        when value is undefined
-    should call onChange ON INITIALIZATION with the first option
-        (options=object) when value is undefined
-*/
 describe('the Dropdown element', () => {
 
     it('should call onChange with the correct value on value change to a valid value', () => {
