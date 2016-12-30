@@ -116,13 +116,6 @@ class Dropdown extends React.Component {
      * @return {React.Element} The React element describing the component
      */
     render() {
-        // figure out what value to display
-        //
-        let value = this.isValid() ? this.props.value : '';
-        if (this.props.options[0] && !value) {
-            value = this.props.options[0].value;
-        }
-
         // generate the label for the component
         //
         const label = this.props.label
@@ -171,7 +164,7 @@ class Dropdown extends React.Component {
                 name={this.props.name}
                 disabled={!!this.props.disabled}
                 className="form-control"
-                value={value}
+                value={this.state.value}
                 onChange={this.onChange}
             >
                 {options}
