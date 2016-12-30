@@ -17,6 +17,13 @@ const optionsList = (opts) => opts.map((opt) =>
     </option>
 );
 
+// is it an array? if so, return it; otherwise, map it to a flat array
+//
+const flattenOptionsList = (options) => (
+    isArray(options) ? options : flatMap(options, (opt) => opt)
+);
+
+
 /**
  * The Dropdown component
  */
