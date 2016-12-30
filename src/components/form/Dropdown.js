@@ -72,24 +72,21 @@ class Dropdown extends React.Component {
      * @param  {Object} event The event object
      */
     onChange(event) {
-        // do we have an onChange handler? if so, call it with the appropriate
-        // value
+        // figure out which value to use
         //
-        if (this.props.onChange) {
-            // figure out which value to use
-            //
-            let value = this.isValid(event.target.value)
-                ? event.target.value
-                : '';
+        const newValue = this.isValid(event.target.value)
+            ? event.target.value
+            : this.firstValue;
 
-            if (this.props.options[0] && !value) {
-                value = this.props.options[0].value;
+        this.setState({ value: newValue }, () => {
+            // do we have an onChange handler? if so, call it with the new
+            // value
+            //
+            if (this.props.onChange) {
+                this.props.onChange(this.state.value);
             }
 
-            // call the onChange handler with the value
-            //
-            this.props.onChange(value);
-        }
+        });
     }
 
     /**
