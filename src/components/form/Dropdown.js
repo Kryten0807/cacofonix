@@ -18,6 +18,15 @@ const optionsList = (opts) => opts.map((opt) =>
 );
 
 /**
+ * Flatten the list of options
+ * @param  {Array|Object} options The list of options
+ * @return {Array}                The flattened list of options
+ */
+const flattenOptionsList = (options) => (
+    isArray(options) ? options : flatMap(options, (opt) => opt)
+);
+
+/**
  * The Dropdown component
  */
 class Dropdown extends React.Component {
@@ -32,29 +41,36 @@ class Dropdown extends React.Component {
         //
         this.id = props.id || uniqueId('form-dropdown-');
 
-        // do we have a value? if not, then we need call onChange (if it exists)
-        // with the first option to ensure that the value is set
+        // do we have a value? This is an interesting situation... the user has
+        // not provided a value, so the value *ought* to be the first item in
+        // the Dropdown.
         //
-        if (!props.value && props.onChange) {
-            // is the list of options an array?
-            //
-            if (isArray(props.options)) {
-                // yes - return the value of the first item (if we have one)
-                //
-                if (props.options.length > 0) {
-                    props.onChange(props.options[0].value);
-                }
-            } else {
-                // no - return the value of the first item in the first property
-                // (if there is one)
-                //
-                const keys = Object.keys(props.options);
+        // I attempted to fix this by "pushing" the updated value to the state
+        // via the `onChange` handler, but that's a no-no in React.
+        //
+        // Possible solutions:
+        // 1. require the `value` parameter - but what happens if it's not
+        //      valid?
+        // 2. push the new value after the component has mounted - but this
+        //      requires implementing state on this component
+        //
+        // I'm going to try number 2.
 
-                if (keys.length > 0) {
-                    props.onChange(props.options[keys[0]][0].value);
-                }
-            }
-        }
+        // build the list of options for the component
+        //
+        this.optionsList = flattenOptionsList(props.options || []);
+
+        // get the first value from the list of options (if it exists)
+        //
+        this.firstValue = this.optionsList[0] ? this.optionsList[0].value : '';
+
+        // validate & save the value
+        //
+        const value = (props.value && this.isValid(props.value)) ? props.value : this.firstValue;
+
+        // initialize the component state
+        //
+        this.state = { value };
 
         // bind `this` to the event handlers
         //
@@ -63,50 +79,47 @@ class Dropdown extends React.Component {
     }
 
     /**
-     * Handle the `onChange` event for the select element
-     * @param  {Object} event The event object
+     * Handle the "component just mounted" event
      */
-    onChange(event) {
-        // do we have an onChange handler? if so, call it with the appropriate
-        // value
+    componentDidMount() {
+        // does the value in the props equal the value in the state? if not, and
+        // if we have an `onChange` handler, then call the `onChange` handler
         //
-        if (this.props.onChange) {
-            // figure out which value to use
-            //
-            let value = this.isValid(event.target.value)
-                ? event.target.value
-                : '';
-
-            if (this.props.options[0] && !value) {
-                value = this.props.options[0].value;
-            }
-
-            // call the onChange handler with the value
-            //
-            this.props.onChange(value);
+        if (this.props.value !== this.state.value && this.props.onChange) {
+            this.props.onChange(this.state.value);
         }
     }
 
     /**
-     * Get the list of options as a flat array
-     * @return {Array} The list of options
+     * Handle the `onChange` event for the select element
+     * @param  {Object} event The event object
      */
-    getOptionsList() {
-        // is it an array? if so, return it; otherwise, map it to a flat array
+    onChange(event) {
+        // figure out which value to use
         //
-        return isArray(this.props.options)
-            ? this.props.options
-            : flatMap(this.props.options, (opt) => opt);
+        const newValue = this.isValid(event.target.value)
+            ? event.target.value
+            : this.firstValue;
+
+        // update the state
+        //
+        this.setState({ value: newValue }, () => {
+            // ...then call the `onChange` handler, if it exists
+            //
+            if (this.props.onChange) {
+                this.props.onChange(this.state.value);
+            }
+        });
     }
 
     /**
      * Determine if a value is valid (ie. in the list of options)
-     * @param  {String}  The value to check
-     * @return {Boolean} True if the value is valid (ie. found in the array of
-     *                   options); false otherwise
+     * @param  {String}  value The value to check
+     * @return {Boolean}       `true` if the value is valid (ie. found in the
+     *                         array of options); `false` otherwise
      */
-    isValid(value = this.props.value) {
-        return this.getOptionsList().findIndex((opt) => `${opt.value}` === `${value}`) !== -1;
+    isValid(value) {
+        return this.optionsList.findIndex((opt) => `${opt.value}` === `${value}`) !== -1;
     }
 
     /**
@@ -114,13 +127,6 @@ class Dropdown extends React.Component {
      * @return {React.Element} The React element describing the component
      */
     render() {
-        // figure out what value to display
-        //
-        let value = this.isValid() ? this.props.value : '';
-        if (this.props.options[0] && !value) {
-            value = this.props.options[0].value;
-        }
-
         // generate the label for the component
         //
         const label = this.props.label
@@ -169,7 +175,7 @@ class Dropdown extends React.Component {
                 name={this.props.name}
                 disabled={!!this.props.disabled}
                 className="form-control"
-                value={value}
+                value={this.state.value}
                 onChange={this.onChange}
             >
                 {options}

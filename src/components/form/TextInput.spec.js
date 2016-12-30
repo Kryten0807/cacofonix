@@ -4,10 +4,18 @@
 //
 /* eslint-disable no-unused-expressions */
 
+// npm dependencies
+//
 import React from 'react';
+
+// testing dependencies
+//
 import { shallow, render, mount } from 'enzyme';
 import chai from 'chai';
 import sinon from 'sinon';
+
+// the system under test
+//
 import Form from '../Form';
 
 const expect = chai.expect;
@@ -49,6 +57,12 @@ const formatCurrency = (value) => {
     //
     return Number.isNaN(val) ? '' : `$ ${val.toFixed(2)}`;
 };
+
+// @TODO add test to handle moving cursors during editing
+// I think there's a problem with editing in the middle of the value in the
+// TextInput. For example, when the TextInput value = "hello" with the cursor
+// between the to "l" characters, typing "xxx" should result in "helxxxlo". I
+// don't think that is working in the browser
 
 describe('a Form component with a TextInput element', () => {
 
