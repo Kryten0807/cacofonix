@@ -101,14 +101,14 @@ class Dropdown extends React.Component {
             ? event.target.value
             : this.firstValue;
 
+        // update the state
+        //
         this.setState({ value: newValue }, () => {
-            // do we have an onChange handler? if so, call it with the new
-            // value
+            // ...then call the `onChange` handler, if it exists
             //
             if (this.props.onChange) {
                 this.props.onChange(this.state.value);
             }
-
         });
     }
 
