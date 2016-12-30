@@ -61,6 +61,12 @@ class Dropdown extends React.Component {
         this.onChange = this.onChange.bind(this);
     }
 
+    componentDidMount() {
+        if (this.props.value !== this.state.value && this.props.onChange) {
+            this.props.onChange(this.state.value);
+        }
+    }
+
     /**
      * Handle the `onChange` event for the select element
      * @param  {Object} event The event object
