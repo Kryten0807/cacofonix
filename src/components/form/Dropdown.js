@@ -32,8 +32,9 @@ class Dropdown extends React.Component {
         //
         this.id = props.id || uniqueId('form-dropdown-');
 
-        // do we have a value? if not, then we need call onChange (if it exists)
-        // with the first option to ensure that the value is set
+        // do we have a value? This is an interesting situation... the user has
+        // not provided a value, so the value *ought* to be the first item in
+        // the Dropdown.
         //
         if (!props.value && props.onChange) {
             // is the list of options an array?
@@ -49,6 +50,16 @@ class Dropdown extends React.Component {
                 // (if there is one)
                 //
                 const keys = Object.keys(props.options);
+        // I attempted to fix this by "pushing" the updated value to the state
+        // via the `onChange` handler, but that's a no-no in React.
+        //
+        // Possible solutions:
+        // 1. require the `value` parameter - but what happens if it's not
+        //      valid?
+        // 2. push the new value after the component has mounted - but this
+        //      requires implementing state on this component
+        //
+        // I'm going to try number 2.
 
                 if (keys.length > 0) {
                     props.onChange(props.options[keys[0]][0].value);
