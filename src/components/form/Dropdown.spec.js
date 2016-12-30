@@ -4,11 +4,18 @@
 //
 /* eslint-disable no-unused-expressions */
 
+// npm dependencies
+//
 import React from 'react';
+
+// testing dependencies
+//
 import { shallow, render, mount } from 'enzyme';
 import chai from 'chai';
 import sinon from 'sinon';
 
+// the system under test
+//
 import Form from '../Form';
 
 const expect = chai.expect;
