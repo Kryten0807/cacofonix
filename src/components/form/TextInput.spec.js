@@ -328,7 +328,7 @@ describe('TextInput markup', () => {
 
 });
 
-describe('when initializing a Form with a required TextInput', () => {
+describe('when initializing a Form with a required/pattern TextInput', () => {
 
     const required = true;
 
