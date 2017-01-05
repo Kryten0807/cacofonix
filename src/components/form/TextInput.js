@@ -91,6 +91,13 @@ class TextInput extends React.Component {
      * @param  {Object} newProps The new properties for the component
      */
     componentWillReceiveProps(newProps) {
+        if (this.state.required !== newProps.required) {
+            this.onNewRequiredFlag(newProps.required, newProps.value);
+        } else {
+            this.onNewValue(newProps.value);
+        }
+    }
+
         // update the new required prop (if it's changing)
         //
         this.setState((state) => update(state, {
