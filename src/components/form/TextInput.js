@@ -32,6 +32,7 @@ class TextInput extends React.Component {
             isValid:         true,
             validationError: null,
             isEditing:       false,
+            hasBlurred:      true,
         };
 
         // generate a unique ID for this component instance
@@ -151,10 +152,11 @@ class TextInput extends React.Component {
         // set the `isValid` state
         //
         this.setState(() => ({
-            value:     formattedValue,
+            value:      formattedValue,
             isValid,
             validationError,
-            isEditing: false
+            isEditing:  false,
+            hasBlurred: true,
         }));
 
         // call the `onChildValidationEvent` handler
