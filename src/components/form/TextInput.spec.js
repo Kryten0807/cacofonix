@@ -596,6 +596,84 @@ describe('when changing the value of a required TextInput (but not blurring)', (
         expect(component.find('.help-block')).to.have.length(0);
     });
 
+
+
+
+    class TestParent extends React.Component {
+        constructor(props) {
+            super(props);
+
+            this.state = {
+                testValue: props.testValue || '',
+                hidden:    !!props.hidden,
+            };
+
+            this.onChange = this.onChange.bind(this);
+        }
+
+        onChange(testValue) {
+            this.setState({ testValue });
+        }
+
+        render() {
+            return (
+                <Form>
+                    <Form.TextInput
+                        required
+                        description="The email address"
+                        id="form-login-email"
+                        placeholder="Email"
+                        value={this.state.testValue}
+                        pattern={/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i}
+                        onChange={this.onChange}
+                    />
+                </Form>
+            );
+        }
+    }
+
+    TestParent.propTypes = {
+        hidden:       React.PropTypes.bool,
+        testValue:    React.PropTypes.string,
+        onChange:     React.PropTypes.func,
+        onValidation: React.PropTypes.func,
+    };
+
+
+
+
+
+
+    it('the validation message should not be displayed with a valid value', () => {
+        const initialValue = '';
+        const finalValue = 'test@test.com';
+
+        const component = mount(<TestParent testValue={initialValue} />);
+
+        component.find('input').simulate('change', {
+            target: { value: finalValue }
+        });
+
+        expect(component.find('Alert')).to.have.length(0);
+    });
+
+    it('the validation message should not be displayed with an invalid value', () => {
+        const initialValue = '';
+        const finalValue = 't'; // imagine the user is starting to type an email...
+
+        const component = mount(<TestParent testValue={initialValue} />);
+
+        component.find('input').simulate('change', {
+            target: { value: finalValue }
+        });
+
+        expect(component.find('Alert')).to.have.length(0);
+    });
+
+
+
+
+
 });
 
 describe('when changing the value of a non-required TextInput (but not blurring)', () => {
