@@ -9,6 +9,8 @@ import isFunction from 'lodash/isFunction';
 
 // @TODO permitted characters regex
 
+// @TODO add this.state.hasBlurred,hasFocused to track blur/focus state
+
 /**
  * The TextInput component
  *
