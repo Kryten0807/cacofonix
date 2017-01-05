@@ -63,6 +63,9 @@ const formatCurrency = (value) => {
 // TextInput. For example, when the TextInput value = "hello" with the cursor
 // between the to "l" characters, typing "xxx" should result in "helxxxlo". I
 // don't think that is working in the browser
+//
+// 1/5/17 - nope, not doing it in other places - this needs more observation
+//
 
 describe('a Form component with a TextInput element', () => {
 
