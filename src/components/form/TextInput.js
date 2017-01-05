@@ -139,6 +139,46 @@ class TextInput extends React.Component {
         });
     }
 
+    onNewValue(value) {
+        this.setState((state) => update(state, {
+            value: { $set: value }
+        }), () => {
+            if (this.state.hasBlurred) {
+                // figure out the formatted value
+                //
+                const formattedValue = this.props.format ? this.props.format(value) : value;
+
+                const oldValue = this.state.value;
+                const oldValidationError = this.state.validationError;
+
+                // determine if it's valid
+                //
+                const { isValid, validationError } = this.validate(formattedValue);
+
+                // update the component state if
+                // a) we're currently editing and the value is subject to formatting, or
+                // b) we have a brand new value
+                //
+                if (oldValidationError !== validationError || oldValue !== value) {
+                    this.setState((state) => update(state, {
+                        isValid:         { $set: isValid },
+                        validationError: { $set: validationError },
+                    }), () => {
+                        // call the `onChildValidationEvent` handler
+                        //
+                        if (this.context.onChildValidationEvent) {
+                            this.context.onChildValidationEvent(
+                                this.id,
+                                true,
+                                validationError
+                            );
+                        }
+                    });
+                }
+            }
+        });
+    }
+
     /**
      * Handle the blur event for the input element
      * @param  {Object} event The event object
