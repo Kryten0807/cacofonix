@@ -236,7 +236,7 @@ class TextInput extends React.Component {
             // we do not have a value - in this case, whether it's valid or not
             // is determined solely by whether a valid is required or not
             //
-            isValid = !this.props.required;
+            isValid = !this.state.required;
 
             validationError = isValid ? null : this.validationMessage.required;
         } else {
@@ -300,7 +300,7 @@ class TextInput extends React.Component {
                 style={labelStyles}
             >
                 {this.props.label}
-                {this.props.required
+                {this.state.required
                     ? <sup>&nbsp;<i className="required fa fa-star" /></sup>
                     : ''
                 }
