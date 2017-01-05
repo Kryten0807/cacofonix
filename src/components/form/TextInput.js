@@ -9,6 +9,8 @@ import isFunction from 'lodash/isFunction';
 
 // @TODO permitted characters regex
 
+// @TODO add this.state.hasBlurred,hasFocused to track blur/focus state
+
 /**
  * The TextInput component
  *
@@ -29,9 +31,11 @@ class TextInput extends React.Component {
         //
         this.state = {
             value,
+            required:        this.props.required,
             isValid:         true,
             validationError: null,
             isEditing:       false,
+            hasBlurred:      false,
         };
 
         // generate a unique ID for this component instance
@@ -59,6 +63,8 @@ class TextInput extends React.Component {
         this.onBlur = this.onBlur.bind(this);
         this.onFocus = this.onFocus.bind(this);
         this.onChange = this.onChange.bind(this);
+        this.onNewRequiredFlag = this.onNewRequiredFlag.bind(this);
+        this.onNewValue = this.onNewValue.bind(this);
     }
 
     /**
@@ -87,19 +93,30 @@ class TextInput extends React.Component {
      * @param  {Object} newProps The new properties for the component
      */
     componentWillReceiveProps(newProps) {
+        if (this.state.required !== newProps.required) {
+            this.onNewRequiredFlag(newProps.required, newProps.value);
+        } else {
+            this.onNewValue(newProps.value);
+        }
+    }
+
+    /**
+     * Handle a change the the `require` property
+     * @param  {Boolean} required The new value of the `required` property
+     * @param  {String} value     The new value for the component
+     */
+    onNewRequiredFlag(required, value) {
         // update the new required prop (if it's changing)
         //
         this.setState((state) => update(state, {
-            required: { $set: newProps.required }
+            required: { $set: required }
         }), () => {
-            // get the value from the new props
-            //
-            const value = newProps.value;
-
             // figure out the formatted value
             //
             const formattedValue = this.props.format ? this.props.format(value) : value;
 
+            // save the old value & old validation error for later checking
+            //
             const oldValue = this.state.value;
             const oldValidationError = this.state.validationError;
 
@@ -132,6 +149,57 @@ class TextInput extends React.Component {
     }
 
     /**
+     * Handle a change to the `value` property
+     * @param  {String} value The new value
+     */
+    onNewValue(value) {
+        // update the value in the state
+        //
+        this.setState((state) => update(state, {
+            value: { $set: value }
+        }), () => {
+            // ...then check to see if this component has blurred before
+            //
+            if (this.state.hasBlurred) {
+                // it has blurred, so we need to validate. Figure out the
+                // formatted value
+                //
+                const formattedValue = this.props.format ? this.props.format(value) : value;
+
+                // save the old value & old validation error for later checking
+                //
+                const oldValue = this.state.value;
+                const oldValidationError = this.state.validationError;
+
+                // determine if it's valid
+                //
+                const { isValid, validationError } = this.validate(formattedValue);
+
+                // update the component state if
+                // a) we're currently editing and the value is subject to formatting, or
+                // b) we have a brand new value
+                //
+                if (oldValidationError !== validationError || oldValue !== value) {
+                    this.setState((state) => update(state, {
+                        isValid:         { $set: isValid },
+                        validationError: { $set: validationError },
+                    }), () => {
+                        // call the `onChildValidationEvent` handler
+                        //
+                        if (this.context.onChildValidationEvent) {
+                            this.context.onChildValidationEvent(
+                                this.id,
+                                true,
+                                validationError
+                            );
+                        }
+                    });
+                }
+            }
+        });
+    }
+
+    /**
      * Handle the blur event for the input element
      * @param  {Object} event The event object
      */
@@ -151,10 +219,11 @@ class TextInput extends React.Component {
         // set the `isValid` state
         //
         this.setState(() => ({
-            value:     formattedValue,
+            value:      formattedValue,
             isValid,
             validationError,
-            isEditing: false
+            isEditing:  false,
+            hasBlurred: true,
         }));
 
         // call the `onChildValidationEvent` handler
@@ -231,7 +300,7 @@ class TextInput extends React.Component {
             // we do not have a value - in this case, whether it's valid or not
             // is determined solely by whether a valid is required or not
             //
-            isValid = !this.props.required;
+            isValid = !this.state.required;
 
             validationError = isValid ? null : this.validationMessage.required;
         } else {
@@ -295,7 +364,7 @@ class TextInput extends React.Component {
                 style={labelStyles}
             >
                 {this.props.label}
-                {this.props.required
+                {this.state.required
                     ? <sup>&nbsp;<i className="required fa fa-star" /></sup>
                     : ''
                 }

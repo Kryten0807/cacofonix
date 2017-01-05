@@ -63,8 +63,11 @@ const formatCurrency = (value) => {
 // TextInput. For example, when the TextInput value = "hello" with the cursor
 // between the to "l" characters, typing "xxx" should result in "helxxxlo". I
 // don't think that is working in the browser
+//
+// 1/5/17 - nope, not doing it in other places - this needs more observation
+//
 
-describe('a Form component with a TextInput element', () => {
+describe('TextInput markup', () => {
 
     it('should include a <Form.TextInput> as a child', () => {
         const component = shallow(
@@ -325,11 +328,11 @@ describe('a Form component with a TextInput element', () => {
 
 });
 
-describe('when initializing a Form with a required TextInput', () => {
+describe('when initializing a Form with a required/pattern TextInput', () => {
 
     const required = true;
 
-    it('the validation message should not be displayed with a valid value', () => {
+    it('the validation message should not be displayed with a valid value (required)', () => {
         const initialValue = 'something';
 
         const component = render(
@@ -341,7 +344,8 @@ describe('when initializing a Form with a required TextInput', () => {
         expect(component.find('Alert')).to.have.length(0);
     });
 
-    it('the component validation message should not be displayed with a valid value', () => {
+    it('the component validation message should not be displayed with a valid '
+        + 'value (required)', () => {
         const initialValue = 'something';
 
         const component = render(
@@ -354,7 +358,7 @@ describe('when initializing a Form with a required TextInput', () => {
         expect(component.find('.help-block')).to.have.length(0);
     });
 
-    it('the validation message should not be displayed with an invalid value', () => {
+    it('the validation message should not be displayed with an invalid value (required)', () => {
         const initialValue = '';
 
         const component = render(
@@ -366,12 +370,93 @@ describe('when initializing a Form with a required TextInput', () => {
         expect(component.find('Alert')).to.have.length(0);
     });
 
-    it('the component validation message should not be displayed with an invalid value', () => {
+    it('the component validation message should not be displayed with an '
+        + 'invalid value (required)', () => {
         const initialValue = '';
 
         const component = render(
             <Form>
                 <Form.TextInput required={required} value={initialValue} />
+            </Form>
+        );
+
+        expect(component.find('.has-error')).to.have.length(0);
+        expect(component.find('.help-block')).to.have.length(0);
+    });
+
+    it('the validation message should not be displayed with a valid value (email)', () => {
+        const initialValue = 'test@test.com';
+
+        const component = render(
+            <Form>
+                <Form.TextInput
+                    required
+                    description="The email address"
+                    id="form-login-email"
+                    placeholder="Email"
+                    value={initialValue}
+                    pattern={/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i}
+                />
+            </Form>
+        );
+
+        expect(component.find('Alert')).to.have.length(0);
+    });
+
+    it('the component validation message should not be displayed with a valid '
+        + 'value (email)', () => {
+        const initialValue = 'joe@somewhere.com';
+
+        const component = render(
+            <Form>
+                <Form.TextInput
+                    required
+                    description="The email address"
+                    id="form-login-email"
+                    placeholder="Email"
+                    value={initialValue}
+                    pattern={/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i}
+                />
+            </Form>
+        );
+
+        expect(component.find('.has-error')).to.have.length(0);
+        expect(component.find('.help-block')).to.have.length(0);
+    });
+
+    it('the validation message should not be displayed with an invalid value (email)', () => {
+        const initialValue = 'not an email';
+
+        const component = render(
+            <Form>
+                <Form.TextInput
+                    required
+                    description="The email address"
+                    id="form-login-email"
+                    placeholder="Email"
+                    value={initialValue}
+                    pattern={/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i}
+                />
+            </Form>
+        );
+
+        expect(component.find('Alert')).to.have.length(0);
+    });
+
+    it('the component validation message should not be displayed with an '
+        + 'invalid value (email)', () => {
+        const initialValue = 'still not an email';
+
+        const component = render(
+            <Form>
+                <Form.TextInput
+                    required
+                    description="The email address"
+                    id="form-login-email"
+                    placeholder="Email"
+                    value={initialValue}
+                    pattern={/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i}
+                />
             </Form>
         );
 
@@ -509,6 +594,72 @@ describe('when changing the value of a required TextInput (but not blurring)', (
 
         expect(component.find('.has-error')).to.have.length(0);
         expect(component.find('.help-block')).to.have.length(0);
+    });
+
+    class TestParent extends React.Component {
+        constructor(props) {
+            super(props);
+
+            this.state = {
+                testValue: props.testValue || '',
+                hidden:    !!props.hidden,
+            };
+
+            this.onChange = this.onChange.bind(this);
+        }
+
+        onChange(testValue) {
+            this.setState({ testValue });
+        }
+
+        render() {
+            return (
+                <Form>
+                    <Form.TextInput
+                        required
+                        description="The email address"
+                        id="form-login-email"
+                        placeholder="Email"
+                        value={this.state.testValue}
+                        pattern={/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i}
+                        onChange={this.onChange}
+                    />
+                </Form>
+            );
+        }
+    }
+
+    TestParent.propTypes = {
+        hidden:       React.PropTypes.bool,
+        testValue:    React.PropTypes.string,
+        onChange:     React.PropTypes.func,
+        onValidation: React.PropTypes.func,
+    };
+
+    it('the validation message should not be displayed with a valid value', () => {
+        const initialValue = '';
+        const finalValue = 'test@test.com';
+
+        const component = mount(<TestParent testValue={initialValue} />);
+
+        component.find('input').simulate('change', {
+            target: { value: finalValue }
+        });
+
+        expect(component.find('Alert')).to.have.length(0);
+    });
+
+    it('the validation message should not be displayed with an invalid value', () => {
+        const initialValue = '';
+        const finalValue = 't'; // imagine the user is starting to type an email...
+
+        const component = mount(<TestParent testValue={initialValue} />);
+
+        component.find('input').simulate('change', {
+            target: { value: finalValue }
+        });
+
+        expect(component.find('Alert')).to.have.length(0);
     });
 
 });

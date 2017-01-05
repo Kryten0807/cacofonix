@@ -287,6 +287,9 @@ describe('the Form component', () => {
 
         const component = mount(<TestComponent />);
 
+        // blur the text input to ensure that we're displaying validation
+        // changes
+        component.find('input[name="textinput"]').simulate('blur');
 
         // initial state - no Alert
         expect(component.find('Alert')).to.have.length(0);
