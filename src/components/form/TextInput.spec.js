@@ -383,6 +383,85 @@ describe('when initializing a Form with a required TextInput', () => {
         expect(component.find('.help-block')).to.have.length(0);
     });
 
+    it('the validation message should not be displayed with a valid value (email)', () => {
+        const initialValue = 'test@test.com';
+
+        const component = render(
+            <Form>
+                <Form.TextInput
+                    required
+                    description="The email address"
+                    id="form-login-email"
+                    placeholder="Email"
+                    value={initialValue}
+                    pattern={/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i}
+                />
+            </Form>
+        );
+
+        expect(component.find('Alert')).to.have.length(0);
+    });
+
+    it('the component validation message should not be displayed with a valid value (email)', () => {
+        const initialValue = 'joe@somewhere.com';
+
+        const component = render(
+            <Form>
+                <Form.TextInput
+                    required
+                    description="The email address"
+                    id="form-login-email"
+                    placeholder="Email"
+                    value={initialValue}
+                    pattern={/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i}
+                />
+            </Form>
+        );
+
+        expect(component.find('.has-error')).to.have.length(0);
+        expect(component.find('.help-block')).to.have.length(0);
+    });
+
+    it('the validation message should not be displayed with an invalid value (email)', () => {
+        const initialValue = 'not an email';
+
+        const component = render(
+            <Form>
+                <Form.TextInput
+                    required
+                    description="The email address"
+                    id="form-login-email"
+                    placeholder="Email"
+                    value={initialValue}
+                    pattern={/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i}
+                />
+            </Form>
+        );
+
+        expect(component.find('Alert')).to.have.length(0);
+    });
+
+    it('the component validation message should not be displayed with an '
+        + 'invalid value (email)', () => {
+        const initialValue = 'still not an email';
+
+        const component = render(
+            <Form>
+                <Form.TextInput
+                    required
+                    description="The email address"
+                    id="form-login-email"
+                    placeholder="Email"
+                    value={initialValue}
+                    pattern={/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i}
+                />
+            </Form>
+        );
+
+        expect(component.find('.has-error')).to.have.length(0);
+        expect(component.find('.help-block')).to.have.length(0);
+    });
+
 });
 
 describe('when initializing a Form with a non-required TextInput', () => {
