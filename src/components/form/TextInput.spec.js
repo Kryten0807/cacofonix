@@ -67,7 +67,7 @@ const formatCurrency = (value) => {
 // 1/5/17 - nope, not doing it in other places - this needs more observation
 //
 
-describe('a Form component with a TextInput element', () => {
+describe('TextInput markup', () => {
 
     it('should include a <Form.TextInput> as a child', () => {
         const component = shallow(
@@ -332,7 +332,7 @@ describe('when initializing a Form with a required TextInput', () => {
 
     const required = true;
 
-    it('the validation message should not be displayed with a valid value', () => {
+    it('the validation message should not be displayed with a valid value (required)', () => {
         const initialValue = 'something';
 
         const component = render(
@@ -344,7 +344,7 @@ describe('when initializing a Form with a required TextInput', () => {
         expect(component.find('Alert')).to.have.length(0);
     });
 
-    it('the component validation message should not be displayed with a valid value', () => {
+    it('the component validation message should not be displayed with a valid value (required)', () => {
         const initialValue = 'something';
 
         const component = render(
@@ -357,7 +357,7 @@ describe('when initializing a Form with a required TextInput', () => {
         expect(component.find('.help-block')).to.have.length(0);
     });
 
-    it('the validation message should not be displayed with an invalid value', () => {
+    it('the validation message should not be displayed with an invalid value (required)', () => {
         const initialValue = '';
 
         const component = render(
@@ -369,7 +369,8 @@ describe('when initializing a Form with a required TextInput', () => {
         expect(component.find('Alert')).to.have.length(0);
     });
 
-    it('the component validation message should not be displayed with an invalid value', () => {
+    it('the component validation message should not be displayed with an '
+        + 'invalid value (required)', () => {
         const initialValue = '';
 
         const component = render(
