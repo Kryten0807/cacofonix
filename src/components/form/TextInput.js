@@ -34,7 +34,7 @@ class TextInput extends React.Component {
             isValid:         true,
             validationError: null,
             isEditing:       false,
-            hasBlurred:      true,
+            hasBlurred:      false,
         };
 
         // generate a unique ID for this component instance
