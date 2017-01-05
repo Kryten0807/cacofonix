@@ -98,15 +98,12 @@ class TextInput extends React.Component {
         }
     }
 
+    onNewRequiredFlag(required, value) {
         // update the new required prop (if it's changing)
         //
         this.setState((state) => update(state, {
-            required: { $set: newProps.required }
+            required: { $set: required }
         }), () => {
-            // get the value from the new props
-            //
-            const value = newProps.value;
-
             // figure out the formatted value
             //
             const formattedValue = this.props.format ? this.props.format(value) : value;
