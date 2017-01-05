@@ -344,7 +344,8 @@ describe('when initializing a Form with a required TextInput', () => {
         expect(component.find('Alert')).to.have.length(0);
     });
 
-    it('the component validation message should not be displayed with a valid value (required)', () => {
+    it('the component validation message should not be displayed with a valid '
+        + 'value (required)', () => {
         const initialValue = 'something';
 
         const component = render(
@@ -402,7 +403,8 @@ describe('when initializing a Form with a required TextInput', () => {
         expect(component.find('Alert')).to.have.length(0);
     });
 
-    it('the component validation message should not be displayed with a valid value (email)', () => {
+    it('the component validation message should not be displayed with a valid '
+        + 'value (email)', () => {
         const initialValue = 'joe@somewhere.com';
 
         const component = render(
