@@ -63,6 +63,8 @@ class TextInput extends React.Component {
         this.onBlur = this.onBlur.bind(this);
         this.onFocus = this.onFocus.bind(this);
         this.onChange = this.onChange.bind(this);
+        this.onNewRequiredFlag = this.onNewRequiredFlag.bind(this);
+        this.onNewValue = this.onNewValue.bind(this);
     }
 
     /**
