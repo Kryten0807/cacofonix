@@ -31,6 +31,7 @@ class TextInput extends React.Component {
         //
         this.state = {
             value,
+            required:        this.props.required,
             isValid:         true,
             validationError: null,
             isEditing:       false,
