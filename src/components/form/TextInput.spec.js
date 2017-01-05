@@ -596,9 +596,6 @@ describe('when changing the value of a required TextInput (but not blurring)', (
         expect(component.find('.help-block')).to.have.length(0);
     });
 
-
-
-
     class TestParent extends React.Component {
         constructor(props) {
             super(props);
@@ -639,11 +636,6 @@ describe('when changing the value of a required TextInput (but not blurring)', (
         onValidation: React.PropTypes.func,
     };
 
-
-
-
-
-
     it('the validation message should not be displayed with a valid value', () => {
         const initialValue = '';
         const finalValue = 'test@test.com';
@@ -669,10 +661,6 @@ describe('when changing the value of a required TextInput (but not blurring)', (
 
         expect(component.find('Alert')).to.have.length(0);
     });
-
-
-
-
 
 });
 
