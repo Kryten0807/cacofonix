@@ -100,6 +100,11 @@ class TextInput extends React.Component {
         }
     }
 
+    /**
+     * Handle a change the the `require` property
+     * @param  {Boolean} required The new value of the `required` property
+     * @param  {String} value     The new value for the component
+     */
     onNewRequiredFlag(required, value) {
         // update the new required prop (if it's changing)
         //
@@ -110,6 +115,8 @@ class TextInput extends React.Component {
             //
             const formattedValue = this.props.format ? this.props.format(value) : value;
 
+            // save the old value & old validation error for later checking
+            //
             const oldValue = this.state.value;
             const oldValidationError = this.state.validationError;
 
@@ -141,15 +148,26 @@ class TextInput extends React.Component {
         });
     }
 
+    /**
+     * Handle a change to the `value` property
+     * @param  {String} value The new value
+     */
     onNewValue(value) {
+        // update the value in the state
+        //
         this.setState((state) => update(state, {
             value: { $set: value }
         }), () => {
+            //...then check to see if this component has blurred before
+            //
             if (this.state.hasBlurred) {
-                // figure out the formatted value
+                // it has blurred, so we need to validate. Figure out the
+                // formatted value
                 //
                 const formattedValue = this.props.format ? this.props.format(value) : value;
 
+                // save the old value & old validation error for later checking
+                //
                 const oldValue = this.state.value;
                 const oldValidationError = this.state.validationError;
 
