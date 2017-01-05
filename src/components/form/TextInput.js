@@ -158,7 +158,7 @@ class TextInput extends React.Component {
         this.setState((state) => update(state, {
             value: { $set: value }
         }), () => {
-            //...then check to see if this component has blurred before
+            // ...then check to see if this component has blurred before
             //
             if (this.state.hasBlurred) {
                 // it has blurred, so we need to validate. Figure out the
