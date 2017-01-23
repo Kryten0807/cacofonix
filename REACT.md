@@ -346,7 +346,7 @@ type: `union(arrayOf|node)`
 
 A flag indicated whether this button is disabled
 
-type: `custom`
+type: `bool`
 
 
 ### name
