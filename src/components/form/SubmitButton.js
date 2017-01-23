@@ -24,7 +24,7 @@ const SubmitButton = ({ children, disabled, name, style, onClick }, { isValid })
             'btn-success': style === 'success' || style === 'ok',
             'btn-default': !style,
         })}
-        disabled={!isValid}
+        disabled={!isValid || !!disabled}
         onClick={onClick}
     >
         {children || 'Submit'}
