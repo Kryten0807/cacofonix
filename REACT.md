@@ -342,6 +342,13 @@ The child(ren) of this component
 type: `union(arrayOf|node)`
 
 
+### disabled
+
+A flag indicated whether this button is disabled
+
+type: `custom`
+
+
 ### name
 
 The name for the component
