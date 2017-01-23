@@ -14,7 +14,7 @@ import classnames from 'classnames';
  *                            is valid
  * @return {React.Element}    The React element describing this component
  */
-const SubmitButton = ({ children, name, style, onClick }, { isValid }) => (
+const SubmitButton = ({ children, disabled, name, style, onClick }, { isValid }) => (
     <button
         name={name}
         className={classnames('btn', {
