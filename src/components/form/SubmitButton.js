@@ -24,6 +24,12 @@ class SubmitButton extends React.Component {
         };
     }
 
+    componentWillReceiveProps(newProps) {
+        if (this.state.disabled !== !!newProps.disabled) {
+            this.setState({ disabled: !!newProps.disabled });
+        }
+    }
+
     render() {
         return (
             <button
