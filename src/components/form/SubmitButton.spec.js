@@ -208,6 +208,32 @@ describe('a Form component containing a SubmitButton', () => {
         expect(component.find('button').props().name).to.equal(name);
     });
 
+    it('should have the disabled attribute set when disabled=true', () => {
+
+        const disabled = true;
+
+        const component = mount(
+            <Form>
+                <Form.SubmitButton disabled={disabled} />
+            </Form>
+        );
+
+        expect(component.find('button').props().disabled).to.equal(true);
+    });
+
+    it('should not have the disabled attribute set when disabled=false', () => {
+
+        const disabled = false;
+
+        const component = mount(
+            <Form>
+                <Form.SubmitButton disabled={disabled} />
+            </Form>
+        );
+
+        expect(component.find('button').props().disabled).to.equal(false);
+    });
+
 });
 
 describe('given a Form containing a required TextInput and a SubmitButton', () => {
