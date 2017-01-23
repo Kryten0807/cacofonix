@@ -14,22 +14,35 @@ import classnames from 'classnames';
  *                            is valid
  * @return {React.Element}    The React element describing this component
  */
-const SubmitButton = ({ children, disabled, name, style, onClick }, { isValid }) => (
-    <button
-        name={name}
-        className={classnames('btn', {
-            'btn-danger':  style === 'danger' || style === 'error',
-            'btn-warning': style === 'warning' || style === 'warn',
-            'btn-info':    style === 'info',
-            'btn-success': style === 'success' || style === 'ok',
-            'btn-default': !style,
-        })}
-        disabled={!isValid || !!disabled}
-        onClick={onClick}
-    >
-        {children || 'Submit'}
-    </button>
-);
+
+class SubmitButton extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            disabled: props.disabled,
+        };
+    }
+
+    render() {
+        return (
+            <button
+                name={this.props.name}
+                className={classnames('btn', {
+                    'btn-danger':  this.props.style === 'danger' || this.props.style === 'error',
+                    'btn-warning': this.props.style === 'warning' || this.props.style === 'warn',
+                    'btn-info':    this.props.style === 'info',
+                    'btn-success': this.props.style === 'success' || this.props.style === 'ok',
+                    'btn-default': !this.props.style,
+                })}
+                disabled={!this.context.isValid || !!this.state.disabled}
+                onClick={this.props.onClick}
+            >
+                {this.props.children || 'Submit'}
+            </button>
+        );
+    }
+}
 
 // define the property types for the component
 //
