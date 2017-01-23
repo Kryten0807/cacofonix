@@ -400,9 +400,7 @@ describe('given a Form containing a required TextInput and a SubmitButton', () =
             render() {
                 return (
                     <Form>
-                        <Form.SubmitButton
-                            disabled={this.state.disabled}
-                        />
+                        <Form.SubmitButton disabled={this.state.disabled} />
                     </Form>
                 );
             }
@@ -428,9 +426,7 @@ describe('given a Form containing a required TextInput and a SubmitButton', () =
             render() {
                 return (
                     <Form>
-                        <Form.SubmitButton
-                            disabled={this.state.disabled}
-                        />
+                        <Form.SubmitButton disabled={this.state.disabled} />
                     </Form>
                 );
             }
