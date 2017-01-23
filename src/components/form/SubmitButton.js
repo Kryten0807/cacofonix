@@ -34,6 +34,8 @@ const SubmitButton = ({ children, name, style, onClick }, { isValid }) => (
 // define the property types for the component
 //
 SubmitButton.propTypes = {
+    /** A flag indicated whether this button is disabled */
+    disabled: React.PropTypes.boolean,
     /** The name for the component */
     name:     React.PropTypes.string,
     /** The style with which to display the button */
