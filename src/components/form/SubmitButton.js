@@ -71,7 +71,7 @@ class SubmitButton extends React.Component {
 //
 SubmitButton.propTypes = {
     /** A flag indicated whether this button is disabled */
-    disabled: React.PropTypes.boolean,
+    disabled: React.PropTypes.bool,
     /** The name for the component */
     name:     React.PropTypes.string,
     /** The style with which to display the button */
