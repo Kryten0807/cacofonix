@@ -208,6 +208,32 @@ describe('a Form component containing a SubmitButton', () => {
         expect(component.find('button').props().name).to.equal(name);
     });
 
+    it('should have the disabled attribute set when disabled=true', () => {
+
+        const disabled = true;
+
+        const component = mount(
+            <Form>
+                <Form.SubmitButton disabled={disabled} />
+            </Form>
+        );
+
+        expect(component.find('button').props().disabled).to.equal(true);
+    });
+
+    it('should not have the disabled attribute set when disabled=false', () => {
+
+        const disabled = false;
+
+        const component = mount(
+            <Form>
+                <Form.SubmitButton disabled={disabled} />
+            </Form>
+        );
+
+        expect(component.find('button').props().disabled).to.equal(false);
+    });
+
 });
 
 describe('given a Form containing a required TextInput and a SubmitButton', () => {
@@ -361,6 +387,58 @@ describe('given a Form containing a required TextInput and a SubmitButton', () =
         component.find('input').simulate('blur');
 
         expect(component.find('button.btn').props().disabled).to.equal(true);
+    });
+
+    it('should, after changing disabled prop to true, be disabled', () => {
+
+        class TstComp extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = { disabled: false };
+            }
+
+            render() {
+                return (
+                    <Form>
+                        <Form.SubmitButton disabled={this.state.disabled} />
+                    </Form>
+                );
+            }
+        }
+
+        const component = mount(<TstComp />);
+
+        expect(component.find('button.btn').props().disabled).to.equal(false);
+
+        component.setState({ disabled: true });
+
+        expect(component.find('button.btn').props().disabled).to.equal(true);
+    });
+
+    it('should, after changing disabled prop from true to false, be enabled', () => {
+
+        class TstComp extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = { disabled: true };
+            }
+
+            render() {
+                return (
+                    <Form>
+                        <Form.SubmitButton disabled={this.state.disabled} />
+                    </Form>
+                );
+            }
+        }
+
+        const component = mount(<TstComp />);
+
+        expect(component.find('button.btn').props().disabled).to.equal(true);
+
+        component.setState({ disabled: false });
+
+        expect(component.find('button.btn').props().disabled).to.equal(false);
     });
 
 });

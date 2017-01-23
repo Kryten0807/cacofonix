@@ -14,26 +14,64 @@ import classnames from 'classnames';
  *                            is valid
  * @return {React.Element}    The React element describing this component
  */
-const SubmitButton = ({ children, name, style, onClick }, { isValid }) => (
-    <button
-        name={name}
-        className={classnames('btn', {
-            'btn-danger':  style === 'danger' || style === 'error',
-            'btn-warning': style === 'warning' || style === 'warn',
-            'btn-info':    style === 'info',
-            'btn-success': style === 'success' || style === 'ok',
-            'btn-default': !style,
-        })}
-        disabled={!isValid}
-        onClick={onClick}
-    >
-        {children || 'Submit'}
-    </button>
-);
+
+class SubmitButton extends React.Component {
+    /**
+     * Construct the SubmitButton instance
+     * @param  {Object} props The component properties
+     */
+    constructor(props) {
+        super(props);
+
+        // initialize the component state
+        //
+        this.state = {
+            disabled: props.disabled,
+        };
+    }
+
+    /**
+     * Handle new props for the component
+     * @param  {Object} newProps The new property values
+     */
+    componentWillReceiveProps(newProps) {
+        // has the disabled flag state changed? if so, update the component
+        // state
+        //
+        if (this.state.disabled !== !!newProps.disabled) {
+            this.setState({ disabled: !!newProps.disabled });
+        }
+    }
+
+    /**
+     * Render the component
+     * @return {React.Element} The React component
+     */
+    render() {
+        return (
+            <button
+                name={this.props.name}
+                className={classnames('btn', {
+                    'btn-danger':  this.props.style === 'danger' || this.props.style === 'error',
+                    'btn-warning': this.props.style === 'warning' || this.props.style === 'warn',
+                    'btn-info':    this.props.style === 'info',
+                    'btn-success': this.props.style === 'success' || this.props.style === 'ok',
+                    'btn-default': !this.props.style,
+                })}
+                disabled={!this.context.isValid || !!this.state.disabled}
+                onClick={this.props.onClick}
+            >
+                {this.props.children || 'Submit'}
+            </button>
+        );
+    }
+}
 
 // define the property types for the component
 //
 SubmitButton.propTypes = {
+    /** A flag indicated whether this button is disabled */
+    disabled: React.PropTypes.boolean,
     /** The name for the component */
     name:     React.PropTypes.string,
     /** The style with which to display the button */
