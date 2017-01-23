@@ -389,6 +389,66 @@ describe('given a Form containing a required TextInput and a SubmitButton', () =
         expect(component.find('button.btn').props().disabled).to.equal(true);
     });
 
+    it('should, after changing disabled prop to true, be disabled', () => {
+
+        class TstComp extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = { disabled: false };
+            }
+
+            render() {
+                return (
+                    <Form>
+                        <Form.TextInput
+                            value="something"
+                            disabled={this.state.disabled}
+                        />
+                        <Form.SubmitButton />
+                    </Form>
+                );
+            }
+        }
+
+        const component = mount(<TstComp />);
+
+        expect(component.find('button.btn').props().disabled).to.equal(false);
+
+        component.setState({ disabled: true });
+
+        expect(component.find('button.btn').props().disabled).to.equal(true);
+    });
+
+    it('should, after changing disabled prop from true to false, be enabled', () => {
+
+        class TstComp extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = { disabled: true };
+            }
+
+            render() {
+                return (
+                    <Form>
+                        <Form.TextInput
+                            value="something"
+                            disabled={this.state.disabled}
+                        />
+                        <Form.SubmitButton />
+                    </Form>
+                );
+            }
+        }
+
+        const component = mount(<TstComp />);
+
+        expect(component.find('button.btn').props().disabled).to.equal(true);
+
+        component.setState({ disabled: false });
+
+        expect(component.find('button.btn').props().disabled).to.equal(false);
+    });
+
 });
 
 describe('a SubmitButton', () => {
