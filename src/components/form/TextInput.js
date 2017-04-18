@@ -1,6 +1,7 @@
 // npm dependencies
 //
 import React from 'react';
+import PropTypes from 'prop-types';
 import update from 'react-addons-update';
 import classnames from 'classnames';
 import uniqueId from 'lodash/uniqueId';
@@ -458,36 +459,36 @@ class TextInput extends React.Component {
  */
 TextInput.propTypes = {
     /** The name for the component */
-    name:              React.PropTypes.string,
+    name:              PropTypes.string,
     /** The ID for the component */
-    id:                React.PropTypes.string,
+    id:                PropTypes.string,
     /** A flag to indicate whether this is a password input component */
-    password:          React.PropTypes.bool,
+    password:          PropTypes.bool,
     /** A flag to indicate whether this component is required */
-    required:          React.PropTypes.bool,
+    required:          PropTypes.bool,
     /** A flag to indicate whether this component is read only */
-    readOnly:          React.PropTypes.bool,
+    readOnly:          PropTypes.bool,
     /** A flag to indicate whether this component is hidden */
-    hidden:            React.PropTypes.bool,
+    hidden:            PropTypes.bool,
     /** A flag to indicate whether this component is to be rendered inline */
-    inline:            React.PropTypes.bool,
+    inline:            PropTypes.bool,
     /** The width of the component if rendering inline */
-    inlineWidth:       React.PropTypes.string,
+    inlineWidth:       PropTypes.string,
     /** The value of the text input component */
-    value:             React.PropTypes.oneOfType([
-        React.PropTypes.string,
-        React.PropTypes.number,
+    value:             PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number,
     ]),
     /** The label for the component */
-    label:             React.PropTypes.string,
+    label:             PropTypes.string,
     /** The placeholder for the component */
-    placeholder:       React.PropTypes.string,
+    placeholder:       PropTypes.string,
     /** The description for the component (used in validation error messages) */
-    description:       React.PropTypes.string,
+    description:       PropTypes.string,
     /** A custom validation message, or set of messages */
-    validationMessage: React.PropTypes.oneOfType([
-        React.PropTypes.string,
-        React.PropTypes.object,
+    validationMessage: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object,
     ]),
     /** A regex used to validate values */
     pattern:           (props, propName, componentName) => {
@@ -507,19 +508,19 @@ TextInput.propTypes = {
      * then the user will initially see an unformatted value which will be
      * formatted after the first edit.
     */
-    format:            React.PropTypes.func,
+    format:            PropTypes.func,
     /**
      * A function used to parse the value which has been formatted by the
      * `format` function
      */
-    parse:             React.PropTypes.func,
+    parse:             PropTypes.func,
     /** The `onChange` handler for the component */
-    onChange:          React.PropTypes.func,
+    onChange:          PropTypes.func,
     /**
      * The key used to identify this component by the parent Form component for
      * tracking validation errors in Form children
      */
-    validationKey:     React.PropTypes.string,
+    validationKey:     PropTypes.string,
 };
 
 /**
@@ -527,8 +528,8 @@ TextInput.propTypes = {
  * @type {Object}
  */
 TextInput.contextTypes = {
-    onChildValidationEvent: React.PropTypes.func,
-    labelColumns:           React.PropTypes.number,
+    onChildValidationEvent: PropTypes.func,
+    labelColumns:           PropTypes.number,
 };
 
 // export the component
