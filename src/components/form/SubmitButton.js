@@ -1,6 +1,7 @@
 // npm dependencies
 //
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 /**
@@ -71,26 +72,26 @@ class SubmitButton extends React.Component {
 //
 SubmitButton.propTypes = {
     /** A flag indicated whether this button is disabled */
-    disabled: React.PropTypes.bool,
+    disabled: PropTypes.bool,
     /** The name for the component */
-    name:     React.PropTypes.string,
+    name:     PropTypes.string,
     /** The style with which to display the button */
-    style:       React.PropTypes.oneOf(
+    style:       PropTypes.oneOf(
         ['danger', 'error', 'warning', 'warn', 'info', 'success', 'ok']
     ),
     /** The `onClick` handler for the button */
-    onClick:  React.PropTypes.func,
+    onClick:  PropTypes.func,
     /** The child(ren) of this component */
-    children: React.PropTypes.oneOfType([
-        React.PropTypes.arrayOf(React.PropTypes.node),
-        React.PropTypes.node,
+    children: PropTypes.oneOfType([
+        PropTypes.arrayOf(PropTypes.node),
+        PropTypes.node,
     ]),
 };
 
 // define the context types for values received from higher up the food chain
 //
 SubmitButton.contextTypes = {
-    isValid: React.PropTypes.bool,
+    isValid: PropTypes.bool,
 };
 
 // export the component

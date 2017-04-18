@@ -1,6 +1,7 @@
 // npm dependencies
 //
 import React from 'react';
+import PropTypes from 'prop-types';
 import update from 'react-addons-update';
 import uniqueId from 'lodash/uniqueId';
 import isArray from 'lodash/isArray';
@@ -246,29 +247,29 @@ CheckboxGroup.propTypes = {
      * A flag to indicated whether this component is required (ie. at least one
      * checkbox must be checked)
      */
-    required:          React.PropTypes.bool,
+    required:          PropTypes.bool,
     /** The ID for the component */
-    id:                React.PropTypes.string,
+    id:                PropTypes.string,
     /** The label for the checkbox group */
-    label:             React.PropTypes.string,
+    label:             PropTypes.string,
     /**
      * The description of the component for use in validation error messages
      * (ie., "at least one item in <description> must be checked")
      */
-    description:       React.PropTypes.string,
+    description:       PropTypes.string,
     /** A custom validation error message for the component */
-    validationMessage: React.PropTypes.string,
+    validationMessage: PropTypes.string,
     /** The `onChange` handler for the component */
-    onChange:          React.PropTypes.func,
+    onChange:          PropTypes.func,
     /** The value of the component */
-    value:             React.PropTypes.oneOfType([
-        React.PropTypes.arrayOf(React.PropTypes.string),
-        React.PropTypes.arrayOf(React.PropTypes.number),
-        React.PropTypes.string,
-        React.PropTypes.number,
+    value:             PropTypes.oneOfType([
+        PropTypes.arrayOf(PropTypes.string),
+        PropTypes.arrayOf(PropTypes.number),
+        PropTypes.string,
+        PropTypes.number,
     ]),
     /** The options for the checkbox group */
-    options:           React.PropTypes.arrayOf(React.PropTypes.object),
+    options:           PropTypes.arrayOf(PropTypes.object),
 };
 
 /**
@@ -276,8 +277,8 @@ CheckboxGroup.propTypes = {
  * @type {Object}
  */
 CheckboxGroup.contextTypes = {
-    onChildValidationEvent: React.PropTypes.func,
-    labelColumns:           React.PropTypes.number,
+    onChildValidationEvent: PropTypes.func,
+    labelColumns:           PropTypes.number,
 };
 
 // export the component

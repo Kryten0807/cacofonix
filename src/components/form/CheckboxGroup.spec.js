@@ -5,6 +5,7 @@
 /* eslint-disable no-unused-expressions */
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import { shallow, mount } from 'enzyme';
 import chai from 'chai';
 import sinon from 'sinon';
@@ -1066,8 +1067,8 @@ describe('when the user clicks something, the parent component', () => {
         }
 
         TestParent.propTypes = {
-            testValue:    React.PropTypes.array,
-            onChange:     React.PropTypes.func,
+            testValue:    PropTypes.array,
+            onChange:     PropTypes.func,
         };
 
         const testValue = ['1'];
@@ -1136,9 +1137,9 @@ describe('when the user clicks something, the parent component', () => {
         }
 
         TestParent.propTypes = {
-            testValue:   React.PropTypes.array,
-            testOptions: React.PropTypes.array,
-            onChange:    React.PropTypes.func,
+            testValue:   PropTypes.array,
+            testOptions: PropTypes.array,
+            onChange:    PropTypes.func,
         };
 
         // the initial value for the parent

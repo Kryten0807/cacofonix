@@ -1,6 +1,7 @@
 // npm dependencies
 //
 import React from 'react';
+import PropTypes from 'prop-types';
 import update from 'react-addons-update';
 import uniqueId from 'lodash/uniqueId';
 import classnames from 'classnames';
@@ -186,27 +187,27 @@ Form.propTypes = {
      * A flag to indicate whether the components in this form should be rendered
      * inline
      */
-    inline:       React.PropTypes.bool,
+    inline:       PropTypes.bool,
     /**
      * A flag to indicate whether the components in this form should be rendered
      * horizontally
      */
-    horizontal:   React.PropTypes.bool,
+    horizontal:   PropTypes.bool,
     /** The width (in columns) of the component labels */
-    labelColumns: React.PropTypes.number,
+    labelColumns: PropTypes.number,
     /** The child(ren) of this form */
-    children:     React.PropTypes.oneOfType([
-        React.PropTypes.arrayOf(React.PropTypes.node),
-        React.PropTypes.node,
+    children:     PropTypes.oneOfType([
+        PropTypes.arrayOf(PropTypes.node),
+        PropTypes.node,
     ]).isRequired,
 };
 
 // set the child context types to propagate to the children
 //
 Form.childContextTypes = {
-    isValid:                React.PropTypes.bool,
-    onChildValidationEvent: React.PropTypes.func,
-    labelColumns:           React.PropTypes.number,
+    isValid:                PropTypes.bool,
+    onChildValidationEvent: PropTypes.func,
+    labelColumns:           PropTypes.number,
 };
 
 // register the "sub-components" so that they can be imported as part of the
