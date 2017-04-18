@@ -19,9 +19,9 @@
     "lodash": "^4.15.0",
     "moment": "^2.14.1",
     "prop-types": "^15.5.8",
-    "react": "^15.3.1",
+    "react": "^15.5.4",
     "react-addons-update": "^15.3.1",
-    "react-dom": "^15.3.1"
+    "react-dom": "^15.5.4"
   },
   "devDependencies": {
     "babel-cli": "^6.11.4",
@@ -46,7 +46,7 @@
     "gulp-sequence": "^0.4.6",
     "gulp-shell": "^0.5.2",
     "jsdom": "^9.5.0",
-    "react-addons-test-utils": "^15.3.1",
+    "react-addons-test-utils": "^15.5.1",
     "react-docgen": "^2.12.1",
     "sinon": "^1.17.5",
     "through2": "^2.0.3",
