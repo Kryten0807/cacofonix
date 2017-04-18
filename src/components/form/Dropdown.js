@@ -1,6 +1,7 @@
 // npm dependencies
 //
 import React from 'react';
+import PropTypes from 'prop-types';
 import isArray from 'lodash/isArray';
 import flatMap from 'lodash/flatMap';
 import uniqueId from 'lodash/uniqueId';
@@ -212,17 +213,17 @@ class Dropdown extends React.Component {
  */
 Dropdown.propTypes = {
     /** A flag to indicated whether this component is disabled */
-    disabled: React.PropTypes.bool,
+    disabled: PropTypes.bool,
     /** The ID for the component */
-    id:       React.PropTypes.string,
+    id:       PropTypes.string,
     /** The label for the checkbox group */
-    label:    React.PropTypes.string,
+    label:    PropTypes.string,
     /** The name for the select element */
-    name:     React.PropTypes.string,
+    name:     PropTypes.string,
     /** The selected value */
-    value:    React.PropTypes.oneOfType([
-        React.PropTypes.string,
-        React.PropTypes.number,
+    value:    PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number,
     ]),
     /**
      * The options for the dropdown, in one of three possible forms:
@@ -232,12 +233,12 @@ Dropdown.propTypes = {
      * + An object where the key is the option group name and each value is
      *   either an array of strings or an array of objects as described above
      */
-    options:  React.PropTypes.oneOfType([
-        React.PropTypes.array,
-        React.PropTypes.object,
+    options:  PropTypes.oneOfType([
+        PropTypes.array,
+        PropTypes.object,
     ]).isRequired,
     /** The 'onChange' handler for the component */
-    onChange: React.PropTypes.func,
+    onChange: PropTypes.func,
 };
 
 /**
@@ -245,7 +246,7 @@ Dropdown.propTypes = {
  * @type {Object}
  */
 Dropdown.contextTypes = {
-    labelColumns: React.PropTypes.number,
+    labelColumns: PropTypes.number,
 };
 
 // export the component
