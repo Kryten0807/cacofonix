@@ -7,6 +7,7 @@
 // npm dependencies
 //
 import React from 'react';
+import PropTypes from 'prop-types';
 
 // testing dependencies
 //
@@ -630,10 +631,10 @@ describe('when changing the value of a required TextInput (but not blurring)', (
     }
 
     TestParent.propTypes = {
-        hidden:       React.PropTypes.bool,
-        testValue:    React.PropTypes.string,
-        onChange:     React.PropTypes.func,
-        onValidation: React.PropTypes.func,
+        hidden:       PropTypes.bool,
+        testValue:    PropTypes.string,
+        onChange:     PropTypes.func,
+        onValidation: PropTypes.func,
     };
 
     it('the validation message should not be displayed with a valid value', () => {
@@ -2343,12 +2344,12 @@ describe('when changing (and blurring) the value of a TextInput with parent comp
         }
 
         TestParent.propTypes = {
-            testValue:    React.PropTypes.oneOfType([
-                React.PropTypes.string,
-                React.PropTypes.number,
+            testValue:    PropTypes.oneOfType([
+                PropTypes.string,
+                PropTypes.number,
             ]),
-            onChange:     React.PropTypes.func,
-            onValidation: React.PropTypes.func,
+            onChange:     PropTypes.func,
+            onValidation: PropTypes.func,
         };
 
         const initialValue = 'this is first';
@@ -2409,12 +2410,12 @@ describe('when changing (and blurring) the value of a TextInput with parent comp
         }
 
         TestParent.propTypes = {
-            testValue:    React.PropTypes.oneOfType([
-                React.PropTypes.string,
-                React.PropTypes.number,
+            testValue:    PropTypes.oneOfType([
+                PropTypes.string,
+                PropTypes.number,
             ]),
-            onChange:     React.PropTypes.func,
-            onValidation: React.PropTypes.func,
+            onChange:     PropTypes.func,
+            onValidation: PropTypes.func,
         };
 
         const initialValue = '10.00';
@@ -2814,9 +2815,9 @@ describe('when a TextInput with a calculated value is updated', () => {
     }
 
     TestParent.propTypes = {
-        testValue:    React.PropTypes.string,
-        onChange:     React.PropTypes.func,
-        onValidation: React.PropTypes.func,
+        testValue:    PropTypes.string,
+        onChange:     PropTypes.func,
+        onValidation: PropTypes.func,
     };
 
     it('the value in the input element should change', () => {
@@ -2873,10 +2874,10 @@ describe('when a TextInput with a parent component is hidden or shown', () => {
     }
 
     TestParent.propTypes = {
-        hidden:       React.PropTypes.bool,
-        testValue:    React.PropTypes.string,
-        onChange:     React.PropTypes.func,
-        onValidation: React.PropTypes.func,
+        hidden:       PropTypes.bool,
+        testValue:    PropTypes.string,
+        onChange:     PropTypes.func,
+        onValidation: PropTypes.func,
     };
 
     it('should hide the component when the hidden prop is changed to true', () => {

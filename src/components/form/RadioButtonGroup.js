@@ -1,6 +1,7 @@
 // npm dependencies
 //
 import React from 'react';
+import PropTypes from 'prop-types';
 import uniqueId from 'lodash/uniqueId';
 import classnames from 'classnames';
 
@@ -145,18 +146,18 @@ class RadioButtonGroup extends React.Component {
  */
 RadioButtonGroup.propTypes = {
     /** The label for the checkbox group */
-    label:    React.PropTypes.string,
+    label:    PropTypes.string,
     /** A flag to indicated whether this component is disabled */
-    disabled: React.PropTypes.bool,
+    disabled: PropTypes.bool,
     /** The options for the radio button group */
-    options:  React.PropTypes.array,
+    options:  PropTypes.array,
     /** The selected value in the radio button group */
-    value:    React.PropTypes.oneOfType([
-        React.PropTypes.string,
-        React.PropTypes.number,
+    value:    PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number,
     ]),
     /** The `onChange` handler for the component */
-    onChange: React.PropTypes.func,
+    onChange: PropTypes.func,
 };
 
 /**
@@ -164,7 +165,7 @@ RadioButtonGroup.propTypes = {
  * @type {Object}
  */
 RadioButtonGroup.contextTypes = {
-    labelColumns:           React.PropTypes.number,
+    labelColumns:           PropTypes.number,
 };
 
 // export the component

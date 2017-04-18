@@ -1,6 +1,7 @@
 // npm dependencies
 //
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 /**
@@ -47,18 +48,18 @@ const Alert = ({ style, dismissible, children }) => {
 //
 Alert.propTypes = {
     /** The style of the Alert */
-    style:       React.PropTypes.oneOf(
+    style:       PropTypes.oneOf(
         ['danger', 'error', 'warning', 'warn', 'info', 'success', 'ok']
     ),
     /**
      * A flag to indicate whether this alert can be dismissed by the user (not
      * currently implementd)
      */
-    dismissible: React.PropTypes.bool,
+    dismissible: PropTypes.bool,
     /** The child(ren) to display in this component */
-    children:    React.PropTypes.oneOfType([
-        React.PropTypes.element,
-        React.PropTypes.arrayOf(React.PropTypes.element),
+    children:    PropTypes.oneOfType([
+        PropTypes.element,
+        PropTypes.arrayOf(PropTypes.element),
     ]),
 };
 
